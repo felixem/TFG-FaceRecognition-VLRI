@@ -29,8 +29,13 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="Tests.cpp">
+    <ClCompile Include="Haar-like faces.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="sources\haarcascade_frontalface_alt.xml">
+      <Filter>Archivos de recursos</Filter>
+    </Xml>
   </ItemGroup>
 </Project>
