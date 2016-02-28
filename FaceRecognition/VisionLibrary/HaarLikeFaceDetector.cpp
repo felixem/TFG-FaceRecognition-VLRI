@@ -57,7 +57,7 @@ bool HaarLikeFaceDetector::detectFaces(const cv::Mat & input, std::vector<cv::Ma
 	//Ecualizar el histograma
 	equalizeHist(frame_gray, frame_gray);
 	//Copiar la imagen original para señalar las caras
-	output = input;
+	output = input.clone();
 
 	//Detectar las caras
 	face_cascade.detectMultiScale(frame_gray, faces, 1.1, 2, 0 | CASCADE_SCALE_IMAGE, Size(30, 30));
@@ -66,11 +66,7 @@ bool HaarLikeFaceDetector::detectFaces(const cv::Mat & input, std::vector<cv::Ma
 	for (size_t ic = 0; ic < faces.size(); ic++) // Iterate through all current elements (detected faces)
 	{
 		//Establecer regiones de interés
-		cv::Rect roi_c;
-		roi_c.x = faces[ic].x;
-		roi_c.y = faces[ic].y;
-		roi_c.width = (faces[ic].width);
-		roi_c.height = (faces[ic].height);
+		const cv::Rect& roi_c = faces[ic];
 
 		//Obtener la cara en su tono original
 		Mat crop = input(roi_c);
@@ -80,10 +76,15 @@ bool HaarLikeFaceDetector::detectFaces(const cv::Mat & input, std::vector<cv::Ma
 
 		//Añadir cara en gris a la lista de caras
 		foundFaces.push_back(gray);
+	}
 
+	//Señalar caras en la imagen de salida
+	for (unsigned int i = 0; i < faces.size(); ++i)
+	{
+		const Rect &face = faces[i];
 		//Señalar la cara en la imagen de salida
-		Point pt1(roi_c.x, roi_c.y);
-		Point pt2((roi_c.x + roi_c.height), (roi_c.y + roi_c.width));
+		Point pt1(face.x, face.y);
+		Point pt2((face.x + face.height), (face.y + face.width));
 		rectangle(output, pt1, pt2, Scalar(0, 255, 0), 2, 8, 0);
 	}
 

@@ -3,8 +3,6 @@
 
 #include "stdafx.h"
 #include "HaarLikeFaceDetector.h"
-
-#include <iostream>
 #include <stdio.h>
 
 using namespace std;
@@ -22,7 +20,7 @@ string window_name = "Capture - Face detection";
 int main(void)
 {
 	// Read the image file
-	Mat frame = imread("sources/prueba.jpg");
+	Mat frame = imread("sources/manifestacion.jpg");
 
 	// Apply the classifier to the frame
 	if (!frame.empty()) {
