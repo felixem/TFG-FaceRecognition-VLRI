@@ -1,7 +1,6 @@
 // Tests.cpp: define el punto de entrada de la aplicación de consola.
 //
 
-#include "stdafx.h"
 #include "HaarLikeFaceDetector.h"
 #include <stdio.h>
 
@@ -20,21 +19,21 @@ string window_name = "Capture - Face detection";
 int main(void)
 {
 	// Read the image file
-	Mat frame = imread("sources/manifestacion.jpg");
+	Mat frame = imread("sources/prueba.jpg");
 
 	// Apply the classifier to the frame
 	if (!frame.empty()) {
 		detectAndDisplay(frame);
 	}
 	else {
-		printf(" --(!) No captured frame -- Break!");
+		printf(" --(!) No captured frame -- Break!\n");
 		system("pause");
 		return -1;
 	}
 
 	//Bucle infinito para evitar cierre
-	while(true)
-		waitKey(30);
+	waitKey(30);
+	getchar();
 
 	return 0;
 }
@@ -67,7 +66,6 @@ void detectAndDisplay(Mat frame)
 	else
 	{
 		printf(" --(!) No captured faces -- Break!");
-		system("pause");
 		return;
 	}
 

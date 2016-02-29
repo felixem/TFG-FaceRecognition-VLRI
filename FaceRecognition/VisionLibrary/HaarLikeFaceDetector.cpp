@@ -60,7 +60,7 @@ bool HaarLikeFaceDetector::detectFaces(const cv::Mat & input, std::vector<cv::Ma
 	output = input.clone();
 
 	//Detectar las caras
-	face_cascade.detectMultiScale(frame_gray, faces, 1.1, 2, 0 | CASCADE_SCALE_IMAGE, Size(30, 30));
+	face_cascade.detectMultiScale(frame_gray, faces, 1.005, 3, 0 | CASCADE_SCALE_IMAGE, Size(20, 20));
 
 	//Iterar sobre las caras encontradas
 	for (size_t ic = 0; ic < faces.size(); ic++) // Iterate through all current elements (detected faces)
