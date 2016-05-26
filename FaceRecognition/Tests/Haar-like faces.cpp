@@ -1,11 +1,12 @@
 // Tests.cpp: define el punto de entrada de la aplicación de consola.
 //
-
+#include "stdafx.h"
 #include "HaarLikeFaceDetector.h"
 #include <stdio.h>
 
 using namespace std;
 using namespace cv;
+using namespace tfg;
 
 // Function Headers
 void detectAndDisplay(Mat frame);
