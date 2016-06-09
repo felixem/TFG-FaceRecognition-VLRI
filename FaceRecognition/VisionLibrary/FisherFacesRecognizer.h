@@ -1,4 +1,5 @@
 #pragma once
+
 #include "stdafx.h"
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -6,23 +7,22 @@
 
 namespace tfg
 {
-	//Clase utilizada para reconocer caras mediante el método de aprendizaje basado eigenfaces
-	class EigenFacesRecognizer
+	//Clase para reconocer caras según el método de Fisher
+	class FisherFacesRecognizer
 	{
 	public:
-		//Constructor por defecto
-		EigenFacesRecognizer();
-		//Destructor
-		virtual ~EigenFacesRecognizer();
+		FisherFacesRecognizer();
+		~FisherFacesRecognizer();
+
 		//Entrenar modelo a partir de un vector de imágenes y de labels
 		void train(const std::vector<cv::Mat> &images, const std::vector<int> &labels);
 		//Predecir clase de la imagen
-		int predict(const cv::Mat& img, double& confidence);
-		
-		//Almacenar eigenfaces en fichero
-		void saveEigenFaces(const int height, const std::string &directory, const std::string& baseName);
-		//Mostrar eigenfaces
-		void showEigenFaces(const int height);
+		int predict(const cv::Mat& img, double &confidence);
+
+		//Almacenar fisherfaces en fichero
+		void saveFisherFaces(const int height, const std::string &directory, const std::string& baseName);
+		//Mostrar fisherfaces
+		void showFisherFaces(const int height);
 		//Guardar reconstrucción por fases de la imagen
 		void saveReconstruction(const cv::Mat& img, const std::string &directory, const std::string& baseName);
 		//Mostrar reconstrucción por fases de la imagen

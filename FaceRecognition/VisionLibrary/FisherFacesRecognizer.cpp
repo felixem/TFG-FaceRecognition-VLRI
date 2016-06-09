@@ -1,5 +1,6 @@
 #include "stdafx.h"
-#include "EigenFacesRecognizer.h"
+#include "FisherFacesRecognizer.h"
+
 #include <iostream>
 
 #include "opencv2/core.hpp"
@@ -10,43 +11,42 @@
 namespace tfg
 {
 	//Constructor
-	EigenFacesRecognizer::EigenFacesRecognizer()
+	FisherFacesRecognizer::FisherFacesRecognizer()
 	{
-		this->model = cv::face::createEigenFaceRecognizer();
+		this->model = cv::face::createFisherFaceRecognizer();
 	}
 
-	//Destructor
-	EigenFacesRecognizer::~EigenFacesRecognizer()
+	FisherFacesRecognizer::~FisherFacesRecognizer()
 	{
 	}
 
 	//Entrenar modelo a partir de un vector de imágenes y de labels
-	void EigenFacesRecognizer::train(const std::vector<cv::Mat> &images, const std::vector<int> &labels)
+	void FisherFacesRecognizer::train(const std::vector<cv::Mat> &images, const std::vector<int> &labels)
 	{
 		//Entrenar modelo
 		this->model->train(images, labels);
 	}
-	
+
 	//Predecir clase de la imagen
-	int EigenFacesRecognizer::predict(const cv::Mat& img, double& confidence)
+	int FisherFacesRecognizer::predict(const cv::Mat& img, double &confidence)
 	{
 		int label;
 		//Predecir clase junto con su valor de confianza
-		model->predict(img,label,confidence);
-		
+		model->predict(img, label, confidence);
+
 		return label;
 	}
 
-	//Almacenar eigenfaces en fichero
-	void EigenFacesRecognizer::saveEigenFaces(const int height, const std::string &directory, const std::string& baseName)
+	//Almacenar fisherfaces en fichero
+	void FisherFacesRecognizer::saveFisherFaces(const int height, const std::string &directory, const std::string& baseName)
 	{
 		//Obtener los eigenvectores
 		cv::Mat W = model->getEigenVectors();
 		//Obtener los eigenvalues
 		cv::Mat eigenvalues = model->getEigenValues();
 
-		//Recorrer las 10 primeras eigenfaces 
-		for (int i = 0; i < std::min(10, W.cols); i++) {
+		//Recorrer las 16 primeras fisherfaces 
+		for (int i = 0; i < std::min(16, W.cols); i++) {
 			std::string msg = cv::format("Eigenvalue #%d = %.5f", i, eigenvalues.at<double>(i));
 			std::cout << msg << std::endl;
 			// get eigenvector #i
@@ -55,22 +55,22 @@ namespace tfg
 			cv::Mat grayscale = norm_0_255(ev.reshape(1, height));
 			// Show the image & apply a Jet colormap for better sensing.
 			cv::Mat cgrayscale;
-			cv::applyColorMap(grayscale, cgrayscale, cv::COLORMAP_JET);
+			cv::applyColorMap(grayscale, cgrayscale, cv::COLORMAP_BONE);
 			//Almacenar eigenfaces
-			cv::imwrite(cv::format(("%s/"+baseName+"_%d.png").c_str(), directory.c_str(), i), norm_0_255(cgrayscale));
+			cv::imwrite(cv::format(("%s/" + baseName + "_%d.png").c_str(), directory.c_str(), i), norm_0_255(cgrayscale));
 		}
 	}
 
 	//Mostrar eigenfaces
-	void EigenFacesRecognizer::showEigenFaces(const int height)
+	void FisherFacesRecognizer::showFisherFaces(const int height)
 	{
 		//Obtener los eigenvectores
 		cv::Mat W = model->getEigenVectors();
 		//Obtener los eigenvalues
 		cv::Mat eigenvalues = model->getEigenValues();
 
-		//Recorrer las 10 primeras eigenfaces 
-		for (int i = 0; i < std::min(10, W.cols); i++) {
+		//Recorrer las 16 primeras fisherfaces 
+		for (int i = 0; i < std::min(16, W.cols); i++) {
 			std::string msg = cv::format("Eigenvalue #%d = %.5f", i, eigenvalues.at<double>(i));
 			std::cout << msg << std::endl;
 			// get eigenvector #i
@@ -79,16 +79,16 @@ namespace tfg
 			cv::Mat grayscale = norm_0_255(ev.reshape(1, height));
 			// Show the image & apply a Jet colormap for better sensing.
 			cv::Mat cgrayscale;
-			cv::applyColorMap(grayscale, cgrayscale, cv::COLORMAP_JET);
+			cv::applyColorMap(grayscale, cgrayscale, cv::COLORMAP_BONE);
 			//Mostrar eigenfaces
-			cv::imshow(cv::format("eigenface_%d", i), cgrayscale);
+			cv::imshow(cv::format("fisherface_%d", i), cgrayscale);
 			//Espera necesaria
 			cv::waitKey(0);
 		}
 	}
 
 	//Guardar reconstrucción por fases de la imagen
-	void EigenFacesRecognizer::saveReconstruction(const cv::Mat& img, const std::string &directory, const std::string& baseName)
+	void FisherFacesRecognizer::saveReconstruction(const cv::Mat& img, const std::string &directory, const std::string& baseName)
 	{
 		//Obtener los eigenvectores
 		cv::Mat W = model->getEigenVectors();
@@ -98,20 +98,20 @@ namespace tfg
 		cv::Mat mean = model->getMean();
 
 		// Display or save the image reconstruction at some predefined steps:
-		for (int num_components = std::min(W.cols, 10); num_components < std::min(W.cols, 300); num_components += 15) {
-			// slice the eigenvectors from the model
-			cv::Mat evs = cv::Mat(W, cv::Range::all(), cv::Range(0, num_components));
-			cv::Mat projection = cv::LDA::subspaceProject(evs, mean, img.reshape(1, 1));
-			cv::Mat reconstruction = cv::LDA::subspaceReconstruct(evs, mean, projection);
+		for (int num_component = 0; num_component < std::min(16, W.cols); num_component++) {
+			// Slice the Fisherface from the model:
+			cv::Mat ev = W.col(num_component);
+			cv::Mat projection = cv::LDA::subspaceProject(ev, mean, img.reshape(1, 1));
+			cv::Mat reconstruction = cv::LDA::subspaceReconstruct(ev, mean, projection);
 			// Normalize the result:
 			reconstruction = norm_0_255(reconstruction.reshape(1, img.rows));
 			// Salvar reconstrucción
-			imwrite(cv::format(("%s/" + baseName + "_%d.png").c_str(), num_components), reconstruction);
+			imwrite(cv::format(("%s/" + baseName + "_%d.png").c_str(), num_component), reconstruction);
 		}
 	}
 
 	//Mostrar reconstrucción por fases de la imagen
-	void EigenFacesRecognizer::showReconstruction(const cv::Mat& img)
+	void FisherFacesRecognizer::showReconstruction(const cv::Mat& img)
 	{
 		//Obtener los eigenvectores
 		cv::Mat W = model->getEigenVectors();
@@ -121,20 +121,20 @@ namespace tfg
 		cv::Mat mean = model->getMean();
 
 		// Display or save the image reconstruction at some predefined steps:
-		for (int num_components = std::min(W.cols, 10); num_components < std::min(W.cols, 300); num_components += 15) {
-			// slice the eigenvectors from the model
-			cv::Mat evs = cv::Mat(W, cv::Range::all(), cv::Range(0, num_components));
-			cv::Mat projection = cv::LDA::subspaceProject(evs, mean, img.reshape(1, 1));
-			cv::Mat reconstruction = cv::LDA::subspaceReconstruct(evs, mean, projection);
+		for (int num_component = 0; num_component < std::min(16, W.cols); num_component++) {
+			// Slice the Fisherface from the model:
+			cv::Mat ev = W.col(num_component);
+			cv::Mat projection = cv::LDA::subspaceProject(ev, mean, img.reshape(1, 1));
+			cv::Mat reconstruction = cv::LDA::subspaceReconstruct(ev, mean, projection);
 			// Normalize the result:
 			reconstruction = norm_0_255(reconstruction.reshape(1, img.rows));
 			// Salvar reconstrucción
-			imshow(cv::format("eigenface_reconstruction_%d", num_components), reconstruction);
+			imshow(cv::format("fisherface_reconstruction_%d", num_component), reconstruction);
 		}
 	}
 
 	//Normalizar imagen
-	cv::Mat EigenFacesRecognizer::norm_0_255(cv::InputArray _src)
+	cv::Mat FisherFacesRecognizer::norm_0_255(cv::InputArray _src)
 	{
 		cv::Mat src = _src.getMat();
 		// Create and return normalized image:
