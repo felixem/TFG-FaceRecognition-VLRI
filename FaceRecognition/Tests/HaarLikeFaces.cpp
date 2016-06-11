@@ -2,6 +2,7 @@
 //
 #include "stdafx.h"
 #include "HaarLikeFaceDetector.h"
+#include "HaarLikeFaces.h"
 #include <stdio.h>
 
 using namespace std;
@@ -17,7 +18,7 @@ string outputFolder = "output/";
 string window_name = "Capture - Face detection";
 
 // Function main
-int main(void)
+int mainHaarLike(void)
 {
 	// Read the image file
 	Mat frame = imread("sources/prueba.jpg");
