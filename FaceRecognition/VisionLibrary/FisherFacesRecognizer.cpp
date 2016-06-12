@@ -83,7 +83,7 @@ namespace tfg
 			//Mostrar eigenfaces
 			cv::imshow(cv::format("fisherface_%d", i), cgrayscale);
 			//Espera necesaria
-			cv::waitKey(0);
+			cv::waitKey(1000);
 		}
 	}
 
@@ -130,6 +130,8 @@ namespace tfg
 			reconstruction = norm_0_255(reconstruction.reshape(1, img.rows));
 			// Salvar reconstrucción
 			imshow(cv::format("fisherface_reconstruction_%d", num_component), reconstruction);
+			//Espera necesaria
+			cv::waitKey(1000);
 		}
 	}
 

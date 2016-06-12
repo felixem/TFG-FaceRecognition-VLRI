@@ -84,7 +84,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>C:\opencv\mybuild\install\x86\vc14\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opencv_core310d.lib;opencv_highgui310d.lib;opencv_imgproc310d.lib;opencv_imgcodecs310d.lib;opencv_video310d.lib;opencv_videoio310d.lib;opencv_objdetect310d.lib;opencv_face310.lib</AdditionalDependencies>
+      <AdditionalDependencies>opencv_core310d.lib;opencv_highgui310d.lib;opencv_imgproc310d.lib;opencv_imgcodecs310d.lib;opencv_video310d.lib;opencv_videoio310d.lib;opencv_objdetect310d.lib;opencv_face310d.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

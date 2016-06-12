@@ -164,6 +164,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="HaarLikeFaces.cpp" />
+    <ClCompile Include="TestsOriginales.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="sources\haarcascade_frontalface_alt.xml" />

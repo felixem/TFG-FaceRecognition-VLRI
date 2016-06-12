@@ -33,7 +33,7 @@ namespace tfg
 			getline(liness, path, separator);
 			getline(liness, classlabel);
 			if (!path.empty() && !classlabel.empty()) {
-				images.push_back(cv::imread(path, 0));
+				images.push_back(cv::imread(path, CV_LOAD_IMAGE_GRAYSCALE));
 				labels.push_back(atoi(classlabel.c_str()));
 			}
 		}

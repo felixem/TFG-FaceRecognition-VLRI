@@ -50,7 +50,7 @@ void mainEigenFaces()
 
 	//Mostrar imagen retirada
 	imshow("Imagen retirada", testSample);
-	waitKey(0);
+	waitKey(1000);
 
 	//Crear reconocedor
 	EigenFacesRecognizer model;
@@ -65,7 +65,7 @@ void mainEigenFaces()
 	int predictedLabel = model.predict(testSample,confidence);
 
 	//Mostrar clase predicha
-	string result_message = format("Clase predicha = %d / Clase real = %d.", predictedLabel, testLabel);
+	string result_message = format("Clase predicha = %d / Confidence: %f / Clase real = %d.", predictedLabel, confidence, testLabel);
 	cout << result_message << endl;
 
 	//Mostrar eigenfaces
@@ -109,7 +109,7 @@ void mainFisherFaces()
 
 	//Mostrar imagen retirada
 	imshow("Imagen retirada", testSample);
-	waitKey(0);
+	waitKey(1000);
 
 	//Crear reconocedor
 	FisherFacesRecognizer model;
@@ -124,7 +124,7 @@ void mainFisherFaces()
 	int predictedLabel = model.predict(testSample, confidence);
 
 	//Mostrar clase predicha
-	string result_message = format("Clase predicha = %d / Clase real = %d.", predictedLabel, testLabel);
+	string result_message = format("Clase predicha = %d / Confidence: %f / Clase real = %d.", predictedLabel, confidence, testLabel);
 	cout << result_message << endl;
 
 	//Mostrar fisherfaces
@@ -168,7 +168,7 @@ void mainLBPFaces()
 
 	//Mostrar imagen retirada
 	imshow("Imagen retirada", testSample);
-	waitKey(0);
+	waitKey(1000);
 
 	//Crear reconocedor
 	LBPRecognizer model;
@@ -183,7 +183,7 @@ void mainLBPFaces()
 	int predictedLabel = model.predict(testSample, confidence);
 
 	//Mostrar clase predicha
-	string result_message = format("Clase predicha = %d / Clase real = %d.", predictedLabel, testLabel);
+	string result_message = format("Clase predicha = %d / Confidence: %f / Clase real = %d.", predictedLabel, confidence, testLabel);
 	cout << result_message << endl;
 
 	//Esperar a teclado

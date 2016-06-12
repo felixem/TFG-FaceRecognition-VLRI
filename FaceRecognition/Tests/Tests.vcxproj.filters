@@ -44,6 +44,9 @@
     <ClCompile Include="ReconocimientoCaras.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="TestsOriginales.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="sources\haarcascade_frontalface_alt.xml">
