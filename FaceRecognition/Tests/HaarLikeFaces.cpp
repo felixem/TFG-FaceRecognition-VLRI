@@ -4,6 +4,7 @@
 #include "HaarLikeFaceDetector.h"
 #include "HaarLikeFaces.h"
 #include <stdio.h>
+#include <iostream>
 
 using namespace std;
 using namespace cv;
@@ -18,10 +19,22 @@ string outputFolder = "output/";
 string window_name = "Capture - Face detection";
 
 // Function main
-int mainHaarLike(void)
+int mainHaarLike(int argc, char** argv)
 {
+	//Comprobar parámetros
+	if (argc != 3)
+	{
+		std::cerr << "Error: Argumentos incorrectos [" << argv[0] << " imgDir outputFolder]" << std::endl;
+		getchar();
+		return -1;
+	}
+
+	//String de fichero csv y carpeta de salida
+	std::string imgFaces = argv[1];
+	std::string outputFolder = argv[2];
+
 	// Read the image file
-	Mat frame = imread("sources/prueba.jpg");
+	Mat frame = imread(imgFaces);
 
 	// Apply the classifier to the frame
 	if (!frame.empty()) {
@@ -29,11 +42,11 @@ int mainHaarLike(void)
 	}
 	else {
 		printf(" --(!) No captured frame -- Break!\n");
-		system("pause");
+		getchar();
 		return -1;
 	}
 
-	//Bucle infinito para evitar cierre
+	//Evitar cierre
 	waitKey(30);
 	getchar();
 

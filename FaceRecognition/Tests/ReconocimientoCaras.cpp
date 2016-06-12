@@ -12,14 +12,23 @@ using namespace std;
 using namespace cv;
 using namespace tfg;
 
-//Fichero de salida
-const string outputFolder = "output/";
-//Fichero csv de entrada
-const string csvFaces = "attfaces.csv";
-
 //Main para reconocimiento de caras con Eigenfaces
-void mainEigenFaces()
+int mainEigenFaces(int argc, char**argv)
 {
+	//Comprobar parámetros
+	if (argc < 2 || argc > 3)
+	{
+		std::cerr << "Error: Argumentos incorrectos [" << argv[0] << " csvDir outputFolder]" << std::endl;
+		getchar();
+		return -1;
+	}
+
+	//String de fichero csv y carpeta de salida
+	std::string csvFaces = argv[1];
+	std::string outputFolder = "";
+	if (argc == 3)
+		outputFolder = argv[2];
+
 	// These vectors hold the images and corresponding labels.
 	vector<Mat> images;
 	vector<int> labels;
@@ -31,13 +40,14 @@ void mainEigenFaces()
 	catch (cv::Exception& e) {
 		cerr << "Error al abrir el fichero \"" << csvFaces << "\". Razón: " << e.msg << endl;
 		getchar();
-		exit(1);
+		return -1;
 	}
 	//Comprobar que se han cargado las imágenes
 	if (images.size() <= 1) {
 		string error_message = "¡Añade más imagenes al dataset!";
 		CV_Error(CV_StsError, error_message);
 		getchar();
+		return -1;
 	}
 
 	// Altura de la primera imagen:
@@ -74,11 +84,26 @@ void mainEigenFaces()
 	model.showReconstruction(testSample);
 	//Esperar a teclado
 	getchar();
+	return 0;
 }
 
 //Main para reconocimiento de caras con Fisherfaces
-void mainFisherFaces()
+int mainFisherFaces(int argc, char**argv)
 {
+	//Comprobar parámetros
+	if (argc < 2 || argc > 3)
+	{
+		std::cerr << "Error: Argumentos incorrectos [" << argv[0] << " csvDir outputFolder]" << std::endl;
+		getchar();
+		return -1;
+	}
+
+	//String de fichero csv y carpeta de salida
+	std::string csvFaces = argv[1];
+	std::string outputFolder = "";
+	if (argc == 3)
+		outputFolder = argv[2];
+
 	// These vectors hold the images and corresponding labels.
 	vector<Mat> images;
 	vector<int> labels;
@@ -90,13 +115,14 @@ void mainFisherFaces()
 	catch (cv::Exception& e) {
 		cerr << "Error al abrir el fichero \"" << csvFaces << "\". Razón: " << e.msg << endl;
 		getchar();
-		exit(1);
+		return -1;
 	}
 	//Comprobar que se han cargado las imágenes
 	if (images.size() <= 1) {
 		string error_message = "¡Añade más imagenes al dataset!";
 		CV_Error(CV_StsError, error_message);
 		getchar();
+		return -1;
 	}
 
 	// Altura de la primera imagen:
@@ -133,11 +159,23 @@ void mainFisherFaces()
 	model.showReconstruction(testSample);
 	//Esperar a teclado
 	getchar();
+	return 0;
 }
 
 //Main para reconocimiento de caras con LBP
-void mainLBPFaces()
+int mainLBPFaces(int argc, char**argv)
 {
+	//Comprobar parámetros
+	if (argc != 2)
+	{
+		std::cerr << "Error: Argumentos incorrectos [" << argv[0] << " csvDir ]" << std::endl;
+		getchar();
+		return -1;
+	}
+
+	//String de fichero csv
+	std::string csvFaces = argv[1];
+
 	// These vectors hold the images and corresponding labels.
 	vector<Mat> images;
 	vector<int> labels;
@@ -149,13 +187,14 @@ void mainLBPFaces()
 	catch (cv::Exception& e) {
 		cerr << "Error al abrir el fichero \"" << csvFaces << "\". Razón: " << e.msg << endl;
 		getchar();
-		exit(1);
+		return -1;
 	}
 	//Comprobar que se han cargado las imágenes
 	if (images.size() <= 1) {
 		string error_message = "¡Añade más imagenes al dataset!";
 		CV_Error(CV_StsError, error_message);
 		getchar();
+		return -1;
 	}
 
 	// Altura de la primera imagen:
@@ -188,4 +227,5 @@ void mainLBPFaces()
 
 	//Esperar a teclado
 	getchar();
+	return 0;
 }

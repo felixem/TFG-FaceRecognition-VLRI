@@ -8,31 +8,44 @@
 //Main de entrada para los tests
 int main(int argc, char** argv)
 {
-	if (argc != 2)
+	//Comprobar parámetros
+	if (argc < 2)
 	{
-		std::cerr << "Error: Faltan argumentos [" << argv[0] << " opcion]" << std::endl;
+		std::cerr << "Error: Argumentos incorrectos [" << argv[0] << " opcion]" << std::endl;
 		getchar();
 		return -1;
 	}
 
 	//Leer opción
 	int opcion = std::atoi(argv[1]);
+	//Crear **char de argumentos quitando la opción elegida
+	char** argsMetodo = new char*[argc];
+	//Copiar argumentos
+	argsMetodo[0] = argv[0];
+	for (int i = 2; i < argc; ++i)
+	{
+		argsMetodo[i-1] = argv[i];
+	}
+
 	//Ejecutar main adecuado
 	switch (opcion)
 	{
 		//Detección de caras
-		case 0: mainHaarLike();
+		case 0: mainHaarLike(argc-1,argsMetodo);
 			break;
 		//Reconocimiento de caras con Eigenfaces
-		case 1: mainEigenFaces();
+		case 1: mainEigenFaces(argc-1, argsMetodo);
 			break;
 		//Reconocimiento de caras con Fisherfaces
-		case 2: mainFisherFaces();
+		case 2: mainFisherFaces(argc-1, argsMetodo);
 			break;
 		//Reconocimiento de caras con LBPfaces
-		case 3: mainLBPFaces();
+		case 3: mainLBPFaces(argc, argsMetodo);
 			break;
 		default:
 			std::cerr << "Error: opción incorrecta" << std::endl;
 	}
+
+	//Limpiar memoria
+	delete[] argsMetodo;
 }

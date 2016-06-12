@@ -1,4 +1,4 @@
 #pragma once
-void mainEigenFaces();
-void mainFisherFaces();
-void mainLBPFaces();
+int mainEigenFaces(int argc, char** argv);
+int mainFisherFaces(int argc, char** argv);
+int mainLBPFaces(int argc, char** argv);

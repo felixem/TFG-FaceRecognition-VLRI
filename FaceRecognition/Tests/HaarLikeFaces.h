@@ -1,4 +1,4 @@
 #pragma once
 
 // Function main
-int mainHaarLike(void);
+int mainHaarLike(int argc, char** argv);
