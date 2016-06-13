@@ -4,6 +4,7 @@
 #include <iostream>
 #include "HaarLikeFaces.h"
 #include "ReconocimientoCaras.h"
+#include "LowResolution.h"
 
 //Main de entrada para los tests
 int main(int argc, char** argv)
@@ -40,7 +41,16 @@ int main(int argc, char** argv)
 		case 2: mainFisherFaces(argc-1, argsMetodo);
 			break;
 		//Reconocimiento de caras con LBPfaces
-		case 3: mainLBPFaces(argc, argsMetodo);
+		case 3: mainLBPFaces(argc-1, argsMetodo);
+			break;
+		//Reconocimiento de caras con Eigenfaces con LR
+		case 4: mainLREigenFaces(argc-1, argsMetodo);
+			break;
+		//Reconocimiento de caras con Fisherfaces con LR
+		case 5: mainLRFisherFaces(argc - 1, argsMetodo);
+			break;
+		//Reconocimiento de caras con LBPfaces con LR
+		case 6: mainLRLBPFaces(argc - 1, argsMetodo);
 			break;
 		default:
 			std::cerr << "Error: opción incorrecta" << std::endl;

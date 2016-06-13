@@ -47,8 +47,7 @@ int mainHaarLike(int argc, char** argv)
 	}
 
 	//Evitar cierre
-	waitKey(30);
-	getchar();
+	waitKey(0);
 
 	return 0;
 }
@@ -88,5 +87,7 @@ void detectAndDisplay(Mat frame)
 	imshow("original", frame);
 	//Mostrar imagen detectada
 	imshow("Caras detectadas", outputFrame);
+	//Esperar a tecla
+	waitKey(0);
 }
 
