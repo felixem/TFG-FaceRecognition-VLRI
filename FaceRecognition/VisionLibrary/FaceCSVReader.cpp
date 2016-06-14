@@ -27,6 +27,11 @@ namespace tfg
 			std::string error_message = "No valid input file was given, please check the given filename.";
 			CV_Error(CV_StsBadArg, error_message);
 		}
+		//Fichero corregido
+		//std::ofstream outputFile((filename + "corregido").c_str());
+
+		//Mensaje de cargado
+		std::cout << "Cargando imagenes desde " << filename << std::endl;
 		std::string line, path, classlabel;
 		//Cargar imágenes y etiquetas línea a línea
 		while (getline(file, line)) {
@@ -43,11 +48,17 @@ namespace tfg
 				}
 				else
 				{
+					//outputFile << line << "\n";
 					//Añadir imagen
 					images.push_back(img);
 					labels.push_back(atoi(classlabel.c_str()));
 				}
 			}
 		}
+
+		//Mensaje de cargado
+		std::cout << "Carga completada" << std::endl;
+		//Cerrar fichero
+		//outputFile.close();
 	}
 }
