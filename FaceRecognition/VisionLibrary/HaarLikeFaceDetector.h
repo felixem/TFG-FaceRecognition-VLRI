@@ -24,7 +24,8 @@ namespace tfg
 		~HaarLikeFaceDetector();
 
 		//Detectar caras en una imagen
-		bool detectFaces(const cv::Mat &input, std::vector<cv::Mat> &foundFaces, cv::Mat &output);
+		bool detectFaces(const cv::Mat & input, std::vector<cv::Mat>& foundFaces, cv::Mat & output,
+			float scale = 1.005, int minWidth = 20, int minHeight = 20);
 
 	private:
 		//Nombre de fichero de clasificación por defecto

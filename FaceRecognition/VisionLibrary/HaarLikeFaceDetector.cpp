@@ -48,21 +48,33 @@ namespace tfg
 
 	}
 
-	bool HaarLikeFaceDetector::detectFaces(const cv::Mat & input, std::vector<cv::Mat>& foundFaces, cv::Mat & output)
+	bool HaarLikeFaceDetector::detectFaces(const cv::Mat & input, std::vector<cv::Mat>& foundFaces, cv::Mat & output,
+		float scale, int minWidth, int minHeight)
 	{
 		//Caras detectadas
 		std::vector<Rect> faces;
 		//Imágenes intermedias
 		Mat frame_gray;
-		//Transformar la imagen de entrada en escala de grises
-		cvtColor(input, frame_gray, COLOR_BGR2GRAY);
+
+		//Comprobar si es rgb
+		if (input.channels() == 3)
+		{
+			//Transformar la imagen de entrada en escala de grises
+			cvtColor(input, frame_gray, COLOR_BGR2GRAY);
+		}
+		else
+		{
+			//La imagen es tal cual
+			frame_gray = input;
+		}
+
 		//Ecualizar el histograma
 		equalizeHist(frame_gray, frame_gray);
 		//Copiar la imagen original para señalar las caras
 		output = input.clone();
 
 		//Detectar las caras
-		face_cascade.detectMultiScale(frame_gray, faces, 1.005, 3, 0 | CASCADE_SCALE_IMAGE, Size(20, 20));
+		face_cascade.detectMultiScale(frame_gray, faces, scale, 3, 0 | CASCADE_SCALE_IMAGE, Size(minWidth, minHeight));
 
 		//Iterar sobre las caras encontradas
 		for (size_t ic = 0; ic < faces.size(); ic++) // Iterate through all current elements (detected faces)
@@ -74,7 +86,15 @@ namespace tfg
 			Mat crop = input(roi_c);
 			//Convertir imagen a escala de grises
 			Mat gray;
-			cvtColor(crop, gray, CV_BGR2GRAY);
+			//Comprobar si es rgb
+			if (crop.channels() == 3)
+			{
+				cvtColor(crop, gray, CV_BGR2GRAY);
+			}
+			else
+			{
+				gray = crop;
+			}
 
 			//Añadir cara en gris a la lista de caras
 			foundFaces.push_back(gray);

@@ -9,6 +9,8 @@
 #include "FaceCSVReader.h"
 #include "SimpleImageUpsampler.h"
 #include "ImageDownsampler.h"
+#include "HaarLikeFaceDetector.h"
+#include "HaarLikeFaces.h"
 
 using namespace std;
 using namespace cv;
@@ -52,13 +54,27 @@ int mainLREigenFaces(int argc, char**argv)
 		return -1;
 	}
 
+	//Extraer la cara únicamente
+	std::vector<cv::Mat> croppedFaces;
+	HaarLikeFaceDetector faceDetector;
+	//Buscae las caras de todas las imágenes
+	for (unsigned int i = 0; i < images.size(); ++i)
+	{
+		cv::Mat face;
+		//Extraer cara principal
+		extractMainFace(faceDetector, images[i], face, 32, 32, 64, 64);
+		//Añadir cara
+		croppedFaces.push_back(face);
+	}
+
 	// Altura de la primera imagen:
-	int height = images[0].rows;
+	int height = croppedFaces[0].rows;
 	// Eliminar la última imagen del dataset
-	Mat testSample = images[images.size() - 1];
+	Mat testSample = croppedFaces[croppedFaces.size() - 1];
 	int testLabel = labels[labels.size() - 1];
-	images.pop_back();
+	croppedFaces.pop_back();
 	labels.pop_back();
+
 	//Mostrar imagen retirada
 	imshow("Imagen retirada", testSample);
 	waitKey(1000);
@@ -83,8 +99,8 @@ int mainLREigenFaces(int argc, char**argv)
 	EigenFacesRecognizer model;
 
 	//Entrenar el modelo
-	std::cout << "Entrenando modelo Eigen con " << images.size() << " imagenes" << std::endl;
-	model.train(images, labels);
+	std::cout << "Entrenando modelo Eigen con " << croppedFaces.size() << " imagenes" << std::endl;
+	model.train(croppedFaces, labels);
 	std::cout << "Modelo entrenado" << std::endl;
 
 	//Predecir la clase de la cara eliminada tras upsampling
@@ -142,13 +158,27 @@ int mainLRFisherFaces(int argc, char**argv)
 		return -1;
 	}
 
+	//Extraer la cara únicamente
+	std::vector<cv::Mat> croppedFaces;
+	HaarLikeFaceDetector faceDetector;
+	//Buscae las caras de todas las imágenes
+	for (unsigned int i = 0; i < images.size(); ++i)
+	{
+		cv::Mat face;
+		//Extraer cara principal
+		extractMainFace(faceDetector, images[i], face, 32, 32, 64, 64);
+		//Añadir cara
+		croppedFaces.push_back(face);
+	}
+
 	// Altura de la primera imagen:
-	int height = images[0].rows;
+	int height = croppedFaces[0].rows;
 	// Eliminar la última imagen del dataset
-	Mat testSample = images[images.size() - 1];
+	Mat testSample = croppedFaces[croppedFaces.size() - 1];
 	int testLabel = labels[labels.size() - 1];
-	images.pop_back();
+	croppedFaces.pop_back();
 	labels.pop_back();
+
 	//Mostrar imagen retirada
 	imshow("Imagen retirada", testSample);
 	waitKey(1000);
@@ -173,8 +203,8 @@ int mainLRFisherFaces(int argc, char**argv)
 	FisherFacesRecognizer model;
 
 	//Entrenar el modelo
-	std::cout << "Entrenando modelo Fisher con " << images.size() << " imagenes" << std::endl;
-	model.train(images, labels);
+	std::cout << "Entrenando modelo Fisher con " << croppedFaces.size() << " imagenes" << std::endl;
+	model.train(croppedFaces, labels);
 	std::cout << "Modelo entrenado" << std::endl;
 
 	//Predecir la clase de la cara eliminada
@@ -229,13 +259,27 @@ int mainLRLBPFaces(int argc, char**argv)
 		return -1;
 	}
 
+	//Extraer la cara únicamente
+	std::vector<cv::Mat> croppedFaces;
+	HaarLikeFaceDetector faceDetector;
+	//Buscae las caras de todas las imágenes
+	for (unsigned int i = 0; i < images.size(); ++i)
+	{
+		cv::Mat face;
+		//Extraer cara principal
+		extractMainFace(faceDetector, images[i], face, 32, 32, 64, 64);
+		//Añadir cara
+		croppedFaces.push_back(face);
+	}
+
 	// Altura de la primera imagen:
-	int height = images[0].rows;
+	int height = croppedFaces[0].rows;
 	// Eliminar la última imagen del dataset
-	Mat testSample = images[images.size() - 1];
+	Mat testSample = croppedFaces[croppedFaces.size() - 1];
 	int testLabel = labels[labels.size() - 1];
-	images.pop_back();
+	croppedFaces.pop_back();
 	labels.pop_back();
+
 	//Mostrar imagen retirada
 	imshow("Imagen retirada", testSample);
 	waitKey(1000);
@@ -260,8 +304,8 @@ int mainLRLBPFaces(int argc, char**argv)
 	LBPRecognizer model;
 
 	//Entrenar el modelo
-	std::cout << "Entrenando modelo LBP con " << images.size() << " imagenes" << std::endl;
-	model.train(images, labels);
+	std::cout << "Entrenando modelo LBP con " << croppedFaces.size() << " imagenes" << std::endl;
+	model.train(croppedFaces, labels);
 	std::cout << "Modelo entrenado" << std::endl;
 
 	//Predecir la clase de la cara eliminada
@@ -273,6 +317,6 @@ int mainLRLBPFaces(int argc, char**argv)
 	cout << result_message << endl;
 
 	//Esperar a teclado
-	getchar();
+	waitKey(0);
 	return 0;
 }
