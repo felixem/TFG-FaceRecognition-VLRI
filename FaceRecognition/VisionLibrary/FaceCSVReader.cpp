@@ -3,6 +3,7 @@
 
 #include <sstream>
 #include <fstream>
+#include <iostream>
 
 namespace tfg
 {
@@ -33,8 +34,19 @@ namespace tfg
 			getline(liness, path, separator);
 			getline(liness, classlabel);
 			if (!path.empty() && !classlabel.empty()) {
-				images.push_back(cv::imread(path, CV_LOAD_IMAGE_GRAYSCALE));
-				labels.push_back(atoi(classlabel.c_str()));
+				//Cargar imagen
+				cv::Mat img = cv::imread(path, CV_LOAD_IMAGE_GRAYSCALE);
+				//Comprobar que se haya cargado bien
+				if (img.empty())
+				{
+					std::cerr << "Error al cargar " << line << std::endl;
+				}
+				else
+				{
+					//Añadir imagen
+					images.push_back(img);
+					labels.push_back(atoi(classlabel.c_str()));
+				}
 			}
 		}
 	}
