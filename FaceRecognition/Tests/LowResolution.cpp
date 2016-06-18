@@ -288,7 +288,7 @@ int mainLRLBPFaces(int argc, char**argv)
 	//Aplicar downsample con ruido
 	ImageDownsampler downSampler;
 	cv::Mat downSampledFace;
-	downSampler.downSampleWithNoNoise(testSample, downSampledFace, testSample.rows / 4, testSample.cols / 4, cv::InterpolationFlags::INTER_NEAREST);
+	downSampler.downSampleWithAllNoises(testSample, downSampledFace, testSample.rows / 4, testSample.cols / 4, cv::InterpolationFlags::INTER_NEAREST);
 	//Mostrar imagen downsampled
 	imshow("Imagen downsampleada con ruido", downSampledFace);
 	waitKey(1000);
@@ -296,9 +296,11 @@ int mainLRLBPFaces(int argc, char**argv)
 	
 	//Imagen tras upsampling
 	cv::Mat upSampledFace;
+	SimpleImageUpsampler upsampler;
+	upsampler.applyBicubicFilter(downSampledFace, upSampledFace, testSample.rows, testSample.cols);
 
 	//Realizar upsampling con EigenTransformation
-	EigenTransformationUpsampler upsampler;
+	/*EigenTransformationUpsampler upsampler;
 	//Eliminar último elemento (el de test)
 	images.pop_back();
 	//Entrenando transformador
@@ -307,10 +309,7 @@ int mainLRLBPFaces(int argc, char**argv)
 	upsampler.train(images, testSample.cols / 4, testSample.rows / 4, 64, 64);
 	//Generar imagen subida de resolución
 	upsampler.upSample(downSampledFace, upSampledFace, 20);
-	std::cout << "Transformador entrenado" << std::endl;
-
-	/*SimpleImageUpsampler upsampler;
-	upsampler.applyBicubicFilter(downSampledFace, upSampledFace, testSample.rows, testSample.cols);*/
+	std::cout << "Transformador entrenado" << std::endl;*/
 
 	//Mostrar imagen upsampled
 	imshow("Imagen upsampled", upSampledFace);
