@@ -33,7 +33,7 @@
     <ClInclude Include="LowResolution.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Alignment\preprocessing.h">
+    <ClInclude Include="preprocessing.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
@@ -56,13 +56,13 @@
     <ClCompile Include="LowResolution.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="Alignment\congealRealPreprocessing.cpp">
+    <ClCompile Include="congealRealPreprocessing.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="Alignment\funnelRealPreprocessing.cpp">
+    <ClCompile Include="funnelRealPreprocessing.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="Alignment\preprocessing.cpp">
+    <ClCompile Include="preprocessing.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>

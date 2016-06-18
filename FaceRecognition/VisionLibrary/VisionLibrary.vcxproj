@@ -135,26 +135,26 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FaceRecognition\EigenFacesRecognizer.h" />
-    <ClInclude Include="Upsampling\EigenTransformation\EigenTransformationUpsampler.h" />
-    <ClInclude Include="Utils\FaceCSVReader.h" />
-    <ClInclude Include="FaceRecognition\FisherFacesRecognizer.h" />
-    <ClInclude Include="FaceDetection\HaarLikeFaceDetector.h" />
-    <ClInclude Include="Downsampling\ImageDownsampler.h" />
-    <ClInclude Include="Upsampling\SimpleImageUpsampler.h" />
-    <ClInclude Include="FaceRecognition\LBPRecognizer.h" />
+    <ClInclude Include="EigenFacesRecognizer.h" />
+    <ClInclude Include="EigenTransformationUpsampler.h" />
+    <ClInclude Include="FaceCSVReader.h" />
+    <ClInclude Include="FisherFacesRecognizer.h" />
+    <ClInclude Include="HaarLikeFaceDetector.h" />
+    <ClInclude Include="ImageDownsampler.h" />
+    <ClInclude Include="SimpleImageUpsampler.h" />
+    <ClInclude Include="LBPRecognizer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FaceRecognition\EigenFacesRecognizer.cpp" />
-    <ClCompile Include="Upsampling\EigenTransformation\EigenTransformationUpsampler.cpp" />
-    <ClCompile Include="Utils\FaceCSVReader.cpp" />
-    <ClCompile Include="FaceRecognition\FisherFacesRecognizer.cpp" />
-    <ClCompile Include="FaceDetection\HaarLikeFaceDetector.cpp" />
-    <ClCompile Include="Downsampling\ImageDownsampler.cpp" />
-    <ClCompile Include="Upsampling\SimpleImageUpsampler.cpp" />
-    <ClCompile Include="FaceRecognition\LBPRecognizer.cpp" />
+    <ClCompile Include="EigenFacesRecognizer.cpp" />
+    <ClCompile Include="EigenTransformationUpsampler.cpp" />
+    <ClCompile Include="FaceCSVReader.cpp" />
+    <ClCompile Include="FisherFacesRecognizer.cpp" />
+    <ClCompile Include="HaarLikeFaceDetector.cpp" />
+    <ClCompile Include="ImageDownsampler.cpp" />
+    <ClCompile Include="SimpleImageUpsampler.cpp" />
+    <ClCompile Include="LBPRecognizer.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
