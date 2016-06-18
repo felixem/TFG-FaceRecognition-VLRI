@@ -24,28 +24,28 @@
     <ClInclude Include="targetver.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="HaarLikeFaceDetector.h">
+    <ClInclude Include="FaceRecognition\EigenFacesRecognizer.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="FaceCSVReader.h">
+    <ClInclude Include="Utils\FaceCSVReader.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="EigenFacesRecognizer.h">
+    <ClInclude Include="FaceRecognition\FisherFacesRecognizer.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="FisherFacesRecognizer.h">
+    <ClInclude Include="FaceDetection\HaarLikeFaceDetector.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="LBPRecognizer.h">
+    <ClInclude Include="Downsampling\ImageDownsampler.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="SimpleImageUpsampler.h">
+    <ClInclude Include="FaceRecognition\LBPRecognizer.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="ImageDownsampler.h">
+    <ClInclude Include="Upsampling\SimpleImageUpsampler.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="EigenTransformationUpsampler.h">
+    <ClInclude Include="Upsampling\EigenTransformation\EigenTransformationUpsampler.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,28 +53,28 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="HaarLikeFaceDetector.cpp">
+    <ClCompile Include="FaceRecognition\EigenFacesRecognizer.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="FaceCSVReader.cpp">
+    <ClCompile Include="Utils\FaceCSVReader.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="EigenFacesRecognizer.cpp">
+    <ClCompile Include="FaceRecognition\FisherFacesRecognizer.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="FisherFacesRecognizer.cpp">
+    <ClCompile Include="FaceDetection\HaarLikeFaceDetector.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="LBPRecognizer.cpp">
+    <ClCompile Include="Downsampling\ImageDownsampler.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="SimpleImageUpsampler.cpp">
+    <ClCompile Include="FaceRecognition\LBPRecognizer.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="ImageDownsampler.cpp">
+    <ClCompile Include="Upsampling\SimpleImageUpsampler.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="EigenTransformationUpsampler.cpp">
+    <ClCompile Include="Upsampling\EigenTransformation\EigenTransformationUpsampler.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
