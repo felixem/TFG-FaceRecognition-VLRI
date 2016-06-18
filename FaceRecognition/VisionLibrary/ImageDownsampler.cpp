@@ -88,8 +88,8 @@ namespace tfg
 		randu(noise, 0, 256);
 
 		//Calcular los umbrales de sal y pimienta
-		int umbralSal = 128-(256 * probability);
-		int umbralPimienta = -128+(256 * probability);
+		int umbralSal = 128-(256 * probability/2);
+		int umbralPimienta = -128+(256 * probability/2);
 
 		//Generar copia de la matriz original
 		mDst = mSrc.clone();
