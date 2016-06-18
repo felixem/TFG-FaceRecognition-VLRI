@@ -11,6 +11,7 @@
 #include "ImageDownsampler.h"
 #include "HaarLikeFaceDetector.h"
 #include "HaarLikeFaces.h"
+#include "EigenTransformationUpsampler.h"
 
 using namespace std;
 using namespace cv;
@@ -62,7 +63,7 @@ int mainLREigenFaces(int argc, char**argv)
 	{
 		cv::Mat face;
 		//Extraer cara principal
-		extractMainFace(faceDetector, images[i], face, 32, 32, 64, 64);
+		faceDetector.extractMainFace(images[i], face, 32, 32, 64, 64);
 		//Añadir cara
 		croppedFaces.push_back(face);
 	}
@@ -166,7 +167,7 @@ int mainLRFisherFaces(int argc, char**argv)
 	{
 		cv::Mat face;
 		//Extraer cara principal
-		extractMainFace(faceDetector, images[i], face, 32, 32, 64, 64);
+		faceDetector.extractMainFace(images[i], face, 32, 32, 64, 64);
 		//Añadir cara
 		croppedFaces.push_back(face);
 	}
@@ -267,7 +268,7 @@ int mainLRLBPFaces(int argc, char**argv)
 	{
 		cv::Mat face;
 		//Extraer cara principal
-		extractMainFace(faceDetector, images[i], face, 32, 32, 64, 64);
+		faceDetector.extractMainFace(images[i], face, 32, 32, 64, 64);
 		//Añadir cara
 		croppedFaces.push_back(face);
 	}
@@ -287,16 +288,31 @@ int mainLRLBPFaces(int argc, char**argv)
 	//Aplicar downsample con ruido
 	ImageDownsampler downSampler;
 	cv::Mat downSampledFace;
-	downSampler.downSampleWithAllNoises(testSample, downSampledFace, testSample.rows / 4, testSample.cols / 4, cv::InterpolationFlags::INTER_NEAREST);
+	downSampler.downSampleWithNoNoise(testSample, downSampledFace, testSample.rows / 4, testSample.cols / 4, cv::InterpolationFlags::INTER_NEAREST);
 	//Mostrar imagen downsampled
 	imshow("Imagen downsampleada con ruido", downSampledFace);
 	waitKey(1000);
 
+	
 	//Imagen tras upsampling
-	SimpleImageUpsampler upsampler;
 	cv::Mat upSampledFace;
-	upsampler.applyBicubicFilter(downSampledFace, upSampledFace, testSample.rows, testSample.cols);
-	//Mostrar imagen downsampled
+
+	//Realizar upsampling con EigenTransformation
+	EigenTransformationUpsampler upsampler;
+	//Eliminar último elemento (el de test)
+	images.pop_back();
+	//Entrenando transformador
+	std::cout << "Entrenando transformador" << std::endl;
+	//Entrenar transformador
+	upsampler.train(images, testSample.cols / 4, testSample.rows / 4, 64, 64);
+	//Generar imagen subida de resolución
+	upsampler.upSample(downSampledFace, upSampledFace, 20);
+	std::cout << "Transformador entrenado" << std::endl;
+
+	/*SimpleImageUpsampler upsampler;
+	upsampler.applyBicubicFilter(downSampledFace, upSampledFace, testSample.rows, testSample.cols);*/
+
+	//Mostrar imagen upsampled
 	imshow("Imagen upsampled", upSampledFace);
 	waitKey(1000);
 

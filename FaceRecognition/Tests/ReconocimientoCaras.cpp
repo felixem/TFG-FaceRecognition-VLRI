@@ -61,7 +61,7 @@ int mainEigenFaces(int argc, char**argv)
 	{
 		cv::Mat face;
 		//Extraer cara principal
-		extractMainFace(faceDetector,images[i], face, 32, 32, 64, 64);
+		faceDetector.extractMainFace(images[i], face, 32, 32, 64, 64);
 		//Añadir cara
 		croppedFaces.push_back(face);
 	}
@@ -149,7 +149,7 @@ int mainFisherFaces(int argc, char**argv)
 	{
 		cv::Mat face;
 		//Extraer cara principal
-		extractMainFace(faceDetector, images[i], face, 32, 32, 64, 64);
+		faceDetector.extractMainFace(images[i], face, 32, 32, 64, 64);
 		//Añadir cara
 		croppedFaces.push_back(face);
 	}
@@ -234,7 +234,7 @@ int mainLBPFaces(int argc, char**argv)
 	{
 		cv::Mat face;
 		//Extraer cara principal
-		extractMainFace(faceDetector, images[i], face, 32, 32, 64, 64);
+		faceDetector.extractMainFace(images[i], face, 32, 32, 64, 64);
 		//Añadir cara
 		croppedFaces.push_back(face);
 	}

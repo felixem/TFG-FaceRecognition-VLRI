@@ -27,6 +27,9 @@ namespace tfg
 		bool detectFaces(const cv::Mat & input, std::vector<cv::Mat>& foundFaces, cv::Mat & output,
 			float scale = 1.005, int minWidth = 20, int minHeight = 20);
 
+		//Extraer la cara principal de la imagen
+		void extractMainFace(const cv::Mat &img, cv::Mat &face, int minWidth, int minHeight, int finalWidth, int finalHeight);
+
 	private:
 		//Nombre de fichero de clasificación por defecto
 		static const std::string FICHEROFACEDETECTION;

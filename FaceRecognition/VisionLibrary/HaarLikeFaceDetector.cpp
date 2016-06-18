@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "HaarLikeFaceDetector.h"
 #include <iostream>
+#include "ImageDownsampler.h"
 
 using namespace cv;
 
@@ -112,5 +113,43 @@ namespace tfg
 
 		//Devolver si se ha encontrado una cara
 		return faces.size() != 0;
+	}
+
+	//Extraer la cara principal de la imagen
+	void HaarLikeFaceDetector::extractMainFace(const cv::Mat &img, cv::Mat &face, int minWidth, int minHeight, int finalWidth, int finalHeight)
+	{
+		//Extraer únicamente la cara
+		std::vector<cv::Mat> foundFaces;
+		this->detectFaces(img, foundFaces, cv::Mat(), 1.1, minWidth, minHeight);
+
+		//Encontrar la cara más grande encontrada
+		cv::Mat maxFace;
+		//Comprobar si se han encontrado caras
+		if (foundFaces.size() == 0)
+			maxFace = img;
+		else
+		{
+			//Asignar primera cara
+			maxFace = foundFaces[0];
+			double maxFaceDim = maxFace.size().height * maxFace.size().width;
+			//Recorrer las caras buscando la más grande
+			for (unsigned int i = 1; i < foundFaces.size(); ++i)
+			{
+				//Obtener nueva cara y obtener su dimensión
+				const cv::Mat& face = foundFaces[i];
+				double faceDim = face.size().height * face.size().width;
+
+				//Comprobar si la nueva cara es más grande
+				if (faceDim > maxFaceDim)
+				{
+					maxFace = face;
+					maxFaceDim = faceDim;
+				}
+			}
+		}
+
+		//Ajustar cara a las dimensiones requeridas
+		ImageDownsampler downSampler;
+		downSampler.downSampleWithNoNoise(maxFace, face, finalHeight, finalWidth, cv::InterpolationFlags::INTER_CUBIC);
 	}
 }

@@ -136,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EigenFacesRecognizer.h" />
+    <ClInclude Include="EigenTransformationUpsampler.h" />
     <ClInclude Include="FaceCSVReader.h" />
     <ClInclude Include="FisherFacesRecognizer.h" />
     <ClInclude Include="HaarLikeFaceDetector.h" />
@@ -147,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EigenFacesRecognizer.cpp" />
+    <ClCompile Include="EigenTransformationUpsampler.cpp" />
     <ClCompile Include="FaceCSVReader.cpp" />
     <ClCompile Include="FisherFacesRecognizer.cpp" />
     <ClCompile Include="HaarLikeFaceDetector.cpp" />
