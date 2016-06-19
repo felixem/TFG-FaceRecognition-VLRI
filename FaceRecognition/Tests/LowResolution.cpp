@@ -12,6 +12,7 @@
 #include "HaarLikeFaceDetector.h"
 #include "HaarLikeFaces.h"
 #include "EigenTransformationUpsampler.h"
+#include "WaveletSpatialSuperResolution.h"
 
 using namespace std;
 using namespace cv;
@@ -296,8 +297,12 @@ int mainLRLBPFaces(int argc, char**argv)
 	
 	//Imagen tras upsampling
 	cv::Mat upSampledFace;
-	SimpleImageUpsampler upsampler;
-	upsampler.applyBicubicFilter(downSampledFace, upSampledFace, testSample.rows, testSample.cols);
+	/*SimpleImageUpsampler upsampler;
+	upsampler.applyBicubicFilter(downSampledFace, upSampledFace, testSample.rows, testSample.cols);*/
+
+	//Realizar upsampling con WaveletSpatial
+	WaveletSpatialSRUpsampler upsampler;
+	upSampledFace = upsampler.upSample(downSampledFace, testSample.rows, testSample.cols,2);
 
 	//Realizar upsampling con EigenTransformation
 	/*EigenTransformationUpsampler upsampler;
