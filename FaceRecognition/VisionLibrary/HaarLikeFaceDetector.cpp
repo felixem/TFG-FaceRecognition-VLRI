@@ -50,7 +50,7 @@ namespace tfg
 	}
 
 	bool HaarLikeFaceDetector::detectFaces(const cv::Mat & input, std::vector<cv::Mat>& foundFaces, cv::Mat & output,
-		float scale, int minWidth, int minHeight)
+		float scale, int minWidth, int minHeight, int maxWidth, int maxHeight)
 	{
 		//Caras detectadas
 		std::vector<Rect> faces;
@@ -75,7 +75,7 @@ namespace tfg
 		output = input.clone();
 
 		//Detectar las caras
-		face_cascade.detectMultiScale(frame_gray, faces, scale, 3, 0 | CASCADE_SCALE_IMAGE, Size(minWidth, minHeight));
+		face_cascade.detectMultiScale(frame_gray, faces, scale, 3, 0 | CASCADE_SCALE_IMAGE, Size(minWidth, minHeight), Size(maxWidth,maxHeight));
 
 		//Iterar sobre las caras encontradas
 		for (size_t ic = 0; ic < faces.size(); ic++) // Iterate through all current elements (detected faces)
@@ -120,7 +120,7 @@ namespace tfg
 	{
 		//Extraer únicamente la cara
 		std::vector<cv::Mat> foundFaces;
-		this->detectFaces(img, foundFaces, cv::Mat(), 1.1, minWidth, minHeight);
+		this->detectFaces(img, foundFaces, cv::Mat(), 1.05, minWidth, minHeight);
 
 		//Encontrar la cara más grande encontrada
 		cv::Mat maxFace;

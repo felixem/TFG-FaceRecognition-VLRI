@@ -42,7 +42,7 @@ int mainHaarLike(int argc, char** argv)
 		detectAndDisplay(frame);
 	}
 	else {
-		printf(" --(!) No captured frame -- Break!\n");
+		printf(" No se ha podido cargar la imagen\n");
 		getchar();
 		return -1;
 	}
@@ -64,7 +64,7 @@ void detectAndDisplay(Mat frame)
 	Mat outputFrame;
 
 	//Detectar las caras
-	if (faceDetector.detectFaces(frame, faces, outputFrame))
+	if (faceDetector.detectFaces(frame, faces, outputFrame,1.05,16,16,128,128))
 	{
 		//Recorrer todas las caras
 		for (unsigned int i = 0; i < faces.size(); ++i)
