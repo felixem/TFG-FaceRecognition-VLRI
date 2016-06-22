@@ -106,7 +106,7 @@ namespace tfg
 			// Normalize the result:
 			reconstruction = norm_0_255(reconstruction.reshape(1, img.rows));
 			// Salvar reconstrucción
-			imwrite(cv::format(("%s/" + baseName + "_%d.png").c_str(), num_components), reconstruction);
+			imwrite(cv::format(("%s/" + baseName + "_%d.png").c_str(), directory.c_str(), num_components), reconstruction);
 		}
 	}
 
@@ -153,5 +153,17 @@ namespace tfg
 			break;
 		}
 		return dst;
+	}
+
+	//Cargar desde fichero el modelo
+	void EigenFacesRecognizer::load(const std::string& fichero)
+	{
+		this->model->load(fichero);
+	}
+
+	//Guardar en fichero el modelo
+	void EigenFacesRecognizer::save(const std::string& fichero)
+	{
+		this->model->save(fichero);
 	}
 }

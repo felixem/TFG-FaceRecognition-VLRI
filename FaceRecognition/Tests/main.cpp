@@ -6,6 +6,7 @@
 #include "ReconocimientoCaras.h"
 #include "LowResolution.h"
 #include "preprocessing.h"
+#include "FaceTraining.h"
 
 //Main de entrada para los tests
 int main(int argc, char** argv)
@@ -53,11 +54,11 @@ int main(int argc, char** argv)
 		//Reconocimiento de caras con LBPfaces con LR
 		case 6: mainLRLBPFaces(argc - 1, argsMetodo);
 			break;
-		//CongealReal
-		case 7: congealRealMain(argc - 1, argsMetodo);
+		//Aprendizaje de bases de caras
+		case 7: trainFaces(argc - 1, argsMetodo);
 			break;
-		//FunnealReal
-		case 8: funnelRealMain(argc - 1, argsMetodo);
+		//Separar en conjuntos de test y de training
+		case 8: separeDatabase(argc - 1, argsMetodo);
 			break;
 		default:
 			std::cerr << "Error: opción incorrecta" << std::endl;

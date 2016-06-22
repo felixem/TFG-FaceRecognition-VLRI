@@ -4,11 +4,12 @@
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/face.hpp"
+#include "IFaceRecognizer.h"
 
 namespace tfg
 {
 	//Clase para reconocer caras según el método de Fisher
-	class FisherFacesRecognizer
+	class FisherFacesRecognizer : public IFaceRecognizer
 	{
 	public:
 		FisherFacesRecognizer();
@@ -18,6 +19,11 @@ namespace tfg
 		void train(const std::vector<cv::Mat> &images, const std::vector<int> &labels);
 		//Predecir clase de la imagen
 		int predict(const cv::Mat& img, double &confidence);
+
+		//Cargar desde fichero el modelo
+		void load(const std::string& fichero);
+		//Guardar en fichero el modelo
+		void save(const std::string& fichero);
 
 		//Almacenar fisherfaces en fichero
 		void saveFisherFaces(const int height, const std::string &directory, const std::string& baseName);

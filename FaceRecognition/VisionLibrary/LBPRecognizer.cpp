@@ -30,4 +30,16 @@ namespace tfg
 
 		return label;
 	}
+
+	//Cargar desde fichero el modelo
+	void LBPRecognizer::load(const std::string& fichero)
+	{
+		this->model->load(fichero);
+	}
+
+	//Guardar en fichero el modelo
+	void LBPRecognizer::save(const std::string& fichero)
+	{
+		this->model->save(fichero);
+	}
 }

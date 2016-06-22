@@ -17,8 +17,10 @@ namespace tfg
 		//Destructor
 		virtual ~FaceCSVReader();
 
+		//Leer imágenes desde el csv y convertir a escala de grises
+		static void loadGrayImagesFromCSV(const std::string& filename, std::vector<cv::Mat>& images, std::vector<int>& labels, char separator = ';');
 		//Leer imágenes desde el csv
-		static void loadImagesFromCSV(const std::string& filename, std::vector<cv::Mat>& images, std::vector<int>& labels, char separator = ';');
+		static void loadActualImagesFromCSV(const std::string& filename, std::vector<cv::Mat>& images, std::vector<int>& labels, char separator = ';');
 	};
 }
 

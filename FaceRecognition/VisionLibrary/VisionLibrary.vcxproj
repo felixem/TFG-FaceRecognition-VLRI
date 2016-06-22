@@ -140,6 +140,7 @@
     <ClInclude Include="FaceCSVReader.h" />
     <ClInclude Include="FisherFacesRecognizer.h" />
     <ClInclude Include="HaarLikeFaceDetector.h" />
+    <ClInclude Include="IFaceRecognizer.h" />
     <ClInclude Include="ImageDownsampler.h" />
     <ClInclude Include="SimpleImageUpsampler.h" />
     <ClInclude Include="LBPRecognizer.h" />
@@ -153,6 +154,7 @@
     <ClCompile Include="FaceCSVReader.cpp" />
     <ClCompile Include="FisherFacesRecognizer.cpp" />
     <ClCompile Include="HaarLikeFaceDetector.cpp" />
+    <ClCompile Include="IFaceRecognizer.cpp" />
     <ClCompile Include="ImageDownsampler.cpp" />
     <ClCompile Include="SimpleImageUpsampler.cpp" />
     <ClCompile Include="LBPRecognizer.cpp" />

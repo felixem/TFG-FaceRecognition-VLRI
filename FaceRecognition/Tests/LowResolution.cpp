@@ -41,7 +41,7 @@ int mainLREigenFaces(int argc, char**argv)
 	//Cargar imágenes
 	try
 	{
-		FaceCSVReader::loadImagesFromCSV(csvFaces, images, labels);
+		FaceCSVReader::loadGrayImagesFromCSV(csvFaces, images, labels);
 	}
 	catch (cv::Exception& e) {
 		cerr << "Error al abrir el fichero \"" << csvFaces << "\". Razón: " << e.msg << endl;
@@ -59,6 +59,7 @@ int mainLREigenFaces(int argc, char**argv)
 	//Extraer la cara únicamente
 	std::vector<cv::Mat> croppedFaces;
 	HaarLikeFaceDetector faceDetector;
+	std::cout << "Detectando caras" << std::endl;
 	//Buscae las caras de todas las imágenes
 	for (unsigned int i = 0; i < images.size(); ++i)
 	{
@@ -68,6 +69,7 @@ int mainLREigenFaces(int argc, char**argv)
 		//Añadir cara
 		croppedFaces.push_back(face);
 	}
+	std::cout << "Caras detectadas" << std::endl;
 
 	// Altura de la primera imagen:
 	int height = croppedFaces[0].rows;
@@ -113,10 +115,22 @@ int mainLREigenFaces(int argc, char**argv)
 	string result_message = format("Clase predicha = %d / Confidence: %f / Clase real = %d.", predictedLabel, confidence, testLabel);
 	cout << result_message << endl;
 
-	//Mostrar eigenfaces
-	model.showEigenFaces(height);
-	//Mostrar reconstrucción
-	model.showReconstruction(upSampledFace);
+	//Mostrar o volcar en fichero el resultado
+	if (outputFolder == "")
+	{
+		//Mostrar eigenfaces
+		model.showEigenFaces(height);
+		//Mostrar reconstrucción
+		model.showReconstruction(testSample);
+	}
+	else
+	{
+		//Guardar eigenfaces
+		model.saveEigenFaces(height, outputFolder, "eigenfaces");
+		//Guardar reconstrucción
+		model.saveReconstruction(testSample, outputFolder, "eigen-reconstruction");
+	}
+
 	//Esperar a teclado
 	waitKey(0);
 	return 0;
@@ -145,7 +159,7 @@ int mainLRFisherFaces(int argc, char**argv)
 	//Cargar imágenes
 	try
 	{
-		FaceCSVReader::loadImagesFromCSV(csvFaces, images, labels);
+		FaceCSVReader::loadGrayImagesFromCSV(csvFaces, images, labels);
 	}
 	catch (cv::Exception& e) {
 		cerr << "Error al abrir el fichero \"" << csvFaces << "\". Razón: " << e.msg << endl;
@@ -163,6 +177,7 @@ int mainLRFisherFaces(int argc, char**argv)
 	//Extraer la cara únicamente
 	std::vector<cv::Mat> croppedFaces;
 	HaarLikeFaceDetector faceDetector;
+	std::cout << "Detectando caras" << std::endl;
 	//Buscae las caras de todas las imágenes
 	for (unsigned int i = 0; i < images.size(); ++i)
 	{
@@ -172,6 +187,7 @@ int mainLRFisherFaces(int argc, char**argv)
 		//Añadir cara
 		croppedFaces.push_back(face);
 	}
+	std::cout << "Caras detectadas" << std::endl;
 
 	// Altura de la primera imagen:
 	int height = croppedFaces[0].rows;
@@ -246,7 +262,7 @@ int mainLRLBPFaces(int argc, char**argv)
 	//Cargar imágenes
 	try
 	{
-		FaceCSVReader::loadImagesFromCSV(csvFaces, images, labels);
+		FaceCSVReader::loadGrayImagesFromCSV(csvFaces, images, labels);
 	}
 	catch (cv::Exception& e) {
 		cerr << "Error al abrir el fichero \"" << csvFaces << "\". Razón: " << e.msg << endl;
@@ -264,6 +280,7 @@ int mainLRLBPFaces(int argc, char**argv)
 	//Extraer la cara únicamente
 	std::vector<cv::Mat> croppedFaces;
 	HaarLikeFaceDetector faceDetector;
+	std::cout << "Detectando caras" << std::endl;
 	//Buscae las caras de todas las imágenes
 	for (unsigned int i = 0; i < images.size(); ++i)
 	{
@@ -273,6 +290,7 @@ int mainLRLBPFaces(int argc, char**argv)
 		//Añadir cara
 		croppedFaces.push_back(face);
 	}
+	std::cout << "Caras detectadas" << std::endl;
 
 	// Altura de la primera imagen:
 	int height = croppedFaces[0].rows;
