@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+//Main para test de reconocimiento de caras
+int testFaces(int argc, char**argv);
 //Entrenar bases de aprendizaje
 int trainFaces(int argc, char** argv);
 //Separar base de datos

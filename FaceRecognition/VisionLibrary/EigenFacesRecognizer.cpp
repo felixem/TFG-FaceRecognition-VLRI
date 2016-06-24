@@ -37,6 +37,18 @@ namespace tfg
 		return label;
 	}
 
+	//Limpìar modelo
+	void EigenFacesRecognizer::clear()
+	{
+		this->model->clear();
+	}
+
+	//Nombre del reconocedor
+	std::string EigenFacesRecognizer::getName() const
+	{
+		return "Eigenfaces";
+	}
+
 	//Almacenar eigenfaces en fichero
 	void EigenFacesRecognizer::saveEigenFaces(const int height, const std::string &directory, const std::string& baseName)
 	{

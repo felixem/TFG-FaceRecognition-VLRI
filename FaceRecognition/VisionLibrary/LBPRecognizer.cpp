@@ -31,6 +31,18 @@ namespace tfg
 		return label;
 	}
 
+	//Limpìar modelo
+	void LBPRecognizer::clear()
+	{
+		this->model->clear();
+	}
+
+	//Nombre del reconocedor
+	std::string LBPRecognizer::getName() const
+	{
+		return "LBPH";
+	}
+
 	//Cargar desde fichero el modelo
 	void LBPRecognizer::load(const std::string& fichero)
 	{

@@ -60,6 +60,9 @@ int main(int argc, char** argv)
 		//Separar en conjuntos de test y de training
 		case 8: separeDatabase(argc - 1, argsMetodo);
 			break;
+		//Testear conjunto de test de caras
+		case 9: testFaces(argc - 1, argsMetodo);
+			break;
 		default:
 			std::cerr << "Error: opción incorrecta" << std::endl;
 	}

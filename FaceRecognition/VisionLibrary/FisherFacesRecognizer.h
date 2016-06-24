@@ -20,6 +20,11 @@ namespace tfg
 		//Predecir clase de la imagen
 		int predict(const cv::Mat& img, double &confidence);
 
+		//Limpiar modelo
+		void clear();
+		//Nombre del reconocedor
+		std::string getName() const;
+
 		//Cargar desde fichero el modelo
 		void load(const std::string& fichero);
 		//Guardar en fichero el modelo

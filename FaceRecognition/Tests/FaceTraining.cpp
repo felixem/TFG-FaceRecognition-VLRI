@@ -14,11 +14,109 @@
 #include "EigenTransformationUpsampler.h"
 #include "WaveletSpatialSuperResolution.h"
 #include "FaceTraining.h"
+#include "IFaceRecognizer.h"
 #include <windows.h>
 
 using namespace std;
 using namespace cv;
 using namespace tfg;
+
+//Main para test de reconocimiento de caras
+int testFaces(int argc, char**argv)
+{
+	//Comprobar parámetros
+	if (argc != 4)
+	{
+		std::cerr << "Error: Argumentos incorrectos [" << argv[0] << " testCSV modelType ymlDir]" << std::endl;
+		getchar();
+		return -1;
+	}
+
+	//String de fichero csv
+	std::string csvFaces = argv[1];
+	//Tipo de modelo
+	int modelType = atoi(argv[2]);
+	//Dirección del modelo entreado
+	std::string trainedModelDir = argv[3];
+
+	std::cout << "Cargando modelo de reconocimiento" << std::endl;
+	//Cargar modelo de reconocimiento según parámetros
+	IFaceRecognizer* recognizer = NULL;
+	switch (modelType)
+	{
+		//Eigenfaces
+	case 0: recognizer = new EigenFacesRecognizer();
+		recognizer->load(trainedModelDir);
+		break;
+		//Fisher
+	case 1: recognizer = new FisherFacesRecognizer();
+		recognizer->load(trainedModelDir);
+		break;
+		//LBP
+	case 2: recognizer = new LBPRecognizer();
+		recognizer->load(trainedModelDir);
+		break;
+		//Fallo al cargar
+	default:
+		std::cerr << "Error: tipo de modelo incorrecto " << std::endl;
+		getchar();
+		return -1;
+	}
+	std::cout << "Modelo de reconocimiento cargado" << std::endl;
+
+	//Cargar imágenes de test
+	vector<Mat> images;
+	vector<int> labels;
+	//Cargar imágenes
+	try
+	{
+		FaceCSVReader::loadCroppedGrayImagesFromCSV(csvFaces, images, labels);
+	}
+	catch (cv::Exception& e) {
+		cerr << "Error al abrir el fichero \"" << csvFaces << "\". Razón: " << e.msg << endl;
+		getchar();
+		return -1;
+	}
+	//Comprobar que se han cargado las imágenes
+	if (images.size() <= 1) {
+		string error_message = "¡Añade más imagenes al dataset!";
+		CV_Error(CV_StsError, error_message);
+		getchar();
+		return -1;
+	}
+
+	//Almacenar valores de acierto y de fallo
+	int numAciertos = 0, numFallos = 0;
+	//Realizar test para cada imagen del conjunto
+	std::cout << "Realizando test para "<<images.size()<<" imagenes" << std::endl;
+	for (unsigned int i = 0; i < images.size(); ++i)
+	{
+		//Realizar predicción
+		int correctLabel = labels[i];
+		double confidence;
+		int prediction = recognizer->predict(images[i],confidence);
+		//Comprobar si se ha acertado o fallado
+		if (prediction == correctLabel)
+			numAciertos++;
+		else
+			numFallos++;
+	}
+	std::cout << "Test finalizado" << std::endl;
+
+	//Mostrar resultados
+	std::cout << "Tecnica de aprendizaje: " << recognizer->getName() << std::endl;
+	std::cout << "Conjunto de test: " << images.size() << std::endl;
+	std::cout << "Aciertos: " << numAciertos << std::endl;
+	std::cout << "Fallos: " << numFallos << std::endl;
+	std::cout << "Porcentaje de acierto: " << (double)numAciertos/((double)images.size())*100 <<"%" << std::endl;
+
+	//Limpiar reconocer
+	delete recognizer;
+
+	//Esperar a teclado
+	getchar();
+	return 0;
+}
 
 //Entrenar bases de aprendizaje
 int trainFaces(int argc, char**argv)
@@ -35,6 +133,13 @@ int trainFaces(int argc, char**argv)
 	std::string csvBases = argv[1];
 	std::string outputFolder = argv[2];
 
+	//Crear directorios de salida
+	if (!createDir(outputFolder))
+	{
+		std::cerr << "Error: no se pudo crear el directorio " << outputFolder << std::endl;
+		getchar();
+		return -1;
+	}
 	//Direcciones de las bases de imágenes
 	std::vector<std::string> nombresBases;
 	//Obtener nombres de las bases
@@ -44,12 +149,12 @@ int trainFaces(int argc, char**argv)
 	for (unsigned int i = 0; i < nombresBases.size(); ++i)
 	{
 		// Vector de imágenes y labels.
-		vector<Mat> images;
+		vector<Mat> croppedFaces;
 		vector<int> labels;
 		//Cargar imágenes
 		try
 		{
-			FaceCSVReader::loadGrayImagesFromCSV(nombresBases[i], images, labels);
+			FaceCSVReader::loadCroppedGrayImagesFromCSV(nombresBases[i], croppedFaces, labels);
 		}
 		catch (cv::Exception& e) {
 			cerr << "Error al abrir el fichero \"" << nombresBases[i] << "\". Razón: " << e.msg << endl;
@@ -58,25 +163,11 @@ int trainFaces(int argc, char**argv)
 		}
 
 		//Comprobar que se han cargado las imágenes
-		if (images.size() <= 1) {
+		if (croppedFaces.size() <= 1) {
 			string error_message = "¡Añade más imagenes al dataset!";
 			CV_Error(CV_StsError, error_message);
 			getchar();
 			return -1;
-		}
-
-		//Extraer la cara únicamente
-		std::vector<cv::Mat> croppedFaces;
-		HaarLikeFaceDetector faceDetector;
-		std::cout << "Detectando caras" << std::endl;
-		//Buscar las caras de todas las imágenes
-		for (unsigned int i = 0; i < images.size(); ++i)
-		{
-			cv::Mat face;
-			//Extraer cara principal
-			faceDetector.extractMainFace(images[i], face, 32, 32, 64, 64);
-			//Añadir cara
-			croppedFaces.push_back(face);
 		}
 
 		//Proceso de entrenamiento para eigen
@@ -88,6 +179,8 @@ int trainFaces(int argc, char**argv)
 		std::string outputEigen = outputFolder + "/eigenfaces" + std::to_string(i) + ".yml";
 		modelEigen.save(outputEigen);
 		std::cout << "Modelo almacenado en " << outputEigen << std::endl;
+		//Limpiar modelo
+		modelEigen.clear();
 
 		//Proceso de entrenamiento para Fisher
 		FisherFacesRecognizer modelFisher;
@@ -98,6 +191,8 @@ int trainFaces(int argc, char**argv)
 		std::string outputFisher = outputFolder + "/fisherfaces" + std::to_string(i) + ".yml";
 		modelFisher.save(outputFisher);
 		std::cout << "Modelo almacenado en " << outputFisher << std::endl;
+		//Limpiar modelo
+		modelFisher.clear();
 
 		//Proceso de entrenamiento para LBP
 		LBPRecognizer modelLBP;
@@ -108,6 +203,8 @@ int trainFaces(int argc, char**argv)
 		std::string outputLBP = outputFolder + "/lbp" + std::to_string(i) + ".yml";
 		modelLBP.save(outputLBP);
 		std::cout << "Modelo almacenado en " << outputLBP << std::endl;
+		//Limpiar modelo
+		modelLBP.clear();
 
 	}
 

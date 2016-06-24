@@ -27,10 +27,11 @@ import os.path
 if __name__ == "__main__":
 
     if len(sys.argv) != 2:
-        print ("usage: create_csv <base_path>")
+        print ("usage: list_dir <base_path>")
         sys.exit(1)
 
     BASE_PATH=sys.argv[1]
 
-    for filename in os.listdir(BASE_PATH) :
-        print ("%s" % (filename))
+    for dirname, dirnames, filenames in os.walk(BASE_PATH):
+        for filename in os.listdir(BASE_PATH) :
+            print ("%s" % (os.path.join(dirname, filename)))

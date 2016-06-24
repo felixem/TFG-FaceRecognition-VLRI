@@ -37,6 +37,18 @@ namespace tfg
 		return label;
 	}
 
+	//Limpìar modelo
+	void FisherFacesRecognizer::clear()
+	{
+		this->model->clear();
+	}
+
+	//Nombre del reconocedor
+	std::string FisherFacesRecognizer::getName() const
+	{
+		return "Fisherfaces";
+	}
+
 	//Almacenar fisherfaces en fichero
 	void FisherFacesRecognizer::saveFisherFaces(const int height, const std::string &directory, const std::string& baseName)
 	{
