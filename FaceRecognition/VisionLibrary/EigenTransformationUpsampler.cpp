@@ -69,8 +69,8 @@ namespace tfg
 		cv::Mat lowImg;
 		if (lowImg.size().height != this->lowResHeight || lowImg.size().width != this->lowResWidth)
 		{
-			SimpleImageUpsampler upSampler;
-			upSampler.applyBilinearFilter(img, lowImg, this->lowResHeight, this->lowResWidth);
+			SimpleImageUpsampler upSampler(cv::InterpolationFlags::INTER_LINEAR);
+			upSampler.upSample(img, lowImg, this->lowResHeight, this->lowResWidth);
 		}
 		else
 		{

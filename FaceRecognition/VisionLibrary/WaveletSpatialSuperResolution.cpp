@@ -16,19 +16,19 @@ using std::vector;
 namespace tfg
 {
 	//Constructor del algoritmo
-	WaveletSpatialSRUpsampler::WaveletSpatialSRUpsampler() {
+	WaveletSpatialSRUpsampler::WaveletSpatialSRUpsampler(int total_iteration) {
 		this->scaling_factor = 1;
+		this->total_iteration = total_iteration;
 	}
 
 	//Aplicar algoritmo
-	Mat WaveletSpatialSRUpsampler::upSample(const cv::Mat &img, const int outputWidth, const int outputHeight, int total_iteration) {
+	void WaveletSpatialSRUpsampler::upSample(const cv::Mat &img, cv::Mat &output, int height, int width) {
 		//Copiar valores
 		Mat low_resolution_image64;
 		img.convertTo(low_resolution_image64, CV_64FC1);
 		low_resolution_image64.copyTo(this->low_resolution_image);
-		this->outputHeight = outputHeight;
-		this->outputWidth = outputWidth;
-		this->total_iteration = total_iteration;
+		this->outputHeight = height;
+		this->outputWidth = width;
 
 		//Comenzar upsampling
 		if (low_resolution_image.channels() == 1) {
@@ -42,11 +42,7 @@ namespace tfg
 			gauImg.convertTo(gauImg64, CV_64FC1);
 
 			Mat result64 = reconstructIter(0, gauImg64, h0Img);
-			Mat result;
-			result64.convertTo(result, CV_8UC1);
-
-			return result;
-
+			result64.convertTo(output, CV_8UC1);
 		}
 		else {
 			// ---- rgb2ycbcr ----
@@ -81,15 +77,12 @@ namespace tfg
 			Mat resultB = resultY + 1.772*upU + 0 * upV;
 
 			Mat result64;
-			Mat result;
 			channels[0] = resultB;
 			channels[1] = resultG;
 			channels[2] = resultR;
 
 			merge(channels, result64);
-			result64.convertTo(result, CV_8UC1);
-
-			return result;
+			result64.convertTo(output, CV_8UC1);
 		}
 	}
 
@@ -730,5 +723,11 @@ namespace tfg
 
 		neighbors.clear();
 		return color;
+	}
+
+	//Nombre del reconocedor
+	std::string WaveletSpatialSRUpsampler::getName() const
+	{
+		return "Wavelet Spatial";
 	}
 }

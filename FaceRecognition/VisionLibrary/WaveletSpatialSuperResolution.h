@@ -10,25 +10,32 @@
 #define SUPER_RESOLUTION_H_
 #include <opencv2/opencv.hpp>
 
+#include "ImageUpsampler.h"
+
 namespace tfg
 {
 	//Clase utilizada para aplicar el algoritmo de superresolution de
 	//A Fast Algorithm for Single Image Super Resolution in Both Wavelet and Spatial Domain
-	class WaveletSpatialSRUpsampler {
+	class WaveletSpatialSRUpsampler : public ImageUpsampler {
 	private:
+		//Variables internas
 		int scaling_factor;
 		int outputWidth;
 		int outputHeight;
-		int total_iteration;
+		int total_iteration;		
+		cv::Mat low_resolution_image;
 
+		//Métodos internos
 		cv::Mat usScheme(const cv::Mat& img);
 		cv::Mat reconstructIter(int current_iteration, const cv::Mat& src, const cv::Mat& hImg);
-		cv::Mat low_resolution_image;
 
 	public:
 		//Constructor
-		WaveletSpatialSRUpsampler();
-		cv::Mat upSample(const cv::Mat &low_resolution_image, const int outputWidth, const int outputHeight, int total_iteration);
+		WaveletSpatialSRUpsampler(int total_iteration);
+		//Realizar upsampling
+		void upSample(const cv::Mat &low_resolution_image, cv::Mat &output, int height, int width);
+		//Nombre del reconocedor
+		std::string getName() const;
 	};
 
 	//Clase utilizada para realizar transformaciones

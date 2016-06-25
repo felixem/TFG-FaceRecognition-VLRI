@@ -15,6 +15,8 @@
 #include "WaveletSpatialSuperResolution.h"
 #include "FaceTraining.h"
 #include "IFaceRecognizer.h"
+#include "ImageUpsampler.h"
+#include "WaveletSpatialSuperResolution.h"
 #include <windows.h>
 
 using namespace std;
@@ -110,12 +112,94 @@ int testFaces(int argc, char**argv)
 	std::cout << "Fallos: " << numFallos << std::endl;
 	std::cout << "Porcentaje de acierto: " << (double)numAciertos/((double)images.size())*100 <<"%" << std::endl;
 
-	//Limpiar reconocer
+	//Preparar downsampling
+	std::vector<int> downSamplingSizes;
+	downSamplingSizes.push_back(32);
+	downSamplingSizes.push_back(16);
+	downSamplingSizes.push_back(8);
+	downSamplingSizes.push_back(4);
+	ImageDownsampler downSampler;
+	int numAlgoritmosDownsampling = 6;
+
+	//Realizar bucle de test con downsampling
+	for (unsigned int indexTam = 0; indexTam < downSamplingSizes.size(); ++indexTam)
+	{
+		//Realizar downsampling
+		int size = downSamplingSizes[indexTam];
+		std::cout << "---------------------------" << std::endl;
+		std::cout << "Upsampling desde " << size << "x" << size << std::endl;
+		//Tests para los distintos algoritmos
+		for (unsigned int i = 0; i < numAlgoritmosDownsampling; ++i)
+		{
+			//Algoritmo de upsampling
+			ImageUpsampler* upsampler = generateUpsampler(i);
+			//Almacenar valores de acierto y de fallo
+			int numAciertos = 0, numFallos = 0;
+
+			//Realizar test para cada imagen del conjunto
+			std::cout << "Realizando test para " << upsampler->getName()<< std::endl;
+			for (unsigned int j = 0; j < images.size(); ++j)
+			{
+				//Generar imagen downsampleada
+				cv::Mat downSampled;
+				downSampler.downSampleWithAllNoises(images[j], downSampled, size, size, cv::InterpolationFlags::INTER_AREA);
+				//Aplicar upsampling
+				cv::Mat upSampled;
+				upsampler->upSample(downSampled, upSampled, 64, 64);
+				//Realizar predicción
+				int correctLabel = labels[j];
+				double confidence;
+				int prediction = recognizer->predict(upSampled, confidence);
+				//Comprobar si se ha acertado o fallado
+				if (prediction == correctLabel)
+					numAciertos++;
+				else
+					numFallos++;
+			}
+			std::cout << "Aciertos: " << numAciertos << std::endl;
+			std::cout << "Fallos: " << numFallos << std::endl;
+			std::cout << "Porcentaje de acierto: " << (double)numAciertos / ((double)images.size()) * 100 << "%" << std::endl << std::endl;
+			//Liberar upsampler
+			delete upsampler;
+		}
+	}
+
+	//Limpiar reconocedor
 	delete recognizer;
 
 	//Esperar a teclado
+	std::cout << "Pulse una tecla para terminar: " << std::endl;
 	getchar();
 	return 0;
+}
+
+//Generar upsampler
+ImageUpsampler* generateUpsampler(int opcion)
+{
+	//Generar upsampler según opción
+	switch (opcion)
+	{
+		case 0:
+			//Vecino más cercano
+			return new SimpleImageUpsampler(cv::InterpolationFlags::INTER_NEAREST);
+		case 1:
+			//Área
+			return new SimpleImageUpsampler(cv::InterpolationFlags::INTER_AREA);
+		case 2:
+			//Bilineal
+			return new SimpleImageUpsampler(cv::InterpolationFlags::INTER_LINEAR);
+		case 3:
+			//Bicúbico
+			return new SimpleImageUpsampler(cv::InterpolationFlags::INTER_CUBIC);
+		case 4:
+			//Lanczos
+			return new SimpleImageUpsampler(cv::InterpolationFlags::INTER_LANCZOS4);
+		case 5:
+			//Wavelet
+			return new WaveletSpatialSRUpsampler(2);
+	}
+
+	return NULL;
 }
 
 //Entrenar bases de aprendizaje

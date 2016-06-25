@@ -147,6 +147,7 @@
     <ClInclude Include="HaarLikeFaceDetector.h" />
     <ClInclude Include="IFaceRecognizer.h" />
     <ClInclude Include="ImageDownsampler.h" />
+    <ClInclude Include="ImageUpsampler.h" />
     <ClInclude Include="SimpleImageUpsampler.h" />
     <ClInclude Include="LBPRecognizer.h" />
     <ClInclude Include="stdafx.h" />
@@ -161,6 +162,7 @@
     <ClCompile Include="HaarLikeFaceDetector.cpp" />
     <ClCompile Include="IFaceRecognizer.cpp" />
     <ClCompile Include="ImageDownsampler.cpp" />
+    <ClCompile Include="ImageUpsampler.cpp" />
     <ClCompile Include="SimpleImageUpsampler.cpp" />
     <ClCompile Include="LBPRecognizer.cpp" />
     <ClCompile Include="stdafx.cpp">

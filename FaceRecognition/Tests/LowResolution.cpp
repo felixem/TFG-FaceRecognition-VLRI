@@ -92,9 +92,9 @@ int mainLREigenFaces(int argc, char**argv)
 	waitKey(1000);
 
 	//Imagen tras upsampling
-	SimpleImageUpsampler upsampler;
+	SimpleImageUpsampler upsampler(cv::InterpolationFlags::INTER_CUBIC);
 	cv::Mat upSampledFace;
-	upsampler.applyBicubicFilter(downSampledFace, upSampledFace, testSample.rows, testSample.cols);
+	upsampler.upSample(downSampledFace, upSampledFace, testSample.rows, testSample.cols);
 	//Mostrar imagen downsampled
 	imshow("Imagen upsampled", upSampledFace);
 	waitKey(1000);
@@ -210,9 +210,9 @@ int mainLRFisherFaces(int argc, char**argv)
 	waitKey(1000);
 
 	//Imagen tras upsampling
-	SimpleImageUpsampler upsampler;
+	SimpleImageUpsampler upsampler(cv::InterpolationFlags::INTER_CUBIC);
 	cv::Mat upSampledFace;
-	upsampler.applyBicubicFilter(downSampledFace, upSampledFace, testSample.rows, testSample.cols);
+	upsampler.upSample(downSampledFace, upSampledFace, testSample.rows, testSample.cols);
 	//Mostrar imagen downsampled
 	imshow("Imagen upsampled", upSampledFace);
 	waitKey(1000);
@@ -319,8 +319,8 @@ int mainLRLBPFaces(int argc, char**argv)
 	upsampler.applyBicubicFilter(downSampledFace, upSampledFace, testSample.rows, testSample.cols);*/
 
 	//Realizar upsampling con WaveletSpatial
-	WaveletSpatialSRUpsampler upsampler;
-	upSampledFace = upsampler.upSample(downSampledFace, testSample.rows, testSample.cols,2);
+	WaveletSpatialSRUpsampler upsampler(2);
+	upsampler.upSample(downSampledFace, upSampledFace, testSample.cols, testSample.rows);
 
 	//Realizar upsampling con EigenTransformation
 	/*EigenTransformationUpsampler upsampler;

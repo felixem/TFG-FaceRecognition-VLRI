@@ -1,4 +1,5 @@
 #pragma once
+#include "ImageUpsampler.h"
 #include <string>
 
 //Main para test de reconocimiento de caras
@@ -11,3 +12,5 @@ int separeDatabase(int argc, char**argv);
 void readDatabasesFile(const std::string &file, std::vector<std::string> &databases);
 //Crear directorio
 bool createDir(const std::string& dirName_in);
+//Generar upsampler
+tfg::ImageUpsampler* generateUpsampler(int opcion);
