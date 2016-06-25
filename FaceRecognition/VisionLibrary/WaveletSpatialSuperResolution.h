@@ -26,8 +26,8 @@ namespace tfg
 		cv::Mat low_resolution_image;
 
 		//Métodos internos
-		cv::Mat usScheme(const cv::Mat& img);
-		cv::Mat reconstructIter(int current_iteration, const cv::Mat& src, const cv::Mat& hImg);
+		void usScheme(const cv::Mat& img, cv::Mat& output);
+		void reconstructIter(int current_iteration, const cv::Mat& src, const cv::Mat& hImg, cv::Mat& output);
 
 	public:
 		//Constructor
@@ -61,7 +61,8 @@ namespace tfg
 		void InverseTransform();
 		void TransferAlongRow(const int N1, const int N2, const int M1, const int M2, const bool flag);
 		void TransferAlongCol(const int N1, const int N2, const int M1, const int M2, const bool flag);
-		cv::Mat filter(const cv::Mat& B, const cv::Mat& X, const cv::Mat& Zi); // b is a column vector
+		//Realizar filtrado
+		void filter(const cv::Mat& B, const cv::Mat& X, const cv::Mat& Zi, cv::Mat& output); // b is a column vector
 
 	public:
 		WaveletCdf97(cv::Mat& img, const int nlevel, WaveletParam w = WaveletParam());
@@ -81,7 +82,7 @@ namespace tfg
 	class Interpolator {
 	public:
 		Interpolator(const cv::Mat &src, int width, int height);
-		cv::Mat BicubicInterpolate();
+		void BicubicInterpolate(cv::Mat& dst);
 	private:
 		cv::Mat src;
 		int width, height;

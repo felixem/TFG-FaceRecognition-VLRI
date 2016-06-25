@@ -89,6 +89,8 @@ int testFaces(int argc, char**argv)
 
 	//Almacenar valores de acierto y de fallo
 	int numAciertos = 0, numFallos = 0;
+	//Confianza para aciertos y fallos
+	double confianzaAciertos = 0, confianzaFallos = 0;
 	//Realizar test para cada imagen del conjunto
 	std::cout << "Realizando test para "<<images.size()<<" imagenes" << std::endl;
 	for (unsigned int i = 0; i < images.size(); ++i)
@@ -99,9 +101,15 @@ int testFaces(int argc, char**argv)
 		int prediction = recognizer->predict(images[i],confidence);
 		//Comprobar si se ha acertado o fallado
 		if (prediction == correctLabel)
+		{
+			confianzaAciertos += confidence;
 			numAciertos++;
+		}
 		else
+		{
+			confianzaFallos += confidence;
 			numFallos++;
+		}
 	}
 	std::cout << "Test finalizado" << std::endl;
 
@@ -111,6 +119,8 @@ int testFaces(int argc, char**argv)
 	std::cout << "Aciertos: " << numAciertos << std::endl;
 	std::cout << "Fallos: " << numFallos << std::endl;
 	std::cout << "Porcentaje de acierto: " << (double)numAciertos/((double)images.size())*100 <<"%" << std::endl;
+	std::cout << "Confianza media aciertos: " << confianzaAciertos / (double)numAciertos << std::endl;
+	std::cout << "Confianza media fallos: " << confianzaFallos / (double)numFallos << std::endl;
 
 	//Preparar downsampling
 	std::vector<int> downSamplingSizes;
@@ -135,6 +145,8 @@ int testFaces(int argc, char**argv)
 			ImageUpsampler* upsampler = generateUpsampler(i);
 			//Almacenar valores de acierto y de fallo
 			int numAciertos = 0, numFallos = 0;
+			//Confianza para aciertos y fallos
+			double confianzaAciertos = 0, confianzaFallos = 0;
 
 			//Realizar test para cada imagen del conjunto
 			std::cout << "Realizando test para " << upsampler->getName()<< std::endl;
@@ -152,13 +164,21 @@ int testFaces(int argc, char**argv)
 				int prediction = recognizer->predict(upSampled, confidence);
 				//Comprobar si se ha acertado o fallado
 				if (prediction == correctLabel)
+				{
+					confianzaAciertos += confidence;
 					numAciertos++;
+				}
 				else
+				{
+					confianzaFallos += confidence;
 					numFallos++;
+				}
 			}
 			std::cout << "Aciertos: " << numAciertos << std::endl;
 			std::cout << "Fallos: " << numFallos << std::endl;
-			std::cout << "Porcentaje de acierto: " << (double)numAciertos / ((double)images.size()) * 100 << "%" << std::endl << std::endl;
+			std::cout << "Porcentaje de acierto: " << (double)numAciertos / ((double)images.size()) * 100 << "%" << std::endl;
+			std::cout << "Confianza media aciertos: " << confianzaAciertos / (double)numAciertos << std::endl;
+			std::cout << "Confianza media fallos: " << confianzaFallos / (double)numFallos << std::endl << std::endl;
 			//Liberar upsampler
 			delete upsampler;
 		}

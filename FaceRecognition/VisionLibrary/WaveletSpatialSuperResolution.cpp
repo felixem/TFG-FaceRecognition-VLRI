@@ -33,7 +33,8 @@ namespace tfg
 		//Comenzar upsampling
 		if (low_resolution_image.channels() == 1) {
 			// ----- upsamling scheme -----
-			Mat h0Img = usScheme(low_resolution_image);
+			Mat h0Img;
+			usScheme(low_resolution_image,h0Img);
 
 			// ----- gaussian filter -----
 			Mat gauImg;
@@ -41,7 +42,9 @@ namespace tfg
 			Mat gauImg64;
 			gauImg.convertTo(gauImg64, CV_64FC1);
 
-			Mat result64 = reconstructIter(0, gauImg64, h0Img);
+			//Realizar reconstrucción
+			Mat result64;
+			reconstructIter(0, gauImg64, h0Img,result64);
 			result64.convertTo(output, CV_8UC1);
 		}
 		else {
@@ -57,7 +60,8 @@ namespace tfg
 			Mat V = 0.5*R - 0.418688*G - 0.081312*B;
 
 			// ----- upsamling scheme -----
-			Mat h0Img = usScheme(Y);
+			Mat h0Img;
+			usScheme(Y,h0Img);
 
 			// ----- gaussian filter -----
 			Mat gauImg;
@@ -65,7 +69,8 @@ namespace tfg
 			Mat gauImg64;
 			gauImg.convertTo(gauImg64, CV_64FC1);
 			low_resolution_image = Y;
-			Mat resultY = reconstructIter(0, gauImg64, h0Img);
+			Mat resultY;
+			reconstructIter(0, gauImg64, h0Img,resultY);
 
 			// ---- ycbcr2rgb ----
 			Mat upU, upV;
@@ -87,12 +92,12 @@ namespace tfg
 	}
 
 	//Realizar pasos del algoritmo
-	Mat WaveletSpatialSRUpsampler::usScheme(const Mat& img) {
+	void WaveletSpatialSRUpsampler::usScheme(const Mat& img, Mat& result) {
 
-		Mat upImg = Mat::zeros(this->outputHeight, this->outputWidth, CV_64FC1);
 		Interpolator ip(img, this->outputWidth, this->outputHeight);
-		upImg = ip.BicubicInterpolate();
-
+		//Realizar interpolación bicúbica
+		Mat upImg;
+		ip.BicubicInterpolate(upImg);
 
 		WaveletCdf97 wc(upImg, 1);
 		Mat dwtImg = wc.Run();
@@ -107,13 +112,12 @@ namespace tfg
 		}
 
 		WaveletCdf97 wc1(dwtImg, -1);
-		Mat result = wc1.Run();
-
-		return result;
+		result = wc1.Run();
 	}
 
 	//Reconstruir iteración
-	Mat WaveletSpatialSRUpsampler::reconstructIter(int current_iteration, const Mat& src, const Mat& hImg) {
+	void WaveletSpatialSRUpsampler::reconstructIter(int current_iteration, const Mat& src, const Mat& hImg,
+		cv::Mat &dst) {
 		Mat downImg = Mat::zeros(low_resolution_image.rows, low_resolution_image.cols, CV_64FC1);
 
 		resize(src, downImg, downImg.size(), 0, 0, INTER_NEAREST);
@@ -123,15 +127,13 @@ namespace tfg
 		Mat reconError = Mat::zeros(downImg64.rows, downImg64.cols, CV_64FC1);
 
 		reconError = low_resolution_image - downImg64;
-		Mat errImg = usScheme(reconError);
+		Mat errImg;
+		usScheme(reconError,errImg);
 
 		// back-projecting the error
-		Mat dst = errImg + hImg;
+		dst = errImg + hImg;
 		if (current_iteration < total_iteration) {
-			return reconstructIter(++current_iteration, dst, dst);
-		}
-		else {
-			return dst;
+			reconstructIter(++current_iteration, dst, dst,dst);
 		}
 	}
 
@@ -258,7 +260,11 @@ namespace tfg
 			}
 
 			if (N1 % 2 == 1) {
-				Mat tmp = filter(wp.lift_filter.col(0), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 0));
+
+				//Filtrado
+				cv::Mat tmp;
+				filter(wp.lift_filter.col(0), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 0), tmp);
+
 				for (int j = 0; j < X1.cols; j++) {
 					for (int i = 0; i < X1.rows - 1; i++) {
 						X1.at<double>(i, j) = wavelet_img.at<double>(i * 2 + 1, j);
@@ -272,7 +278,10 @@ namespace tfg
 			}
 			else {
 
-				Mat tmp = filter(wp.lift_filter.col(0), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 0));
+				//Filtrado
+				cv::Mat tmp;
+				filter(wp.lift_filter.col(0), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 0),tmp);
+
 				for (int i = 0; i < X1.rows; i++) {
 					for (int j = 0; j < X1.cols; j++) {
 						X1.at<double>(i, j) = wavelet_img.at<double>(i * 2 + 1, j);
@@ -282,7 +291,10 @@ namespace tfg
 
 			}
 
-			X0 = X0 + filter(wp.lift_filter.col(1), X1, X1.row(0)*wp.lift_filter.at<double>(0, 1));
+			//Filtrado
+			cv::Mat filteredImg;
+			filter(wp.lift_filter.col(1), X1, X1.row(0)*wp.lift_filter.at<double>(0, 1), filteredImg);
+			X0 = X0 + filteredImg;
 
 			for (int i = 0; i < X0_rightShift.rows; i++) {
 				for (int j = 0; j < X0_rightShift.cols; j++) {
@@ -290,9 +302,13 @@ namespace tfg
 				}
 			}
 
-			X1 = X1 + filter(wp.lift_filter.col(2), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 2));
+			//Filtrado
+			filter(wp.lift_filter.col(2), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 2), filteredImg);
+			X1 = X1 + filteredImg;
 
-			X0 = X0 + filter(wp.lift_filter.col(3), X1, X1.row(0)*wp.lift_filter.at<double>(0, 3));
+			//Filtrado
+			filter(wp.lift_filter.col(3), X1, X1.row(0)*wp.lift_filter.at<double>(0, 3),filteredImg);
+			X0 = X0 + filteredImg;
 
 			Mat new_X1;
 			if (N1 % 2 == 1) {
@@ -357,7 +373,11 @@ namespace tfg
 					X0.at<double>(i, j) = wavelet_img.at<double>(i, j) / wp.scale_factor;
 				}
 			}
-			X0 = X0 - filter(wp.lift_filter.col(3), add_X1, add_X1.row(0)*wp.lift_filter.at<double>(0, 3));
+
+			//Filtrado
+			cv::Mat filteredImg;
+			filter(wp.lift_filter.col(3), add_X1, add_X1.row(0)*wp.lift_filter.at<double>(0, 3), filteredImg);
+			X0 = X0 - filteredImg;
 
 			Mat X0_rightShift = Mat::zeros(rightShiftIdx.size(), X0.cols, CV_64FC1); // X0(rightShift,:,:)
 			for (int i = 0; i < X0_rightShift.rows; i++) {
@@ -365,15 +385,23 @@ namespace tfg
 					X0_rightShift.at<double>(i, j) = X0.at<double>(rightShiftIdx[i], j);
 				}
 			}
-			add_X1 = add_X1 - filter(wp.lift_filter.col(2), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 2));
-			X0 = X0 - filter(wp.lift_filter.col(1), add_X1, add_X1.row(0)*wp.lift_filter.at<double>(0, 1));
+
+			//Filtrado
+			filter(wp.lift_filter.col(2), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 2),filteredImg);
+			add_X1 = add_X1 - filteredImg;
+			//Filtrado
+			filter(wp.lift_filter.col(1), add_X1, add_X1.row(0)*wp.lift_filter.at<double>(0, 1),filteredImg);
+			X0 = X0 - filteredImg;
 
 			for (int i = 0; i < X0_rightShift.rows; i++) {
 				for (int j = 0; j < X0_rightShift.cols; j++) {
 					X0_rightShift.at<double>(i, j) = X0.at<double>(rightShiftIdx[i], j);
 				}
 			}
-			add_X1 = add_X1 - filter(wp.lift_filter.col(0), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 0));
+
+			//Filtrado
+			filter(wp.lift_filter.col(0), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 0),filteredImg);
+			add_X1 = add_X1 - filteredImg;
 
 			Mat minus_X1;
 			if (M1 % 2 == 1) {
@@ -438,7 +466,11 @@ namespace tfg
 					}
 					X1.at<double>(X1.rows - 1, j) = tmp.at<double>(j, 0);
 				}
-				X1 = X1 + filter(wp.lift_filter.col(0), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 0));
+
+				//Filtrado
+				cv::Mat filteredImg;
+				filter(wp.lift_filter.col(0), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 0),filteredImg);
+				X1 = X1 + filteredImg;
 
 			}
 			else {
@@ -447,19 +479,30 @@ namespace tfg
 						X1.at<double>(i, j) = wavelet_img.at<double>(j, i * 2 + 1);
 					}
 				}
-				X1 = X1 + filter(wp.lift_filter.col(0), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 0));
+
+				//Filtrado
+				cv::Mat filteredImg;
+				filter(wp.lift_filter.col(0), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 0), filteredImg);
+				X1 = X1 + filteredImg;
 			}
 
-			X0 = X0 + filter(wp.lift_filter.col(1), X1, X1.row(0)*wp.lift_filter.at<double>(0, 1));
+			//Filtrado
+			cv::Mat filteredImg;
+			filter(wp.lift_filter.col(1), X1, X1.row(0)*wp.lift_filter.at<double>(0, 1),filteredImg);
+			X0 = X0 + filteredImg;
 
 			for (int i = 0; i < X0_rightShift.rows; i++) {
 				for (int j = 0; j < X0_rightShift.cols; j++) {
 					X0_rightShift.at<double>(i, j) = X0.at<double>(rightShiftIdx[i], j);
 				}
 			}
-			X1 = X1 + filter(wp.lift_filter.col(2), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 2));
+			//Filtrado
+			filter(wp.lift_filter.col(2), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 2), filteredImg);
+			X1 = X1 + filteredImg;
 
-			X0 = X0 + filter(wp.lift_filter.col(3), X1, X1.row(0)*wp.lift_filter.at<double>(0, 3));
+			//Filtrado
+			filter(wp.lift_filter.col(3), X1, X1.row(0)*wp.lift_filter.at<double>(0, 3),filteredImg);
+			X0 = X0 + filteredImg;
 
 			Mat new_X1;
 			if (N2 % 2 == 1) {
@@ -525,7 +568,11 @@ namespace tfg
 					X0.at<double>(i, j) = wavelet_img.at<double>(j, i) / wp.scale_factor;
 				}
 			}
-			X0 = X0 - filter(wp.lift_filter.col(3), add_X1, add_X1.row(0)*wp.lift_filter.at<double>(0, 3));
+
+			//Realizar filtrado
+			cv::Mat filteredImg;
+			filter(wp.lift_filter.col(3), add_X1, add_X1.row(0)*wp.lift_filter.at<double>(0, 3),filteredImg);
+			X0 = X0 - filteredImg;
 
 			Mat X0_rightShift = Mat::zeros(rightShiftIdx.size(), X0.cols, CV_64FC1); // X0(rightShift,:,:)
 			for (int i = 0; i < X0_rightShift.rows; i++) {
@@ -533,15 +580,23 @@ namespace tfg
 					X0_rightShift.at<double>(i, j) = X0.at<double>(rightShiftIdx[i], j);
 				}
 			}
-			add_X1 = add_X1 - filter(wp.lift_filter.col(2), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 2));
-			X0 = X0 - filter(wp.lift_filter.col(1), add_X1, add_X1.row(0)*wp.lift_filter.at<double>(0, 1));
+
+			//Realizar filtrado
+			filter(wp.lift_filter.col(2), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 2),filteredImg);
+			add_X1 = add_X1 - filteredImg;
+			//Filtrado
+			filter(wp.lift_filter.col(1), add_X1, add_X1.row(0)*wp.lift_filter.at<double>(0, 1), filteredImg);
+			X0 = X0 - filteredImg;
 
 			for (int i = 0; i < X0_rightShift.rows; i++) {
 				for (int j = 0; j < X0_rightShift.cols; j++) {
 					X0_rightShift.at<double>(i, j) = X0.at<double>(rightShiftIdx[i], j);
 				}
 			}
-			add_X1 = add_X1 - filter(wp.lift_filter.col(0), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 0));
+
+			//Filtrado
+			filter(wp.lift_filter.col(0), X0_rightShift, X0.row(0)*wp.lift_filter.at<double>(0, 0),filteredImg);
+			add_X1 = add_X1 - filteredImg;
 
 			Mat minus_X1;
 			if (M2 % 2 == 1) {
@@ -571,13 +626,13 @@ namespace tfg
 	}
 
 	//Filtrado
-	Mat WaveletCdf97::filter(const Mat& B, const Mat& X, const Mat& Zi) {
+	void WaveletCdf97::filter(const Mat& B, const Mat& X, const Mat& Zi, cv::Mat& output) {
 		// b is a column vector
 		Mat b;
 		flip(B, b, 0);
 		int padding = b.rows - 1;
 		Mat expendX = Mat::zeros(X.rows + padding, X.cols, CV_64FC1);
-		Mat Y = Mat::zeros(X.rows, X.cols, CV_64FC1);
+		output = Mat::zeros(X.rows, X.cols, CV_64FC1);
 
 		// fill the expend X matrix
 		for (int i = 0; i < X.rows; i++) {
@@ -590,14 +645,12 @@ namespace tfg
 		for (int c = 0; c < expendX.cols; ++c) {
 			for (int r = 0; r < expendX.rows - padding; ++r) {
 				for (int i = 0; i < b.rows; i++) {
-					Y.at<double>(r, c) += b.at<double>(i, 0)*expendX.at<double>(r + i, c);
+					output.at<double>(r, c) += b.at<double>(i, 0)*expendX.at<double>(r + i, c);
 				}
 			}
 			// Zi is a row vector (initial delays)
-			Y.at<double>(0, c) += Zi.at<double>(0, c);
+			output.at<double>(0, c) += Zi.at<double>(0, c);
 		}
-
-		return Y;
 	}
 
 	//Constructor del interpolador interno
@@ -610,8 +663,8 @@ namespace tfg
 	}
 
 	//Realizar interpolación bicúbica
-	Mat Interpolator::BicubicInterpolate() {
-		Mat dst = Mat::zeros(height, width, CV_64FC1);
+	void Interpolator::BicubicInterpolate(cv::Mat& dst) {
+		dst = Mat::zeros(height, width, CV_64FC1);
 		Point2d p;
 
 		for (int r = 0; r < dst.rows; r++) {
@@ -621,7 +674,6 @@ namespace tfg
 				dst.at<double>(r, c) = GetColor(p);
 			}
 		}
-		return dst;
 	}
 
 	//Obtener color
