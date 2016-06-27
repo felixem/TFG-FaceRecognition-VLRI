@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Fisherfaces;17;0;1;90.0741;-nan(ind);0.000694888
+Fisherfaces32x32 Interpolacion Nearest Neightbor;17;0;1;137.879;-nan(ind);0.000849399
+Fisherfaces32x32 Interpolacion Area;17;0;1;137.879;-nan(ind);0.000963049
+Fisherfaces32x32 Interpolacion Bilineal;17;0;1;179.235;-nan(ind);0.000841309
+Fisherfaces32x32 Interpolacion Bicubica;17;0;1;125.134;-nan(ind);0.000845076
+Fisherfaces32x32 Interpolacion Lanczos;17;0;1;123.627;-nan(ind);0.000946627
+Fisherfaces32x32 Wavelet Spatial;17;0;1;227.209;-nan(ind);0.784256
+Fisherfaces16x16 Interpolacion Nearest Neightbor;17;0;1;317.946;-nan(ind);0.00084312
+Fisherfaces16x16 Interpolacion Area;17;0;1;317.946;-nan(ind);0.000857779
+Fisherfaces16x16 Interpolacion Bilineal;17;0;1;373.53;-nan(ind);0.000835247
+Fisherfaces16x16 Interpolacion Bicubica;17;0;1;289.282;-nan(ind);0.000910547
+Fisherfaces16x16 Interpolacion Lanczos;17;0;1;281.439;-nan(ind);0.00101596
+Fisherfaces16x16 Wavelet Spatial;17;0;1;376.942;-nan(ind);0.772804
+Fisherfaces8x8 Interpolacion Nearest Neightbor;17;0;1;599.802;-nan(ind);0.000846525
+Fisherfaces8x8 Interpolacion Area;17;0;1;599.802;-nan(ind);0.000820081
+Fisherfaces8x8 Interpolacion Bilineal;15;2;0.882353;632.046;804.671;0.000841671
+Fisherfaces8x8 Interpolacion Bicubica;17;0;1;589.531;-nan(ind);0.000871013
+Fisherfaces8x8 Interpolacion Lanczos;17;0;1;582.505;-nan(ind);0.000978673
+Fisherfaces8x8 Wavelet Spatial;14;3;0.823529;611.83;790.833;0.772774
+Fisherfaces4x4 Interpolacion Nearest Neightbor;7;10;0.411765;795.647;826.164;0.000837252
+Fisherfaces4x4 Interpolacion Area;7;10;0.411765;795.647;826.164;0.000861015
+Fisherfaces4x4 Interpolacion Bilineal;5;12;0.294118;772.43;783.367;0.00083346
+Fisherfaces4x4 Interpolacion Bicubica;6;11;0.352941;754.13;815.445;0.000859325
+Fisherfaces4x4 Interpolacion Lanczos;6;11;0.352941;760.793;835.764;0.00098063
+Fisherfaces4x4 Wavelet Spatial;5;12;0.294118;735.747;815.84;0.772162

@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Eigenfaces;70;1;0.985915;1405.75;4619.96;0.0195975
+Eigenfaces32x32 Interpolacion Nearest Neightbor;70;1;0.985915;1607.52;4509.64;0.0186243
+Eigenfaces32x32 Interpolacion Area;70;1;0.985915;1607.52;4509.64;0.0201092
+Eigenfaces32x32 Interpolacion Bilineal;70;1;0.985915;1579.43;4422.67;0.0186872
+Eigenfaces32x32 Interpolacion Bicubica;70;1;0.985915;1499.74;4527.09;0.0184317
+Eigenfaces32x32 Interpolacion Lanczos;70;1;0.985915;1488.21;4518.59;0.0186227
+Eigenfaces32x32 Wavelet Spatial;70;1;0.985915;1778.58;4422.24;0.791494
+Eigenfaces16x16 Interpolacion Nearest Neightbor;70;1;0.985915;2128.49;4342.7;0.0185809
+Eigenfaces16x16 Interpolacion Area;70;1;0.985915;2128.49;4342.7;0.0183457
+Eigenfaces16x16 Interpolacion Bilineal;70;1;0.985915;2068.66;4221.64;0.0180788
+Eigenfaces16x16 Interpolacion Bicubica;70;1;0.985915;1967.51;4367.58;0.0181002
+Eigenfaces16x16 Interpolacion Lanczos;69;2;0.971831;1941.62;3945;0.0182148
+Eigenfaces16x16 Wavelet Spatial;70;1;0.985915;2220.5;4279.74;0.796388
+Eigenfaces8x8 Interpolacion Nearest Neightbor;64;7;0.901408;2712.2;3282.01;0.0186696
+Eigenfaces8x8 Interpolacion Area;64;7;0.901408;2712.2;3282.01;0.0189927
+Eigenfaces8x8 Interpolacion Bilineal;54;17;0.760563;2587.39;2898.36;0.0184323
+Eigenfaces8x8 Interpolacion Bicubica;65;6;0.915493;2524.61;3194.99;0.0183807
+Eigenfaces8x8 Interpolacion Lanczos;66;5;0.929577;2501.9;3248.68;0.018374
+Eigenfaces8x8 Wavelet Spatial;60;11;0.84507;2807.61;3138.98;0.793281
+Eigenfaces4x4 Interpolacion Nearest Neightbor;22;49;0.309859;3138.94;3302.95;0.0185711
+Eigenfaces4x4 Interpolacion Area;22;49;0.309859;3138.94;3302.95;0.0184062
+Eigenfaces4x4 Interpolacion Bilineal;18;53;0.253521;3016.59;3137.47;0.0182152
+Eigenfaces4x4 Interpolacion Bicubica;21;50;0.295775;2997.46;3145.21;0.0182181
+Eigenfaces4x4 Interpolacion Lanczos;23;48;0.323944;3049.55;3178.47;0.0183081
+Eigenfaces4x4 Wavelet Spatial;18;53;0.253521;3191.71;3332.46;0.797174

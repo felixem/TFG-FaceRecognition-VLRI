@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Eigenfaces;31;8;0.794872;1965.54;3141.6;0.00418219
+Eigenfaces32x32 Interpolacion Nearest Neightbor;31;8;0.794872;1944.11;3081.82;0.00408345
+Eigenfaces32x32 Interpolacion Area;31;8;0.794872;1944.11;3081.82;0.00410366
+Eigenfaces32x32 Interpolacion Bilineal;31;8;0.794872;1918.87;3026.89;0.0045999
+Eigenfaces32x32 Interpolacion Bicubica;31;8;0.794872;1935.13;3093.98;0.00415043
+Eigenfaces32x32 Interpolacion Lanczos;31;8;0.794872;1936.93;3090.9;0.0042633
+Eigenfaces32x32 Wavelet Spatial;31;8;0.794872;2060.68;3101.27;0.77794
+Eigenfaces16x16 Interpolacion Nearest Neightbor;31;8;0.794872;2064.3;2999.57;0.00414892
+Eigenfaces16x16 Interpolacion Area;31;8;0.794872;2064.3;2999.57;0.00417874
+Eigenfaces16x16 Interpolacion Bilineal;31;8;0.794872;2053.31;2937.8;0.00416169
+Eigenfaces16x16 Interpolacion Bicubica;31;8;0.794872;2009.02;2987.81;0.00416793
+Eigenfaces16x16 Interpolacion Lanczos;31;8;0.794872;2006.7;2994.64;0.00428018
+Eigenfaces16x16 Wavelet Spatial;32;7;0.820513;2198.75;3060.07;0.776185
+Eigenfaces8x8 Interpolacion Nearest Neightbor;26;13;0.666667;2441.68;2831.38;0.00415385
+Eigenfaces8x8 Interpolacion Area;26;13;0.666667;2441.68;2831.38;0.00503469
+Eigenfaces8x8 Interpolacion Bilineal;24;15;0.615385;2445.65;2731.72;0.00414243
+Eigenfaces8x8 Interpolacion Bicubica;27;12;0.692308;2361.62;2783.8;0.00418529
+Eigenfaces8x8 Interpolacion Lanczos;28;11;0.717949;2351.4;2795.99;0.00428423
+Eigenfaces8x8 Wavelet Spatial;29;10;0.74359;2588.82;2977.96;0.77343
+Eigenfaces4x4 Interpolacion Nearest Neightbor;7;32;0.179487;3113.45;2948.17;0.00415781
+Eigenfaces4x4 Interpolacion Area;7;32;0.179487;3113.45;2948.17;0.00415329
+Eigenfaces4x4 Interpolacion Bilineal;6;33;0.153846;3121.27;2857.23;0.00413311
+Eigenfaces4x4 Interpolacion Bicubica;7;32;0.179487;3040.93;2849.66;0.00416241
+Eigenfaces4x4 Interpolacion Lanczos;7;32;0.179487;3060.25;2878.06;0.00433985
+Eigenfaces4x4 Wavelet Spatial;5;34;0.128205;3353.36;3041.48;0.7729

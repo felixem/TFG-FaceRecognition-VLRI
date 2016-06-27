@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Eigenfaces;191;414;0.315702;2510.57;3222.66;0.0817854
+Eigenfaces32x32 Interpolacion Nearest Neightbor;188;417;0.310744;2501.5;3105.31;0.0813871
+Eigenfaces32x32 Interpolacion Area;187;418;0.309091;2482.28;3110.01;0.0805228
+Eigenfaces32x32 Interpolacion Bilineal;185;420;0.305785;2275.44;2872.32;0.0807655
+Eigenfaces32x32 Interpolacion Bicubica;193;412;0.319008;2389.6;3030.15;0.0815235
+Eigenfaces32x32 Interpolacion Lanczos;187;418;0.309091;2391.49;3041.84;0.0813113
+Eigenfaces32x32 Wavelet Spatial;183;422;0.302479;2467.81;3028.94;0.853941
+Eigenfaces16x16 Interpolacion Nearest Neightbor;174;431;0.287603;2460.04;2935.15;0.0795712
+Eigenfaces16x16 Interpolacion Area;169;436;0.279339;2442.89;2936.71;0.0793871
+Eigenfaces16x16 Interpolacion Bilineal;167;438;0.276033;2246.34;2686.14;0.0794767
+Eigenfaces16x16 Interpolacion Bicubica;174;431;0.287603;2261.23;2788.25;0.0829033
+Eigenfaces16x16 Interpolacion Lanczos;179;426;0.295868;2284.85;2798.67;0.0848697
+Eigenfaces16x16 Wavelet Spatial;168;437;0.277686;2469.69;2903.45;0.861795
+Eigenfaces8x8 Interpolacion Nearest Neightbor;111;494;0.183471;2657.31;2882.78;0.0797335
+Eigenfaces8x8 Interpolacion Area;117;488;0.193388;2666.25;2883.6;0.079701
+Eigenfaces8x8 Interpolacion Bilineal;100;505;0.165289;2477.84;2646.49;0.0800794
+Eigenfaces8x8 Interpolacion Bicubica;117;488;0.193388;2413.52;2669.29;0.0795068
+Eigenfaces8x8 Interpolacion Lanczos;125;480;0.206612;2416.57;2677.85;0.0795916
+Eigenfaces8x8 Wavelet Spatial;108;497;0.178512;2710.97;2897.13;0.860646
+Eigenfaces4x4 Interpolacion Nearest Neightbor;23;582;0.0380165;2963.58;3025.38;0.0812999
+Eigenfaces4x4 Interpolacion Area;25;580;0.0413223;2973.64;3025.02;0.0813013
+Eigenfaces4x4 Interpolacion Bilineal;16;589;0.0264463;2851.23;2892.44;0.0821851
+Eigenfaces4x4 Interpolacion Bicubica;21;584;0.0347107;2797.86;2881.57;0.0809919
+Eigenfaces4x4 Interpolacion Lanczos;21;584;0.0347107;2800.82;2902.53;0.080944
+Eigenfaces4x4 Wavelet Spatial;19;586;0.031405;3064.02;3046.91;0.858978

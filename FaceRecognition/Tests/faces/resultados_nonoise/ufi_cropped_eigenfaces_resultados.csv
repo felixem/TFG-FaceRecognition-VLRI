@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Eigenfaces;191;414;0.315702;2510.57;3222.66;0.106555
+Eigenfaces32x32 Interpolacion Nearest Neightbor;190;415;0.31405;2425.79;3060.17;0.0896147
+Eigenfaces32x32 Interpolacion Area;190;415;0.31405;2425.79;3060.17;0.0830783
+Eigenfaces32x32 Interpolacion Bilineal;185;420;0.305785;2235.38;2863.1;0.0824315
+Eigenfaces32x32 Interpolacion Bicubica;196;409;0.323967;2343.07;3002.59;0.0816222
+Eigenfaces32x32 Interpolacion Lanczos;192;413;0.317355;2339.88;3004.93;0.0923377
+Eigenfaces32x32 Wavelet Spatial;184;421;0.304132;2407.37;2989.52;0.912033
+Eigenfaces16x16 Interpolacion Nearest Neightbor;172;433;0.284298;2440.09;2934.47;0.0847948
+Eigenfaces16x16 Interpolacion Area;172;433;0.284298;2440.09;2934.47;0.0823853
+Eigenfaces16x16 Interpolacion Bilineal;165;440;0.272727;2227.43;2683.58;0.0816502
+Eigenfaces16x16 Interpolacion Bicubica;178;427;0.294215;2262.2;2787.43;0.0827926
+Eigenfaces16x16 Interpolacion Lanczos;178;427;0.294215;2266.39;2797.17;0.0810192
+Eigenfaces16x16 Wavelet Spatial;169;436;0.279339;2440.53;2893.45;0.866062
+Eigenfaces8x8 Interpolacion Nearest Neightbor;117;488;0.193388;2659.38;2887.57;0.0807965
+Eigenfaces8x8 Interpolacion Area;117;488;0.193388;2659.38;2887.57;0.0810152
+Eigenfaces8x8 Interpolacion Bilineal;99;506;0.163636;2467.35;2638.56;0.0816802
+Eigenfaces8x8 Interpolacion Bicubica;121;484;0.2;2413.27;2666.91;0.0810391
+Eigenfaces8x8 Interpolacion Lanczos;125;480;0.206612;2417.94;2672.45;0.0812773
+Eigenfaces8x8 Wavelet Spatial;108;497;0.178512;2697.58;2889.73;0.95022
+Eigenfaces4x4 Interpolacion Nearest Neightbor;27;578;0.0446281;2968.38;3022.62;0.101391
+Eigenfaces4x4 Interpolacion Area;27;578;0.0446281;2968.38;3022.62;0.101798
+Eigenfaces4x4 Interpolacion Bilineal;17;588;0.0280992;2854.94;2879.45;0.101027
+Eigenfaces4x4 Interpolacion Bicubica;22;583;0.0363636;2779.7;2873.64;0.101891
+Eigenfaces4x4 Interpolacion Lanczos;23;582;0.0380165;2792.12;2895.96;0.0996406
+Eigenfaces4x4 Wavelet Spatial;17;588;0.0280992;3084.48;3037.92;0.960923

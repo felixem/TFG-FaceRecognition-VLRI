@@ -49,6 +49,12 @@ namespace tfg
 		return "Fisherfaces";
 	}
 
+	//Poner umbral de detección (valores por encima del umbral se considerarán desconocidos)
+	void FisherFacesRecognizer::setUmbral(double umbral)
+	{
+		this->model->setThreshold(umbral);
+	}
+
 	//Almacenar fisherfaces en fichero
 	void FisherFacesRecognizer::saveFisherFaces(const int height, const std::string &directory, const std::string& baseName)
 	{

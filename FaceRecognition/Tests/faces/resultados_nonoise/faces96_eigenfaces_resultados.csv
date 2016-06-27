@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Eigenfaces;148;2;0.986667;1236.61;2639.78;0.0469778
+Eigenfaces32x32 Interpolacion Nearest Neightbor;148;2;0.986667;1323.83;2523.19;0.0460825
+Eigenfaces32x32 Interpolacion Area;148;2;0.986667;1323.83;2523.19;0.0459488
+Eigenfaces32x32 Interpolacion Bilineal;148;2;0.986667;1204.57;2408.96;0.0459743
+Eigenfaces32x32 Interpolacion Bicubica;148;2;0.986667;1197.08;2503.63;0.0459842
+Eigenfaces32x32 Interpolacion Lanczos;148;2;0.986667;1193.04;2502.38;0.0461555
+Eigenfaces32x32 Wavelet Spatial;147;3;0.98;1353.41;2307.84;0.822013
+Eigenfaces16x16 Interpolacion Nearest Neightbor;147;3;0.98;1630.08;2306.59;0.0467669
+Eigenfaces16x16 Interpolacion Area;147;3;0.98;1630.08;2306.59;0.0471028
+Eigenfaces16x16 Interpolacion Bilineal;146;4;0.973333;1477.48;2007.69;0.0470689
+Eigenfaces16x16 Interpolacion Bicubica;148;2;0.986667;1421.74;2370.14;0.0465372
+Eigenfaces16x16 Interpolacion Lanczos;148;2;0.986667;1417.23;2374.7;0.0465873
+Eigenfaces16x16 Wavelet Spatial;142;8;0.946667;1610.09;2210.68;0.827616
+Eigenfaces8x8 Interpolacion Nearest Neightbor;117;33;0.78;2009.97;2207.78;0.0478399
+Eigenfaces8x8 Interpolacion Area;117;33;0.78;2009.97;2207.78;0.048079
+Eigenfaces8x8 Interpolacion Bilineal;94;56;0.626667;1811.43;2012.92;0.0473443
+Eigenfaces8x8 Interpolacion Bicubica;122;28;0.813333;1805.99;2028.88;0.0473841
+Eigenfaces8x8 Interpolacion Lanczos;123;27;0.82;1785.42;2034.15;0.0483748
+Eigenfaces8x8 Wavelet Spatial;84;66;0.56;1945.99;2143.96;0.831247
+Eigenfaces4x4 Interpolacion Nearest Neightbor;27;123;0.18;2136.37;2256.49;0.0469191
+Eigenfaces4x4 Interpolacion Area;27;123;0.18;2136.37;2256.49;0.0469339
+Eigenfaces4x4 Interpolacion Bilineal;17;133;0.113333;1923.61;2024.2;0.0478425
+Eigenfaces4x4 Interpolacion Bicubica;28;122;0.186667;2032.25;2077.76;0.0504566
+Eigenfaces4x4 Interpolacion Lanczos;28;122;0.186667;2053.95;2104.05;0.0477783
+Eigenfaces4x4 Wavelet Spatial;14;136;0.0933333;1982.48;2153.91;0.829685

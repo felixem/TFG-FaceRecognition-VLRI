@@ -1,0 +1,4 @@
+faces/indexes_test/SCface_test_cameras_all.csv 0 faces/trained_models/SCface_face_frontal_eigenfaces.yml faces/resultados/SCface_test_cameras_all_eigenfaces_resultados.csv
+faces/indexes_test/SCface_test_cameras_all.csv 1 faces/trained_models/SCface_face_frontal_fisherfaces.yml faces/resultados/SCface_test_cameras_all_fisherfaces_resultados.csv
+faces/indexes_test/SCface_test_cameras_all.csv 2 faces/trained_models/SCface_face_frontal_lbp.yml faces/resultados/SCface_test_cameras_all_lbp_resultados.csv
+

@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Eigenfaces;37;12;0.755102;2077.59;2744.71;0.00905258
+Eigenfaces32x32 Interpolacion Nearest Neightbor;37;12;0.755102;2037.64;2616.59;0.00840917
+Eigenfaces32x32 Interpolacion Area;37;12;0.755102;2037.64;2616.59;0.00854332
+Eigenfaces32x32 Interpolacion Bilineal;37;12;0.755102;1989.87;2532.15;0.00825734
+Eigenfaces32x32 Interpolacion Bicubica;37;12;0.755102;2033.74;2629.43;0.00852216
+Eigenfaces32x32 Interpolacion Lanczos;37;12;0.755102;2036.08;2627.9;0.00870422
+Eigenfaces32x32 Wavelet Spatial;31;18;0.632653;2047.1;2436.53;0.78462
+Eigenfaces16x16 Interpolacion Nearest Neightbor;36;13;0.734694;2047.74;2473.91;0.00826951
+Eigenfaces16x16 Interpolacion Area;36;13;0.734694;2047.74;2473.91;0.00822416
+Eigenfaces16x16 Interpolacion Bilineal;34;15;0.693878;1990.38;2319.17;0.00822617
+Eigenfaces16x16 Interpolacion Bicubica;36;13;0.734694;2008.2;2465.9;0.00826817
+Eigenfaces16x16 Interpolacion Lanczos;36;13;0.734694;2009.85;2469.59;0.00832429
+Eigenfaces16x16 Wavelet Spatial;27;22;0.55102;2020.59;2319.91;0.782786
+Eigenfaces8x8 Interpolacion Nearest Neightbor;22;27;0.44898;2105;2320.54;0.00828051
+Eigenfaces8x8 Interpolacion Area;22;27;0.44898;2105;2320.54;0.00821843
+Eigenfaces8x8 Interpolacion Bilineal;19;30;0.387755;1970.71;2185.78;0.00823753
+Eigenfaces8x8 Interpolacion Bicubica;25;24;0.510204;2085.13;2192.96;0.00823722
+Eigenfaces8x8 Interpolacion Lanczos;25;24;0.510204;2073.89;2197.07;0.00834045
+Eigenfaces8x8 Wavelet Spatial;17;32;0.346939;2083.35;2258.55;0.780139
+Eigenfaces4x4 Interpolacion Nearest Neightbor;8;41;0.163265;2133.24;2351.48;0.00820393
+Eigenfaces4x4 Interpolacion Area;8;41;0.163265;2133.24;2351.48;0.0082167
+Eigenfaces4x4 Interpolacion Bilineal;7;42;0.142857;1942.44;2195.25;0.00822036
+Eigenfaces4x4 Interpolacion Bicubica;8;41;0.163265;2002.82;2220.7;0.00826518
+Eigenfaces4x4 Interpolacion Lanczos;8;41;0.163265;2008.79;2246.71;0.00837189
+Eigenfaces4x4 Wavelet Spatial;3;46;0.0612245;2025.45;2280.76;0.787329

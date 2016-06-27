@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Eigenfaces;70;1;0.985915;1405.75;4619.96;0.0188686
+Eigenfaces32x32 Interpolacion Nearest Neightbor;70;1;0.985915;1687.01;4500.81;0.0190097
+Eigenfaces32x32 Interpolacion Area;70;1;0.985915;1685.36;4502.26;0.0194824
+Eigenfaces32x32 Interpolacion Bilineal;70;1;0.985915;1634.11;4407.38;0.0208238
+Eigenfaces32x32 Interpolacion Bicubica;70;1;0.985915;1570.64;4504.9;0.0189344
+Eigenfaces32x32 Interpolacion Lanczos;70;1;0.985915;1574.91;4560.71;0.0185101
+Eigenfaces32x32 Wavelet Spatial;70;1;0.985915;1871.83;4421.86;0.783332
+Eigenfaces16x16 Interpolacion Nearest Neightbor;69;2;0.971831;2132.07;3954.15;0.018965
+Eigenfaces16x16 Interpolacion Area;69;2;0.971831;2132.11;3997.16;0.0185688
+Eigenfaces16x16 Interpolacion Bilineal;69;2;0.971831;2075.57;3792.35;0.0184003
+Eigenfaces16x16 Interpolacion Bicubica;69;2;0.971831;1971.29;3918.7;0.0184954
+Eigenfaces16x16 Interpolacion Lanczos;69;2;0.971831;1971.31;3925.49;0.0185614
+Eigenfaces16x16 Wavelet Spatial;70;1;0.985915;2271.39;4261.72;0.78464
+Eigenfaces8x8 Interpolacion Nearest Neightbor;62;9;0.873239;2710.84;3208.45;0.0193155
+Eigenfaces8x8 Interpolacion Area;61;10;0.859155;2715.98;3127.12;0.0188085
+Eigenfaces8x8 Interpolacion Bilineal;53;18;0.746479;2588.52;2930.5;0.0186856
+Eigenfaces8x8 Interpolacion Bicubica;65;6;0.915493;2537.95;3181.53;0.0186544
+Eigenfaces8x8 Interpolacion Lanczos;65;6;0.915493;2511.05;3195.23;0.0188454
+Eigenfaces8x8 Wavelet Spatial;57;14;0.802817;2811.8;3159.17;0.783344
+Eigenfaces4x4 Interpolacion Nearest Neightbor;21;50;0.295775;3126.68;3308.12;0.0184071
+Eigenfaces4x4 Interpolacion Area;22;49;0.309859;3145.23;3301.12;0.018467
+Eigenfaces4x4 Interpolacion Bilineal;19;52;0.267606;3033.41;3147.14;0.0184272
+Eigenfaces4x4 Interpolacion Bicubica;22;49;0.309859;3028.36;3137.38;0.0187976
+Eigenfaces4x4 Interpolacion Lanczos;22;49;0.309859;3052.96;3177.08;0.0188569
+Eigenfaces4x4 Wavelet Spatial;16;55;0.225352;3215.61;3329.34;0.783743

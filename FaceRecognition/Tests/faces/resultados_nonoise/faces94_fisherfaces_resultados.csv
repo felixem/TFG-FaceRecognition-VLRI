@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Fisherfaces;151;0;1;149.113;-nan(ind);0.0081624
+Fisherfaces32x32 Interpolacion Nearest Neightbor;151;0;1;269.26;-nan(ind);0.00850437
+Fisherfaces32x32 Interpolacion Area;151;0;1;269.26;-nan(ind);0.00835479
+Fisherfaces32x32 Interpolacion Bilineal;151;0;1;247.693;-nan(ind);0.00838151
+Fisherfaces32x32 Interpolacion Bicubica;151;0;1;208.947;-nan(ind);0.00809543
+Fisherfaces32x32 Interpolacion Lanczos;151;0;1;204.29;-nan(ind);0.00828977
+Fisherfaces32x32 Wavelet Spatial;151;0;1;265.631;-nan(ind);0.77712
+Fisherfaces16x16 Interpolacion Nearest Neightbor;147;4;0.97351;446.638;559.92;0.00828991
+Fisherfaces16x16 Interpolacion Area;147;4;0.97351;446.638;559.92;0.00830836
+Fisherfaces16x16 Interpolacion Bilineal;145;6;0.960265;396.066;471.035;0.00827413
+Fisherfaces16x16 Interpolacion Bicubica;150;1;0.993377;376.114;506.826;0.00837883
+Fisherfaces16x16 Interpolacion Lanczos;150;1;0.993377;370.87;507.574;0.00822687
+Fisherfaces16x16 Wavelet Spatial;145;6;0.960265;432.022;531.712;0.77956
+Fisherfaces8x8 Interpolacion Nearest Neightbor;19;132;0.125828;526.812;558.816;0.0082924
+Fisherfaces8x8 Interpolacion Area;19;132;0.125828;526.812;558.816;0.00814315
+Fisherfaces8x8 Interpolacion Bilineal;15;136;0.0993377;439.089;469.442;0.00816635
+Fisherfaces8x8 Interpolacion Bicubica;28;123;0.18543;451.149;476.458;0.00837545
+Fisherfaces8x8 Interpolacion Lanczos;36;115;0.238411;449.533;476.686;0.00842906
+Fisherfaces8x8 Wavelet Spatial;18;133;0.119205;506.806;540.623;0.777147
+Fisherfaces4x4 Interpolacion Nearest Neightbor;4;147;0.0264901;565.769;572.562;0.0081514
+Fisherfaces4x4 Interpolacion Area;4;147;0.0264901;565.769;572.562;0.00834766
+Fisherfaces4x4 Interpolacion Bilineal;3;148;0.0198675;465.41;485.611;0.00809941
+Fisherfaces4x4 Interpolacion Bicubica;4;147;0.0264901;482.253;500.276;0.008273
+Fisherfaces4x4 Interpolacion Lanczos;6;145;0.0397351;496.674;508.416;0.00824757
+Fisherfaces4x4 Wavelet Spatial;5;146;0.0331126;539.307;561.515;0.77707

@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Eigenfaces;148;2;0.986667;1236.61;2639.78;0.0497366
+Eigenfaces32x32 Interpolacion Nearest Neightbor;148;2;0.986667;1364.09;2522.22;0.0486287
+Eigenfaces32x32 Interpolacion Area;148;2;0.986667;1364.68;2524.55;0.0479327
+Eigenfaces32x32 Interpolacion Bilineal;148;2;0.986667;1243.28;2404.32;0.0479221
+Eigenfaces32x32 Interpolacion Bicubica;148;2;0.986667;1240.87;2509.6;0.0479864
+Eigenfaces32x32 Interpolacion Lanczos;148;2;0.986667;1238.83;2505.23;0.048219
+Eigenfaces32x32 Wavelet Spatial;148;2;0.986667;1321.7;2443.75;0.817743
+Eigenfaces16x16 Interpolacion Nearest Neightbor;146;4;0.973333;1654.72;2222.84;0.0479088
+Eigenfaces16x16 Interpolacion Area;146;4;0.973333;1654.33;2221.05;0.0479484
+Eigenfaces16x16 Interpolacion Bilineal;146;4;0.973333;1504.78;2039.38;0.0479156
+Eigenfaces16x16 Interpolacion Bicubica;147;3;0.98;1448.06;2233.49;0.0492468
+Eigenfaces16x16 Interpolacion Lanczos;147;3;0.98;1445.06;2244.14;0.0485416
+Eigenfaces16x16 Wavelet Spatial;146;4;0.973333;1597.42;2324.16;0.815942
+Eigenfaces8x8 Interpolacion Nearest Neightbor;115;35;0.766667;2026.44;2238.25;0.0482534
+Eigenfaces8x8 Interpolacion Area;115;35;0.766667;2026.6;2238.9;0.0479942
+Eigenfaces8x8 Interpolacion Bilineal;95;55;0.633333;1847.57;2023.07;0.0479432
+Eigenfaces8x8 Interpolacion Bicubica;116;34;0.773333;1806.94;2108.07;0.0479803
+Eigenfaces8x8 Interpolacion Lanczos;124;26;0.826667;1809.32;2092.32;0.0481691
+Eigenfaces8x8 Wavelet Spatial;95;55;0.633333;1973.35;2134.55;0.815695
+Eigenfaces4x4 Interpolacion Nearest Neightbor;30;120;0.2;2182.7;2285.04;0.0479306
+Eigenfaces4x4 Interpolacion Area;30;120;0.2;2183.69;2285.47;0.0480618
+Eigenfaces4x4 Interpolacion Bilineal;15;135;0.1;1931.1;2057.96;0.0481001
+Eigenfaces4x4 Interpolacion Bicubica;27;123;0.18;2076.2;2109.9;0.0479827
+Eigenfaces4x4 Interpolacion Lanczos;30;120;0.2;2093.07;2137.91;0.0483204
+Eigenfaces4x4 Wavelet Spatial;19;131;0.126667;2029.12;2178.52;0.820264

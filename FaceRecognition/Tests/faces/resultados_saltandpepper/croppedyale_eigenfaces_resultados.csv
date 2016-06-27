@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Eigenfaces;36;1;0.972973;1755.25;2210.19;0.037538
+Eigenfaces32x32 Interpolacion Nearest Neightbor;35;2;0.945946;1916.27;2141.91;0.0381837
+Eigenfaces32x32 Interpolacion Area;36;1;0.972973;1914.91;2225.93;0.0398056
+Eigenfaces32x32 Interpolacion Bilineal;35;2;0.945946;1788.33;1974.17;0.0389405
+Eigenfaces32x32 Interpolacion Bicubica;36;1;0.972973;1836.96;2159.91;0.0380496
+Eigenfaces32x32 Interpolacion Lanczos;36;1;0.972973;1841.02;2162.8;0.0368475
+Eigenfaces32x32 Wavelet Spatial;35;2;0.945946;1977.04;2207.44;0.807377
+Eigenfaces16x16 Interpolacion Nearest Neightbor;35;2;0.945946;2096.16;2158.87;0.0364294
+Eigenfaces16x16 Interpolacion Area;35;2;0.945946;2090.66;2148.94;0.0365666
+Eigenfaces16x16 Interpolacion Bilineal;34;3;0.918919;1943.37;2152.09;0.0365644
+Eigenfaces16x16 Interpolacion Bicubica;34;3;0.918919;1929.93;2184.69;0.036604
+Eigenfaces16x16 Interpolacion Lanczos;34;3;0.918919;1920.91;2168.82;0.0368332
+Eigenfaces16x16 Wavelet Spatial;35;2;0.945946;2148.63;2227.54;0.808086
+Eigenfaces8x8 Interpolacion Nearest Neightbor;31;6;0.837838;2564.18;2296.77;0.0365214
+Eigenfaces8x8 Interpolacion Area;30;7;0.810811;2533.52;2483.41;0.03676
+Eigenfaces8x8 Interpolacion Bilineal;26;11;0.702703;2330.1;2419.01;0.0365263
+Eigenfaces8x8 Interpolacion Bicubica;31;6;0.837838;2349.81;2124.26;0.0366065
+Eigenfaces8x8 Interpolacion Lanczos;32;5;0.864865;2311.04;2242.69;0.0374784
+Eigenfaces8x8 Wavelet Spatial;29;8;0.783784;2623.47;2459.81;0.8066
+Eigenfaces4x4 Interpolacion Nearest Neightbor;9;28;0.243243;2622.62;2764.76;0.0364798
+Eigenfaces4x4 Interpolacion Area;9;28;0.243243;2619.43;2767.18;0.0366153
+Eigenfaces4x4 Interpolacion Bilineal;5;32;0.135135;2415.88;2549.31;0.0365158
+Eigenfaces4x4 Interpolacion Bicubica;6;31;0.162162;2418.8;2600.58;0.0380821
+Eigenfaces4x4 Interpolacion Lanczos;6;31;0.162162;2448.44;2631.55;0.0373865
+Eigenfaces4x4 Wavelet Spatial;8;29;0.216216;2676.01;2803.94;0.807411

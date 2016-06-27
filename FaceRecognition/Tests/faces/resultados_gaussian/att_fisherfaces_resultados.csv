@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Fisherfaces;32;7;0.820513;457.254;834.939;0.000983494
+Fisherfaces32x32 Interpolacion Nearest Neightbor;32;7;0.820513;454.399;809.62;0.00121555
+Fisherfaces32x32 Interpolacion Area;32;7;0.820513;455.225;806.691;0.00120108
+Fisherfaces32x32 Interpolacion Bilineal;32;7;0.820513;453.578;789.909;0.0011662
+Fisherfaces32x32 Interpolacion Bicubica;32;7;0.820513;447.445;809.471;0.00165895
+Fisherfaces32x32 Interpolacion Lanczos;32;7;0.820513;445.843;807.372;0.0013669
+Fisherfaces32x32 Wavelet Spatial;31;8;0.794872;459.961;786.888;0.791442
+Fisherfaces16x16 Interpolacion Nearest Neightbor;30;9;0.769231;525.077;763.072;0.00117827
+Fisherfaces16x16 Interpolacion Area;30;9;0.769231;525.314;763.044;0.00117646
+Fisherfaces16x16 Interpolacion Bilineal;30;9;0.769231;528.489;729.976;0.00123232
+Fisherfaces16x16 Interpolacion Bicubica;30;9;0.769231;493.038;765.57;0.00121494
+Fisherfaces16x16 Interpolacion Lanczos;31;8;0.794872;496.48;770.243;0.00133246
+Fisherfaces16x16 Wavelet Spatial;32;7;0.820513;544.008;776.839;0.768868
+Fisherfaces8x8 Interpolacion Nearest Neightbor;18;21;0.461538;641.521;740.16;0.00121703
+Fisherfaces8x8 Interpolacion Area;19;20;0.487179;642.426;745.264;0.001168
+Fisherfaces8x8 Interpolacion Bilineal;15;24;0.384615;601.878;697.149;0.00118318
+Fisherfaces8x8 Interpolacion Bicubica;18;21;0.461538;607.362;710.705;0.00119106
+Fisherfaces8x8 Interpolacion Lanczos;19;20;0.487179;608.697;716.271;0.00135669
+Fisherfaces8x8 Wavelet Spatial;18;21;0.461538;643.089;745.015;0.774585
+Fisherfaces4x4 Interpolacion Nearest Neightbor;5;34;0.128205;727.294;741.514;0.00115952
+Fisherfaces4x4 Interpolacion Area;5;34;0.128205;728.491;741.393;0.00122168
+Fisherfaces4x4 Interpolacion Bilineal;4;35;0.102564;725.69;709.093;0.00117012
+Fisherfaces4x4 Interpolacion Bicubica;5;34;0.128205;724.48;708.217;0.00118836
+Fisherfaces4x4 Interpolacion Lanczos;5;34;0.128205;728.902;707.265;0.00129774
+Fisherfaces4x4 Wavelet Spatial;5;34;0.128205;714.391;736.677;0.774394

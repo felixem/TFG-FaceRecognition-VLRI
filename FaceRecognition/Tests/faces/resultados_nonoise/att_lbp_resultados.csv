@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+LBPH;34;5;0.871795;99.0417;125.975;0.0560746
+LBPH32x32 Interpolacion Nearest Neightbor;30;9;0.769231;169.029;173.151;0.0504394
+LBPH32x32 Interpolacion Area;30;9;0.769231;169.029;173.151;0.0563893
+LBPH32x32 Interpolacion Bilineal;25;14;0.641026;117.559;131.759;0.0542228
+LBPH32x32 Interpolacion Bicubica;29;10;0.74359;109.648;130.151;0.0498189
+LBPH32x32 Interpolacion Lanczos;28;11;0.717949;109.38;127.067;0.0499614
+LBPH32x32 Wavelet Spatial;27;12;0.692308;110.62;129.985;0.93698
+LBPH16x16 Interpolacion Nearest Neightbor;16;23;0.410256;186.686;188.326;0.0427002
+LBPH16x16 Interpolacion Area;16;23;0.410256;186.686;188.326;0.0437037
+LBPH16x16 Interpolacion Bilineal;16;23;0.410256;133.419;145.259;0.0426147
+LBPH16x16 Interpolacion Bicubica;16;23;0.410256;127.721;142.206;0.0424951
+LBPH16x16 Interpolacion Lanczos;16;23;0.410256;128.774;142.517;0.0428944
+LBPH16x16 Wavelet Spatial;24;15;0.615385;128.268;135.201;0.852824
+LBPH8x8 Interpolacion Nearest Neightbor;0;39;0;-nan(ind);205.259;0.042844
+LBPH8x8 Interpolacion Area;0;39;0;-nan(ind);205.259;0.0414874
+LBPH8x8 Interpolacion Bilineal;4;35;0.102564;157.946;166.216;0.0413093
+LBPH8x8 Interpolacion Bicubica;4;35;0.102564;150.425;159.912;0.0422203
+LBPH8x8 Interpolacion Lanczos;4;35;0.102564;153.607;158.581;0.0417102
+LBPH8x8 Wavelet Spatial;4;35;0.102564;152.726;156.245;0.869224
+LBPH4x4 Interpolacion Nearest Neightbor;0;39;0;-nan(ind);217.481;0.0414129
+LBPH4x4 Interpolacion Area;0;39;0;-nan(ind);217.481;0.0405975
+LBPH4x4 Interpolacion Bilineal;1;38;0.025641;199.826;196.497;0.0413926
+LBPH4x4 Interpolacion Bicubica;2;37;0.0512821;189.968;192.112;0.042481
+LBPH4x4 Interpolacion Lanczos;2;37;0.0512821;192.815;194.017;0.0420851
+LBPH4x4 Wavelet Spatial;1;38;0.025641;204.067;203.902;0.856808

@@ -37,6 +37,12 @@ namespace tfg
 		this->model->clear();
 	}
 
+	//Poner umbral de detección (valores por encima del umbral se considerarán desconocidos)
+	void LBPRecognizer::setUmbral(double umbral)
+	{
+		this->model->setThreshold(umbral);
+	}
+
 	//Nombre del reconocedor
 	std::string LBPRecognizer::getName() const
 	{

@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Fisherfaces;69;2;0.971831;214.584;894.959;0.00297634
+Fisherfaces32x32 Interpolacion Nearest Neightbor;69;2;0.971831;308.145;873.77;0.00385768
+Fisherfaces32x32 Interpolacion Area;69;2;0.971831;306.352;859.91;0.00382639
+Fisherfaces32x32 Interpolacion Bilineal;69;2;0.971831;309.413;816.767;0.00393583
+Fisherfaces32x32 Interpolacion Bicubica;69;2;0.971831;282.831;873.05;0.00428505
+Fisherfaces32x32 Interpolacion Lanczos;69;2;0.971831;283.609;870.534;0.00437966
+Fisherfaces32x32 Wavelet Spatial;68;3;0.957746;318.311;818.894;0.775448
+Fisherfaces16x16 Interpolacion Nearest Neightbor;69;2;0.971831;453.741;786.943;0.00385086
+Fisherfaces16x16 Interpolacion Area;69;2;0.971831;457.858;791.125;0.00380681
+Fisherfaces16x16 Interpolacion Bilineal;68;3;0.957746;458.719;705.158;0.00381272
+Fisherfaces16x16 Interpolacion Bicubica;68;3;0.957746;419.247;738.711;0.00399912
+Fisherfaces16x16 Interpolacion Lanczos;69;2;0.971831;418.3;796.445;0.00393179
+Fisherfaces16x16 Wavelet Spatial;68;3;0.957746;456.963;764.964;0.769769
+Fisherfaces8x8 Interpolacion Nearest Neightbor;38;33;0.535211;591.191;674.972;0.00389326
+Fisherfaces8x8 Interpolacion Area;37;34;0.521127;592.153;672.015;0.00374314
+Fisherfaces8x8 Interpolacion Bilineal;34;37;0.478873;571.002;629.31;0.00378315
+Fisherfaces8x8 Interpolacion Bicubica;40;31;0.56338;565.769;641.672;0.00390117
+Fisherfaces8x8 Interpolacion Lanczos;43;28;0.605634;559.195;642.896;0.0039007
+Fisherfaces8x8 Wavelet Spatial;38;33;0.535211;593.117;664.872;0.768612
+Fisherfaces4x4 Interpolacion Nearest Neightbor;5;66;0.0704225;650.438;659.833;0.00376184
+Fisherfaces4x4 Interpolacion Area;5;66;0.0704225;651.16;659.557;0.00378821
+Fisherfaces4x4 Interpolacion Bilineal;4;67;0.056338;582.269;609.834;0.00380893
+Fisherfaces4x4 Interpolacion Bicubica;6;65;0.084507;612.98;630.843;0.00386999
+Fisherfaces4x4 Interpolacion Lanczos;7;64;0.0985915;614.159;643.106;0.00392026
+Fisherfaces4x4 Wavelet Spatial;5;66;0.0704225;642.562;643.013;0.770877

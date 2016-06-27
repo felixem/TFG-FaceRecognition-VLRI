@@ -63,6 +63,9 @@ int main(int argc, char** argv)
 		//Testear conjunto de test de caras
 		case 9: testFaces(argc - 1, argsMetodo);
 			break;
+		//Testear multiples tests de caras
+		case 10: testMultiplesDatabases(argc - 1, argsMetodo);
+			break;
 		default:
 			std::cerr << "Error: opción incorrecta" << std::endl;
 	}

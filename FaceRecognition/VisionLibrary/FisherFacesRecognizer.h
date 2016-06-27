@@ -25,6 +25,9 @@ namespace tfg
 		//Nombre del reconocedor
 		std::string getName() const;
 
+		//Poner umbral de detección (valores por encima del umbral se considerarán desconocidos)
+		void setUmbral(double umbral);
+
 		//Cargar desde fichero el modelo
 		void load(const std::string& fichero);
 		//Guardar en fichero el modelo

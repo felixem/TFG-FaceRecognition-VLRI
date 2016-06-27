@@ -27,9 +27,9 @@ using namespace tfg;
 int testFaces(int argc, char**argv)
 {
 	//Comprobar parámetros
-	if (argc != 4)
+	if (argc != 5)
 	{
-		std::cerr << "Error: Argumentos incorrectos [" << argv[0] << " testCSV modelType ymlDir]" << std::endl;
+		std::cerr << "Error: Argumentos incorrectos [" << argv[0] << " testCSV modelType ymlDir ficResultados]" << std::endl;
 		getchar();
 		return -1;
 	}
@@ -87,12 +87,19 @@ int testFaces(int argc, char**argv)
 		return -1;
 	}
 
+	//Fichero de salida de resultados
+	std::ofstream ficSalida(argv[4]);
+	//Cabeceras de resultados
+	ficSalida << "Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio" << std::endl;
+
 	//Almacenar valores de acierto y de fallo
 	int numAciertos = 0, numFallos = 0;
 	//Confianza para aciertos y fallos
 	double confianzaAciertos = 0, confianzaFallos = 0;
 	//Realizar test para cada imagen del conjunto
 	std::cout << "Realizando test para "<<images.size()<<" imagenes" << std::endl;
+	//Medida del tiempo en segundos
+	double time = (double)getTickCount();
 	for (unsigned int i = 0; i < images.size(); ++i)
 	{
 		//Realizar predicción
@@ -111,9 +118,11 @@ int testFaces(int argc, char**argv)
 			numFallos++;
 		}
 	}
+	//Calcular tiempo medio final
+	time = ((double)getTickCount() - time) / getTickFrequency() / (double)images.size();
 	std::cout << "Test finalizado" << std::endl;
 
-	//Mostrar resultados
+	//Mostrar resultados de detección normal
 	std::cout << "Tecnica de aprendizaje: " << recognizer->getName() << std::endl;
 	std::cout << "Conjunto de test: " << images.size() << std::endl;
 	std::cout << "Aciertos: " << numAciertos << std::endl;
@@ -121,6 +130,12 @@ int testFaces(int argc, char**argv)
 	std::cout << "Porcentaje de acierto: " << (double)numAciertos/((double)images.size())*100 <<"%" << std::endl;
 	std::cout << "Confianza media aciertos: " << confianzaAciertos / (double)numAciertos << std::endl;
 	std::cout << "Confianza media fallos: " << confianzaFallos / (double)numFallos << std::endl;
+	std::cout << "Tiempo medio: " << time << std::endl;
+
+	//Volcado de resultados
+	ficSalida << recognizer->getName() << ";" << numAciertos << ";" << numFallos << ";" <<
+		(double)numAciertos / ((double)images.size()) << ";" << confianzaAciertos / (double)numAciertos << ";" <<
+		confianzaFallos / (double)numFallos << ";" << time << std::endl;
 
 	//Preparar downsampling
 	std::vector<int> downSamplingSizes;
@@ -148,13 +163,15 @@ int testFaces(int argc, char**argv)
 			//Confianza para aciertos y fallos
 			double confianzaAciertos = 0, confianzaFallos = 0;
 
+			//Medida del tiempo en segundos
+			time = (double)getTickCount();
 			//Realizar test para cada imagen del conjunto
 			std::cout << "Realizando test para " << upsampler->getName()<< std::endl;
 			for (unsigned int j = 0; j < images.size(); ++j)
 			{
 				//Generar imagen downsampleada
 				cv::Mat downSampled;
-				downSampler.downSampleWithAllNoises(images[j], downSampled, size, size, cv::InterpolationFlags::INTER_AREA);
+				downSampler.downSampleWithSaltAndPepper(images[j], downSampled, size, size, cv::InterpolationFlags::INTER_AREA);
 				//Aplicar upsampling
 				cv::Mat upSampled;
 				upsampler->upSample(downSampled, upSampled, 64, 64);
@@ -174,11 +191,19 @@ int testFaces(int argc, char**argv)
 					numFallos++;
 				}
 			}
+			//Calcular tiempo medio final
+			time = ((double)getTickCount() - time) / getTickFrequency() / (double)images.size();
+			//Mostrar resultados
 			std::cout << "Aciertos: " << numAciertos << std::endl;
 			std::cout << "Fallos: " << numFallos << std::endl;
 			std::cout << "Porcentaje de acierto: " << (double)numAciertos / ((double)images.size()) * 100 << "%" << std::endl;
 			std::cout << "Confianza media aciertos: " << confianzaAciertos / (double)numAciertos << std::endl;
-			std::cout << "Confianza media fallos: " << confianzaFallos / (double)numFallos << std::endl << std::endl;
+			std::cout << "Confianza media fallos: " << confianzaFallos / (double)numFallos << std::endl;
+			std::cout << "Tiempo medio: " << time << std::endl << std::endl;
+			//Volcado de resultados
+			ficSalida << recognizer->getName()<<size<<"x"<<size<<" "<<upsampler->getName()<< ";" << numAciertos << ";" << numFallos << ";" <<
+				(double)numAciertos / ((double)images.size()) << ";" << confianzaAciertos / (double)numAciertos << ";" <<
+				confianzaFallos / (double)numFallos << ";" << time << std::endl;
 			//Liberar upsampler
 			delete upsampler;
 		}
@@ -186,10 +211,6 @@ int testFaces(int argc, char**argv)
 
 	//Limpiar reconocedor
 	delete recognizer;
-
-	//Esperar a teclado
-	std::cout << "Pulse una tecla para terminar: " << std::endl;
-	getchar();
 	return 0;
 }
 
@@ -314,6 +335,47 @@ int trainFaces(int argc, char**argv)
 
 	//Esperar a teclado
 	waitKey(0);
+
+	return 0;
+}
+
+//Main realizar tests a partir de un csv
+int testMultiplesDatabases(int argc, char**argv)
+{
+	//Comprobar parámetros
+	if (argc != 2)
+	{
+		std::cerr << "Error: Argumentos incorrectos [" << argv[0] << " csvTest]" << std::endl;
+		getchar();
+		return -1;
+	}
+
+	//String de fichero csv
+	std::string csvTest = argv[1];
+	//Leer csv de tests
+	std::vector<std::string> bases;
+	readDatabasesFile(csvTest, bases);
+	
+	//Lanzar cada uno de los tests
+	for (unsigned int i = 0; i < bases.size(); ++i)
+	{
+		//Separar tokens
+		std::vector<std::string> tokens;
+		splitString(bases[i], " ", tokens);
+
+		//Generar entrada de argumentos para entrenamiento
+		int nuevoArgc = 1 + tokens.size();
+		char ** nuevoArgv = new char*[nuevoArgc];
+		nuevoArgv[0] = argv[0];
+		//Pasar cada token al array
+		for (unsigned int j = 0; j < tokens.size(); ++j)
+		{
+			nuevoArgv[j + 1] = (char*)tokens[j].c_str();
+		}
+
+		//Llamar a la función de test
+		testFaces(nuevoArgc, nuevoArgv);
+	}
 
 	return 0;
 }
@@ -492,3 +554,18 @@ bool createDir(const std::string& dirName_in)
 	return (CreateDirectory(dirName_in.c_str(), NULL) ||
 		ERROR_ALREADY_EXISTS == GetLastError());
 }
+
+//Realizar split de un string
+void splitString(const string& str, const string& delim, std::vector<std::string> &tokens)
+{
+	size_t prev = 0, pos = 0;
+	do
+	{
+		pos = str.find(delim, prev);
+		if (pos == string::npos) pos = str.length();
+		string token = str.substr(prev, pos - prev);
+		if (!token.empty()) tokens.push_back(token);
+		prev = pos + delim.length();
+	} while (pos < str.length() && prev < str.length());
+}
+

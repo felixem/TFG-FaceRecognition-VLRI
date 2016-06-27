@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Fisherfaces;141;9;0.94;96.987;233.546;0.00875579
+Fisherfaces32x32 Interpolacion Nearest Neightbor;134;16;0.893333;142.518;188.111;0.00949045
+Fisherfaces32x32 Interpolacion Area;134;16;0.893333;142.518;188.111;0.00881598
+Fisherfaces32x32 Interpolacion Bilineal;144;6;0.96;76.1301;182.824;0.0093985
+Fisherfaces32x32 Interpolacion Bicubica;144;6;0.96;78.4781;204.754;0.00903293
+Fisherfaces32x32 Interpolacion Lanczos;144;6;0.96;76.6049;205.009;0.00848974
+Fisherfaces32x32 Wavelet Spatial;141;9;0.94;83.5691;172.794;0.788721
+Fisherfaces16x16 Interpolacion Nearest Neightbor;89;61;0.593333;155.96;176.02;0.00821626
+Fisherfaces16x16 Interpolacion Area;89;61;0.593333;155.96;176.02;0.0083602
+Fisherfaces16x16 Interpolacion Bilineal;113;37;0.753333;93.6402;114.087;0.00852518
+Fisherfaces16x16 Interpolacion Bicubica;131;19;0.873333;95.4233;132.938;0.00830308
+Fisherfaces16x16 Interpolacion Lanczos;131;19;0.873333;95.5811;135.071;0.00841077
+Fisherfaces16x16 Wavelet Spatial;105;45;0.7;119.704;142.484;0.786155
+Fisherfaces8x8 Interpolacion Nearest Neightbor;16;134;0.106667;144.399;163.479;0.00821263
+Fisherfaces8x8 Interpolacion Area;16;134;0.106667;144.399;163.479;0.00823759
+Fisherfaces8x8 Interpolacion Bilineal;15;135;0.1;96.2923;103.44;0.00812267
+Fisherfaces8x8 Interpolacion Bicubica;24;126;0.16;101.307;108.396;0.00806243
+Fisherfaces8x8 Interpolacion Lanczos;25;125;0.166667;102.3;109.412;0.00825507
+Fisherfaces8x8 Wavelet Spatial;18;132;0.12;137.101;144.04;0.780746
+Fisherfaces4x4 Interpolacion Nearest Neightbor;4;146;0.0266667;112.277;145.318;0.0079646
+Fisherfaces4x4 Interpolacion Area;4;146;0.0266667;112.277;145.318;0.00802591
+Fisherfaces4x4 Interpolacion Bilineal;4;146;0.0266667;89.1521;99.4425;0.00800036
+Fisherfaces4x4 Interpolacion Bicubica;5;145;0.0333333;94.4258;102.211;0.00809347
+Fisherfaces4x4 Interpolacion Lanczos;5;145;0.0333333;95.215;103.723;0.00812091
+Fisherfaces4x4 Wavelet Spatial;4;146;0.0266667;103.728;129.443;0.79197

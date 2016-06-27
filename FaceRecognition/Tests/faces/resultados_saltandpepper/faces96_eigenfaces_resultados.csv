@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Eigenfaces;148;2;0.986667;1236.61;2639.78;0.0484556
+Eigenfaces32x32 Interpolacion Nearest Neightbor;148;2;0.986667;1452.74;2586.19;0.046887
+Eigenfaces32x32 Interpolacion Area;148;2;0.986667;1451.37;2591.22;0.0469381
+Eigenfaces32x32 Interpolacion Bilineal;148;2;0.986667;1272.59;2417.61;0.0469313
+Eigenfaces32x32 Interpolacion Bicubica;148;2;0.986667;1312.12;2533.77;0.0469059
+Eigenfaces32x32 Interpolacion Lanczos;148;2;0.986667;1324.16;2553.99;0.0469929
+Eigenfaces32x32 Wavelet Spatial;147;3;0.98;1454.16;2341.61;0.812517
+Eigenfaces16x16 Interpolacion Nearest Neightbor;146;4;0.973333;1652.79;2225.8;0.0469544
+Eigenfaces16x16 Interpolacion Area;146;4;0.973333;1651.16;2221.54;0.046937
+Eigenfaces16x16 Interpolacion Bilineal;145;5;0.966667;1499.95;1957.39;0.0470847
+Eigenfaces16x16 Interpolacion Bicubica;148;2;0.986667;1449.74;2359.14;0.0469296
+Eigenfaces16x16 Interpolacion Lanczos;148;2;0.986667;1448;2384.02;0.047008
+Eigenfaces16x16 Wavelet Spatial;141;9;0.94;1632.41;2269.1;0.812779
+Eigenfaces8x8 Interpolacion Nearest Neightbor;114;36;0.76;2012.79;2178.95;0.0477199
+Eigenfaces8x8 Interpolacion Area;113;37;0.753333;2007.79;2187.85;0.0476933
+Eigenfaces8x8 Interpolacion Bilineal;92;58;0.613333;1822.62;1998.91;0.0468778
+Eigenfaces8x8 Interpolacion Bicubica;118;32;0.786667;1806.27;2024.72;0.0468841
+Eigenfaces8x8 Interpolacion Lanczos;121;29;0.806667;1794.74;2016.65;0.0470829
+Eigenfaces8x8 Wavelet Spatial;80;70;0.533333;1947.34;2126.25;0.812114
+Eigenfaces4x4 Interpolacion Nearest Neightbor;24;126;0.16;2058.84;2253.32;0.0470517
+Eigenfaces4x4 Interpolacion Area;24;126;0.16;2081.94;2248.01;0.0466324
+Eigenfaces4x4 Interpolacion Bilineal;15;135;0.1;1857.66;2024.05;0.0462303
+Eigenfaces4x4 Interpolacion Bicubica;26;124;0.173333;2031.12;2067.09;0.0465773
+Eigenfaces4x4 Interpolacion Lanczos;27;123;0.18;2024.33;2101.29;0.0464027
+Eigenfaces4x4 Wavelet Spatial;15;135;0.1;1995.96;2141.53;0.811209

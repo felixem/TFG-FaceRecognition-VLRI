@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Fisherfaces;22;583;0.0363636;1142.55;1769.33;0.0235292
+Fisherfaces32x32 Interpolacion Nearest Neightbor;17;588;0.0280992;1407.62;1552.64;0.0231386
+Fisherfaces32x32 Interpolacion Area;17;588;0.0280992;1407.62;1552.64;0.0236311
+Fisherfaces32x32 Interpolacion Bilineal;28;577;0.046281;917.979;971.923;0.0217706
+Fisherfaces32x32 Interpolacion Bicubica;43;562;0.0710744;1018.34;1088.32;0.0219519
+Fisherfaces32x32 Interpolacion Lanczos;33;572;0.0545455;978.36;1104.45;0.0190157
+Fisherfaces32x32 Wavelet Spatial;24;581;0.0396694;998.579;1064.6;0.87328
+Fisherfaces16x16 Interpolacion Nearest Neightbor;7;598;0.0115702;1423.9;1441.97;0.0227579
+Fisherfaces16x16 Interpolacion Area;7;598;0.0115702;1423.9;1441.97;0.02319
+Fisherfaces16x16 Interpolacion Bilineal;12;593;0.0198347;833.471;843.289;0.0230774
+Fisherfaces16x16 Interpolacion Bicubica;17;588;0.0280992;880.266;886.417;0.0223376
+Fisherfaces16x16 Interpolacion Lanczos;16;589;0.0264463;914.899;891.819;0.0219315
+Fisherfaces16x16 Wavelet Spatial;16;589;0.0264463;1078.68;1118.44;0.861742
+Fisherfaces8x8 Interpolacion Nearest Neightbor;8;597;0.0132231;1198.37;1252.7;0.0226017
+Fisherfaces8x8 Interpolacion Area;8;597;0.0132231;1198.37;1252.7;0.022302
+Fisherfaces8x8 Interpolacion Bilineal;4;601;0.00661157;758.541;773.195;0.0222304
+Fisherfaces8x8 Interpolacion Bicubica;6;599;0.00991736;802.104;792.456;0.0222407
+Fisherfaces8x8 Interpolacion Lanczos;8;597;0.0132231;804.511;792.467;0.0228486
+Fisherfaces8x8 Wavelet Spatial;5;600;0.00826446;1027.24;1015.39;0.815145
+Fisherfaces4x4 Interpolacion Nearest Neightbor;3;602;0.00495868;1194.74;1185.12;0.0182545
+Fisherfaces4x4 Interpolacion Area;3;602;0.00495868;1194.74;1185.12;0.0183938
+Fisherfaces4x4 Interpolacion Bilineal;1;604;0.00165289;776.877;760.316;0.0183367
+Fisherfaces4x4 Interpolacion Bicubica;1;604;0.00165289;789.15;774.682;0.0185316
+Fisherfaces4x4 Interpolacion Lanczos;1;604;0.00165289;786.57;777.77;0.0185738
+Fisherfaces4x4 Wavelet Spatial;1;604;0.00165289;979.361;967.819;0.810576

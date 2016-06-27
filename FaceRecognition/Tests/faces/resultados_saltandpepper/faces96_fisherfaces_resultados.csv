@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+Fisherfaces;141;9;0.94;96.987;233.546;0.00860459
+Fisherfaces32x32 Interpolacion Nearest Neightbor;129;21;0.86;181.144;210.814;0.00936786
+Fisherfaces32x32 Interpolacion Area;129;21;0.86;181.68;207.626;0.00940463
+Fisherfaces32x32 Interpolacion Bilineal;143;7;0.953333;95.0638;178.617;0.00968106
+Fisherfaces32x32 Interpolacion Bicubica;143;7;0.953333;115.498;209.072;0.00922262
+Fisherfaces32x32 Interpolacion Lanczos;141;9;0.94;119.925;199.964;0.00911557
+Fisherfaces32x32 Wavelet Spatial;138;12;0.92;115.735;179.61;0.775632
+Fisherfaces16x16 Interpolacion Nearest Neightbor;85;65;0.566667;157.871;179.075;0.00888101
+Fisherfaces16x16 Interpolacion Area;83;67;0.553333;157.775;178.565;0.00880621
+Fisherfaces16x16 Interpolacion Bilineal;109;41;0.726667;95.3787;114.265;0.00889079
+Fisherfaces16x16 Interpolacion Bicubica;129;21;0.86;99.2798;133.533;0.00882904
+Fisherfaces16x16 Interpolacion Lanczos;129;21;0.86;100.575;135.091;0.00896689
+Fisherfaces16x16 Wavelet Spatial;99;51;0.66;122.935;143.835;0.775642
+Fisherfaces8x8 Interpolacion Nearest Neightbor;16;134;0.106667;142.947;161.659;0.00872685
+Fisherfaces8x8 Interpolacion Area;14;136;0.0933333;142.774;161.817;0.00882195
+Fisherfaces8x8 Interpolacion Bilineal;13;137;0.0866667;96.0785;103.042;0.00892156
+Fisherfaces8x8 Interpolacion Bicubica;24;126;0.16;101.795;107.898;0.00887396
+Fisherfaces8x8 Interpolacion Lanczos;25;125;0.166667;101.934;109.023;0.00908123
+Fisherfaces8x8 Wavelet Spatial;14;136;0.0933333;133.394;142.648;0.775141
+Fisherfaces4x4 Interpolacion Nearest Neightbor;4;146;0.0266667;112.033;143.75;0.0087761
+Fisherfaces4x4 Interpolacion Area;4;146;0.0266667;111.556;143.578;0.0087026
+Fisherfaces4x4 Interpolacion Bilineal;4;146;0.0266667;89.403;99.2686;0.00882409
+Fisherfaces4x4 Interpolacion Bicubica;5;145;0.0333333;94.3138;101.732;0.00881252
+Fisherfaces4x4 Interpolacion Lanczos;4;146;0.0266667;98.356;103.126;0.00896698
+Fisherfaces4x4 Wavelet Spatial;4;146;0.0266667;103.25;128.244;0.773956

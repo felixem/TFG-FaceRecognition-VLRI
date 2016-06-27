@@ -49,6 +49,12 @@ namespace tfg
 		return "Eigenfaces";
 	}
 
+	//Poner umbral de detección (valores por encima del umbral se considerarán desconocidos)
+	void EigenFacesRecognizer::setUmbral(double umbral)
+	{
+		this->model->setThreshold(umbral);
+	}
+
 	//Almacenar eigenfaces en fichero
 	void EigenFacesRecognizer::saveEigenFaces(const int height, const std::string &directory, const std::string& baseName)
 	{

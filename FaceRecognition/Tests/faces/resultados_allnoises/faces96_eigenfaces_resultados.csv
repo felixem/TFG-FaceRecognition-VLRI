@@ -1,0 +1,26 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos
+Eigenfaces;148;2;0.986667;1236.61;2639.78
+Eigenfaces32x32 Interpolacion Nearest Neightbor;148;2;0.986667;1484.59;2588.48
+Eigenfaces32x32 Interpolacion Area;147;3;0.98;1483.78;2428.3
+Eigenfaces32x32 Interpolacion Bilineal;147;3;0.98;1305.84;2274.13
+Eigenfaces32x32 Interpolacion Bicubica;148;2;0.986667;1350.75;2528.47
+Eigenfaces32x32 Interpolacion Lanczos;148;2;0.986667;1363.85;2542.88
+Eigenfaces32x32 Wavelet Spatial;148;2;0.986667;1423.97;2501.33
+Eigenfaces16x16 Interpolacion Nearest Neightbor;146;4;0.973333;1677.01;2225.18
+Eigenfaces16x16 Interpolacion Area;146;4;0.973333;1677.84;2231.36
+Eigenfaces16x16 Interpolacion Bilineal;145;5;0.966667;1523.86;1981.03
+Eigenfaces16x16 Interpolacion Bicubica;146;4;0.973333;1473.46;2125.38
+Eigenfaces16x16 Interpolacion Lanczos;147;3;0.98;1475.22;2237.03
+Eigenfaces16x16 Wavelet Spatial;142;8;0.946667;1610.19;2309.62
+Eigenfaces8x8 Interpolacion Nearest Neightbor;113;37;0.753333;2027.43;2217.12
+Eigenfaces8x8 Interpolacion Area;114;36;0.76;2029.1;2218.4
+Eigenfaces8x8 Interpolacion Bilineal;90;60;0.6;1836.02;2035.05
+Eigenfaces8x8 Interpolacion Bicubica;114;36;0.76;1814.96;2081.02
+Eigenfaces8x8 Interpolacion Lanczos;116;34;0.773333;1793.08;2102.66
+Eigenfaces8x8 Wavelet Spatial;89;61;0.593333;1956.86;2139.74
+Eigenfaces4x4 Interpolacion Nearest Neightbor;24;126;0.16;2130.59;2277.1
+Eigenfaces4x4 Interpolacion Area;23;127;0.153333;2107.63;2275.28
+Eigenfaces4x4 Interpolacion Bilineal;15;135;0.1;1916.94;2051.11
+Eigenfaces4x4 Interpolacion Bicubica;24;126;0.16;2060.1;2099.91
+Eigenfaces4x4 Interpolacion Lanczos;25;125;0.166667;2077.36;2127.07
+Eigenfaces4x4 Wavelet Spatial;16;134;0.106667;2012.76;2163.85
