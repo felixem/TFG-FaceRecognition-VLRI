@@ -99,7 +99,7 @@ namespace tfg
 					//outputFile << line << "\n";
 					cv::Mat face;
 					//Extraer cara principal
-					faceDetector.extractMainFace(img, face, 16, 16, 64, 64);
+					faceDetector.extractMainFace(img, face, 32, 32, 64, 64);
 					//Añadir imagen con la cara detectada
 					images.push_back(face);
 					labels.push_back(atoi(classlabel.c_str()));

@@ -23,6 +23,216 @@ using namespace std;
 using namespace cv;
 using namespace tfg;
 
+//Main para test de reconocimiento de caras en situaciones reales
+int testRealFaces(int argc, char**argv)
+{
+	//Comprobar parámetros
+	if (argc != 5)
+	{
+		std::cerr << "Error: Argumentos incorrectos [" << argv[0] << " testCSV modelType ymlDir ficResultados]" << std::endl;
+		getchar();
+		return -1;
+	}
+
+	//String de fichero csv
+	std::string csvFaces = argv[1];
+	//Tipo de modelo
+	int modelType = atoi(argv[2]);
+	//Dirección del modelo entreado
+	std::string trainedModelDir = argv[3];
+
+	std::cout << "Cargando modelo de reconocimiento" << std::endl;
+	//Cargar modelo de reconocimiento según parámetros
+	IFaceRecognizer* recognizer = NULL;
+	switch (modelType)
+	{
+		//Eigenfaces
+	case 0: recognizer = new EigenFacesRecognizer();
+		recognizer->load(trainedModelDir);
+		break;
+		//Fisher
+	case 1: recognizer = new FisherFacesRecognizer();
+		recognizer->load(trainedModelDir);
+		break;
+		//LBP
+	case 2: recognizer = new LBPRecognizer();
+		recognizer->load(trainedModelDir);
+		break;
+		//Fallo al cargar
+	default:
+		std::cerr << "Error: tipo de modelo incorrecto " << std::endl;
+		getchar();
+		return -1;
+	}
+	std::cout << "Modelo de reconocimiento cargado" << std::endl;
+
+	//Cargar imágenes de test
+	vector<Mat> images;
+	vector<int> labels;
+	//Cargar imágenes
+	try
+	{
+		FaceCSVReader::loadGrayImagesFromCSV(csvFaces, images, labels);
+	}
+	catch (cv::Exception& e) {
+		cerr << "Error al abrir el fichero \"" << csvFaces << "\". Razón: " << e.msg << endl;
+		getchar();
+		return -1;
+	}
+	//Comprobar que se han cargado las imágenes
+	if (images.size() <= 1) {
+		string error_message = "¡Añade más imagenes al dataset!";
+		CV_Error(CV_StsError, error_message);
+		getchar();
+		return -1;
+	}
+
+	//Fichero de salida de resultados
+	std::ofstream ficSalida(argv[4]);
+	//Cabeceras de resultados
+	ficSalida << "Algoritmo;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;"
+		<< "TPR;TNR;Confianza TP;Confianza PC;Confianza FP;Confianza TN;Confianza FN;Tiempo medio" << std::endl;
+
+	//Detector de caras
+	HaarLikeFaceDetector faceDetector;
+	int numAlgoritmosUpsampling = 6;
+
+	//Realizar detección de caras
+	std::cout << "Detectando caras" << std::endl;
+	std::vector<std::vector<cv::Mat>> totalFacesFound;
+	for (unsigned int i = 0; i < images.size(); ++i)
+	{
+		//Detectar caras
+		std::vector<cv::Mat> foundFaces;
+		cv::Mat detectedFaces;
+		faceDetector.detectFaces(images[i], foundFaces, detectedFaces, 1.1, 8, 8);
+		//Añadir cara al conjunto
+		totalFacesFound.push_back(foundFaces);
+		//Mostrar caras detectadas
+#ifdef DEBUG
+		imshow("Caras detectadas", detectedFaces);
+		waitKey(0);
+#endif
+	}
+	std::cout << "Caras detectadas" << std::endl;
+
+	//Tests para los distintos algoritmos
+	for (unsigned int i = 0; i < numAlgoritmosUpsampling; ++i)
+	{
+		//Algoritmo de upsampling
+		ImageUpsampler* upsampler = generateUpsampler(i);
+		//Almacenar valores de matriz de confusión
+		int verdaderosPositivos = 0, verdaderosNegativos = 0,
+			positivosConfundidos = 0, falsosPositivos = 0, falsosNegativos = 0;
+		//Confianza para valores de confusión
+		double confVerdaderosPositivos = 0, confVerdaderosNegativos = 0,
+			confPositivosConfundidos = 0, confFalsosPositivos = 0, confFalsosNegativos = 0;
+
+		//Medida del tiempo en segundos
+		double time = (double)getTickCount();
+		//Realizar test para cada imagen del conjunto
+		std::cout << "Realizando test para " <<recognizer->getName()<<" - "<< upsampler->getName() << std::endl;
+		for (unsigned int j = 0; j < totalFacesFound.size(); ++j)
+		{
+			//Detectar las caras de la imagen
+			const std::vector<cv::Mat> &foundFaces = totalFacesFound[j];
+
+			//Recorrer las caras encontradas
+			for (unsigned int z = 0; z < foundFaces.size(); ++z)
+			{
+				//Aplicar upsampling
+				cv::Mat upSampled;
+				upsampler->upSample(foundFaces[z], upSampled, 64, 64);
+
+#ifdef DEBUG
+				imshow("Caras detectada", foundFaces[z]);
+				imshow("Caras upsampled", upSampled);
+				waitKey(0);
+#endif
+
+				//Realizar predicción
+				int correctLabel = labels[j];
+				double confidence;
+				int prediction = recognizer->predict(upSampled, confidence);
+
+				//Comprobar si la muestra real es una imagen de la bd o no
+				if (correctLabel != -1)
+				{
+					//Verdadero positivo
+					if (prediction == correctLabel)
+					{
+						confVerdaderosPositivos += confidence;
+						verdaderosPositivos++;
+					}
+					//Falso positivo (o bien se ha equivocado de clase o bien la clase no pertenece a la bd)
+					else if (prediction == -1)
+					{
+						confFalsosNegativos += confidence;
+						falsosNegativos++;
+					}
+					else
+					{
+						confPositivosConfundidos += confidence;
+						positivosConfundidos++;
+					}
+				}
+				else
+				{
+					//Verdadero negativo
+					if (prediction == correctLabel)
+					{
+						confVerdaderosNegativos += confidence;
+						verdaderosNegativos++;
+					}
+					//Falso negativo
+					else
+					{
+						confFalsosPositivos += confidence;
+						falsosPositivos++;
+					}
+				}
+			}
+		}
+		//Calcular tiempo medio final
+		time = ((double)getTickCount() - time) / getTickFrequency() / (double)images.size();
+		//Calcular índices estadísticos
+		double tpr = (double)verdaderosPositivos / ((double)verdaderosPositivos + (double)falsosNegativos + (double)positivosConfundidos),
+			tnr = (double)verdaderosNegativos / ((double)verdaderosNegativos + (double)falsosPositivos);
+		//Confianzas medias
+		double confTP = confVerdaderosPositivos/(double)verdaderosPositivos, 
+			confPC = confPositivosConfundidos / (double)positivosConfundidos,
+			confFP = confFalsosPositivos / (double)falsosPositivos,
+			confTN = confVerdaderosNegativos / (double)verdaderosNegativos,
+			confFN = confFalsosNegativos / (double)falsosNegativos;
+
+		//Mostrar resultados
+		std::cout << "Tecnica de aprendizaje: " << recognizer->getName() << std::endl;
+		std::cout << "Verdaderos positivos: " << verdaderosPositivos << std::endl;
+		std::cout << "Positivos confundidos: " << positivosConfundidos << std::endl;
+		std::cout << "Falsos positivos: " << falsosPositivos << std::endl;
+		std::cout << "Verdaderos negativos: " << verdaderosNegativos << std::endl;
+		std::cout << "Falsos negativos: " << falsosNegativos << std::endl;
+		std::cout << "TPR: " <<tpr * 100 << "%" << std::endl;
+		std::cout << "TNR: " << tnr * 100 << "%" << std::endl;
+		std::cout << "Confianza media TP: " << confTP << std::endl;
+		std::cout << "Confianza media PC: " << confPC << std::endl;
+		std::cout << "Confianza media FP: " << confFP << std::endl;
+		std::cout << "Confianza media TN: " << confTN << std::endl;
+		std::cout << "Confianza media FN: " << confFN << std::endl;
+		std::cout << "Tiempo medio: " << time << std::endl << std::endl;
+		//Volcado de resultados
+		ficSalida << recognizer->getName() << upsampler->getName() << ";" << verdaderosPositivos << ";" << positivosConfundidos << ";"
+			<< falsosPositivos << ";" << verdaderosNegativos << ";" << falsosNegativos << ";" << tpr << ";" << tnr << ";" <<
+			confTP << ";" << confPC << ";" << confFP << "; " << confTN << "; " << confFN << "; " << time << std::endl;
+		//Liberar upsampler
+		delete upsampler;
+	}
+
+	//Limpiar reconocedor
+	delete recognizer;
+	return 0;
+}
+
 //Main para test de reconocimiento de caras
 int testFaces(int argc, char**argv)
 {
@@ -92,10 +302,13 @@ int testFaces(int argc, char**argv)
 	//Cabeceras de resultados
 	ficSalida << "Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio" << std::endl;
 
-	//Almacenar valores de acierto y de fallo
-	int numAciertos = 0, numFallos = 0;
-	//Confianza para aciertos y fallos
-	double confianzaAciertos = 0, confianzaFallos = 0;
+	//Almacenar valores de matriz de confusión
+	int verdaderosPositivos = 0, verdaderosNegativos = 0,
+		positivosConfundidos = 0, falsosPositivos = 0, falsosNegativos = 0;
+	//Confianza para valores de confusión
+	double confVerdaderosPositivos = 0, confVerdaderosNegativos = 0,
+		confPositivosConfundidos = 0, confFalsosPositivos = 0, confFalsosNegativos = 0;
+
 	//Realizar test para cada imagen del conjunto
 	std::cout << "Realizando test para "<<images.size()<<" imagenes" << std::endl;
 	//Medida del tiempo en segundos
@@ -106,36 +319,76 @@ int testFaces(int argc, char**argv)
 		int correctLabel = labels[i];
 		double confidence;
 		int prediction = recognizer->predict(images[i],confidence);
-		//Comprobar si se ha acertado o fallado
-		if (prediction == correctLabel)
+		//Comprobar si la muestra real es una imagen de la bd o no
+		if (correctLabel != -1)
 		{
-			confianzaAciertos += confidence;
-			numAciertos++;
+			//Verdadero positivo
+			if (prediction == correctLabel)
+			{
+				confVerdaderosPositivos += confidence;
+				verdaderosPositivos++;
+			}
+			//Falso positivo (o bien se ha equivocado de clase o bien la clase no pertenece a la bd)
+			else if (prediction == -1)
+			{
+				confFalsosNegativos += confidence;
+				falsosNegativos++;
+			}
+			else
+			{
+				confPositivosConfundidos += confidence;
+				positivosConfundidos++;
+			}
 		}
 		else
 		{
-			confianzaFallos += confidence;
-			numFallos++;
+			//Verdadero negativo
+			if (prediction == correctLabel)
+			{
+				confVerdaderosNegativos += confidence;
+				verdaderosNegativos++;
+			}
+			//Falso negativo
+			else
+			{
+				confFalsosPositivos += confidence;
+				falsosPositivos++;
+			}
 		}
 	}
 	//Calcular tiempo medio final
 	time = ((double)getTickCount() - time) / getTickFrequency() / (double)images.size();
 	std::cout << "Test finalizado" << std::endl;
+	//Calcular índices estadísticos
+	double tpr = (double)verdaderosPositivos / ((double)verdaderosPositivos + (double)falsosNegativos + (double)positivosConfundidos),
+		tnr = (double)verdaderosNegativos / ((double)verdaderosNegativos + (double)falsosPositivos);
+	//Confianzas medias
+	double confTP = confVerdaderosPositivos / (double)verdaderosPositivos,
+		confPC = confPositivosConfundidos / (double)positivosConfundidos,
+		confFP = confFalsosPositivos / (double)falsosPositivos,
+		confTN = confVerdaderosNegativos / (double)verdaderosNegativos,
+		confFN = confFalsosNegativos / (double)falsosNegativos;
 
 	//Mostrar resultados de detección normal
 	std::cout << "Tecnica de aprendizaje: " << recognizer->getName() << std::endl;
-	std::cout << "Conjunto de test: " << images.size() << std::endl;
-	std::cout << "Aciertos: " << numAciertos << std::endl;
-	std::cout << "Fallos: " << numFallos << std::endl;
-	std::cout << "Porcentaje de acierto: " << (double)numAciertos/((double)images.size())*100 <<"%" << std::endl;
-	std::cout << "Confianza media aciertos: " << confianzaAciertos / (double)numAciertos << std::endl;
-	std::cout << "Confianza media fallos: " << confianzaFallos / (double)numFallos << std::endl;
-	std::cout << "Tiempo medio: " << time << std::endl;
+	std::cout << "Verdaderos positivos: " << verdaderosPositivos << std::endl;
+	std::cout << "Positivos confundidos: " << positivosConfundidos << std::endl;
+	std::cout << "Falsos positivos: " << falsosPositivos << std::endl;
+	std::cout << "Verdaderos negativos: " << verdaderosNegativos << std::endl;
+	std::cout << "Falsos negativos: " << falsosNegativos << std::endl;
+	std::cout << "TPR: " << tpr * 100 << "%" << std::endl;
+	std::cout << "TNR: " << tnr * 100 << "%" << std::endl;
+	std::cout << "Confianza media TP: " << confTP << std::endl;
+	std::cout << "Confianza media PC: " << confPC << std::endl;
+	std::cout << "Confianza media FP: " << confFP << std::endl;
+	std::cout << "Confianza media TN: " << confTN << std::endl;
+	std::cout << "Confianza media FN: " << confFN << std::endl;
+	std::cout << "Tiempo medio: " << time << std::endl << std::endl;
 
 	//Volcado de resultados
-	ficSalida << recognizer->getName() << ";" << numAciertos << ";" << numFallos << ";" <<
-		(double)numAciertos / ((double)images.size()) << ";" << confianzaAciertos / (double)numAciertos << ";" <<
-		confianzaFallos / (double)numFallos << ";" << time << std::endl;
+	ficSalida << recognizer->getName() << ";" << verdaderosPositivos << ";" << positivosConfundidos << ";"
+		<< falsosPositivos << ";" << verdaderosNegativos << ";" << falsosNegativos << ";" << tpr << ";" << tnr << ";" <<
+		confTP << ";" << confPC << ";" << confFP << "; " << confTN << "; " << confFN << "; " << time << std::endl;
 
 	//Preparar downsampling
 	std::vector<int> downSamplingSizes;
@@ -144,7 +397,7 @@ int testFaces(int argc, char**argv)
 	downSamplingSizes.push_back(8);
 	downSamplingSizes.push_back(4);
 	ImageDownsampler downSampler;
-	int numAlgoritmosDownsampling = 6;
+	int numAlgoritmosUpsampling = 6;
 
 	//Realizar bucle de test con downsampling
 	for (unsigned int indexTam = 0; indexTam < downSamplingSizes.size(); ++indexTam)
@@ -154,14 +407,16 @@ int testFaces(int argc, char**argv)
 		std::cout << "---------------------------" << std::endl;
 		std::cout << "Upsampling desde " << size << "x" << size << std::endl;
 		//Tests para los distintos algoritmos
-		for (unsigned int i = 0; i < numAlgoritmosDownsampling; ++i)
+		for (unsigned int i = 0; i < numAlgoritmosUpsampling; ++i)
 		{
 			//Algoritmo de upsampling
 			ImageUpsampler* upsampler = generateUpsampler(i);
-			//Almacenar valores de acierto y de fallo
-			int numAciertos = 0, numFallos = 0;
-			//Confianza para aciertos y fallos
-			double confianzaAciertos = 0, confianzaFallos = 0;
+			//Almacenar valores de matriz de confusión
+			int verdaderosPositivos = 0, verdaderosNegativos = 0,
+				positivosConfundidos = 0, falsosPositivos = 0, falsosNegativos = 0;
+			//Confianza para valores de confusión
+			double confVerdaderosPositivos = 0, confVerdaderosNegativos = 0,
+				confPositivosConfundidos = 0, confFalsosPositivos = 0, confFalsosNegativos = 0;
 
 			//Medida del tiempo en segundos
 			time = (double)getTickCount();
@@ -179,31 +434,63 @@ int testFaces(int argc, char**argv)
 				int correctLabel = labels[j];
 				double confidence;
 				int prediction = recognizer->predict(upSampled, confidence);
-				//Comprobar si se ha acertado o fallado
-				if (prediction == correctLabel)
+				//Comprobar si la muestra real es una imagen de la bd o no
+				if (correctLabel != -1)
 				{
-					confianzaAciertos += confidence;
-					numAciertos++;
+					//Verdadero positivo
+					if (prediction == correctLabel)
+					{
+						confVerdaderosPositivos += confidence;
+						verdaderosPositivos++;
+					}
+					//Falso positivo (o bien se ha equivocado de clase o bien la clase no pertenece a la bd)
+					else if (prediction == -1)
+					{
+						confFalsosNegativos += confidence;
+						falsosNegativos++;
+					}
+					else
+					{
+						confPositivosConfundidos += confidence;
+						positivosConfundidos++;
+					}
 				}
 				else
 				{
-					confianzaFallos += confidence;
-					numFallos++;
+					//Verdadero negativo
+					if (prediction == correctLabel)
+					{
+						confVerdaderosNegativos += confidence;
+						verdaderosNegativos++;
+					}
+					//Falso negativo
+					else
+					{
+						confFalsosPositivos += confidence;
+						falsosPositivos++;
+					}
 				}
 			}
 			//Calcular tiempo medio final
 			time = ((double)getTickCount() - time) / getTickFrequency() / (double)images.size();
 			//Mostrar resultados
-			std::cout << "Aciertos: " << numAciertos << std::endl;
-			std::cout << "Fallos: " << numFallos << std::endl;
-			std::cout << "Porcentaje de acierto: " << (double)numAciertos / ((double)images.size()) * 100 << "%" << std::endl;
-			std::cout << "Confianza media aciertos: " << confianzaAciertos / (double)numAciertos << std::endl;
-			std::cout << "Confianza media fallos: " << confianzaFallos / (double)numFallos << std::endl;
+			std::cout << "Verdaderos positivos: " << verdaderosPositivos << std::endl;
+			std::cout << "Positivos confundidos: " << positivosConfundidos << std::endl;
+			std::cout << "Falsos positivos: " << falsosPositivos << std::endl;
+			std::cout << "Verdaderos negativos: " << verdaderosNegativos << std::endl;
+			std::cout << "Falsos negativos: " << falsosNegativos << std::endl;
+			std::cout << "TPR: " << tpr * 100 << "%" << std::endl;
+			std::cout << "TNR: " << tnr * 100 << "%" << std::endl;
+			std::cout << "Confianza media TP: " << confTP << std::endl;
+			std::cout << "Confianza media PC: " << confPC << std::endl;
+			std::cout << "Confianza media FP: " << confFP << std::endl;
+			std::cout << "Confianza media TN: " << confTN << std::endl;
+			std::cout << "Confianza media FN: " << confFN << std::endl;
 			std::cout << "Tiempo medio: " << time << std::endl << std::endl;
 			//Volcado de resultados
-			ficSalida << recognizer->getName()<<size<<"x"<<size<<" "<<upsampler->getName()<< ";" << numAciertos << ";" << numFallos << ";" <<
-				(double)numAciertos / ((double)images.size()) << ";" << confianzaAciertos / (double)numAciertos << ";" <<
-				confianzaFallos / (double)numFallos << ";" << time << std::endl;
+			ficSalida << recognizer->getName()<<size<<"x"<<size<<" "<<upsampler->getName() << ";" << verdaderosPositivos << ";" << positivosConfundidos << ";"
+				<< falsosPositivos << ";" << verdaderosNegativos << ";" << falsosNegativos << ";" << tpr << ";" << tnr << ";" <<
+				confTP << ";" << confPC << ";" << confFP << "; " << confTN << "; " << confFN << "; " << time << std::endl;
 			//Liberar upsampler
 			delete upsampler;
 		}
@@ -343,15 +630,17 @@ int trainFaces(int argc, char**argv)
 int testMultiplesDatabases(int argc, char**argv)
 {
 	//Comprobar parámetros
-	if (argc != 2)
+	if (argc != 3)
 	{
-		std::cerr << "Error: Argumentos incorrectos [" << argv[0] << " csvTest]" << std::endl;
+		std::cerr << "Error: Argumentos incorrectos [" << argv[0] << "csvTest opcionTest]" << std::endl;
 		getchar();
 		return -1;
 	}
 
 	//String de fichero csv
 	std::string csvTest = argv[1];
+	//Opción de test
+	int opcionTest = atoi(argv[2]);
 	//Leer csv de tests
 	std::vector<std::string> bases;
 	readDatabasesFile(csvTest, bases);
@@ -374,7 +663,20 @@ int testMultiplesDatabases(int argc, char**argv)
 		}
 
 		//Llamar a la función de test
-		testFaces(nuevoArgc, nuevoArgv);
+		switch (opcionTest)
+		{
+			//Tests con downsampling
+			case 0: testFaces(nuevoArgc, nuevoArgv);
+				break;
+			//Tests reales
+			case 1: testRealFaces(nuevoArgc, nuevoArgv);
+				break;
+			//Test erroneo
+			default:
+				std::cerr << "Error: opcion de test incorrecta" << std::endl;
+				getchar();
+				return -1;
+		}
 	}
 
 	return 0;
