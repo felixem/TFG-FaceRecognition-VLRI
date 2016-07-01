@@ -1,0 +1,7 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+LBPHInterpolacion Nearest Neightbor;3;126;0.0230769;138.127;140.08;0.0206176
+LBPHInterpolacion Area;7;122;0.0538462;139.409;140.81;0.0200422
+LBPHInterpolacion Bilineal;6;123;0.0461538;141.018;140.983;0.0208013
+LBPHInterpolacion Bicubica;7;122;0.0538462;140.302;137.195;0.0211533
+LBPHInterpolacion Lanczos;6;123;0.0461538;136.541;135.997;0.0223468
+LBPHWavelet Spatial;6;123;0.0461538;142.635;144.002;0.786426

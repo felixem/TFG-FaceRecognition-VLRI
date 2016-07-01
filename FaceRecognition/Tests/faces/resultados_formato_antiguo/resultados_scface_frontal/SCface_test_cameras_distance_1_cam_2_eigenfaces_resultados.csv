@@ -1,0 +1,7 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+EigenfacesInterpolacion Nearest Neightbor;11;110;0.0846154;2399.79;2816.89;0.00199215
+EigenfacesInterpolacion Area;10;111;0.0769231;2353.11;2802.29;0.00259751
+EigenfacesInterpolacion Bilineal;10;111;0.0769231;2330.41;2776.64;0.00277999
+EigenfacesInterpolacion Bicubica;11;110;0.0846154;2418.14;2828.08;0.00287021
+EigenfacesInterpolacion Lanczos;10;111;0.0769231;2355.37;2817.28;0.00266758
+EigenfacesWavelet Spatial;8;113;0.0615385;2502.64;2743.57;0.727034

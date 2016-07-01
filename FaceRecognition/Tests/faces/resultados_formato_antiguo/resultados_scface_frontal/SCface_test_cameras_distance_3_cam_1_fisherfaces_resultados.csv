@@ -1,0 +1,7 @@
+Algoritmo;Aciertos;Fallos;Porcentaje aciertos;Confianza media aciertos;Confianza media fallos;Tiempo medio
+FisherfacesInterpolacion Nearest Neightbor;14;112;0.107692;2610.4;2839.55;0.00310864
+FisherfacesInterpolacion Area;12;114;0.0923077;2531.6;2800.68;0.00354073
+FisherfacesInterpolacion Bilineal;12;114;0.0923077;2538.64;2810.72;0.00260025
+FisherfacesInterpolacion Bicubica;12;114;0.0923077;2551.42;2824.51;0.00292616
+FisherfacesInterpolacion Lanczos;12;114;0.0923077;2546.93;2819.7;0.00349559
+FisherfacesWavelet Spatial;11;115;0.0846154;2319.97;2566.71;0.753232

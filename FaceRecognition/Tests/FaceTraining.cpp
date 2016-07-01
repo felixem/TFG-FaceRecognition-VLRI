@@ -97,7 +97,7 @@ int testRealFaces(int argc, char**argv)
 
 	//Detector de caras
 	HaarLikeFaceDetector faceDetector;
-	int numAlgoritmosUpsampling = 6;
+	unsigned int numAlgoritmosUpsampling = 6;
 
 	//Realizar detección de caras
 	std::cout << "Detectando caras" << std::endl;
@@ -107,7 +107,7 @@ int testRealFaces(int argc, char**argv)
 		//Detectar caras
 		std::vector<cv::Mat> foundFaces;
 		cv::Mat detectedFaces;
-		faceDetector.detectFaces(images[i], foundFaces, detectedFaces, 1.1, 8, 8);
+		faceDetector.detectFaces(images[i], foundFaces, detectedFaces, 1.1f, 8, 8);
 		//Añadir cara al conjunto
 		totalFacesFound.push_back(foundFaces);
 		//Mostrar caras detectadas
@@ -260,8 +260,9 @@ int testFaces(int argc, char**argv)
 	downSamplingSizes.push_back(32);
 	downSamplingSizes.push_back(16);
 	downSamplingSizes.push_back(8);
+	downSamplingSizes.push_back(4);
 	ImageDownsampler downSampler;
-	int numAlgoritmosUpsampling = 5;
+	unsigned int numAlgoritmosUpsampling = 5;
 
 	//Realizar bucle de test con downsampling
 	for (unsigned int indexTam = 0; indexTam < downSamplingSizes.size(); ++indexTam)
@@ -284,7 +285,7 @@ int testFaces(int argc, char**argv)
 			{
 				//Generar imagen downsampleada
 				cv::Mat downSampled;
-				downSampler.downSampleWithAllNoises(images[j], downSampled, size, size, cv::InterpolationFlags::INTER_AREA);
+				downSampler.downSampleWithSaltAndPepper(images[j], downSampled, size, size, cv::InterpolationFlags::INTER_AREA);
 				//Aplicar upsampling
 				cv::Mat upSampled;
 				upsampler->upSample(downSampled, upSampled, 64, 64);
@@ -576,7 +577,7 @@ int separeDatabase(int argc, char**argv)
 	std::string csvFaces = argv[1];
 	std::string testFolder = argv[2];
 	std::string trainFolder = argv[3];
-	int numTestFaces = atoi(argv[4]);
+	unsigned int numTestFaces = atoi(argv[4]);
 	std::string extension = argv[5];
 
 	//Crear directorios de salida

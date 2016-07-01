@@ -234,3 +234,15 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+/FaceRecognition/Tests/faces/CroppedYale
+/FaceRecognition/Tests/faces/faces94
+/FaceRecognition/Tests/faces/faces95
+/FaceRecognition/Tests/faces/gt_db
+/FaceRecognition/Tests/faces/grimace
+/FaceRecognition/Tests/faces/faces96
+/FaceRecognition/Tests/faces/SCface_database
+/FaceRecognition/Tests/faces/test_databases
+/FaceRecognition/Tests/faces/trained_models
+/FaceRecognition/Tests/faces/training_databases
+/FaceRecognition/Tests/faces/UFI
+/FaceRecognition/Tests/output
