@@ -66,6 +66,9 @@ int main(int argc, char** argv)
 		//Testear multiples tests de caras
 		case 10: testMultiplesDatabases(argc - 1, argsMetodo);
 			break;
+		//Main para mostrar el efecto de super-resolution
+		case 11: mainSuperResolution(argc - 1, argsMetodo);
+			break;
 		default:
 			std::cerr << "Error: opción incorrecta" << std::endl;
 	}

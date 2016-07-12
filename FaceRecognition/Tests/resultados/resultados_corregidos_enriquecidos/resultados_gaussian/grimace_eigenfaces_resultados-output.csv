@@ -1,0 +1,1350 @@
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;391.708; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;462.814; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;533.919; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;605.025; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;676.13; 9; 0; 0;17;8;0.470588;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;747.236; 10; 0; 0;17;7;0.411765;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;818.341; 13; 0; 0;17;4;0.235294;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;889.446; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;960.552; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;1031.66; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;1102.76; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;1173.87; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;1244.97; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;1316.08; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;1387.18; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;1458.29; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;1529.4; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;1600.5; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;1671.61; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;1742.71; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;1813.82; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;1884.92; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;1956.03; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;2027.13; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;2098.24; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;2169.34; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;2240.45; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;2311.56; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;2382.66; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;2453.77; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;2524.87; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;2595.98; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;2667.08; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;2738.19; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;2809.29; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;2880.4; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;2951.51; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;3022.61; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;3093.72; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;3164.82; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;3235.93; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;3307.03; 17; 0; 7;10;0;0;0.0; 0.411765;0.4117647058823529
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;3378.14; 17; 0; 10;7;0;0;0.0; 0.588235;0.5882352941176471
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;3449.24; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;3520.35; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;3591.45; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;3662.56; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;3733.67; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;3804.77; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;3875.88; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;3946.98; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces64x64 - Interpolacion Nearest Neightbor;4018.09; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces64x64 - Interpolacion Area;396.085; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;467.167; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;538.249; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;609.331; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;680.414; 9; 0; 0;17;8;0.470588;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;751.496; 10; 0; 0;17;7;0.411765;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;822.578; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;893.66; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;964.742; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;1035.82; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;1106.91; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;1177.99; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;1249.07; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;1320.15; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;1391.23; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;1462.32; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;1533.4; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;1604.48; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;1675.56; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;1746.65; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;1817.73; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;1888.81; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;1959.89; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;2030.97; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;2102.06; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;2173.14; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;2244.22; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;2315.3; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;2386.39; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;2457.47; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;2528.55; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;2599.63; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;2670.71; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;2741.8; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;2812.88; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;2883.96; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Area;2955.04; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces64x64 - Interpolacion Area;3026.12; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces64x64 - Interpolacion Area;3097.21; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces64x64 - Interpolacion Area;3168.29; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces64x64 - Interpolacion Area;3239.37; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces64x64 - Interpolacion Area;3310.45; 17; 0; 7;10;0;0;0.0; 0.411765;0.4117647058823529
+Eigenfaces64x64 - Interpolacion Area;3381.54; 17; 0; 10;7;0;0;0.0; 0.588235;0.5882352941176471
+Eigenfaces64x64 - Interpolacion Area;3452.62; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces64x64 - Interpolacion Area;3523.7; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces64x64 - Interpolacion Area;3594.78; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces64x64 - Interpolacion Area;3665.86; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Area;3736.95; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Area;3808.03; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Area;3879.11; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Area;3950.19; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces64x64 - Interpolacion Area;4021.27; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces64x64 - Interpolacion Bilineal;390.844; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;462.173; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;533.502; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;604.832; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;676.161; 9; 0; 0;17;8;0.470588;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;747.491; 10; 0; 0;17;7;0.411765;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;818.82; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;890.15; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;961.479; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;1032.81; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;1104.14; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;1175.47; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;1246.8; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;1318.13; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;1389.46; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;1460.79; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;1532.12; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;1603.44; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;1674.77; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;1746.1; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;1817.43; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;1888.76; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;1960.09; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;2031.42; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;2102.75; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;2174.08; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;2245.41; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;2316.74; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;2388.07; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;2459.4; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;2530.73; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;2602.06; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;2673.39; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;2744.72; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;2816.05; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;2887.38; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bilineal;2958.7; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces64x64 - Interpolacion Bilineal;3030.03; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces64x64 - Interpolacion Bilineal;3101.36; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces64x64 - Interpolacion Bilineal;3172.69; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces64x64 - Interpolacion Bilineal;3244.02; 17; 0; 5;12;0;0;0.0; 0.294118;0.29411764705882354
+Eigenfaces64x64 - Interpolacion Bilineal;3315.35; 17; 0; 7;10;0;0;0.0; 0.411765;0.4117647058823529
+Eigenfaces64x64 - Interpolacion Bilineal;3386.68; 17; 0; 10;7;0;0;0.0; 0.588235;0.5882352941176471
+Eigenfaces64x64 - Interpolacion Bilineal;3458.01; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces64x64 - Interpolacion Bilineal;3529.34; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces64x64 - Interpolacion Bilineal;3600.67; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces64x64 - Interpolacion Bilineal;3672; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Bilineal;3743.33; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Bilineal;3814.66; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Bilineal;3885.99; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Bilineal;3957.32; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces64x64 - Interpolacion Bilineal;4028.65; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces64x64 - Interpolacion Bicubica;394.614; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;465.758; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;536.901; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;608.044; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;679.188; 9; 0; 0;17;8;0.470588;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;750.331; 10; 0; 0;17;7;0.411765;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;821.475; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;892.618; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;963.761; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;1034.9; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;1106.05; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;1177.19; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;1248.33; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;1319.48; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;1390.62; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;1461.77; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;1532.91; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;1604.05; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;1675.2; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;1746.34; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;1817.48; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;1888.63; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;1959.77; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;2030.91; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;2102.06; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;2173.2; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;2244.34; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;2315.49; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;2386.63; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;2457.77; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;2528.92; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;2600.06; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;2671.2; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;2742.35; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;2813.49; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;2884.63; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Bicubica;2955.78; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces64x64 - Interpolacion Bicubica;3026.92; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces64x64 - Interpolacion Bicubica;3098.06; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces64x64 - Interpolacion Bicubica;3169.21; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces64x64 - Interpolacion Bicubica;3240.35; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces64x64 - Interpolacion Bicubica;3311.49; 17; 0; 6;11;0;0;0.0; 0.352941;0.35294117647058826
+Eigenfaces64x64 - Interpolacion Bicubica;3382.64; 17; 0; 10;7;0;0;0.0; 0.588235;0.5882352941176471
+Eigenfaces64x64 - Interpolacion Bicubica;3453.78; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces64x64 - Interpolacion Bicubica;3524.92; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces64x64 - Interpolacion Bicubica;3596.07; 17; 0; 13;4;0;0;0.0; 0.764706;0.7647058823529411
+Eigenfaces64x64 - Interpolacion Bicubica;3667.21; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Bicubica;3738.35; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Bicubica;3809.5; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Bicubica;3880.64; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Bicubica;3951.78; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces64x64 - Interpolacion Bicubica;4022.93; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces64x64 - Interpolacion Lanczos;388.286; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;459.645; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;531.004; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;602.363; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;673.722; 9; 0; 0;17;8;0.470588;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;745.081; 10; 0; 0;17;7;0.411765;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;816.44; 13; 0; 0;17;4;0.235294;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;887.799; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;959.158; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;1030.52; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;1101.88; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;1173.24; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;1244.59; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;1315.95; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;1387.31; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;1458.67; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;1530.03; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;1601.39; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;1672.75; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;1744.11; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;1815.47; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;1886.83; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;1958.18; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;2029.54; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;2100.9; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;2172.26; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;2243.62; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;2314.98; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;2386.34; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;2457.7; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;2529.06; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;2600.42; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;2671.77; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;2743.13; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;2814.49; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;2885.85; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces64x64 - Interpolacion Lanczos;2957.21; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces64x64 - Interpolacion Lanczos;3028.57; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces64x64 - Interpolacion Lanczos;3099.93; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces64x64 - Interpolacion Lanczos;3171.29; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces64x64 - Interpolacion Lanczos;3242.65; 17; 0; 5;12;0;0;0.0; 0.294118;0.29411764705882354
+Eigenfaces64x64 - Interpolacion Lanczos;3314.01; 17; 0; 7;10;0;0;0.0; 0.411765;0.4117647058823529
+Eigenfaces64x64 - Interpolacion Lanczos;3385.36; 17; 0; 10;7;0;0;0.0; 0.588235;0.5882352941176471
+Eigenfaces64x64 - Interpolacion Lanczos;3456.72; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces64x64 - Interpolacion Lanczos;3528.08; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces64x64 - Interpolacion Lanczos;3599.44; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces64x64 - Interpolacion Lanczos;3670.8; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Lanczos;3742.16; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Lanczos;3813.52; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Lanczos;3884.88; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces64x64 - Interpolacion Lanczos;3956.24; 17; 0; 16;1;0;0;0.0; 0.941176;0.9411764705882353
+Eigenfaces64x64 - Interpolacion Lanczos;4027.6; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;499.675; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;567.823; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;635.97; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;704.118; 5; 0; 0;17;12;0.705882;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;772.266; 7; 0; 0;17;10;0.588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;840.413; 10; 0; 0;17;7;0.411765;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;908.561; 13; 0; 0;17;4;0.235294;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;976.709; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;1044.86; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;1113; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;1181.15; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;1249.3; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;1317.45; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;1385.59; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;1453.74; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;1521.89; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;1590.04; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;1658.19; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;1726.33; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;1794.48; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;1862.63; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;1930.78; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;1998.92; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;2067.07; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;2135.22; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;2203.37; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;2271.51; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;2339.66; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;2407.81; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;2475.96; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;2544.11; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;2612.25; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;2680.4; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;2748.55; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;2816.7; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;2884.84; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;2952.99; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;3021.14; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;3089.29; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;3157.43; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;3225.58; 17; 0; 5;12;0;0;0.0; 0.294118;0.29411764705882354
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;3293.73; 17; 0; 10;7;0;0;0.0; 0.588235;0.5882352941176471
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;3361.88; 17; 0; 10;7;0;0;0.0; 0.588235;0.5882352941176471
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;3430.03; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;3498.17; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;3566.32; 17; 0; 13;4;0;0;0.0; 0.764706;0.7647058823529411
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;3634.47; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;3702.62; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;3770.76; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;3838.91; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;3907.06; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces32x32 - Interpolacion Nearest Neightbor;3975.21; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces32x32 - Interpolacion Area;502.136; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;570.098; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;638.061; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;706.024; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;773.987; 7; 0; 0;17;10;0.588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;841.95; 10; 0; 0;17;7;0.411765;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;909.912; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;977.875; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;1045.84; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;1113.8; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;1181.76; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;1249.73; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;1317.69; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;1385.65; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;1453.62; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;1521.58; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;1589.54; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;1657.5; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;1725.47; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;1793.43; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;1861.39; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;1929.35; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;1997.32; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;2065.28; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;2133.24; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;2201.21; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;2269.17; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;2337.13; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;2405.09; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;2473.06; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;2541.02; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;2608.98; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;2676.95; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;2744.91; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;2812.87; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Area;2880.83; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces32x32 - Interpolacion Area;2948.8; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces32x32 - Interpolacion Area;3016.76; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces32x32 - Interpolacion Area;3084.72; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces32x32 - Interpolacion Area;3152.69; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces32x32 - Interpolacion Area;3220.65; 17; 0; 5;12;0;0;0.0; 0.294118;0.29411764705882354
+Eigenfaces32x32 - Interpolacion Area;3288.61; 17; 0; 9;8;0;0;0.0; 0.529412;0.5294117647058824
+Eigenfaces32x32 - Interpolacion Area;3356.57; 17; 0; 10;7;0;0;0.0; 0.588235;0.5882352941176471
+Eigenfaces32x32 - Interpolacion Area;3424.54; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces32x32 - Interpolacion Area;3492.5; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces32x32 - Interpolacion Area;3560.46; 17; 0; 13;4;0;0;0.0; 0.764706;0.7647058823529411
+Eigenfaces32x32 - Interpolacion Area;3628.43; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Area;3696.39; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Area;3764.35; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Area;3832.31; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Area;3900.28; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces32x32 - Interpolacion Area;3968.24; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces32x32 - Interpolacion Bilineal;556.943; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;622.796; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;688.649; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;754.502; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;820.355; 9; 0; 0;17;8;0.470588;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;886.208; 9; 0; 0;17;8;0.470588;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;952.061; 13; 0; 0;17;4;0.235294;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;1017.91; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;1083.77; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;1149.62; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;1215.47; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;1281.33; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;1347.18; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;1413.03; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;1478.88; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;1544.74; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;1610.59; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;1676.44; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;1742.3; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;1808.15; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;1874; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;1939.86; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;2005.71; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;2071.56; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;2137.41; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;2203.27; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;2269.12; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;2334.97; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;2400.83; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;2466.68; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;2532.53; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;2598.39; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;2664.24; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;2730.09; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bilineal;2795.95; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces32x32 - Interpolacion Bilineal;2861.8; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces32x32 - Interpolacion Bilineal;2927.65; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces32x32 - Interpolacion Bilineal;2993.5; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces32x32 - Interpolacion Bilineal;3059.36; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces32x32 - Interpolacion Bilineal;3125.21; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces32x32 - Interpolacion Bilineal;3191.06; 17; 0; 6;11;0;0;0.0; 0.352941;0.35294117647058826
+Eigenfaces32x32 - Interpolacion Bilineal;3256.92; 17; 0; 10;7;0;0;0.0; 0.588235;0.5882352941176471
+Eigenfaces32x32 - Interpolacion Bilineal;3322.77; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces32x32 - Interpolacion Bilineal;3388.62; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces32x32 - Interpolacion Bilineal;3454.48; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces32x32 - Interpolacion Bilineal;3520.33; 17; 0; 13;4;0;0;0.0; 0.764706;0.7647058823529411
+Eigenfaces32x32 - Interpolacion Bilineal;3586.18; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Bilineal;3652.03; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Bilineal;3717.89; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Bilineal;3783.74; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Bilineal;3849.59; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces32x32 - Interpolacion Bilineal;3915.45; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces32x32 - Interpolacion Bicubica;495.461; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;563.814; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;632.168; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;700.521; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;768.874; 8; 0; 0;17;9;0.529412;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;837.227; 10; 0; 0;17;7;0.411765;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;905.58; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;973.933; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;1042.29; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;1110.64; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;1178.99; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;1247.35; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;1315.7; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;1384.05; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;1452.4; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;1520.76; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;1589.11; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;1657.46; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;1725.82; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;1794.17; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;1862.52; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;1930.88; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;1999.23; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;2067.58; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;2135.94; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;2204.29; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;2272.64; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;2341; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;2409.35; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;2477.7; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;2546.05; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;2614.41; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;2682.76; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;2751.11; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;2819.47; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Bicubica;2887.82; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces32x32 - Interpolacion Bicubica;2956.17; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces32x32 - Interpolacion Bicubica;3024.53; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces32x32 - Interpolacion Bicubica;3092.88; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces32x32 - Interpolacion Bicubica;3161.23; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces32x32 - Interpolacion Bicubica;3229.59; 17; 0; 5;12;0;0;0.0; 0.294118;0.29411764705882354
+Eigenfaces32x32 - Interpolacion Bicubica;3297.94; 17; 0; 9;8;0;0;0.0; 0.529412;0.5294117647058824
+Eigenfaces32x32 - Interpolacion Bicubica;3366.29; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces32x32 - Interpolacion Bicubica;3434.65; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces32x32 - Interpolacion Bicubica;3503; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces32x32 - Interpolacion Bicubica;3571.35; 17; 0; 13;4;0;0;0.0; 0.764706;0.7647058823529411
+Eigenfaces32x32 - Interpolacion Bicubica;3639.7; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Bicubica;3708.06; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Bicubica;3776.41; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Bicubica;3844.76; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Bicubica;3913.12; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces32x32 - Interpolacion Bicubica;3981.47; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces32x32 - Interpolacion Lanczos;493.404; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;561.887; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;630.37; 4; 0; 0;17;13;0.764706;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;698.852; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;767.335; 8; 0; 0;17;9;0.529412;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;835.818; 10; 0; 0;17;7;0.411765;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;904.301; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;972.783; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;1041.27; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;1109.75; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;1178.23; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;1246.71; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;1315.2; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;1383.68; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;1452.16; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;1520.65; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;1589.13; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;1657.61; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;1726.09; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;1794.58; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;1863.06; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;1931.54; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;2000.02; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;2068.51; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;2136.99; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;2205.47; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;2273.96; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;2342.44; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;2410.92; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;2479.4; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;2547.89; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;2616.37; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;2684.85; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;2753.33; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;2821.82; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces32x32 - Interpolacion Lanczos;2890.3; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces32x32 - Interpolacion Lanczos;2958.78; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces32x32 - Interpolacion Lanczos;3027.27; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces32x32 - Interpolacion Lanczos;3095.75; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces32x32 - Interpolacion Lanczos;3164.23; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces32x32 - Interpolacion Lanczos;3232.71; 17; 0; 5;12;0;0;0.0; 0.294118;0.29411764705882354
+Eigenfaces32x32 - Interpolacion Lanczos;3301.2; 17; 0; 9;8;0;0;0.0; 0.529412;0.5294117647058824
+Eigenfaces32x32 - Interpolacion Lanczos;3369.68; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces32x32 - Interpolacion Lanczos;3438.16; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces32x32 - Interpolacion Lanczos;3506.64; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces32x32 - Interpolacion Lanczos;3575.13; 17; 0; 13;4;0;0;0.0; 0.764706;0.7647058823529411
+Eigenfaces32x32 - Interpolacion Lanczos;3643.61; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Lanczos;3712.09; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Lanczos;3780.58; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Lanczos;3849.06; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces32x32 - Interpolacion Lanczos;3917.54; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces32x32 - Interpolacion Lanczos;3986.02; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;742.148; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;803.692; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;865.236; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;926.78; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;988.324; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;1049.87; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;1111.41; 8; 0; 0;17;9;0.529412;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;1172.96; 11; 0; 0;17;6;0.352941;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;1234.5; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;1296.04; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;1357.59; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;1419.13; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;1480.68; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;1542.22; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;1603.76; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;1665.31; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;1726.85; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;1788.4; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;1849.94; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;1911.48; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;1973.03; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;2034.57; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;2096.11; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;2157.66; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;2219.2; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;2280.75; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;2342.29; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;2403.83; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;2465.38; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;2526.92; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;2588.47; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;2650.01; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;2711.55; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;2773.1; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;2834.64; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;2896.19; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;2957.73; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;3019.27; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;3080.82; 17; 0; 5;12;0;0;0.0; 0.294118;0.29411764705882354
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;3142.36; 17; 0; 8;9;0;0;0.0; 0.470588;0.47058823529411764
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;3203.91; 17; 0; 10;7;0;0;0.0; 0.588235;0.5882352941176471
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;3265.45; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;3326.99; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;3388.54; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;3450.08; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;3511.63; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;3573.17; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;3634.71; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;3696.26; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;3757.8; 17; 0; 15;2;0;0;0.0; 0.882353;0.8823529411764706
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;3819.35; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces16x16 - Interpolacion Nearest Neightbor;3880.89; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces16x16 - Interpolacion Area;736.062; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;797.718; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;859.375; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;921.031; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;982.688; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;1044.34; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;1106; 8; 0; 0;17;9;0.529412;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;1167.66; 11; 0; 0;17;6;0.352941;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;1229.31; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;1290.97; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;1352.63; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;1414.28; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;1475.94; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;1537.6; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;1599.25; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;1660.91; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;1722.56; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;1784.22; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;1845.88; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;1907.53; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;1969.19; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;2030.85; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;2092.5; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;2154.16; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;2215.82; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;2277.47; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;2339.13; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;2400.79; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;2462.44; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;2524.1; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;2585.75; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;2647.41; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;2709.07; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Area;2770.72; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces16x16 - Interpolacion Area;2832.38; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces16x16 - Interpolacion Area;2894.04; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces16x16 - Interpolacion Area;2955.69; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces16x16 - Interpolacion Area;3017.35; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces16x16 - Interpolacion Area;3079.01; 17; 0; 5;12;0;0;0.0; 0.294118;0.29411764705882354
+Eigenfaces16x16 - Interpolacion Area;3140.66; 17; 0; 7;10;0;0;0.0; 0.411765;0.4117647058823529
+Eigenfaces16x16 - Interpolacion Area;3202.32; 17; 0; 10;7;0;0;0.0; 0.588235;0.5882352941176471
+Eigenfaces16x16 - Interpolacion Area;3263.98; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces16x16 - Interpolacion Area;3325.63; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces16x16 - Interpolacion Area;3387.29; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces16x16 - Interpolacion Area;3448.95; 17; 0; 13;4;0;0;0.0; 0.764706;0.7647058823529411
+Eigenfaces16x16 - Interpolacion Area;3510.6; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Area;3572.26; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Area;3633.91; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Area;3695.57; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Area;3757.23; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Area;3818.88; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces16x16 - Interpolacion Area;3880.54; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces16x16 - Interpolacion Bilineal;763.298; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;822.612; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;881.926; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;941.241; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1000.56; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1059.87; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1119.18; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1178.5; 10; 0; 0;17;7;0.411765;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1237.81; 12; 0; 0;17;5;0.294118;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1297.13; 13; 0; 0;17;4;0.235294;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1356.44; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1415.76; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1475.07; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1534.38; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1593.7; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1653.01; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1712.33; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1771.64; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1830.96; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1890.27; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;1949.58; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;2008.9; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;2068.21; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;2127.53; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;2186.84; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;2246.16; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;2305.47; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;2364.78; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;2424.1; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;2483.41; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;2542.73; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;2602.04; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;2661.36; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bilineal;2720.67; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces16x16 - Interpolacion Bilineal;2779.99; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces16x16 - Interpolacion Bilineal;2839.3; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces16x16 - Interpolacion Bilineal;2898.61; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces16x16 - Interpolacion Bilineal;2957.93; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces16x16 - Interpolacion Bilineal;3017.24; 17; 0; 6;11;0;0;0.0; 0.352941;0.35294117647058826
+Eigenfaces16x16 - Interpolacion Bilineal;3076.56; 17; 0; 8;9;0;0;0.0; 0.470588;0.47058823529411764
+Eigenfaces16x16 - Interpolacion Bilineal;3135.87; 17; 0; 9;8;0;0;0.0; 0.529412;0.5294117647058824
+Eigenfaces16x16 - Interpolacion Bilineal;3195.19; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces16x16 - Interpolacion Bilineal;3254.5; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces16x16 - Interpolacion Bilineal;3313.81; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces16x16 - Interpolacion Bilineal;3373.13; 17; 0; 13;4;0;0;0.0; 0.764706;0.7647058823529411
+Eigenfaces16x16 - Interpolacion Bilineal;3432.44; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Bilineal;3491.76; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Bilineal;3551.07; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Bilineal;3610.39; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Bilineal;3669.7; 17; 0; 15;2;0;0;0.0; 0.882353;0.8823529411764706
+Eigenfaces16x16 - Interpolacion Bilineal;3729.01; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces16x16 - Interpolacion Bilineal;3788.33; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces16x16 - Interpolacion Bicubica;710.219; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;771.982; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;833.745; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;895.508; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;957.27; 5; 0; 0;17;12;0.705882;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;1019.03; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;1080.8; 11; 0; 0;17;6;0.352941;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;1142.56; 12; 0; 0;17;5;0.294118;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;1204.32; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;1266.08; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;1327.85; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;1389.61; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;1451.37; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;1513.14; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;1574.9; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;1636.66; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;1698.43; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;1760.19; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;1821.95; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;1883.71; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;1945.48; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;2007.24; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;2069; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;2130.77; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;2192.53; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;2254.29; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;2316.05; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;2377.82; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;2439.58; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;2501.34; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;2563.11; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;2624.87; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;2686.63; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;2748.39; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Bicubica;2810.16; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces16x16 - Interpolacion Bicubica;2871.92; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces16x16 - Interpolacion Bicubica;2933.68; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces16x16 - Interpolacion Bicubica;2995.45; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces16x16 - Interpolacion Bicubica;3057.21; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces16x16 - Interpolacion Bicubica;3118.97; 17; 0; 6;11;0;0;0.0; 0.352941;0.35294117647058826
+Eigenfaces16x16 - Interpolacion Bicubica;3180.73; 17; 0; 9;8;0;0;0.0; 0.529412;0.5294117647058824
+Eigenfaces16x16 - Interpolacion Bicubica;3242.5; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces16x16 - Interpolacion Bicubica;3304.26; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces16x16 - Interpolacion Bicubica;3366.02; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces16x16 - Interpolacion Bicubica;3427.79; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces16x16 - Interpolacion Bicubica;3489.55; 17; 0; 13;4;0;0;0.0; 0.764706;0.7647058823529411
+Eigenfaces16x16 - Interpolacion Bicubica;3551.31; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Bicubica;3613.08; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Bicubica;3674.84; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Bicubica;3736.6; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Bicubica;3798.36; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces16x16 - Interpolacion Bicubica;3860.13; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces16x16 - Interpolacion Lanczos;702.935; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;764.958; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;826.981; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;889.004; 3; 0; 0;17;14;0.823529;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;951.027; 5; 0; 0;17;12;0.705882;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;1013.05; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;1075.07; 11; 0; 0;17;6;0.352941;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;1137.1; 12; 0; 0;17;5;0.294118;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;1199.12; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;1261.14; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;1323.16; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;1385.19; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;1447.21; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;1509.23; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;1571.26; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;1633.28; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;1695.3; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;1757.32; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;1819.35; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;1881.37; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;1943.39; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;2005.42; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;2067.44; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;2129.46; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;2191.49; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;2253.51; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;2315.53; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;2377.55; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;2439.58; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;2501.6; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;2563.62; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;2625.65; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;2687.67; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;2749.69; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces16x16 - Interpolacion Lanczos;2811.72; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces16x16 - Interpolacion Lanczos;2873.74; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces16x16 - Interpolacion Lanczos;2935.76; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces16x16 - Interpolacion Lanczos;2997.78; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces16x16 - Interpolacion Lanczos;3059.81; 17; 0; 3;14;0;0;0.0; 0.176471;0.17647058823529413
+Eigenfaces16x16 - Interpolacion Lanczos;3121.83; 17; 0; 7;10;0;0;0.0; 0.411765;0.4117647058823529
+Eigenfaces16x16 - Interpolacion Lanczos;3183.85; 17; 0; 8;9;0;0;0.0; 0.470588;0.47058823529411764
+Eigenfaces16x16 - Interpolacion Lanczos;3245.88; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces16x16 - Interpolacion Lanczos;3307.9; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces16x16 - Interpolacion Lanczos;3369.92; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces16x16 - Interpolacion Lanczos;3431.94; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces16x16 - Interpolacion Lanczos;3493.97; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Lanczos;3555.99; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Lanczos;3618.01; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Lanczos;3680.04; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Lanczos;3742.06; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces16x16 - Interpolacion Lanczos;3804.08; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces16x16 - Interpolacion Lanczos;3866.11; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1068.07; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1120.03; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1172; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1223.96; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1275.93; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1327.89; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1379.86; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1431.83; 5; 0; 0;17;12;0.705882;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1483.79; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1535.76; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1587.72; 9; 0; 0;17;8;0.470588;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1639.69; 12; 0; 0;17;5;0.294118;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1691.66; 13; 0; 0;17;4;0.235294;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1743.62; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1795.59; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1847.55; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1899.52; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;1951.48; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2003.45; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2055.42; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2107.38; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2159.35; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2211.31; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2263.28; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2315.25; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2367.21; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2419.18; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2471.14; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2523.11; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2575.07; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2627.04; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2679.01; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2730.97; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2782.94; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2834.9; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2886.87; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2938.84; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;2990.8; 17; 0; 5;12;0;0;0.0; 0.294118;0.29411764705882354
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;3042.77; 17; 0; 7;10;0;0;0.0; 0.411765;0.4117647058823529
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;3094.73; 17; 0; 8;9;0;0;0.0; 0.470588;0.47058823529411764
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;3146.7; 17; 0; 10;7;0;0;0.0; 0.588235;0.5882352941176471
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;3198.66; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;3250.63; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;3302.6; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;3354.56; 17; 0; 13;4;0;0;0.0; 0.764706;0.7647058823529411
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;3406.53; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;3458.49; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;3510.46; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;3562.43; 17; 0; 15;2;0;0;0.0; 0.882353;0.8823529411764706
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;3614.39; 17; 0; 16;1;0;0;0.0; 0.941176;0.9411764705882353
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;3666.36; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces8x8 - Interpolacion Nearest Neightbor;3718.32; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces8x8 - Interpolacion Area;1064.43; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1116.34; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1168.25; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1220.15; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1272.06; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1323.97; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1375.88; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1427.78; 5; 0; 0;17;12;0.705882;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1479.69; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1531.6; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1583.51; 9; 0; 0;17;8;0.470588;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1635.42; 11; 0; 0;17;6;0.352941;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1687.32; 13; 0; 0;17;4;0.235294;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1739.23; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1791.14; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1843.05; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1894.95; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1946.86; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;1998.77; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;2050.68; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;2102.59; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;2154.49; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;2206.4; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;2258.31; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;2310.22; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;2362.12; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;2414.03; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;2465.94; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;2517.85; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;2569.75; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;2621.66; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;2673.57; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Area;2725.48; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces8x8 - Interpolacion Area;2777.39; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces8x8 - Interpolacion Area;2829.29; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces8x8 - Interpolacion Area;2881.2; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces8x8 - Interpolacion Area;2933.11; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces8x8 - Interpolacion Area;2985.02; 17; 0; 5;12;0;0;0.0; 0.294118;0.29411764705882354
+Eigenfaces8x8 - Interpolacion Area;3036.92; 17; 0; 7;10;0;0;0.0; 0.411765;0.4117647058823529
+Eigenfaces8x8 - Interpolacion Area;3088.83; 17; 0; 8;9;0;0;0.0; 0.470588;0.47058823529411764
+Eigenfaces8x8 - Interpolacion Area;3140.74; 17; 0; 10;7;0;0;0.0; 0.588235;0.5882352941176471
+Eigenfaces8x8 - Interpolacion Area;3192.65; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces8x8 - Interpolacion Area;3244.55; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces8x8 - Interpolacion Area;3296.46; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces8x8 - Interpolacion Area;3348.37; 17; 0; 13;4;0;0;0.0; 0.764706;0.7647058823529411
+Eigenfaces8x8 - Interpolacion Area;3400.28; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces8x8 - Interpolacion Area;3452.19; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces8x8 - Interpolacion Area;3504.09; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces8x8 - Interpolacion Area;3556; 17; 0; 15;2;0;0;0.0; 0.882353;0.8823529411764706
+Eigenfaces8x8 - Interpolacion Area;3607.91; 17; 0; 16;1;0;0;0.0; 0.941176;0.9411764705882353
+Eigenfaces8x8 - Interpolacion Area;3659.82; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces8x8 - Interpolacion Area;3711.72; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces8x8 - Interpolacion Bilineal;1079.02; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1129.63; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1180.24; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1230.84; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1281.45; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1332.06; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1382.67; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1433.28; 4; 0; 0;17;13;0.764706;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1483.89; 5; 0; 0;17;12;0.705882;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1534.5; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1585.11; 6; 0; 0;17;11;0.647059;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1635.71; 9; 0; 0;17;8;0.470588;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1686.32; 12; 0; 0;17;5;0.294118;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1736.93; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1787.54; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1838.15; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1888.76; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1939.37; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;1989.98; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;2040.58; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;2091.19; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;2141.8; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;2192.41; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;2243.02; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;2293.63; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;2344.24; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;2394.84; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;2445.45; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;2496.06; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;2546.67; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;2597.28; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bilineal;2647.89; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces8x8 - Interpolacion Bilineal;2698.5; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces8x8 - Interpolacion Bilineal;2749.11; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces8x8 - Interpolacion Bilineal;2799.71; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces8x8 - Interpolacion Bilineal;2850.32; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces8x8 - Interpolacion Bilineal;2900.93; 17; 0; 6;11;0;0;0.0; 0.352941;0.35294117647058826
+Eigenfaces8x8 - Interpolacion Bilineal;2951.54; 17; 0; 6;11;0;0;0.0; 0.352941;0.35294117647058826
+Eigenfaces8x8 - Interpolacion Bilineal;3002.15; 17; 0; 8;9;0;0;0.0; 0.470588;0.47058823529411764
+Eigenfaces8x8 - Interpolacion Bilineal;3052.76; 17; 0; 10;7;0;0;0.0; 0.588235;0.5882352941176471
+Eigenfaces8x8 - Interpolacion Bilineal;3103.37; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces8x8 - Interpolacion Bilineal;3153.98; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces8x8 - Interpolacion Bilineal;3204.58; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces8x8 - Interpolacion Bilineal;3255.19; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces8x8 - Interpolacion Bilineal;3305.8; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces8x8 - Interpolacion Bilineal;3356.41; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces8x8 - Interpolacion Bilineal;3407.02; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces8x8 - Interpolacion Bilineal;3457.63; 17; 0; 15;2;0;0;0.0; 0.882353;0.8823529411764706
+Eigenfaces8x8 - Interpolacion Bilineal;3508.24; 17; 0; 16;1;0;0;0.0; 0.941176;0.9411764705882353
+Eigenfaces8x8 - Interpolacion Bilineal;3558.84; 17; 0; 16;1;0;0;0.0; 0.941176;0.9411764705882353
+Eigenfaces8x8 - Interpolacion Bilineal;3609.45; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces8x8 - Interpolacion Bilineal;3660.06; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces8x8 - Interpolacion Bicubica;998.657; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1051.83; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1105; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1158.17; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1211.34; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1264.51; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1317.69; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1370.86; 4; 0; 0;17;13;0.764706;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1424.03; 5; 0; 0;17;12;0.705882;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1477.2; 7; 0; 0;17;10;0.588235;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1530.37; 9; 0; 0;17;8;0.470588;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1583.54; 11; 0; 0;17;6;0.352941;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1636.71; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1689.89; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1743.06; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1796.23; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1849.4; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1902.57; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;1955.74; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;2008.91; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;2062.09; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;2115.26; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;2168.43; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;2221.6; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;2274.77; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;2327.94; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;2381.11; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;2434.29; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;2487.46; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;2540.63; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;2593.8; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;2646.97; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Bicubica;2700.14; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces8x8 - Interpolacion Bicubica;2753.31; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces8x8 - Interpolacion Bicubica;2806.49; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces8x8 - Interpolacion Bicubica;2859.66; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces8x8 - Interpolacion Bicubica;2912.83; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces8x8 - Interpolacion Bicubica;2966; 17; 0; 6;11;0;0;0.0; 0.352941;0.35294117647058826
+Eigenfaces8x8 - Interpolacion Bicubica;3019.17; 17; 0; 7;10;0;0;0.0; 0.411765;0.4117647058823529
+Eigenfaces8x8 - Interpolacion Bicubica;3072.34; 17; 0; 8;9;0;0;0.0; 0.470588;0.47058823529411764
+Eigenfaces8x8 - Interpolacion Bicubica;3125.51; 17; 0; 10;7;0;0;0.0; 0.588235;0.5882352941176471
+Eigenfaces8x8 - Interpolacion Bicubica;3178.69; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces8x8 - Interpolacion Bicubica;3231.86; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces8x8 - Interpolacion Bicubica;3285.03; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces8x8 - Interpolacion Bicubica;3338.2; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces8x8 - Interpolacion Bicubica;3391.37; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces8x8 - Interpolacion Bicubica;3444.54; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces8x8 - Interpolacion Bicubica;3497.71; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces8x8 - Interpolacion Bicubica;3550.89; 17; 0; 15;2;0;0;0.0; 0.882353;0.8823529411764706
+Eigenfaces8x8 - Interpolacion Bicubica;3604.06; 17; 0; 16;1;0;0;0.0; 0.941176;0.9411764705882353
+Eigenfaces8x8 - Interpolacion Bicubica;3657.23; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces8x8 - Interpolacion Bicubica;3710.4; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces8x8 - Interpolacion Lanczos;986.715; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1040.44; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1094.16; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1147.89; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1201.61; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1255.33; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1309.06; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1362.78; 4; 0; 0;17;13;0.764706;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1416.51; 5; 0; 0;17;12;0.705882;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1470.23; 7; 0; 0;17;10;0.588235;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1523.95; 10; 0; 0;17;7;0.411765;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1577.68; 12; 0; 0;17;5;0.294118;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1631.4; 14; 0; 0;17;3;0.176471;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1685.12; 15; 0; 0;17;2;0.117647;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1738.85; 16; 0; 0;17;1;0.0588235;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1792.57; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1846.3; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1900.02; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;1953.74; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;2007.47; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;2061.19; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;2114.91; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;2168.64; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;2222.36; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;2276.09; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;2329.81; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;2383.53; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;2437.26; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;2490.98; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;2544.71; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;2598.43; 17; 0; 0;17;0;0;0.0; 0;0.0
+Eigenfaces8x8 - Interpolacion Lanczos;2652.15; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces8x8 - Interpolacion Lanczos;2705.88; 17; 0; 1;16;0;0;0.0; 0.0588235;0.058823529411764705
+Eigenfaces8x8 - Interpolacion Lanczos;2759.6; 17; 0; 2;15;0;0;0.0; 0.117647;0.11764705882352941
+Eigenfaces8x8 - Interpolacion Lanczos;2813.32; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces8x8 - Interpolacion Lanczos;2867.05; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces8x8 - Interpolacion Lanczos;2920.77; 17; 0; 4;13;0;0;0.0; 0.235294;0.23529411764705882
+Eigenfaces8x8 - Interpolacion Lanczos;2974.5; 17; 0; 6;11;0;0;0.0; 0.352941;0.35294117647058826
+Eigenfaces8x8 - Interpolacion Lanczos;3028.22; 17; 0; 7;10;0;0;0.0; 0.411765;0.4117647058823529
+Eigenfaces8x8 - Interpolacion Lanczos;3081.94; 17; 0; 8;9;0;0;0.0; 0.470588;0.47058823529411764
+Eigenfaces8x8 - Interpolacion Lanczos;3135.67; 17; 0; 11;6;0;0;0.0; 0.647059;0.6470588235294118
+Eigenfaces8x8 - Interpolacion Lanczos;3189.39; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces8x8 - Interpolacion Lanczos;3243.11; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces8x8 - Interpolacion Lanczos;3296.84; 17; 0; 12;5;0;0;0.0; 0.705882;0.7058823529411765
+Eigenfaces8x8 - Interpolacion Lanczos;3350.56; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces8x8 - Interpolacion Lanczos;3404.29; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces8x8 - Interpolacion Lanczos;3458.01; 17; 0; 14;3;0;0;0.0; 0.823529;0.8235294117647058
+Eigenfaces8x8 - Interpolacion Lanczos;3511.73; 17; 0; 15;2;0;0;0.0; 0.882353;0.8823529411764706
+Eigenfaces8x8 - Interpolacion Lanczos;3565.46; 17; 0; 16;1;0;0;0.0; 0.941176;0.9411764705882353
+Eigenfaces8x8 - Interpolacion Lanczos;3619.18; 17; 0; 16;1;0;0;0.0; 0.941176;0.9411764705882353
+Eigenfaces8x8 - Interpolacion Lanczos;3672.9; 17; 0; 17;0;0;0;0.0; 1;1.0
+Eigenfaces8x8 - Interpolacion Lanczos;3726.63; 17; 0; 17;0;0;0;0.0; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;1418.14; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;1464.01; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;1509.88; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;1555.75; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;1601.62; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;1647.49; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;1693.35; 2; 2; 0;17;13;0.764706;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;1739.22; 2; 2; 0;17;13;0.764706;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;1785.09; 2; 2; 0;17;13;0.764706;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;1830.96; 2; 3; 0;17;12;0.705882;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;1876.83; 3; 3; 0;17;11;0.647059;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;1922.69; 3; 3; 0;17;11;0.647059;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;1968.56; 3; 3; 0;17;11;0.647059;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2014.43; 4; 7; 0;17;6;0.352941;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2060.3; 4; 8; 0;17;5;0.294118;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2106.17; 4; 9; 0;17;4;0.235294;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2152.04; 4; 9; 0;17;4;0.235294;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2197.9; 5; 9; 0;17;3;0.176471;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2243.77; 6; 9; 0;17;2;0.117647;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2289.64; 6; 9; 0;17;2;0.117647;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2335.51; 6; 9; 0;17;2;0.117647;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2381.38; 6; 9; 0;17;2;0.117647;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2427.24; 6; 9; 0;17;2;0.117647;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2473.11; 7; 9; 0;17;1;0.0588235;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2518.98; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2564.85; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2610.72; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2656.59; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2702.45; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2748.32; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2794.19; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2840.06; 8; 9; 1;16;0;0;0.5294117647058824; 0.0588235;0.38461538461538464
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2885.93; 8; 9; 1;16;0;0;0.5294117647058824; 0.0588235;0.38461538461538464
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2931.79; 8; 9; 2;15;0;0;0.5294117647058824; 0.117647;0.4230769230769231
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;2977.66; 8; 9; 4;13;0;0;0.5294117647058824; 0.235294;0.5
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3023.53; 8; 9; 5;12;0;0;0.5294117647058824; 0.294118;0.5384615384615384
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3069.4; 8; 9; 6;11;0;0;0.5294117647058824; 0.352941;0.5769230769230769
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3115.27; 8; 9; 9;8;0;0;0.5294117647058824; 0.529412;0.6923076923076923
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3161.14; 8; 9; 10;7;0;0;0.5294117647058824; 0.588235;0.7307692307692307
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3207; 8; 9; 10;7;0;0;0.5294117647058824; 0.588235;0.7307692307692307
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3252.87; 8; 9; 10;7;0;0;0.5294117647058824; 0.588235;0.7307692307692307
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3298.74; 8; 9; 11;6;0;0;0.5294117647058824; 0.647059;0.7692307692307693
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3344.61; 8; 9; 12;5;0;0;0.5294117647058824; 0.705882;0.8076923076923077
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3390.48; 8; 9; 13;4;0;0;0.5294117647058824; 0.764706;0.8461538461538461
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3436.34; 8; 9; 15;2;0;0;0.5294117647058824; 0.882353;0.9230769230769231
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3482.21; 8; 9; 15;2;0;0;0.5294117647058824; 0.882353;0.9230769230769231
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3528.08; 8; 9; 15;2;0;0;0.5294117647058824; 0.882353;0.9230769230769231
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3573.95; 8; 9; 15;2;0;0;0.5294117647058824; 0.882353;0.9230769230769231
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3619.82; 8; 9; 16;1;0;0;0.5294117647058824; 0.941176;0.9615384615384616
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3665.69; 8; 9; 16;1;0;0;0.5294117647058824; 0.941176;0.9615384615384616
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3711.55; 8; 9; 17;0;0;0;0.5294117647058824; 1;1.0
+Eigenfaces4x4 - Interpolacion Nearest Neightbor;3757.42; 8; 9; 17;0;0;0;0.5294117647058824; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces4x4 - Interpolacion Area;1419.64; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces4x4 - Interpolacion Area;1465.57; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Area;1511.5; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Area;1557.43; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Area;1603.36; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Area;1649.29; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Area;1695.22; 2; 2; 0;17;13;0.764706;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Area;1741.15; 2; 2; 0;17;13;0.764706;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Area;1787.08; 2; 2; 0;17;13;0.764706;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Area;1833.01; 2; 3; 0;17;12;0.705882;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Area;1878.95; 3; 3; 0;17;11;0.647059;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Area;1924.88; 3; 3; 0;17;11;0.647059;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Area;1970.81; 3; 3; 0;17;11;0.647059;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Area;2016.74; 4; 7; 0;17;6;0.352941;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Area;2062.67; 4; 8; 0;17;5;0.294118;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Area;2108.6; 4; 9; 0;17;4;0.235294;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Area;2154.53; 4; 9; 0;17;4;0.235294;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Area;2200.46; 5; 9; 0;17;3;0.176471;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Area;2246.39; 6; 9; 0;17;2;0.117647;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Area;2292.32; 6; 9; 0;17;2;0.117647;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Area;2338.26; 6; 9; 0;17;2;0.117647;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Area;2384.19; 6; 9; 0;17;2;0.117647;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Area;2430.12; 6; 9; 0;17;2;0.117647;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Area;2476.05; 7; 9; 0;17;1;0.0588235;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Area;2521.98; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Area;2567.91; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Area;2613.84; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Area;2659.77; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Area;2705.7; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Area;2751.63; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Area;2797.57; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Area;2843.5; 8; 9; 1;16;0;0;0.5294117647058824; 0.0588235;0.38461538461538464
+Eigenfaces4x4 - Interpolacion Area;2889.43; 8; 9; 1;16;0;0;0.5294117647058824; 0.0588235;0.38461538461538464
+Eigenfaces4x4 - Interpolacion Area;2935.36; 8; 9; 2;15;0;0;0.5294117647058824; 0.117647;0.4230769230769231
+Eigenfaces4x4 - Interpolacion Area;2981.29; 8; 9; 4;13;0;0;0.5294117647058824; 0.235294;0.5
+Eigenfaces4x4 - Interpolacion Area;3027.22; 8; 9; 5;12;0;0;0.5294117647058824; 0.294118;0.5384615384615384
+Eigenfaces4x4 - Interpolacion Area;3073.15; 8; 9; 8;9;0;0;0.5294117647058824; 0.470588;0.6538461538461539
+Eigenfaces4x4 - Interpolacion Area;3119.08; 8; 9; 9;8;0;0;0.5294117647058824; 0.529412;0.6923076923076923
+Eigenfaces4x4 - Interpolacion Area;3165.01; 8; 9; 10;7;0;0;0.5294117647058824; 0.588235;0.7307692307692307
+Eigenfaces4x4 - Interpolacion Area;3210.94; 8; 9; 10;7;0;0;0.5294117647058824; 0.588235;0.7307692307692307
+Eigenfaces4x4 - Interpolacion Area;3256.88; 8; 9; 10;7;0;0;0.5294117647058824; 0.588235;0.7307692307692307
+Eigenfaces4x4 - Interpolacion Area;3302.81; 8; 9; 11;6;0;0;0.5294117647058824; 0.647059;0.7692307692307693
+Eigenfaces4x4 - Interpolacion Area;3348.74; 8; 9; 13;4;0;0;0.5294117647058824; 0.764706;0.8461538461538461
+Eigenfaces4x4 - Interpolacion Area;3394.67; 8; 9; 13;4;0;0;0.5294117647058824; 0.764706;0.8461538461538461
+Eigenfaces4x4 - Interpolacion Area;3440.6; 8; 9; 15;2;0;0;0.5294117647058824; 0.882353;0.9230769230769231
+Eigenfaces4x4 - Interpolacion Area;3486.53; 8; 9; 15;2;0;0;0.5294117647058824; 0.882353;0.9230769230769231
+Eigenfaces4x4 - Interpolacion Area;3532.46; 8; 9; 15;2;0;0;0.5294117647058824; 0.882353;0.9230769230769231
+Eigenfaces4x4 - Interpolacion Area;3578.39; 8; 9; 15;2;0;0;0.5294117647058824; 0.882353;0.9230769230769231
+Eigenfaces4x4 - Interpolacion Area;3624.32; 8; 9; 16;1;0;0;0.5294117647058824; 0.941176;0.9615384615384616
+Eigenfaces4x4 - Interpolacion Area;3670.25; 8; 9; 16;1;0;0;0.5294117647058824; 0.941176;0.9615384615384616
+Eigenfaces4x4 - Interpolacion Area;3716.19; 8; 9; 17;0;0;0;0.5294117647058824; 1;1.0
+Eigenfaces4x4 - Interpolacion Area;3762.12; 8; 9; 17;0;0;0;0.5294117647058824; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces4x4 - Interpolacion Bilineal;1429.33; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces4x4 - Interpolacion Bilineal;1474.71; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Bilineal;1520.08; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Bilineal;1565.45; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Bilineal;1610.83; 2; 2; 0;17;13;0.764706;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Bilineal;1656.2; 2; 2; 0;17;13;0.764706;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Bilineal;1701.58; 2; 2; 0;17;13;0.764706;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Bilineal;1746.95; 2; 3; 0;17;12;0.705882;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Bilineal;1792.32; 2; 3; 0;17;12;0.705882;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Bilineal;1837.7; 3; 3; 0;17;11;0.647059;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Bilineal;1883.07; 3; 3; 0;17;11;0.647059;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Bilineal;1928.44; 3; 5; 0;17;9;0.529412;0.29411764705882354; 0;0.22727272727272727
+Eigenfaces4x4 - Interpolacion Bilineal;1973.82; 3; 7; 0;17;7;0.411765;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Bilineal;2019.19; 3; 8; 0;17;6;0.352941;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bilineal;2064.57; 3; 9; 0;17;5;0.294118;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2109.94; 4; 9; 0;17;4;0.235294;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2155.31; 5; 9; 0;17;3;0.176471;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2200.69; 5; 9; 0;17;3;0.176471;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2246.06; 5; 9; 0;17;3;0.176471;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2291.44; 5; 9; 0;17;3;0.176471;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2336.81; 6; 9; 0;17;2;0.117647;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2382.18; 6; 9; 0;17;2;0.117647;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2427.56; 7; 9; 0;17;1;0.0588235;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2472.93; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2518.31; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2563.68; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2609.05; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2654.43; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2699.8; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2745.18; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2790.55; 8; 9; 0;17;0;0;0.5294117647058824; 0;0.34615384615384615
+Eigenfaces4x4 - Interpolacion Bilineal;2835.92; 8; 9; 1;16;0;0;0.5294117647058824; 0.0588235;0.38461538461538464
+Eigenfaces4x4 - Interpolacion Bilineal;2881.3; 8; 9; 2;15;0;0;0.5294117647058824; 0.117647;0.4230769230769231
+Eigenfaces4x4 - Interpolacion Bilineal;2926.67; 8; 9; 3;14;0;0;0.5294117647058824; 0.176471;0.46153846153846156
+Eigenfaces4x4 - Interpolacion Bilineal;2972.05; 8; 9; 5;12;0;0;0.5294117647058824; 0.294118;0.5384615384615384
+Eigenfaces4x4 - Interpolacion Bilineal;3017.42; 8; 9; 5;12;0;0;0.5294117647058824; 0.294118;0.5384615384615384
+Eigenfaces4x4 - Interpolacion Bilineal;3062.79; 8; 9; 7;10;0;0;0.5294117647058824; 0.411765;0.6153846153846154
+Eigenfaces4x4 - Interpolacion Bilineal;3108.17; 8; 9; 10;7;0;0;0.5294117647058824; 0.588235;0.7307692307692307
+Eigenfaces4x4 - Interpolacion Bilineal;3153.54; 8; 9; 10;7;0;0;0.5294117647058824; 0.588235;0.7307692307692307
+Eigenfaces4x4 - Interpolacion Bilineal;3198.92; 8; 9; 10;7;0;0;0.5294117647058824; 0.588235;0.7307692307692307
+Eigenfaces4x4 - Interpolacion Bilineal;3244.29; 8; 9; 11;6;0;0;0.5294117647058824; 0.647059;0.7692307692307693
+Eigenfaces4x4 - Interpolacion Bilineal;3289.66; 8; 9; 12;5;0;0;0.5294117647058824; 0.705882;0.8076923076923077
+Eigenfaces4x4 - Interpolacion Bilineal;3335.04; 8; 9; 12;5;0;0;0.5294117647058824; 0.705882;0.8076923076923077
+Eigenfaces4x4 - Interpolacion Bilineal;3380.41; 8; 9; 13;4;0;0;0.5294117647058824; 0.764706;0.8461538461538461
+Eigenfaces4x4 - Interpolacion Bilineal;3425.79; 8; 9; 15;2;0;0;0.5294117647058824; 0.882353;0.9230769230769231
+Eigenfaces4x4 - Interpolacion Bilineal;3471.16; 8; 9; 15;2;0;0;0.5294117647058824; 0.882353;0.9230769230769231
+Eigenfaces4x4 - Interpolacion Bilineal;3516.53; 8; 9; 15;2;0;0;0.5294117647058824; 0.882353;0.9230769230769231
+Eigenfaces4x4 - Interpolacion Bilineal;3561.91; 8; 9; 16;1;0;0;0.5294117647058824; 0.941176;0.9615384615384616
+Eigenfaces4x4 - Interpolacion Bilineal;3607.28; 8; 9; 16;1;0;0;0.5294117647058824; 0.941176;0.9615384615384616
+Eigenfaces4x4 - Interpolacion Bilineal;3652.66; 8; 9; 16;1;0;0;0.5294117647058824; 0.941176;0.9615384615384616
+Eigenfaces4x4 - Interpolacion Bilineal;3698.03; 8; 9; 17;0;0;0;0.5294117647058824; 1;1.0
+Eigenfaces4x4 - Interpolacion Bilineal;3743.4; 8; 9; 17;0;0;0;0.5294117647058824; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces4x4 - Interpolacion Bicubica;1339.69; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces4x4 - Interpolacion Bicubica;1387.44; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces4x4 - Interpolacion Bicubica;1435.19; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Bicubica;1482.95; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Bicubica;1530.7; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Bicubica;1578.46; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Bicubica;1626.21; 2; 2; 0;17;13;0.764706;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Bicubica;1673.96; 2; 2; 0;17;13;0.764706;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Bicubica;1721.72; 2; 2; 0;17;13;0.764706;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Bicubica;1769.47; 3; 2; 0;17;12;0.705882;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Bicubica;1817.23; 3; 3; 0;17;11;0.647059;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Bicubica;1864.98; 3; 3; 0;17;11;0.647059;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Bicubica;1912.73; 4; 3; 0;17;10;0.588235;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Bicubica;1960.49; 4; 4; 0;17;9;0.529412;0.23529411764705882; 0;0.19047619047619047
+Eigenfaces4x4 - Interpolacion Bicubica;2008.24; 4; 6; 0;17;7;0.411765;0.35294117647058826; 0;0.2608695652173913
+Eigenfaces4x4 - Interpolacion Bicubica;2056; 5; 8; 0;17;4;0.235294;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bicubica;2103.75; 5; 8; 0;17;4;0.235294;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bicubica;2151.5; 6; 8; 0;17;3;0.176471;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bicubica;2199.26; 6; 8; 0;17;3;0.176471;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bicubica;2247.01; 7; 8; 0;17;2;0.117647;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bicubica;2294.77; 8; 8; 0;17;1;0.0588235;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bicubica;2342.52; 9; 8; 0;17;0;0;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bicubica;2390.27; 9; 8; 0;17;0;0;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bicubica;2438.03; 9; 8; 0;17;0;0;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bicubica;2485.78; 9; 8; 0;17;0;0;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bicubica;2533.54; 9; 8; 0;17;0;0;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bicubica;2581.29; 9; 8; 0;17;0;0;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bicubica;2629.04; 9; 8; 0;17;0;0;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bicubica;2676.8; 9; 8; 0;17;0;0;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bicubica;2724.55; 9; 8; 0;17;0;0;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bicubica;2772.31; 9; 8; 0;17;0;0;0.47058823529411764; 0;0.32
+Eigenfaces4x4 - Interpolacion Bicubica;2820.06; 9; 8; 1;16;0;0;0.47058823529411764; 0.0588235;0.36
+Eigenfaces4x4 - Interpolacion Bicubica;2867.81; 9; 8; 1;16;0;0;0.47058823529411764; 0.0588235;0.36
+Eigenfaces4x4 - Interpolacion Bicubica;2915.57; 9; 8; 3;14;0;0;0.47058823529411764; 0.176471;0.44
+Eigenfaces4x4 - Interpolacion Bicubica;2963.32; 9; 8; 5;12;0;0;0.47058823529411764; 0.294118;0.52
+Eigenfaces4x4 - Interpolacion Bicubica;3011.08; 9; 8; 5;12;0;0;0.47058823529411764; 0.294118;0.52
+Eigenfaces4x4 - Interpolacion Bicubica;3058.83; 9; 8; 7;10;0;0;0.47058823529411764; 0.411765;0.6
+Eigenfaces4x4 - Interpolacion Bicubica;3106.58; 9; 8; 10;7;0;0;0.47058823529411764; 0.588235;0.72
+Eigenfaces4x4 - Interpolacion Bicubica;3154.34; 9; 8; 10;7;0;0;0.47058823529411764; 0.588235;0.72
+Eigenfaces4x4 - Interpolacion Bicubica;3202.09; 9; 8; 10;7;0;0;0.47058823529411764; 0.588235;0.72
+Eigenfaces4x4 - Interpolacion Bicubica;3249.85; 9; 8; 10;7;0;0;0.47058823529411764; 0.588235;0.72
+Eigenfaces4x4 - Interpolacion Bicubica;3297.6; 9; 8; 11;6;0;0;0.47058823529411764; 0.647059;0.76
+Eigenfaces4x4 - Interpolacion Bicubica;3345.35; 9; 8; 12;5;0;0;0.47058823529411764; 0.705882;0.8
+Eigenfaces4x4 - Interpolacion Bicubica;3393.11; 9; 8; 13;4;0;0;0.47058823529411764; 0.764706;0.84
+Eigenfaces4x4 - Interpolacion Bicubica;3440.86; 9; 8; 15;2;0;0;0.47058823529411764; 0.882353;0.92
+Eigenfaces4x4 - Interpolacion Bicubica;3488.62; 9; 8; 15;2;0;0;0.47058823529411764; 0.882353;0.92
+Eigenfaces4x4 - Interpolacion Bicubica;3536.37; 9; 8; 15;2;0;0;0.47058823529411764; 0.882353;0.92
+Eigenfaces4x4 - Interpolacion Bicubica;3584.12; 9; 8; 15;2;0;0;0.47058823529411764; 0.882353;0.92
+Eigenfaces4x4 - Interpolacion Bicubica;3631.88; 9; 8; 16;1;0;0;0.47058823529411764; 0.941176;0.96
+Eigenfaces4x4 - Interpolacion Bicubica;3679.63; 9; 8; 16;1;0;0;0.47058823529411764; 0.941176;0.96
+Eigenfaces4x4 - Interpolacion Bicubica;3727.39; 9; 8; 16;1;0;0;0.47058823529411764; 0.941176;0.96
+Eigenfaces4x4 - Interpolacion Bicubica;3775.14; 9; 8; 17;0;0;0;0.47058823529411764; 1;1.0
+
+Algoritmo;Umbral usado;Verdaderos positivos;Positivos confundidos;Falsos positivos;Verdaderos negativos;Falsos negativos;FNR;FCPR;FPR;RFPR
+Eigenfaces4x4 - Interpolacion Lanczos;1315.96; 0; 0; 0;17;17;1;0.0; 0;0.0
+Eigenfaces4x4 - Interpolacion Lanczos;1363.88; 1; 0; 0;17;16;0.941176;0.0; 0;0.0
+Eigenfaces4x4 - Interpolacion Lanczos;1411.8; 2; 0; 0;17;15;0.882353;0.0; 0;0.0
+Eigenfaces4x4 - Interpolacion Lanczos;1459.72; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Lanczos;1507.64; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Lanczos;1555.56; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Lanczos;1603.49; 2; 1; 0;17;14;0.823529;0.058823529411764705; 0;0.05555555555555555
+Eigenfaces4x4 - Interpolacion Lanczos;1651.41; 2; 2; 0;17;13;0.764706;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Lanczos;1699.33; 2; 2; 0;17;13;0.764706;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Lanczos;1747.25; 2; 2; 0;17;13;0.764706;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Lanczos;1795.17; 3; 2; 0;17;12;0.705882;0.11764705882352941; 0;0.10526315789473684
+Eigenfaces4x4 - Interpolacion Lanczos;1843.09; 3; 3; 0;17;11;0.647059;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Lanczos;1891.01; 3; 3; 0;17;11;0.647059;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Lanczos;1938.93; 4; 3; 0;17;10;0.588235;0.17647058823529413; 0;0.15
+Eigenfaces4x4 - Interpolacion Lanczos;1986.86; 4; 4; 0;17;9;0.529412;0.23529411764705882; 0;0.19047619047619047
+Eigenfaces4x4 - Interpolacion Lanczos;2034.78; 6; 6; 0;17;5;0.294118;0.35294117647058826; 0;0.2608695652173913
+Eigenfaces4x4 - Interpolacion Lanczos;2082.7; 6; 7; 0;17;4;0.235294;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Lanczos;2130.62; 7; 7; 0;17;3;0.176471;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Lanczos;2178.54; 7; 7; 0;17;3;0.176471;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Lanczos;2226.46; 7; 7; 0;17;3;0.176471;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Lanczos;2274.38; 8; 7; 0;17;2;0.117647;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Lanczos;2322.3; 9; 7; 0;17;1;0.0588235;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Lanczos;2370.23; 10; 7; 0;17;0;0;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Lanczos;2418.15; 10; 7; 0;17;0;0;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Lanczos;2466.07; 10; 7; 0;17;0;0;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Lanczos;2513.99; 10; 7; 0;17;0;0;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Lanczos;2561.91; 10; 7; 0;17;0;0;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Lanczos;2609.83; 10; 7; 0;17;0;0;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Lanczos;2657.75; 10; 7; 0;17;0;0;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Lanczos;2705.67; 10; 7; 0;17;0;0;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Lanczos;2753.6; 10; 7; 0;17;0;0;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Lanczos;2801.52; 10; 7; 0;17;0;0;0.4117647058823529; 0;0.2916666666666667
+Eigenfaces4x4 - Interpolacion Lanczos;2849.44; 10; 7; 1;16;0;0;0.4117647058823529; 0.0588235;0.3333333333333333
+Eigenfaces4x4 - Interpolacion Lanczos;2897.36; 10; 7; 1;16;0;0;0.4117647058823529; 0.0588235;0.3333333333333333
+Eigenfaces4x4 - Interpolacion Lanczos;2945.28; 10; 7; 2;15;0;0;0.4117647058823529; 0.117647;0.375
+Eigenfaces4x4 - Interpolacion Lanczos;2993.2; 10; 7; 5;12;0;0;0.4117647058823529; 0.294118;0.5
+Eigenfaces4x4 - Interpolacion Lanczos;3041.12; 10; 7; 5;12;0;0;0.4117647058823529; 0.294118;0.5
+Eigenfaces4x4 - Interpolacion Lanczos;3089.04; 10; 7; 10;7;0;0;0.4117647058823529; 0.588235;0.7083333333333334
+Eigenfaces4x4 - Interpolacion Lanczos;3136.97; 10; 7; 10;7;0;0;0.4117647058823529; 0.588235;0.7083333333333334
+Eigenfaces4x4 - Interpolacion Lanczos;3184.89; 10; 7; 10;7;0;0;0.4117647058823529; 0.588235;0.7083333333333334
+Eigenfaces4x4 - Interpolacion Lanczos;3232.81; 10; 7; 10;7;0;0;0.4117647058823529; 0.588235;0.7083333333333334
+Eigenfaces4x4 - Interpolacion Lanczos;3280.73; 10; 7; 10;7;0;0;0.4117647058823529; 0.588235;0.7083333333333334
+Eigenfaces4x4 - Interpolacion Lanczos;3328.65; 10; 7; 12;5;0;0;0.4117647058823529; 0.705882;0.7916666666666666
+Eigenfaces4x4 - Interpolacion Lanczos;3376.57; 10; 7; 13;4;0;0;0.4117647058823529; 0.764706;0.8333333333333334
+Eigenfaces4x4 - Interpolacion Lanczos;3424.49; 10; 7; 14;3;0;0;0.4117647058823529; 0.823529;0.875
+Eigenfaces4x4 - Interpolacion Lanczos;3472.41; 10; 7; 15;2;0;0;0.4117647058823529; 0.882353;0.9166666666666666
+Eigenfaces4x4 - Interpolacion Lanczos;3520.33; 10; 7; 15;2;0;0;0.4117647058823529; 0.882353;0.9166666666666666
+Eigenfaces4x4 - Interpolacion Lanczos;3568.26; 10; 7; 15;2;0;0;0.4117647058823529; 0.882353;0.9166666666666666
+Eigenfaces4x4 - Interpolacion Lanczos;3616.18; 10; 7; 16;1;0;0;0.4117647058823529; 0.941176;0.9583333333333334
+Eigenfaces4x4 - Interpolacion Lanczos;3664.1; 10; 7; 16;1;0;0;0.4117647058823529; 0.941176;0.9583333333333334
+Eigenfaces4x4 - Interpolacion Lanczos;3712.02; 10; 7; 17;0;0;0;0.4117647058823529; 1;1.0
+Eigenfaces4x4 - Interpolacion Lanczos;3759.94; 10; 7; 17;0;0;0;0.4117647058823529; 1;1.0
+

@@ -157,7 +157,7 @@ namespace tfg
 	{
 		//Calcular índices estadísticos
 		fnr = (double)falsosNegativos / ((double)verdaderosPositivos + (double) positivosConfundidos + (double)falsosNegativos);
-		fcpr = (double)positivosConfundidos / ((double)verdaderosPositivos + (double)positivosConfundidos);
+		fcpr = (double)positivosConfundidos / ((double)verdaderosPositivos + (double)positivosConfundidos + (double)falsosNegativos);
 		fpr = (double)falsosPositivos / ((double)verdaderosNegativos + (double)falsosPositivos);
 
 		//Comprobar desborde de fcpr
