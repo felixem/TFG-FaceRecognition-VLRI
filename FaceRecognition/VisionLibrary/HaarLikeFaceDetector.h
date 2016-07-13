@@ -27,6 +27,10 @@ namespace tfg
 		bool detectFaces(const cv::Mat & input, std::vector<cv::Mat>& foundFaces, cv::Mat & output,
 			float scale = 1.01, int minWidth = 16, int minHeight = 16, int maxWidth = 0, int maxHeight = 0);
 
+		//Detectar caras en una imagen devolviendo las caras a color también
+		bool detectFaces(const cv::Mat & input, std::vector<cv::Mat>& grayFoundFaces, std::vector<cv::Mat>& colourFoundFaces, cv::Mat & output,
+			float scale = 1.01, int minWidth = 16, int minHeight = 16, int maxWidth = 0, int maxHeight = 0);
+
 		//Extraer la cara principal de la imagen
 		void extractMainFace(const cv::Mat &img, cv::Mat &face, int minWidth, int minHeight, int finalWidth, int finalHeight);
 
