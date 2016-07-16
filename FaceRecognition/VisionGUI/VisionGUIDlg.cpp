@@ -25,23 +25,29 @@
 
 //Método para convertir una imagen de opencv en una imagen para mostrar
 void prepareImgToShow(const cv::Mat &img, CBitmap& output);
-//Método para convertir una imagen de opencv en una imagen para mostrar
-void prepareImgToShowV2(const cv::Mat &img, CBitmap& output);
 //Destruir caras encontradas
 void closeFaceWindows();
+//Convertir CString en String
+std::string cStringToString(const CString& str);
 
 //Imagen cargada en memoria
 cv::Mat imgCargada;
 //Nombre base de las ventanas
 const std::string windowBaseName = "Cara ";
+//Nombre del fichero de detección de caras
+const std::string ficFaceDetector = "sources/haarlike/haarcascade_frontalface_alt.xml";
 //Detector de caras
-tfg::HaarLikeFaceDetector faceDetector("sources/haarlike/haarcascade_frontalface_alt.xml");
+tfg::HaarLikeFaceDetector faceDetector(ficFaceDetector);
 //Upsampler
 tfg::SimpleImageUpsampler upSampler(cv::InterpolationFlags::INTER_LANCZOS4);
 //Reconocedor de caras
 tfg::IFaceRecognizer *faceRecognizer;
 //Caras encontradas
 std::vector<cv::Mat> colourFoundFaces;
+//Escala de detección
+float escalaDeteccion = 1.05f;
+//Anchura y altura mínima de detección cara
+int anchuraMinFace = 16, anchuraMaxFace = 0, alturaMinFace = 16, alturaMaxFace = 0;
 
 // Cuadro de diálogo CAboutDlg utilizado para el comando Acerca de
 
@@ -89,6 +95,11 @@ CVisionGUIDlg::CVisionGUIDlg(CWnd* pParent /*=NULL*/)
 void CVisionGUIDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_EDIT_ESCALA, escalaString);
+	DDX_Control(pDX, IDC_EDIT_MIN_WIDTH_FACE, anchuraMinString);
+	DDX_Control(pDX, IDC_EDIT_MIN_HEIGHT_FACE, alturaMinString);
+	DDX_Control(pDX, IDC_EDIT_MAX_WIDTH_FACE, anchuraMaxString);
+	DDX_Control(pDX, IDC_EDIT_MAX_HEIGHT_FACE, AlturaMaxString);
 }
 
 BEGIN_MESSAGE_MAP(CVisionGUIDlg, CDialog)
@@ -99,6 +110,11 @@ BEGIN_MESSAGE_MAP(CVisionGUIDlg, CDialog)
 	ON_BN_CLICKED(PROCESSIMG_BUTTON, &CVisionGUIDlg::OnProcesarImagenClickedButton)
 	ON_BN_CLICKED(SHOW_FACES_BUTTON, &CVisionGUIDlg::OnMostrarCarasClickedFacesButton)
 	ON_BN_CLICKED(IDC_BUTTON_OCULTAR_CARAS, &CVisionGUIDlg::OnClickedButtonOcultarCaras)
+	ON_EN_CHANGE(IDC_EDIT_ESCALA, &CVisionGUIDlg::OnEnChangeEditEscala)
+	ON_EN_CHANGE(IDC_EDIT_MIN_WIDTH_FACE, &CVisionGUIDlg::OnEnChangeEditMinWidthFace)
+	ON_EN_CHANGE(IDC_EDIT_MIN_HEIGHT_FACE, &CVisionGUIDlg::OnEnChangeEditMinHeightFace)
+	ON_EN_CHANGE(IDC_EDIT_MAX_WIDTH_FACE, &CVisionGUIDlg::OnEnChangeEditMaxWidthFace)
+	ON_EN_CHANGE(IDC_EDIT_MAX_HEIGHT_FACE, &CVisionGUIDlg::OnEnChangeEditMaxHeightFace)
 END_MESSAGE_MAP()
 
 
@@ -134,6 +150,12 @@ BOOL CVisionGUIDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Establecer icono pequeño
 
 	// TODO: agregar aquí inicialización adicional
+	//Inicializar texto de los textboxes
+	escalaString.SetWindowText(std::to_string(escalaDeteccion).c_str());
+	anchuraMinString.SetWindowText(std::to_string(anchuraMinFace).c_str());
+	alturaMinString.SetWindowText(std::to_string(alturaMinFace).c_str());
+	anchuraMaxString.SetWindowText(std::to_string(anchuraMaxFace).c_str());
+	AlturaMaxString.SetWindowText(std::to_string(alturaMaxFace).c_str());
 
 	return TRUE;  // Devuelve TRUE  a menos que establezca el foco en un control
 }
@@ -200,11 +222,7 @@ void CVisionGUIDlg::OnLoadImageClickedButton()
 		closeFaceWindows();
 
 		//Obtener path y panel de la imagen
-		CString path = dlg.GetPathName();
-		// Convertir path a formato string normal
-		CT2CA pszConvertedAnsiString(path);
-		// construct a std::string using the LPCSTR input
-		std::string pathStr(pszConvertedAnsiString);
+		std::string pathStr = cStringToString(dlg.GetPathName());
 
 		//Cargar imagen
 		imgCargada = cv::imread(pathStr);
@@ -214,7 +232,7 @@ void CVisionGUIDlg::OnLoadImageClickedButton()
 		//Preparar imagen para mostrar
 		CBitmap bitmap;
 		//Convertir imagen
-		prepareImgToShowV2(imgCargada, bitmap);
+		prepareImgToShow(imgCargada, bitmap);
 
 		//Mostrar imagen
 		CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_CONTROL);
@@ -226,63 +244,6 @@ void CVisionGUIDlg::OnLoadImageClickedButton()
 
 //Método para convertir una imagen de opencv en una imagen para mostrar
 void prepareImgToShow(const cv::Mat &img, CBitmap& output)
-{
-	//Imagen final para mostrado
-	cv::Mat imgFinal;
-
-	//Crear downsampler
-	tfg::ImageDownsampler downsampler;
-	//Bajar de resolución la imagen si es necesario
-	if (img.size().width > IMG_WIDTH || img.size().height > IMG_HEIGHT)
-	{
-		//Ajustar tamaños
-		int width = std::min(img.size().width, IMG_WIDTH);
-		int height = std::min(img.size().height, IMG_HEIGHT);
-		//Realizar downsampling
-		cv::Mat downsampled;
-		downsampler.downSampleWithNoNoise(img, downsampled, height, width, cv::InterpolationFlags::INTER_AREA);
-		//Asignar a la imagen original
-		imgFinal = downsampled.clone();
-	}
-	else
-	{
-		imgFinal = img.clone();
-	}
-
-	//Rotar la imagen
-	cv::flip(imgFinal, imgFinal, 0);
-
-	//Convertir imagen a formato de salida
-	CImage* m_pImg = new CImage();
-	m_pImg->Create(imgFinal.size().width, imgFinal.size().height, 24);
-	//Información de mapa de bits
-	BITMAPINFO bitInfo;
-	bitInfo.bmiHeader.biBitCount = 24;
-	bitInfo.bmiHeader.biWidth = imgFinal.size().width;
-	bitInfo.bmiHeader.biHeight = imgFinal.size().height;
-	bitInfo.bmiHeader.biPlanes = 1;
-	bitInfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-	bitInfo.bmiHeader.biCompression = BI_RGB;
-	bitInfo.bmiHeader.biClrImportant =
-		bitInfo.bmiHeader.biClrUsed =
-		bitInfo.bmiHeader.biSizeImage =
-		bitInfo.bmiHeader.biXPelsPerMeter =
-		bitInfo.bmiHeader.biYPelsPerMeter = 0;
-	//Pasar la información
-	StretchDIBits(m_pImg->GetDC(), 0, 0,
-		imgFinal.size().width, imgFinal.size().height, 0, 0,
-		imgFinal.size().width, imgFinal.size().height,
-		imgFinal.data, &bitInfo, DIB_RGB_COLORS, SRCCOPY);
-	//Preparar imagen para mostrar
-	m_pImg->ReleaseDC();
-	output.Attach(m_pImg->Detach());
-
-	//Liberar objeto
-	delete m_pImg;
-}
-
-//Método para convertir una imagen de opencv en una imagen para mostrar
-void prepareImgToShowV2(const cv::Mat &img, CBitmap& output)
 {
 	//Imagen final para mostrado
 	cv::Mat imgFinal;
@@ -353,13 +314,27 @@ void CVisionGUIDlg::OnProcesarImagenClickedButton()
 	colourFoundFaces.clear();
 	//Caras grises detectadas
 	std::vector<cv::Mat> grayFoundFaces;
-	//Detectar caras
-	faceDetector.detectFaces(imgCargada, grayFoundFaces, colourFoundFaces, imgFinal, 1.05, 16, 16);
+
+	try
+	{
+		//Detectar caras
+		faceDetector.detectFaces(imgCargada, grayFoundFaces, colourFoundFaces, imgFinal,
+			escalaDeteccion, anchuraMinFace, alturaMinFace, anchuraMaxFace, alturaMaxFace);
+	}
+	catch (...)
+	{
+		//Mostrar mensaje de error
+		AfxMessageBox(_T("Memoria Insuficiente"), MB_OK | MB_ICONSTOP);
+		//Renovar detector de caras
+		faceDetector = tfg::HaarLikeFaceDetector(ficFaceDetector);
+		//La imagen final es la original cargada
+		imgFinal = imgCargada.clone();
+	}
 
 	//Preparar imagen para mostrar
 	CBitmap bitmap;
 	//Convertir imagen
-	prepareImgToShowV2(imgFinal, bitmap);
+	prepareImgToShow(imgFinal, bitmap);
 
 	//Mostrar imagen
 	CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_CONTROL);
@@ -397,4 +372,148 @@ void closeFaceWindows()
 void CVisionGUIDlg::OnClickedButtonOcultarCaras()
 {
 	closeFaceWindows();
+}
+
+//Cambio de escala
+void CVisionGUIDlg::OnEnChangeEditEscala()
+{
+	//Obtener el texto de escala
+	CString escala;
+	GetDlgItemText(IDC_EDIT_ESCALA, escala);
+
+	//Convertir a string convencional
+	std::string escalaStr = cStringToString(escala);
+	//Intentar convertir a float
+	float nuevaEscala;
+
+	try
+	{
+		//Convertir nueva escala
+		nuevaEscala = std::stof(escalaStr);
+		//Pasarla a la variable de escala de detección
+		escalaDeteccion = nuevaEscala;
+
+	}
+	catch (...)
+	{
+		//Reestablecer el texto
+		escalaString.SetWindowText(std::to_string(escalaDeteccion).c_str());
+	}
+}
+
+//Convertir CString en String
+std::string cStringToString(const CString& str)
+{
+	// Convertir cstring a formato string normal
+	CT2CA pszConvertedAnsiString(str);
+	// construct a std::string using the LPCSTR input
+	return std::string(pszConvertedAnsiString);
+}
+
+//Cambio de anchura mínima de cara
+void CVisionGUIDlg::OnEnChangeEditMinWidthFace()
+{
+	//Obtener el texto
+	CString valor;
+	GetDlgItemText(IDC_EDIT_MIN_WIDTH_FACE, valor);
+
+	//Convertir a string convencional
+	std::string valorStr = cStringToString(valor);
+	//Intentar convertir a entero
+	int nuevoValor;
+
+	try
+	{
+		//Convertir nuevo valor
+		nuevoValor = std::stoi(valorStr);
+		//Pasarla a la variable original
+		anchuraMinFace = nuevoValor;
+
+	}
+	catch (...)
+	{
+		//Reestablecer el texto
+		anchuraMinString.SetWindowText(std::to_string(anchuraMinFace).c_str());
+	}
+}
+
+//Cambio de altura mínima de cara
+void CVisionGUIDlg::OnEnChangeEditMinHeightFace()
+{
+	//Obtener el texto
+	CString valor;
+	GetDlgItemText(IDC_EDIT_MIN_HEIGHT_FACE, valor);
+
+	//Convertir a string convencional
+	std::string valorStr = cStringToString(valor);
+	//Intentar convertir a entero
+	int nuevoValor;
+
+	try
+	{
+		//Convertir nuevo valor
+		nuevoValor = std::stoi(valorStr);
+		//Pasarla a la variable original
+		alturaMinFace = nuevoValor;
+
+	}
+	catch (...)
+	{
+		//Reestablecer el texto
+		alturaMinString.SetWindowText(std::to_string(alturaMinFace).c_str());
+	}
+}
+
+//Cambio de anchura máxima de cara
+void CVisionGUIDlg::OnEnChangeEditMaxWidthFace()
+{
+	//Obtener el texto
+	CString valor;
+	GetDlgItemText(IDC_EDIT_MAX_WIDTH_FACE, valor);
+
+	//Convertir a string convencional
+	std::string valorStr = cStringToString(valor);
+	//Intentar convertir a entero
+	int nuevoValor;
+
+	try
+	{
+		//Convertir nuevo valor
+		nuevoValor = std::stoi(valorStr);
+		//Pasarla a la variable original
+		anchuraMaxFace = nuevoValor;
+
+	}
+	catch (...)
+	{
+		//Reestablecer el texto
+		anchuraMaxString.SetWindowText(std::to_string(anchuraMaxFace).c_str());
+	}
+}
+
+//Cambio de altura máxima de cara
+void CVisionGUIDlg::OnEnChangeEditMaxHeightFace()
+{
+	//Obtener el texto
+	CString valor;
+	GetDlgItemText(IDC_EDIT_MAX_HEIGHT_FACE, valor);
+
+	//Convertir a string convencional
+	std::string valorStr = cStringToString(valor);
+	//Intentar convertir a entero
+	int nuevoValor;
+
+	try
+	{
+		//Convertir nuevo valor
+		nuevoValor = std::stoi(valorStr);
+		//Pasarla a la variable original
+		alturaMaxFace = nuevoValor;
+
+	}
+	catch (...)
+	{
+		//Reestablecer el texto
+		AlturaMaxString.SetWindowText(std::to_string(alturaMaxFace).c_str());
+	}
 }

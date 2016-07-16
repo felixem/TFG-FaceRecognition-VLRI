@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#include "afxwin.h"
 
 
 // Cuadro de diálogo de CVisionGUIDlg
@@ -36,4 +37,14 @@ public:
 	afx_msg void OnProcesarImagenClickedButton();
 	afx_msg void OnMostrarCarasClickedFacesButton();
 	afx_msg void OnClickedButtonOcultarCaras();
+	afx_msg void OnEnChangeEditEscala();
+	CEdit escalaString;
+	CEdit anchuraMinString;
+	CEdit alturaMinString;
+	afx_msg void OnEnChangeEditMinWidthFace();
+	afx_msg void OnEnChangeEditMinHeightFace();
+	CEdit anchuraMaxString;
+	CEdit AlturaMaxString;
+	afx_msg void OnEnChangeEditMaxWidthFace();
+	afx_msg void OnEnChangeEditMaxHeightFace();
 };

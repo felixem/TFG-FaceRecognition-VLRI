@@ -157,17 +157,7 @@ namespace tfg
 			colourFoundFaces.push_back(crop);
 
 			//Convertir imagen a escala de grises
-			Mat gray;
-			//Comprobar si es rgb
-			if (crop.channels() == 3)
-			{
-				cvtColor(crop, gray, CV_BGR2GRAY);
-			}
-			else
-			{
-				gray = crop;
-			}
-
+			Mat gray = frame_gray(roi_c);
 			//Añadir cara en gris a la lista de caras
 			grayFoundFaces.push_back(gray);
 		}
