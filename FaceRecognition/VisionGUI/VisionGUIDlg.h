@@ -47,4 +47,11 @@ public:
 	CEdit AlturaMaxString;
 	afx_msg void OnEnChangeEditMaxWidthFace();
 	afx_msg void OnEnChangeEditMaxHeightFace();
+	CComboBox comboboxRecognizer;
+	CComboBox comboboxUpsampler;
+	afx_msg void OnCbnSelchangeComboRecognizer();
+	afx_msg void OnCbnSelchangeComboUpsampler();
+	afx_msg void OnBnClickedButtonLoadmodel();
+	CEdit umbralReconocimientoString;
+	afx_msg void OnEnChangeEditUmbral();
 };

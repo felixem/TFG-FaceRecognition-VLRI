@@ -12,6 +12,7 @@
 #include "EigenFacesRecognizer.h"
 #include "FisherFacesRecognizer.h"
 #include "LBPRecognizer.h"
+#include "SimpleImageUpsampler.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -29,6 +30,12 @@ void prepareImgToShow(const cv::Mat &img, CBitmap& output);
 void closeFaceWindows();
 //Convertir CString en String
 std::string cStringToString(const CString& str);
+//Mostrar imagen en pictureControl
+void showImage(const cv::Mat& img, CStatic* pictureControl);
+//Generar algoritmo de reconocimiento según índice seleccionado
+tfg::IFaceRecognizer* generateRecognizer(int id);
+//Generar algoritmo de upsampling según índice seleccionado
+tfg::ImageUpsampler* generateUpsampler(int id);
 
 //Imagen cargada en memoria
 cv::Mat imgCargada;
@@ -38,8 +45,6 @@ const std::string windowBaseName = "Cara ";
 const std::string ficFaceDetector = "sources/haarlike/haarcascade_frontalface_alt.xml";
 //Detector de caras
 tfg::HaarLikeFaceDetector faceDetector(ficFaceDetector);
-//Upsampler
-tfg::SimpleImageUpsampler upSampler(cv::InterpolationFlags::INTER_LANCZOS4);
 //Reconocedor de caras
 tfg::IFaceRecognizer *faceRecognizer;
 //Caras encontradas
@@ -48,6 +53,12 @@ std::vector<cv::Mat> colourFoundFaces;
 float escalaDeteccion = 1.05f;
 //Anchura y altura mínima de detección cara
 int anchuraMinFace = 16, anchuraMaxFace = 0, alturaMinFace = 16, alturaMaxFace = 0;
+//Umbral de reconocimiento
+float umbralReconocimiento = std::numeric_limits<float>::max();
+//Upsampler
+tfg::ImageUpsampler *upsampler;
+//Reconocedor de caras
+tfg::IFaceRecognizer *recognizer;
 
 // Cuadro de diálogo CAboutDlg utilizado para el comando Acerca de
 
@@ -100,6 +111,9 @@ void CVisionGUIDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT_MIN_HEIGHT_FACE, alturaMinString);
 	DDX_Control(pDX, IDC_EDIT_MAX_WIDTH_FACE, anchuraMaxString);
 	DDX_Control(pDX, IDC_EDIT_MAX_HEIGHT_FACE, AlturaMaxString);
+	DDX_Control(pDX, IDC_COMBO_RECOGNIZER, comboboxRecognizer);
+	DDX_Control(pDX, IDC_COMBO_UPSAMPLER, comboboxUpsampler);
+	DDX_Control(pDX, IDC_EDIT_UMBRAL, umbralReconocimientoString);
 }
 
 BEGIN_MESSAGE_MAP(CVisionGUIDlg, CDialog)
@@ -115,6 +129,10 @@ BEGIN_MESSAGE_MAP(CVisionGUIDlg, CDialog)
 	ON_EN_CHANGE(IDC_EDIT_MIN_HEIGHT_FACE, &CVisionGUIDlg::OnEnChangeEditMinHeightFace)
 	ON_EN_CHANGE(IDC_EDIT_MAX_WIDTH_FACE, &CVisionGUIDlg::OnEnChangeEditMaxWidthFace)
 	ON_EN_CHANGE(IDC_EDIT_MAX_HEIGHT_FACE, &CVisionGUIDlg::OnEnChangeEditMaxHeightFace)
+	ON_CBN_SELCHANGE(IDC_COMBO_RECOGNIZER, &CVisionGUIDlg::OnCbnSelchangeComboRecognizer)
+	ON_CBN_SELCHANGE(IDC_COMBO_UPSAMPLER, &CVisionGUIDlg::OnCbnSelchangeComboUpsampler)
+	ON_BN_CLICKED(IDC_BUTTON_LOADMODEL, &CVisionGUIDlg::OnBnClickedButtonLoadmodel)
+	ON_EN_CHANGE(IDC_EDIT_UMBRAL, &CVisionGUIDlg::OnEnChangeEditUmbral)
 END_MESSAGE_MAP()
 
 
@@ -156,6 +174,13 @@ BOOL CVisionGUIDlg::OnInitDialog()
 	alturaMinString.SetWindowText(std::to_string(alturaMinFace).c_str());
 	anchuraMaxString.SetWindowText(std::to_string(anchuraMaxFace).c_str());
 	AlturaMaxString.SetWindowText(std::to_string(alturaMaxFace).c_str());
+	umbralReconocimientoString.SetWindowText(std::to_string(umbralReconocimiento).c_str());
+	//Inicializar selección de comboboxes
+	comboboxRecognizer.SetCurSel(0);
+	comboboxUpsampler.SetCurSel(0);
+	//Generar reconocedor y upsampler
+	recognizer = generateRecognizer(comboboxRecognizer.GetCurSel());
+	upsampler = generateUpsampler(comboboxUpsampler.GetCurSel());
 
 	return TRUE;  // Devuelve TRUE  a menos que establezca el foco en un control
 }
@@ -229,15 +254,11 @@ void CVisionGUIDlg::OnLoadImageClickedButton()
 
 		//Limpiar las caras detectadas
 		colourFoundFaces.clear();
-		//Preparar imagen para mostrar
-		CBitmap bitmap;
-		//Convertir imagen
-		prepareImgToShow(imgCargada, bitmap);
 
 		//Mostrar imagen
 		CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_CONTROL);
-		pictureControl->ModifyStyle(0xF, SS_BITMAP, SWP_NOSIZE);
-		pictureControl->SetBitmap(bitmap);
+		//Mostrar imagen
+		showImage(imgCargada, pictureControl);
 		UpdateData(FALSE);
 	}
 }
@@ -308,6 +329,12 @@ void CVisionGUIDlg::OnProcesarImagenClickedButton()
 	//Destruir las ventanas de caras
 	closeFaceWindows();
 
+	//Mostrar imagen original
+	CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_CONTROL);
+	//Mostrar imagen
+	showImage(imgCargada, pictureControl);
+	UpdateData(FALSE);
+
 	//Imagen resultado
 	cv::Mat imgFinal;
 	//Limpiar caras a color
@@ -331,31 +358,27 @@ void CVisionGUIDlg::OnProcesarImagenClickedButton()
 		imgFinal = imgCargada.clone();
 	}
 
-	//Preparar imagen para mostrar
-	CBitmap bitmap;
-	//Convertir imagen
-	prepareImgToShow(imgFinal, bitmap);
-
 	//Mostrar imagen
-	CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_CONTROL);
-	pictureControl->ModifyStyle(0xF, SS_BITMAP, SWP_NOSIZE);
-	pictureControl->SetBitmap(bitmap);
+	showImage(imgFinal, pictureControl);
 	UpdateData(FALSE);
 }
 
 //Botón para mostrar caras
 void CVisionGUIDlg::OnMostrarCarasClickedFacesButton()
 {
+	//Ocultar las caras
+	closeFaceWindows();
 	//Abrir ventanas de opencv con las caras encontradas realizando cambio de resolución al tamaño indicado
 	for (unsigned int i = 0; i < colourFoundFaces.size(); ++i)
 	{
 		const cv::Mat &face = colourFoundFaces[i];
 		//Ajustar cara al tamaño indicado
 		cv::Mat finalFace;
-		upSampler.upSample(face, finalFace, FACE_HEIGHT, FACE_WIDTH);
+		upsampler->upSample(face, finalFace, FACE_HEIGHT, FACE_WIDTH);
 		//Mostrar cara
 		std::string windowName = windowBaseName + std::to_string(i);
 		cv::imshow(windowName, finalFace);
+		//Mover ventana
 		cv::moveWindow(windowName, i%FACES_X_ROW*(FACE_WIDTH+85), i / FACES_X_ROW * (FACE_HEIGHT+47));
 		cv::waitKey(20);
 	}
@@ -515,5 +538,131 @@ void CVisionGUIDlg::OnEnChangeEditMaxHeightFace()
 	{
 		//Reestablecer el texto
 		AlturaMaxString.SetWindowText(std::to_string(alturaMaxFace).c_str());
+	}
+}
+
+//Mostrar imagen en pictureControl
+void showImage(const cv::Mat& img, CStatic* pictureControl)
+{
+	//Preparar imagen para mostrar
+	CBitmap bitmap;
+	//Convertir imagen
+	prepareImgToShow(img, bitmap);
+
+	//Mostrar imagen
+	pictureControl->ModifyStyle(0xF, SS_BITMAP, SWP_NOSIZE);
+	pictureControl->SetBitmap(bitmap);
+}
+
+//Generar algoritmo de reconocimiento según índice seleccionado
+tfg::IFaceRecognizer* generateRecognizer(int id)
+{
+	//Reconocedor
+	tfg::IFaceRecognizer* reconocedor = NULL;
+
+	//Devolver reconocedor según id seleccionado
+	switch (id)
+	{
+		case 0: reconocedor = new tfg::EigenFacesRecognizer();
+		case 1: reconocedor = new tfg::FisherFacesRecognizer();
+		case 2: reconocedor = new tfg::LBPRecognizer();
+		default:
+			return NULL;
+	}
+
+	//Establecer umbral al reconocedor
+	reconocedor->setUmbral(umbralReconocimiento);
+	return reconocedor;
+}
+
+//Generar algoritmo de upsampling según índice seleccionado
+tfg::ImageUpsampler* generateUpsampler(int id)
+{
+	//Devolver upsampler según id seleccionado
+	switch (id)
+	{
+		case 0: return new tfg::SimpleImageUpsampler(cv::InterpolationFlags::INTER_NEAREST);
+		case 1: return new tfg::SimpleImageUpsampler(cv::InterpolationFlags::INTER_AREA);
+		case 2: return new tfg::SimpleImageUpsampler(cv::InterpolationFlags::INTER_LINEAR);
+		case 3: return new tfg::SimpleImageUpsampler(cv::InterpolationFlags::INTER_CUBIC);
+		case 4: return new tfg::SimpleImageUpsampler(cv::InterpolationFlags::INTER_LANCZOS4);
+		default:
+			return NULL;
+	}
+}
+
+//Cambio de selección de algoritmo de reconocimiento
+void CVisionGUIDlg::OnCbnSelchangeComboRecognizer()
+{
+	//Liberar memoria del reconocedor
+	delete recognizer;
+	//Crear nuevo reconocedor
+	recognizer = generateRecognizer(comboboxRecognizer.GetCurSel());
+}
+
+//Cambio de selección de upsampler
+void CVisionGUIDlg::OnCbnSelchangeComboUpsampler()
+{
+	//Liberar memoria del upsampler
+	delete upsampler;
+	//Crear nuevo upsampler
+	upsampler = generateUpsampler(comboboxUpsampler.GetCurSel());
+}
+
+//Cargado de modelo
+void CVisionGUIDlg::OnBnClickedButtonLoadmodel()
+{
+	// TODO: Add your control notification handler code here
+	CFileDialog dlg(TRUE);
+	int result = dlg.DoModal();
+	//Comprobar que se ha cargado la imagen
+	if (result == IDOK)
+	{
+		//Obtener path del fichero
+		std::string pathStr = cStringToString(dlg.GetPathName());
+
+		//Cargar modelo de reconocimiento
+		try
+		{
+			recognizer->load(pathStr);
+		}
+		catch (...)
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("Error al cargar el modelo"), MB_OK | MB_ICONSTOP);
+			return;
+		}
+
+		//Mostrar mensaje de tarea realizada
+		AfxMessageBox(_T("Modelo cargado correctamente"), MB_OK | MB_ICONINFORMATION);
+	}
+}
+
+//Cambio del valor de umbral
+void CVisionGUIDlg::OnEnChangeEditUmbral()
+{
+	//Obtener el texto valor
+	CString umbral;
+	GetDlgItemText(IDC_EDIT_UMBRAL, umbral);
+
+	//Convertir a string convencional
+	std::string umbralStr = cStringToString(umbral);
+	//Intentar convertir a float
+	float nuevoUmbral;
+
+	try
+	{
+		//Convertir valor nuevo
+		nuevoUmbral = std::stof(umbralStr);
+		//Pasarla a la variable de umbral de reconocimiento
+		umbralReconocimiento = nuevoUmbral;
+		//Establecer umbral al reconocedor
+		if(recognizer != NULL)
+			recognizer->setUmbral(umbralReconocimiento);
+	}
+	catch (...)
+	{
+		//Reestablecer el texto
+		umbralReconocimientoString.SetWindowText(std::to_string(umbralReconocimiento).c_str());
 	}
 }
