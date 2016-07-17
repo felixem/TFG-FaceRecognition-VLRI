@@ -58,45 +58,16 @@ namespace tfg
 		//Imágenes intermedias
 		Mat frame_gray;
 
-		//Comprobar si es rgb
-		if (input.channels() == 3)
-		{
-			//Transformar la imagen de entrada en escala de grises
-			cvtColor(input, frame_gray, COLOR_BGR2GRAY);
-		}
-		else
-		{
-			//La imagen es tal cual
-			frame_gray = input;
-		}
-
-		//Ecualizar el histograma
-		equalizeHist(frame_gray, frame_gray);
-		//Copiar la imagen original para señalar las caras
-		output = input.clone();
-
-		//Detectar las caras
-		face_cascade.detectMultiScale(frame_gray, faces, scale, 3, 0 | CASCADE_SCALE_IMAGE, Size(minWidth, minHeight), Size(maxWidth,maxHeight));
+		//Detectar caras
+		this->detectLocatedFaces(input, faces, frame_gray, scale, minWidth, minHeight, maxWidth, maxHeight);
 
 		//Iterar sobre las caras encontradas
 		for (size_t ic = 0; ic < faces.size(); ic++) // Iterate through all current elements (detected faces)
 		{
 			//Establecer regiones de interés
 			const cv::Rect& roi_c = faces[ic];
-
-			//Obtener la cara en su tono original
-			Mat crop = input(roi_c);
-			//Convertir imagen a escala de grises
-			Mat gray;
-			//Comprobar si es rgb
-			if (crop.channels() == 3)
-			{
-				cvtColor(crop, gray, CV_BGR2GRAY);
-			}
-			else
-			{
-				gray = crop;
-			}
+			//Obtener cara en escala de grises
+			Mat gray = frame_gray(roi_c);
 
 			//Añadir cara en gris a la lista de caras
 			foundFaces.push_back(gray);
@@ -125,25 +96,8 @@ namespace tfg
 		//Imágenes intermedias
 		Mat frame_gray;
 
-		//Comprobar si es rgb
-		if (input.channels() == 3)
-		{
-			//Transformar la imagen de entrada en escala de grises
-			cvtColor(input, frame_gray, COLOR_BGR2GRAY);
-		}
-		else
-		{
-			//La imagen es tal cual
-			frame_gray = input;
-		}
-
-		//Ecualizar el histograma
-		equalizeHist(frame_gray, frame_gray);
-		//Copiar la imagen original para señalar las caras
-		output = input.clone();
-
-		//Detectar las caras
-		face_cascade.detectMultiScale(frame_gray, faces, scale, 3, 0 | CASCADE_SCALE_IMAGE, Size(minWidth, minHeight), Size(maxWidth, maxHeight));
+		//Detectar caras
+		this->detectLocatedFaces(input, faces, frame_gray, scale, minWidth, minHeight, maxWidth, maxHeight);
 
 		//Iterar sobre las caras encontradas
 		for (size_t ic = 0; ic < faces.size(); ic++) // Iterate through all current elements (detected faces)
@@ -174,6 +128,32 @@ namespace tfg
 
 		//Devolver si se ha encontrado una cara
 		return faces.size() != 0;
+	}
+
+	//Detectar caras en una imagen devolviendo los rectángulos y la imagen en escala de grises
+	bool HaarLikeFaceDetector::detectLocatedFaces(const cv::Mat & input, std::vector<cv::Rect>& rectFaces, cv::Mat & grayInput,
+		float scale, int minWidth, int minHeight, int maxWidth, int maxHeight)
+	{
+		//Comprobar si es rgb
+		if (input.channels() == 3)
+		{
+			//Transformar la imagen de entrada en escala de grises
+			cvtColor(input, grayInput, COLOR_BGR2GRAY);
+		}
+		else
+		{
+			//La imagen es tal cual
+			grayInput = input;
+		}
+
+		//Ecualizar el histograma
+		equalizeHist(grayInput, grayInput);
+
+		//Detectar las caras
+		face_cascade.detectMultiScale(grayInput, rectFaces, scale, 3, 0 | CASCADE_SCALE_IMAGE, Size(minWidth, minHeight), Size(maxWidth, maxHeight));
+
+		//Devolver si se ha encontrado alguna cara
+		return rectFaces.size();
 	}
 
 	//Extraer la cara principal de la imagen

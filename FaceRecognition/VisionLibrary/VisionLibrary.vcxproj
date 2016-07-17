@@ -140,8 +140,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CompleteFaceRecognizer.h" />
     <ClInclude Include="EigenFacesRecognizer.h" />
     <ClInclude Include="EigenTransformationUpsampler.h" />
+    <ClInclude Include="Face.h" />
     <ClInclude Include="FaceCSVReader.h" />
     <ClInclude Include="FisherFacesRecognizer.h" />
     <ClInclude Include="HaarLikeFaceDetector.h" />
@@ -155,8 +157,10 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CompleteFaceRecognizer.cpp" />
     <ClCompile Include="EigenFacesRecognizer.cpp" />
     <ClCompile Include="EigenTransformationUpsampler.cpp" />
+    <ClCompile Include="Face.cpp" />
     <ClCompile Include="FaceCSVReader.cpp" />
     <ClCompile Include="FisherFacesRecognizer.cpp" />
     <ClCompile Include="HaarLikeFaceDetector.cpp" />

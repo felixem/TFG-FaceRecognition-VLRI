@@ -13,6 +13,7 @@
 #include "FisherFacesRecognizer.h"
 #include "LBPRecognizer.h"
 #include "SimpleImageUpsampler.h"
+#include "CompleteFaceRecognizer.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -43,10 +44,9 @@ cv::Mat imgCargada;
 const std::string windowBaseName = "Cara ";
 //Nombre del fichero de detección de caras
 const std::string ficFaceDetector = "sources/haarlike/haarcascade_frontalface_alt.xml";
+
 //Detector de caras
 tfg::HaarLikeFaceDetector faceDetector(ficFaceDetector);
-//Reconocedor de caras
-tfg::IFaceRecognizer *faceRecognizer;
 //Caras encontradas
 std::vector<cv::Mat> colourFoundFaces;
 //Escala de detección
