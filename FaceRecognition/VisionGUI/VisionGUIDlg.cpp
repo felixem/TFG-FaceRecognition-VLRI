@@ -118,7 +118,7 @@ BEGIN_MESSAGE_MAP(CVisionGUIDlg, CDialog)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(LOADIMG_BUTTON, &CVisionGUIDlg::OnLoadImageClickedButton)
 	ON_BN_CLICKED(PROCESSIMG_BUTTON, &CVisionGUIDlg::OnProcesarImagenClickedButton)
-	ON_BN_CLICKED(SHOW_FACES_BUTTON, &CVisionGUIDlg::OnMostrarCarasClickedFacesButton)
+	ON_BN_CLICKED(SHOW_FACES_RECOGNIZED_BUTTON, &CVisionGUIDlg::OnMostrarCarasReconocidasClickedFacesButton)
 	ON_BN_CLICKED(IDC_BUTTON_OCULTAR_CARAS, &CVisionGUIDlg::OnClickedButtonOcultarCaras)
 	ON_EN_CHANGE(IDC_EDIT_ESCALA, &CVisionGUIDlg::OnEnChangeEditEscala)
 	ON_EN_CHANGE(IDC_EDIT_MIN_WIDTH_FACE, &CVisionGUIDlg::OnEnChangeEditMinWidthFace)
@@ -129,6 +129,7 @@ BEGIN_MESSAGE_MAP(CVisionGUIDlg, CDialog)
 	ON_CBN_SELCHANGE(IDC_COMBO_UPSAMPLER, &CVisionGUIDlg::OnCbnSelchangeComboUpsampler)
 	ON_BN_CLICKED(IDC_BUTTON_LOADMODEL, &CVisionGUIDlg::OnBnClickedButtonLoadmodel)
 	ON_EN_CHANGE(IDC_EDIT_UMBRAL, &CVisionGUIDlg::OnEnChangeEditUmbral)
+	ON_BN_CLICKED(SHOW_FACES_NOT_RECOGNIZED_BUTTON2, &CVisionGUIDlg::OnBnClickedFacesNotRecognizedButton2)
 END_MESSAGE_MAP()
 
 
@@ -369,23 +370,27 @@ void CVisionGUIDlg::OnProcesarImagenClickedButton()
 }
 
 //Botón para mostrar caras
-void CVisionGUIDlg::OnMostrarCarasClickedFacesButton()
+void CVisionGUIDlg::OnMostrarCarasReconocidasClickedFacesButton()
 {
 	//Ocultar las caras
 	closeFaceWindows();
 	//Abrir ventanas de opencv con las caras encontradas realizando cambio de resolución al tamaño indicado
 	for (unsigned int i = 0; i < colourFoundFaces.size(); ++i)
 	{
+		//Recuperar cara
 		const tfg::Face &face = colourFoundFaces[i];
+		//Comprobar si es una cara reconocida
+		if (face.clase == -1)
+			continue;
 		//Ajustar cara al tamaño indicado
 		cv::Mat finalFace;
 		faceRecognizer.upSample(face.img, finalFace, FACE_HEIGHT, FACE_WIDTH);
 		//Mostrar texto sobre cara
 		cv::putText(finalFace, "Id="+std::to_string(face.clase), cvPoint(FACE_WIDTH/2 - 15, 10),
-			cv::FONT_HERSHEY_COMPLEX_SMALL, 0.5, cvScalar(255, 0, 0), 1, CV_AA);
+			cv::FONT_HERSHEY_COMPLEX_SMALL, 0.5, cvScalar(0, 255, 0), 1, CV_AA);
 		//Mostrar texto sobre cara
 		cv::putText(finalFace, "Conf=" + std::to_string(face.confidence), cvPoint(5, FACE_HEIGHT-5),
-			cv::FONT_HERSHEY_COMPLEX_SMALL, 0.5, cvScalar(255, 0, 0), 1, CV_AA);
+			cv::FONT_HERSHEY_COMPLEX_SMALL, 0.5, cvScalar(0, 255, 0), 1, CV_AA);
 		//Mostrar cara
 		std::string windowName = "Cara " + std::to_string(i) + " Id: " + std::to_string(face.clase);
 		cv::imshow(windowName, finalFace);
@@ -674,5 +679,36 @@ void CVisionGUIDlg::OnEnChangeEditUmbral()
 	{
 		//Reestablecer el texto
 		umbralReconocimientoString.SetWindowText(std::to_string(umbralReconocimiento).c_str());
+	}
+}
+
+//Botón para mostrar caras no reconocidas
+void CVisionGUIDlg::OnBnClickedFacesNotRecognizedButton2()
+{
+	//Ocultar las caras
+	closeFaceWindows();
+	//Abrir ventanas de opencv con las caras encontradas realizando cambio de resolución al tamaño indicado
+	for (unsigned int i = 0; i < colourFoundFaces.size(); ++i)
+	{
+		//Recuperar cara
+		const tfg::Face &face = colourFoundFaces[i];
+		//Comprobar si es una cara reconocida
+		if (face.clase != -1)
+			continue;
+		//Ajustar cara al tamaño indicado
+		cv::Mat finalFace;
+		faceRecognizer.upSample(face.img, finalFace, FACE_HEIGHT, FACE_WIDTH);
+		//Mostrar texto sobre cara
+		cv::putText(finalFace, "Id=" + std::to_string(face.clase), cvPoint(FACE_WIDTH / 2 - 15, 10),
+			cv::FONT_HERSHEY_COMPLEX_SMALL, 0.5, cvScalar(0, 0, 255), 1, CV_AA);
+		//Mostrar texto sobre cara
+		cv::putText(finalFace, "Conf=" + std::to_string(face.confidence), cvPoint(5, FACE_HEIGHT - 5),
+			cv::FONT_HERSHEY_COMPLEX_SMALL, 0.5, cvScalar(0, 0, 255), 1, CV_AA);
+		//Mostrar cara
+		std::string windowName = "Cara " + std::to_string(i) + " Id: " + std::to_string(face.clase);
+		cv::imshow(windowName, finalFace);
+		//Mover ventana
+		cv::moveWindow(windowName, i%FACES_X_ROW*(FACE_WIDTH + 85), i / FACES_X_ROW * (FACE_HEIGHT + 47));
+		cv::waitKey(20);
 	}
 }

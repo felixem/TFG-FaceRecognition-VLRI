@@ -35,7 +35,7 @@ protected:
 public:
 	afx_msg void OnLoadImageClickedButton();
 	afx_msg void OnProcesarImagenClickedButton();
-	afx_msg void OnMostrarCarasClickedFacesButton();
+	afx_msg void OnMostrarCarasReconocidasClickedFacesButton();
 	afx_msg void OnClickedButtonOcultarCaras();
 	afx_msg void OnEnChangeEditEscala();
 	CEdit escalaString;
@@ -54,4 +54,5 @@ public:
 	afx_msg void OnBnClickedButtonLoadmodel();
 	CEdit umbralReconocimientoString;
 	afx_msg void OnEnChangeEditUmbral();
+	afx_msg void OnBnClickedFacesNotRecognizedButton2();
 };
