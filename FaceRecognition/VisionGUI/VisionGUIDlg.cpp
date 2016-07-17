@@ -168,6 +168,12 @@ BOOL CVisionGUIDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Establecer icono pequeño
 
 	// TODO: agregar aquí inicialización adicional
+	//Inicializar selección de comboboxes
+	comboboxRecognizer.SetCurSel(0);
+	comboboxUpsampler.SetCurSel(0);
+	//Generar reconocedor y upsampler
+	recognizer = generateRecognizer(comboboxRecognizer.GetCurSel());
+	upsampler = generateUpsampler(comboboxUpsampler.GetCurSel());
 	//Inicializar texto de los textboxes
 	escalaString.SetWindowText(std::to_string(escalaDeteccion).c_str());
 	anchuraMinString.SetWindowText(std::to_string(anchuraMinFace).c_str());
@@ -175,12 +181,6 @@ BOOL CVisionGUIDlg::OnInitDialog()
 	anchuraMaxString.SetWindowText(std::to_string(anchuraMaxFace).c_str());
 	AlturaMaxString.SetWindowText(std::to_string(alturaMaxFace).c_str());
 	umbralReconocimientoString.SetWindowText(std::to_string(umbralReconocimiento).c_str());
-	//Inicializar selección de comboboxes
-	comboboxRecognizer.SetCurSel(0);
-	comboboxUpsampler.SetCurSel(0);
-	//Generar reconocedor y upsampler
-	recognizer = generateRecognizer(comboboxRecognizer.GetCurSel());
-	upsampler = generateUpsampler(comboboxUpsampler.GetCurSel());
 
 	return TRUE;  // Devuelve TRUE  a menos que establezca el foco en un control
 }
@@ -564,8 +564,11 @@ tfg::IFaceRecognizer* generateRecognizer(int id)
 	switch (id)
 	{
 		case 0: reconocedor = new tfg::EigenFacesRecognizer();
+				break;
 		case 1: reconocedor = new tfg::FisherFacesRecognizer();
+				break;
 		case 2: reconocedor = new tfg::LBPRecognizer();
+				break;
 		default:
 			return NULL;
 	}
@@ -625,6 +628,7 @@ void CVisionGUIDlg::OnBnClickedButtonLoadmodel()
 		try
 		{
 			recognizer->load(pathStr);
+			recognizer->setUmbral(umbralReconocimiento);
 		}
 		catch (...)
 		{
@@ -657,8 +661,7 @@ void CVisionGUIDlg::OnEnChangeEditUmbral()
 		//Pasarla a la variable de umbral de reconocimiento
 		umbralReconocimiento = nuevoUmbral;
 		//Establecer umbral al reconocedor
-		if(recognizer != NULL)
-			recognizer->setUmbral(umbralReconocimiento);
+		recognizer->setUmbral(umbralReconocimiento);
 	}
 	catch (...)
 	{
