@@ -374,6 +374,12 @@ void CVisionGUIDlg::OnMostrarCarasReconocidasClickedFacesButton()
 {
 	//Ocultar las caras
 	closeFaceWindows();
+
+	//Indicador de que se ha mostrado alguna cara
+	bool caraMostrada = false;
+	//Llevar cuenta de número de caras
+	int numCaras = 0;
+
 	//Abrir ventanas de opencv con las caras encontradas realizando cambio de resolución al tamaño indicado
 	for (unsigned int i = 0; i < colourFoundFaces.size(); ++i)
 	{
@@ -382,6 +388,10 @@ void CVisionGUIDlg::OnMostrarCarasReconocidasClickedFacesButton()
 		//Comprobar si es una cara reconocida
 		if (face.clase == -1)
 			continue;
+
+		//Indicar que se ha mostrado una cara
+		caraMostrada = true;
+
 		//Ajustar cara al tamaño indicado
 		cv::Mat finalFace;
 		faceRecognizer.upSample(face.img, finalFace, FACE_HEIGHT, FACE_WIDTH);
@@ -395,9 +405,16 @@ void CVisionGUIDlg::OnMostrarCarasReconocidasClickedFacesButton()
 		std::string windowName = "Cara " + std::to_string(i) + " Id: " + std::to_string(face.clase);
 		cv::imshow(windowName, finalFace);
 		//Mover ventana
-		cv::moveWindow(windowName, i%FACES_X_ROW*(FACE_WIDTH+85), i / FACES_X_ROW * (FACE_HEIGHT+47));
+		cv::moveWindow(windowName, numCaras%FACES_X_ROW*(FACE_WIDTH+85), numCaras / FACES_X_ROW * (FACE_HEIGHT+47));
 		cv::waitKey(20);
+
+		//Aumentar número de caras
+		numCaras++;
 	}
+
+	//Si no se ha mostrado ninguna cara, mostrar mensaje
+	if(!caraMostrada)
+		AfxMessageBox(_T("No hay ninguna imagen para mostrar"), MB_OK | MB_ICONINFORMATION);
 }
 
 //Destruir caras encontradas
@@ -687,6 +704,11 @@ void CVisionGUIDlg::OnBnClickedFacesNotRecognizedButton2()
 {
 	//Ocultar las caras
 	closeFaceWindows();
+	//Variable para monitorizar si se ha mostrado alguna cara
+	bool caraMostrada = false;
+	//Variable que cuenta las caras mostradas
+	int numCaras = 0;
+
 	//Abrir ventanas de opencv con las caras encontradas realizando cambio de resolución al tamaño indicado
 	for (unsigned int i = 0; i < colourFoundFaces.size(); ++i)
 	{
@@ -695,6 +717,10 @@ void CVisionGUIDlg::OnBnClickedFacesNotRecognizedButton2()
 		//Comprobar si es una cara reconocida
 		if (face.clase != -1)
 			continue;
+
+		//Indicar que se ha mostrado una cara
+		caraMostrada = true;
+
 		//Ajustar cara al tamaño indicado
 		cv::Mat finalFace;
 		faceRecognizer.upSample(face.img, finalFace, FACE_HEIGHT, FACE_WIDTH);
@@ -708,7 +734,14 @@ void CVisionGUIDlg::OnBnClickedFacesNotRecognizedButton2()
 		std::string windowName = "Cara " + std::to_string(i) + " Id: " + std::to_string(face.clase);
 		cv::imshow(windowName, finalFace);
 		//Mover ventana
-		cv::moveWindow(windowName, i%FACES_X_ROW*(FACE_WIDTH + 85), i / FACES_X_ROW * (FACE_HEIGHT + 47));
+		cv::moveWindow(windowName, numCaras%FACES_X_ROW*(FACE_WIDTH + 85), numCaras / FACES_X_ROW * (FACE_HEIGHT + 47));
 		cv::waitKey(20);
+
+		//Aumentar número de caras
+		numCaras++;
 	}
+
+	//Si no se ha mostrado ninguna cara, mostrar mensaje
+	if (!caraMostrada)
+		AfxMessageBox(_T("No hay ninguna imagen para mostrar"), MB_OK | MB_ICONINFORMATION);
 }
