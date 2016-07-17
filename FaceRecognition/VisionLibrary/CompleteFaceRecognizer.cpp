@@ -106,7 +106,7 @@ namespace tfg
 	{
 		//Liberar memoria
 		if (this->faceDetector != NULL)
-			delete faceDetector;
+			delete this->faceDetector;
 
 		this->faceDetector = faceDetector;
 	}
@@ -116,7 +116,7 @@ namespace tfg
 	{
 		//Liberar memoria
 		if (this->faceRecognizer != NULL)
-			delete faceRecognizer;
+			delete this->faceRecognizer;
 
 		this->faceRecognizer = faceRecognizer;
 	}

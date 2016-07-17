@@ -40,8 +40,6 @@ tfg::ImageUpsampler* generateUpsampler(int id);
 
 //Imagen cargada en memoria
 cv::Mat imgCargada;
-//Nombre base de las ventanas
-const std::string windowBaseName = "Cara ";
 //Nombre del fichero de detección de caras
 const std::string ficFaceDetector = "sources/haarlike/haarcascade_frontalface_alt.xml";
 
@@ -382,8 +380,14 @@ void CVisionGUIDlg::OnMostrarCarasClickedFacesButton()
 		//Ajustar cara al tamaño indicado
 		cv::Mat finalFace;
 		faceRecognizer.upSample(face.img, finalFace, FACE_HEIGHT, FACE_WIDTH);
+		//Mostrar texto sobre cara
+		cv::putText(finalFace, "Id="+std::to_string(face.clase), cvPoint(FACE_WIDTH/2 - 15, 10),
+			cv::FONT_HERSHEY_COMPLEX_SMALL, 0.5, cvScalar(255, 0, 0), 1, CV_AA);
+		//Mostrar texto sobre cara
+		cv::putText(finalFace, "Conf=" + std::to_string(face.confidence), cvPoint(5, FACE_HEIGHT-5),
+			cv::FONT_HERSHEY_COMPLEX_SMALL, 0.5, cvScalar(255, 0, 0), 1, CV_AA);
 		//Mostrar cara
-		std::string windowName = windowBaseName + std::to_string(i);
+		std::string windowName = "Cara " + std::to_string(i) + " Id: " + std::to_string(face.clase);
 		cv::imshow(windowName, finalFace);
 		//Mover ventana
 		cv::moveWindow(windowName, i%FACES_X_ROW*(FACE_WIDTH+85), i / FACES_X_ROW * (FACE_HEIGHT+47));
