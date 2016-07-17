@@ -59,7 +59,14 @@ namespace tfg
 		Mat frame_gray;
 
 		//Detectar caras
-		this->detectLocatedFaces(input, faces, frame_gray, scale, minWidth, minHeight, maxWidth, maxHeight);
+		try
+		{
+			this->detectLocatedFaces(input, faces, frame_gray, scale, minWidth, minHeight, maxWidth, maxHeight);
+		}
+		catch (...)
+		{
+			throw std::exception("Memoria insuficiente");
+		}
 
 		//Iterar sobre las caras encontradas
 		for (size_t ic = 0; ic < faces.size(); ic++) // Iterate through all current elements (detected faces)

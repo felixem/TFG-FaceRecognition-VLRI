@@ -31,8 +31,9 @@ namespace tfg
 	int EigenFacesRecognizer::predict(const cv::Mat& img, double& confidence)
 	{
 		int label;
+
 		//Predecir clase junto con su valor de confianza
-		model->predict(img,label,confidence);
+		model->predict(img, label, confidence);
 		
 		return label;
 	}

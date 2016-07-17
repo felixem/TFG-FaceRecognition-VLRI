@@ -18,11 +18,20 @@ namespace tfg
 	{
 		//Liberar memoria
 		if (faceDetector != NULL)
+		{
 			delete faceDetector;
+			faceDetector = NULL;
+		}
 		if (faceRecognizer != NULL)
+		{
 			delete faceRecognizer;
+			faceRecognizer = NULL;
+		}
 		if (upsampler != NULL)
+		{
 			delete upsampler;
+			upsampler = NULL;
+		}
 	}
 
 	//Reconocer caras en una imagen
@@ -72,6 +81,24 @@ namespace tfg
 
 		//Devolver si se ha encontrado alguna cara
 		return faces.size() > 0;
+	}
+
+	//Método de upsampling
+	void CompleteFaceRecognizer::upSample(const cv::Mat& img, cv::Mat &output, int height, int width)
+	{
+		this->upsampler->upSample(img, output, height, width);
+	}
+
+	//Poner umbral de detección (valores por encima del umbral se considerarán desconocidos)
+	void CompleteFaceRecognizer::setUmbral(double umbral)
+	{
+		this->faceRecognizer->setUmbral(umbral);
+	}
+
+	//Cargar desde fichero el modelo
+	void CompleteFaceRecognizer::load(const std::string& fichero)
+	{
+		this->faceRecognizer->load(fichero);
 	}
 
 	//Setter del detector de caras

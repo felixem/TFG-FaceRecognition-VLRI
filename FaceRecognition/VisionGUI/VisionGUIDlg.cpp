@@ -45,20 +45,18 @@ const std::string windowBaseName = "Cara ";
 //Nombre del fichero de detección de caras
 const std::string ficFaceDetector = "sources/haarlike/haarcascade_frontalface_alt.xml";
 
-//Detector de caras
-tfg::HaarLikeFaceDetector faceDetector(ficFaceDetector);
 //Caras encontradas
-std::vector<cv::Mat> colourFoundFaces;
+std::vector<tfg::Face> colourFoundFaces;
 //Escala de detección
 float escalaDeteccion = 1.05f;
 //Anchura y altura mínima de detección cara
 int anchuraMinFace = 16, anchuraMaxFace = 0, alturaMinFace = 16, alturaMaxFace = 0;
+//Anchura y altura para reconocimiento de cara
+int anchuraReconocimiento = 64, alturaReconocimiento = 64;
 //Umbral de reconocimiento
 float umbralReconocimiento = std::numeric_limits<float>::max();
-//Upsampler
-tfg::ImageUpsampler *upsampler;
-//Reconocedor de caras
-tfg::IFaceRecognizer *recognizer;
+//Integración del reconocedor de caras
+tfg::CompleteFaceRecognizer faceRecognizer;
 
 // Cuadro de diálogo CAboutDlg utilizado para el comando Acerca de
 
@@ -171,9 +169,11 @@ BOOL CVisionGUIDlg::OnInitDialog()
 	//Inicializar selección de comboboxes
 	comboboxRecognizer.SetCurSel(0);
 	comboboxUpsampler.SetCurSel(0);
-	//Generar reconocedor y upsampler
-	recognizer = generateRecognizer(comboboxRecognizer.GetCurSel());
-	upsampler = generateUpsampler(comboboxUpsampler.GetCurSel());
+	//Generar detector, reconocedor y upsampler de caras
+	faceRecognizer.setFaceDetector(new tfg::HaarLikeFaceDetector(ficFaceDetector));
+	faceRecognizer.setFaceRecognizer(generateRecognizer(comboboxRecognizer.GetCurSel()));
+	faceRecognizer.setUpsampler(generateUpsampler(comboboxUpsampler.GetCurSel()));
+
 	//Inicializar texto de los textboxes
 	escalaString.SetWindowText(std::to_string(escalaDeteccion).c_str());
 	anchuraMinString.SetWindowText(std::to_string(anchuraMinFace).c_str());
@@ -251,6 +251,13 @@ void CVisionGUIDlg::OnLoadImageClickedButton()
 
 		//Cargar imagen
 		imgCargada = cv::imread(pathStr);
+		//Comprobar cargado de la imagen
+		if(imgCargada.empty())
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("Error al cargar la imagen"), MB_OK | MB_ICONSTOP);
+			return;
+		}
 
 		//Limpiar las caras detectadas
 		colourFoundFaces.clear();
@@ -345,15 +352,15 @@ void CVisionGUIDlg::OnProcesarImagenClickedButton()
 	try
 	{
 		//Detectar caras
-		faceDetector.detectFaces(imgCargada, grayFoundFaces, colourFoundFaces, imgFinal,
+		faceRecognizer.recognizeFaces(imgCargada, colourFoundFaces, imgFinal, anchuraReconocimiento, alturaReconocimiento, 
 			escalaDeteccion, anchuraMinFace, alturaMinFace, anchuraMaxFace, alturaMaxFace);
 	}
-	catch (...)
+	catch (std::exception &ex)
 	{
 		//Mostrar mensaje de error
-		AfxMessageBox(_T("Memoria Insuficiente"), MB_OK | MB_ICONSTOP);
+		AfxMessageBox(_T(ex.what()), MB_OK | MB_ICONSTOP);
 		//Renovar detector de caras
-		faceDetector = tfg::HaarLikeFaceDetector(ficFaceDetector);
+		faceRecognizer.setFaceDetector(new tfg::HaarLikeFaceDetector(ficFaceDetector));
 		//La imagen final es la original cargada
 		imgFinal = imgCargada.clone();
 	}
@@ -371,10 +378,10 @@ void CVisionGUIDlg::OnMostrarCarasClickedFacesButton()
 	//Abrir ventanas de opencv con las caras encontradas realizando cambio de resolución al tamaño indicado
 	for (unsigned int i = 0; i < colourFoundFaces.size(); ++i)
 	{
-		const cv::Mat &face = colourFoundFaces[i];
+		const tfg::Face &face = colourFoundFaces[i];
 		//Ajustar cara al tamaño indicado
 		cv::Mat finalFace;
-		upsampler->upSample(face, finalFace, FACE_HEIGHT, FACE_WIDTH);
+		faceRecognizer.upSample(face.img, finalFace, FACE_HEIGHT, FACE_WIDTH);
 		//Mostrar cara
 		std::string windowName = windowBaseName + std::to_string(i);
 		cv::imshow(windowName, finalFace);
@@ -597,19 +604,15 @@ tfg::ImageUpsampler* generateUpsampler(int id)
 //Cambio de selección de algoritmo de reconocimiento
 void CVisionGUIDlg::OnCbnSelchangeComboRecognizer()
 {
-	//Liberar memoria del reconocedor
-	delete recognizer;
 	//Crear nuevo reconocedor
-	recognizer = generateRecognizer(comboboxRecognizer.GetCurSel());
+	faceRecognizer.setFaceRecognizer(generateRecognizer(comboboxRecognizer.GetCurSel()));
 }
 
 //Cambio de selección de upsampler
 void CVisionGUIDlg::OnCbnSelchangeComboUpsampler()
 {
-	//Liberar memoria del upsampler
-	delete upsampler;
 	//Crear nuevo upsampler
-	upsampler = generateUpsampler(comboboxUpsampler.GetCurSel());
+	faceRecognizer.setUpsampler(generateUpsampler(comboboxUpsampler.GetCurSel()));
 }
 
 //Cargado de modelo
@@ -627,8 +630,8 @@ void CVisionGUIDlg::OnBnClickedButtonLoadmodel()
 		//Cargar modelo de reconocimiento
 		try
 		{
-			recognizer->load(pathStr);
-			recognizer->setUmbral(umbralReconocimiento);
+			faceRecognizer.load(pathStr);
+			faceRecognizer.setUmbral(umbralReconocimiento);
 		}
 		catch (...)
 		{
@@ -661,7 +664,7 @@ void CVisionGUIDlg::OnEnChangeEditUmbral()
 		//Pasarla a la variable de umbral de reconocimiento
 		umbralReconocimiento = nuevoUmbral;
 		//Establecer umbral al reconocedor
-		recognizer->setUmbral(umbralReconocimiento);
+		faceRecognizer.setUmbral(umbralReconocimiento);
 	}
 	catch (...)
 	{

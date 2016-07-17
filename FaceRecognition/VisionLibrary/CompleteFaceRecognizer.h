@@ -21,6 +21,13 @@ namespace tfg
 		bool recognizeFaces(const cv::Mat& img, std::vector<Face> &faces, cv::Mat & output, int recognizeWidth = 64, int recognizeHeight = 64,
 			float scale = 1.01, int minWidth = 16, int minHeight = 16, int maxWidth = 0, int maxHeight = 0);
 
+		//Método de upsampling
+		void upSample(const cv::Mat& img, cv::Mat &output, int height, int width);
+		//Poner umbral de detección (valores por encima del umbral se considerarán desconocidos)
+		void setUmbral(double umbral);
+		//Cargar desde fichero el modelo
+		void load(const std::string& fichero);
+
 		//Setters
 		void setFaceDetector(HaarLikeFaceDetector* faceDetector);
 		void setFaceRecognizer(IFaceRecognizer* faceRecognizer);
