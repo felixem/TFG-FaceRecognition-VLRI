@@ -14,6 +14,7 @@
 #include "LBPRecognizer.h"
 #include "SimpleImageUpsampler.h"
 #include "CompleteFaceRecognizer.h"
+#include <future>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -24,6 +25,9 @@
 #define FACE_HEIGHT 128
 #define FACE_WIDTH 92
 #define FACES_X_ROW 10
+
+//Modo de procesamiento
+enum MODO_PROCESAMIENTO {IMAGEN, VIDEO, CAMARA};
 
 //Método para convertir una imagen de opencv en una imagen para mostrar
 void prepareImgToShow(const cv::Mat &img, CBitmap& output);
@@ -40,6 +44,8 @@ tfg::ImageUpsampler* generateUpsampler(int id);
 
 //Imagen cargada en memoria
 cv::Mat imgCargada;
+//Videocaptura en memoria
+cv::VideoCapture videoCaptura;
 //Nombre del fichero de detección de caras
 const std::string ficFaceDetector = "sources/haarlike/haarcascade_frontalface_alt.xml";
 
@@ -55,6 +61,9 @@ int anchuraReconocimiento = 64, alturaReconocimiento = 64;
 float umbralReconocimiento = std::numeric_limits<float>::max();
 //Integración del reconocedor de caras
 tfg::CompleteFaceRecognizer faceRecognizer;
+
+//Modo de procesamiento actual
+MODO_PROCESAMIENTO modo = IMAGEN;
 
 // Cuadro de diálogo CAboutDlg utilizado para el comando Acerca de
 
@@ -130,6 +139,7 @@ BEGIN_MESSAGE_MAP(CVisionGUIDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_LOADMODEL, &CVisionGUIDlg::OnBnClickedButtonLoadmodel)
 	ON_EN_CHANGE(IDC_EDIT_UMBRAL, &CVisionGUIDlg::OnEnChangeEditUmbral)
 	ON_BN_CLICKED(SHOW_FACES_NOT_RECOGNIZED_BUTTON2, &CVisionGUIDlg::OnBnClickedFacesNotRecognizedButton2)
+	ON_BN_CLICKED(IDC_BUTTON_CARGAR_VIDEO, &CVisionGUIDlg::OnBnClickedButtonCargarVideo)
 END_MESSAGE_MAP()
 
 
@@ -258,6 +268,8 @@ void CVisionGUIDlg::OnLoadImageClickedButton()
 			return;
 		}
 
+		//Modo de procesamiento de imagen
+		modo = IMAGEN;
 		//Limpiar las caras detectadas
 		colourFoundFaces.clear();
 
@@ -328,6 +340,21 @@ void prepareImgToShow(const cv::Mat &img, CBitmap& output)
 //Evento para procesar la imagen
 void CVisionGUIDlg::OnProcesarImagenClickedButton()
 {
+	//Acción según tipo de procesamiento
+	switch (modo)
+	{
+		case IMAGEN:
+			procesarImagen();
+			break;
+		case VIDEO:
+			procesarVideo();
+			break;
+	}
+}
+
+//Función de procesamiento de imagen
+void CVisionGUIDlg::procesarImagen()
+{
 	//Comprobar si hay alguna imagen cargada
 	if (imgCargada.empty())
 		return;
@@ -351,7 +378,7 @@ void CVisionGUIDlg::OnProcesarImagenClickedButton()
 	try
 	{
 		//Detectar caras
-		faceRecognizer.recognizeFaces(imgCargada, colourFoundFaces, imgFinal, anchuraReconocimiento, alturaReconocimiento, 
+		faceRecognizer.recognizeFaces(imgCargada, colourFoundFaces, imgFinal, anchuraReconocimiento, alturaReconocimiento,
 			escalaDeteccion, anchuraMinFace, alturaMinFace, anchuraMaxFace, alturaMaxFace);
 	}
 	catch (std::exception &ex)
@@ -367,6 +394,43 @@ void CVisionGUIDlg::OnProcesarImagenClickedButton()
 	//Mostrar imagen
 	showImage(imgFinal, pictureControl);
 	UpdateData(FALSE);
+
+}
+
+//Función de procesamiento de vídeo
+void CVisionGUIDlg::procesarVideo()
+{
+	//Comprobar si hay algún vídeo cargado
+	if (!videoCaptura.isOpened())
+		return;
+
+	//Destruir las ventanas de caras
+	closeFaceWindows();
+
+	//Mostrar imagen original
+	CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_CONTROL);
+	//Mostrar imagen
+	showImage(imgCargada, pictureControl);
+	UpdateData(FALSE);
+
+	//Frame de lectura
+	cv::Mat frame;
+	//Recorrer el vídeo
+	while (true)
+	{
+		//Procesar imagen cargada
+		procesarImagen();
+		//Leer frame
+		videoCaptura >> frame;
+		//Comprobar si se ha leído un frame correctamente
+		if (frame.empty())
+			break;
+		//Asignar frame a la imagen cargada
+		imgCargada = frame;
+	}
+
+	//Mostrar mensaje para informar de la salida
+	AfxMessageBox(_T("Terminó el procesamiento exitosamente"), MB_OK | MB_ICONINFORMATION);
 }
 
 //Botón para mostrar caras
@@ -744,4 +808,57 @@ void CVisionGUIDlg::OnBnClickedFacesNotRecognizedButton2()
 	//Si no se ha mostrado ninguna cara, mostrar mensaje
 	if (!caraMostrada)
 		AfxMessageBox(_T("No hay ninguna imagen para mostrar"), MB_OK | MB_ICONINFORMATION);
+}
+
+//Cargado de vídeo
+void CVisionGUIDlg::OnBnClickedButtonCargarVideo()
+{
+	// TODO: Add your control notification handler code here
+	CFileDialog dlg(TRUE);
+	int result = dlg.DoModal();
+	//Comprobar que se ha cargado el vídeo
+	if (result == IDOK)
+	{
+		//Destruir las ventanas de caras
+		closeFaceWindows();
+
+		//Obtener path y panel de la imagen
+		std::string pathStr = cStringToString(dlg.GetPathName());
+
+		//Cargar vídeo
+		videoCaptura = cv::VideoCapture(pathStr);
+
+		//Comprobar cargado del vídeo
+		if (!videoCaptura.isOpened())
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("Error al cargar el vídeo"), MB_OK | MB_ICONSTOP);
+			return;
+		}
+
+		//Modo de procesamiento de imagen
+		modo = VIDEO;
+		//Leer primer frame del vídeo
+		cv::Mat frame;
+		bool leido = videoCaptura.read(frame);
+
+		//Comprobar si se ha leido
+		if (!leido)
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("Error leer frame del vídeo"), MB_OK | MB_ICONSTOP);
+			return;
+		}
+
+		//Asignar primer frame a la imagen cargada
+		imgCargada = frame;
+		//Limpiar las caras detectadas
+		colourFoundFaces.clear();
+
+		//Mostrar imagen
+		CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_CONTROL);
+		//Mostrar imagen
+		showImage(imgCargada, pictureControl);
+		UpdateData(FALSE);
+	}
 }

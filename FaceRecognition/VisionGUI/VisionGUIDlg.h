@@ -32,6 +32,12 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
+
+	//Función de procesamiento de imagen
+	void procesarImagen();
+	//Función de procesamiento de vídeo
+	void procesarVideo();
+
 public:
 	afx_msg void OnLoadImageClickedButton();
 	afx_msg void OnProcesarImagenClickedButton();
@@ -55,4 +61,5 @@ public:
 	CEdit umbralReconocimientoString;
 	afx_msg void OnEnChangeEditUmbral();
 	afx_msg void OnBnClickedFacesNotRecognizedButton2();
+	afx_msg void OnBnClickedButtonCargarVideo();
 };
