@@ -6,15 +6,8 @@
 #include "VisionGUI.h"
 #include "VisionGUIDlg.h"
 #include "afxdialogex.h"
-#include "ImageDownsampler.h"
-#include "HaarLikeFaceDetector.h"
-#include "SimpleImageUpsampler.h"
-#include "EigenFacesRecognizer.h"
-#include "FisherFacesRecognizer.h"
-#include "LBPRecognizer.h"
-#include "SimpleImageUpsampler.h"
-#include "CompleteFaceRecognizer.h"
-#include <future>
+#include <chrono>
+#include <thread>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -26,44 +19,8 @@
 #define FACE_WIDTH 92
 #define FACES_X_ROW 10
 
-//Modo de procesamiento
-enum MODO_PROCESAMIENTO {IMAGEN, VIDEO, CAMARA};
-
-//Método para convertir una imagen de opencv en una imagen para mostrar
-void prepareImgToShow(const cv::Mat &img, CBitmap& output);
-//Destruir caras encontradas
-void closeFaceWindows();
-//Convertir CString en String
-std::string cStringToString(const CString& str);
-//Mostrar imagen en pictureControl
-void showImage(const cv::Mat& img, CStatic* pictureControl);
-//Generar algoritmo de reconocimiento según índice seleccionado
-tfg::IFaceRecognizer* generateRecognizer(int id);
-//Generar algoritmo de upsampling según índice seleccionado
-tfg::ImageUpsampler* generateUpsampler(int id);
-
-//Imagen cargada en memoria
-cv::Mat imgCargada;
-//Videocaptura en memoria
-cv::VideoCapture videoCaptura;
-//Nombre del fichero de detección de caras
-const std::string ficFaceDetector = "sources/haarlike/haarcascade_frontalface_alt.xml";
-
-//Caras encontradas
-std::vector<tfg::Face> colourFoundFaces;
-//Escala de detección
-float escalaDeteccion = 1.05f;
-//Anchura y altura mínima de detección cara
-int anchuraMinFace = 16, anchuraMaxFace = 0, alturaMinFace = 16, alturaMaxFace = 0;
-//Anchura y altura para reconocimiento de cara
-int anchuraReconocimiento = 64, alturaReconocimiento = 64;
-//Umbral de reconocimiento
-float umbralReconocimiento = std::numeric_limits<float>::max();
-//Integración del reconocedor de caras
-tfg::CompleteFaceRecognizer faceRecognizer;
-
-//Modo de procesamiento actual
-MODO_PROCESAMIENTO modo = IMAGEN;
+//Definir mensaje propio
+#define WM_MY_MESSAGE (WM_USER+1000)
 
 // Cuadro de diálogo CAboutDlg utilizado para el comando Acerca de
 
@@ -99,7 +56,27 @@ END_MESSAGE_MAP()
 
 
 // Cuadro de diálogo de CVisionGUIDlg
+LRESULT CVisionGUIDlg::updateDataCall(WPARAM wpD, LPARAM lpD)
+{
+	//Opción de mensaje
+	switch (lpD)
+	{
+		case 0:
+			//Actualizar datos
+			UpdateData(FALSE);
+			break;
+		case 1:
+			//Borrar información sobre hilo de procesamiento
+			this->hiloProc = NULL;
+			delete this->infoHiloProc;
+			this->infoHiloProc = NULL;
+			break;
+	}
 
+	//Actualizar datos
+	UpdateData(FALSE);
+	return LRESULT();
+}
 
 
 CVisionGUIDlg::CVisionGUIDlg(CWnd* pParent /*=NULL*/)
@@ -125,7 +102,6 @@ BEGIN_MESSAGE_MAP(CVisionGUIDlg, CDialog)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_BN_CLICKED(LOADIMG_BUTTON, &CVisionGUIDlg::OnLoadImageClickedButton)
 	ON_BN_CLICKED(PROCESSIMG_BUTTON, &CVisionGUIDlg::OnProcesarImagenClickedButton)
 	ON_BN_CLICKED(SHOW_FACES_RECOGNIZED_BUTTON, &CVisionGUIDlg::OnMostrarCarasReconocidasClickedFacesButton)
 	ON_BN_CLICKED(IDC_BUTTON_OCULTAR_CARAS, &CVisionGUIDlg::OnClickedButtonOcultarCaras)
@@ -138,8 +114,11 @@ BEGIN_MESSAGE_MAP(CVisionGUIDlg, CDialog)
 	ON_CBN_SELCHANGE(IDC_COMBO_UPSAMPLER, &CVisionGUIDlg::OnCbnSelchangeComboUpsampler)
 	ON_BN_CLICKED(IDC_BUTTON_LOADMODEL, &CVisionGUIDlg::OnBnClickedButtonLoadmodel)
 	ON_EN_CHANGE(IDC_EDIT_UMBRAL, &CVisionGUIDlg::OnEnChangeEditUmbral)
-	ON_BN_CLICKED(SHOW_FACES_NOT_RECOGNIZED_BUTTON2, &CVisionGUIDlg::OnBnClickedFacesNotRecognizedButton2)
-	ON_BN_CLICKED(IDC_BUTTON_CARGAR_VIDEO, &CVisionGUIDlg::OnBnClickedButtonCargarVideo)
+	ON_BN_CLICKED(SHOW_FACES_NOT_RECOGNIZED_BUTTON2, &CVisionGUIDlg::OnBnClickedFacesNotRecognizedButton)
+	ON_BN_CLICKED(IDC_BUTTON_CARGAR_ARCHIVO_IMAGEN, &CVisionGUIDlg::OnBnClickedButtonCargarArchivoImagen)
+	ON_MESSAGE(WM_MY_MESSAGE, updateDataCall)
+	ON_BN_CLICKED(IDC_BUTTON_PAUSAR, &CVisionGUIDlg::OnBnClickedButtonPausar)
+	ON_BN_CLICKED(IDC_BUTTON_TERMINAR_PROC, &CVisionGUIDlg::OnBnClickedButtonTerminarProc)
 END_MESSAGE_MAP()
 
 
@@ -176,8 +155,8 @@ BOOL CVisionGUIDlg::OnInitDialog()
 
 	// TODO: agregar aquí inicialización adicional
 	//Inicializar selección de comboboxes
-	comboboxRecognizer.SetCurSel(0);
-	comboboxUpsampler.SetCurSel(0);
+	comboboxRecognizer.SetCurSel(indexReconocimiento);
+	comboboxUpsampler.SetCurSel(indexUpsampling);
 	//Generar detector, reconocedor y upsampler de caras
 	faceRecognizer.setFaceDetector(new tfg::HaarLikeFaceDetector(ficFaceDetector));
 	faceRecognizer.setFaceRecognizer(generateRecognizer(comboboxRecognizer.GetCurSel()));
@@ -243,46 +222,8 @@ HCURSOR CVisionGUIDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-//Clicado en el botón de carga de imagen
-void CVisionGUIDlg::OnLoadImageClickedButton()
-{
-	// TODO: Add your control notification handler code here
-	CFileDialog dlg(TRUE);
-	int result = dlg.DoModal();
-	//Comprobar que se ha cargado la imagen
-	if (result == IDOK)
-	{
-		//Destruir las ventanas de caras
-		closeFaceWindows();
-
-		//Obtener path y panel de la imagen
-		std::string pathStr = cStringToString(dlg.GetPathName());
-
-		//Cargar imagen
-		imgCargada = cv::imread(pathStr);
-		//Comprobar cargado de la imagen
-		if(imgCargada.empty())
-		{
-			//Mostrar mensaje de error
-			AfxMessageBox(_T("Error al cargar la imagen"), MB_OK | MB_ICONSTOP);
-			return;
-		}
-
-		//Modo de procesamiento de imagen
-		modo = IMAGEN;
-		//Limpiar las caras detectadas
-		colourFoundFaces.clear();
-
-		//Mostrar imagen
-		CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_CONTROL);
-		//Mostrar imagen
-		showImage(imgCargada, pictureControl);
-		UpdateData(FALSE);
-	}
-}
-
 //Método para convertir una imagen de opencv en una imagen para mostrar
-void prepareImgToShow(const cv::Mat &img, CBitmap& output)
+void CVisionGUIDlg::prepareImgToShow(const cv::Mat &img, CBitmap& output)
 {
 	//Imagen final para mostrado
 	cv::Mat imgFinal;
@@ -340,102 +281,168 @@ void prepareImgToShow(const cv::Mat &img, CBitmap& output)
 //Evento para procesar la imagen
 void CVisionGUIDlg::OnProcesarImagenClickedButton()
 {
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL)
+	{
+		//Reanudar procesamiento
+		this->infoHiloProc->pausa = false;
+		return;
+	}
+
 	//Acción según tipo de procesamiento
 	switch (modo)
 	{
-		case IMAGEN:
-			procesarImagen();
-			break;
-		case VIDEO:
-			procesarVideo();
+		case ARCHIVO:
+			//Llamar a hilo de procesamiento de vídeo
+			infoHiloProc = new THREADSTRUCT;
+			infoHiloProc->_this = this;
+			infoHiloProc->terminar = false;
+			infoHiloProc->pausa = false;
+			hiloProc = AfxBeginThread(procesarArchivoMedia, infoHiloProc);
 			break;
 	}
 }
 
 //Función de procesamiento de imagen
-void CVisionGUIDlg::procesarImagen()
+UINT CVisionGUIDlg::procesarImagen(LPVOID param)
 {
-	//Comprobar si hay alguna imagen cargada
-	if (imgCargada.empty())
-		return;
+	//Cargar estructura
+	THREADSTRUCT*    ts = (THREADSTRUCT*)param;
+	//Obtener objeto
+	CVisionGUIDlg* interfaz = ts->_this;
 
-	//Destruir las ventanas de caras
-	closeFaceWindows();
+	//Comprobar si hay alguna imagen cargada
+	if (interfaz->imgCargada.empty())
+		return -1;
 
 	//Mostrar imagen original
-	CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_CONTROL);
-	//Mostrar imagen
-	showImage(imgCargada, pictureControl);
-	UpdateData(FALSE);
+	CStatic* pictureControl = (CStatic *)interfaz->GetDlgItem(IMG_CONTROL);
 
 	//Imagen resultado
 	cv::Mat imgFinal;
 	//Limpiar caras a color
-	colourFoundFaces.clear();
+	interfaz->colourFoundFaces.clear();
 	//Caras grises detectadas
 	std::vector<cv::Mat> grayFoundFaces;
 
 	try
 	{
 		//Detectar caras
-		faceRecognizer.recognizeFaces(imgCargada, colourFoundFaces, imgFinal, anchuraReconocimiento, alturaReconocimiento,
-			escalaDeteccion, anchuraMinFace, alturaMinFace, anchuraMaxFace, alturaMaxFace);
+		interfaz->faceRecognizer.recognizeFaces(interfaz->imgCargada, interfaz->colourFoundFaces, imgFinal,
+			interfaz->anchuraReconocimiento, interfaz->alturaReconocimiento,
+			interfaz->escalaDeteccion, interfaz->anchuraMinFace, interfaz->alturaMinFace, 
+			interfaz->anchuraMaxFace, interfaz->alturaMaxFace);
 	}
 	catch (std::exception &ex)
 	{
-		//Mostrar mensaje de error
-		AfxMessageBox(_T(ex.what()), MB_OK | MB_ICONSTOP);
 		//Renovar detector de caras
-		faceRecognizer.setFaceDetector(new tfg::HaarLikeFaceDetector(ficFaceDetector));
+		interfaz->faceRecognizer.setFaceDetector(new tfg::HaarLikeFaceDetector(interfaz->ficFaceDetector));
 		//La imagen final es la original cargada
-		imgFinal = imgCargada.clone();
+		imgFinal = interfaz->imgCargada.clone();
+		//Mostrar imagen
+		interfaz->showImage(imgFinal, pictureControl);
+		//Mandar mensaje a la interfaz
+		::SendMessage(*interfaz, WM_MY_MESSAGE, 0, 0);
+		throw;
 	}
 
 	//Mostrar imagen
-	showImage(imgFinal, pictureControl);
-	UpdateData(FALSE);
-
+	interfaz->showImage(imgFinal, pictureControl);
+	//Mandar mensaje a la interfaz
+	::SendMessage(*interfaz, WM_MY_MESSAGE, 0, 0);
+	//UpdateData(FALSE);
+	return 1;
 }
 
-//Función de procesamiento de vídeo
-void CVisionGUIDlg::procesarVideo()
+//Función de procesamiento de imagen desde archivo
+UINT CVisionGUIDlg::procesarArchivoMedia(LPVOID param)
 {
+	//Cargar estructura
+	THREADSTRUCT*    ts = (THREADSTRUCT*)param;
+	//Obtener objeto
+	CVisionGUIDlg* interfaz = ts->_this;
+
 	//Comprobar si hay algún vídeo cargado
-	if (!videoCaptura.isOpened())
-		return;
+	if (!interfaz->videoCaptura.isOpened())
+	{
+		//Mostrar mensaje de error
+		AfxMessageBox(_T("No hay cargado ningún archivo"), MB_OK | MB_ICONERROR);
+		//Informar sobre fin del hilo
+		::SendMessage(*interfaz, WM_MY_MESSAGE, 0, 1);
+		return -1;
+	}
 
 	//Destruir las ventanas de caras
-	closeFaceWindows();
+	interfaz->closeFaceWindows();
 
 	//Mostrar imagen original
-	CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_CONTROL);
+	CStatic* pictureControl = (CStatic *)interfaz->GetDlgItem(IMG_CONTROL);
 	//Mostrar imagen
-	showImage(imgCargada, pictureControl);
-	UpdateData(FALSE);
+	interfaz->showImage(interfaz->imgCargada, pictureControl);
+	//Mandar mensaje a la interfaz
+	::SendMessage(*interfaz, WM_MY_MESSAGE, 0, 0);
 
 	//Frame de lectura
 	cv::Mat frame;
 	//Recorrer el vídeo
 	while (true)
 	{
-		//Procesar imagen cargada
-		procesarImagen();
+		try
+		{
+			//Procesar imagen cargada
+			CVisionGUIDlg::procesarImagen(param);
+		}
+		catch (std::exception &ex)
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T(ex.what()), MB_OK | MB_ICONSTOP);
+			//Informar sobre fin del hilo
+			::SendMessage(*interfaz, WM_MY_MESSAGE, 0, 1);
+			return -1;
+		}
+
+		//Comprobar si debe pausarse el hilo
+		while (ts->pausa)
+		{
+			std::this_thread::sleep_for(std::chrono::milliseconds(300));
+		}
+
+		//Comprobar si debe terminar el procesamiento
+		if (ts->terminar)
+			break;
+
 		//Leer frame
-		videoCaptura >> frame;
+		interfaz->videoCaptura >> frame;
 		//Comprobar si se ha leído un frame correctamente
 		if (frame.empty())
 			break;
 		//Asignar frame a la imagen cargada
-		imgCargada = frame;
+		interfaz->imgCargada = frame;
 	}
 
+	//Informar sobre fin del hilo
+	::SendMessage(*interfaz, WM_MY_MESSAGE, 0, 1);
+	
 	//Mostrar mensaje para informar de la salida
 	AfxMessageBox(_T("Terminó el procesamiento exitosamente"), MB_OK | MB_ICONINFORMATION);
+
+	//Reiniciar captura al principio
+	interfaz->videoCaptura.set(CV_CAP_PROP_POS_FRAMES, 0);
+
+	return 1;
 }
 
 //Botón para mostrar caras
 void CVisionGUIDlg::OnMostrarCarasReconocidasClickedFacesButton()
 {
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL && !infoHiloProc->pausa)
+	{
+		//Mostrar mensaje de error
+		AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+		return;
+	}
+
 	//Ocultar las caras
 	closeFaceWindows();
 
@@ -482,7 +489,7 @@ void CVisionGUIDlg::OnMostrarCarasReconocidasClickedFacesButton()
 }
 
 //Destruir caras encontradas
-void closeFaceWindows()
+void CVisionGUIDlg::closeFaceWindows()
 {
 	//Limpiar las ventanas de las caras encontradas
 	cv::destroyAllWindows();
@@ -491,6 +498,7 @@ void closeFaceWindows()
 //Ocultar caras
 void CVisionGUIDlg::OnClickedButtonOcultarCaras()
 {
+	//Cerrar ventanas de caras
 	closeFaceWindows();
 }
 
@@ -500,9 +508,22 @@ void CVisionGUIDlg::OnEnChangeEditEscala()
 	//Obtener el texto de escala
 	CString escala;
 	GetDlgItemText(IDC_EDIT_ESCALA, escala);
-
 	//Convertir a string convencional
 	std::string escalaStr = cStringToString(escala);
+
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL && !infoHiloProc->pausa)
+	{
+		if (std::to_string(escalaDeteccion) != escalaStr)
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+			//Reestablecer el texto
+			escalaString.SetWindowText(std::to_string(escalaDeteccion).c_str());
+		}
+		return;
+	}
+
 	//Intentar convertir a float
 	float nuevaEscala;
 
@@ -522,7 +543,7 @@ void CVisionGUIDlg::OnEnChangeEditEscala()
 }
 
 //Convertir CString en String
-std::string cStringToString(const CString& str)
+std::string CVisionGUIDlg::cStringToString(const CString& str)
 {
 	// Convertir cstring a formato string normal
 	CT2CA pszConvertedAnsiString(str);
@@ -536,9 +557,22 @@ void CVisionGUIDlg::OnEnChangeEditMinWidthFace()
 	//Obtener el texto
 	CString valor;
 	GetDlgItemText(IDC_EDIT_MIN_WIDTH_FACE, valor);
-
 	//Convertir a string convencional
 	std::string valorStr = cStringToString(valor);
+
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL && !infoHiloProc->pausa)
+	{
+		if (std::to_string(anchuraMinFace) != valorStr)
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+			//Reestablecer el texto
+			anchuraMinString.SetWindowText(std::to_string(anchuraMinFace).c_str());
+		}
+		return;
+	}
+
 	//Intentar convertir a entero
 	int nuevoValor;
 
@@ -563,9 +597,22 @@ void CVisionGUIDlg::OnEnChangeEditMinHeightFace()
 	//Obtener el texto
 	CString valor;
 	GetDlgItemText(IDC_EDIT_MIN_HEIGHT_FACE, valor);
-
 	//Convertir a string convencional
 	std::string valorStr = cStringToString(valor);
+
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL && !infoHiloProc->pausa)
+	{
+		if (std::to_string(alturaMinFace) != valorStr)
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+			//Reestablecer el texto
+			alturaMinString.SetWindowText(std::to_string(alturaMinFace).c_str());
+		}
+		return;
+	}
+
 	//Intentar convertir a entero
 	int nuevoValor;
 
@@ -590,9 +637,22 @@ void CVisionGUIDlg::OnEnChangeEditMaxWidthFace()
 	//Obtener el texto
 	CString valor;
 	GetDlgItemText(IDC_EDIT_MAX_WIDTH_FACE, valor);
-
 	//Convertir a string convencional
 	std::string valorStr = cStringToString(valor);
+
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL && !infoHiloProc->pausa)
+	{
+		if (std::to_string(anchuraMaxFace) != valorStr)
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+			//Reestablecer el texto
+			anchuraMaxString.SetWindowText(std::to_string(anchuraMaxFace).c_str());
+		}
+		return;
+	}
+
 	//Intentar convertir a entero
 	int nuevoValor;
 
@@ -617,9 +677,22 @@ void CVisionGUIDlg::OnEnChangeEditMaxHeightFace()
 	//Obtener el texto
 	CString valor;
 	GetDlgItemText(IDC_EDIT_MAX_HEIGHT_FACE, valor);
-
 	//Convertir a string convencional
 	std::string valorStr = cStringToString(valor);
+
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL && !infoHiloProc->pausa)
+	{
+		if (std::to_string(alturaMaxFace) != valorStr)
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+			//Reestablecer el texto
+			AlturaMaxString.SetWindowText(std::to_string(alturaMaxFace).c_str());
+		}
+		return;
+	}
+
 	//Intentar convertir a entero
 	int nuevoValor;
 
@@ -639,7 +712,7 @@ void CVisionGUIDlg::OnEnChangeEditMaxHeightFace()
 }
 
 //Mostrar imagen en pictureControl
-void showImage(const cv::Mat& img, CStatic* pictureControl)
+void CVisionGUIDlg::showImage(const cv::Mat& img, CStatic* pictureControl)
 {
 	//Preparar imagen para mostrar
 	CBitmap bitmap;
@@ -652,7 +725,7 @@ void showImage(const cv::Mat& img, CStatic* pictureControl)
 }
 
 //Generar algoritmo de reconocimiento según índice seleccionado
-tfg::IFaceRecognizer* generateRecognizer(int id)
+tfg::IFaceRecognizer* CVisionGUIDlg::generateRecognizer(int id)
 {
 	//Reconocedor
 	tfg::IFaceRecognizer* reconocedor = NULL;
@@ -676,7 +749,7 @@ tfg::IFaceRecognizer* generateRecognizer(int id)
 }
 
 //Generar algoritmo de upsampling según índice seleccionado
-tfg::ImageUpsampler* generateUpsampler(int id)
+tfg::ImageUpsampler* CVisionGUIDlg::generateUpsampler(int id)
 {
 	//Devolver upsampler según id seleccionado
 	switch (id)
@@ -694,20 +767,55 @@ tfg::ImageUpsampler* generateUpsampler(int id)
 //Cambio de selección de algoritmo de reconocimiento
 void CVisionGUIDlg::OnCbnSelchangeComboRecognizer()
 {
+	//Comprobar si ha habido cambios
+	if (indexReconocimiento == comboboxRecognizer.GetCurSel())
+		return;
+
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL && !infoHiloProc->pausa)
+	{
+		//Mostrar mensaje de error
+		AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+		comboboxRecognizer.SetCurSel(indexReconocimiento);
+		return;
+	}
+
 	//Crear nuevo reconocedor
-	faceRecognizer.setFaceRecognizer(generateRecognizer(comboboxRecognizer.GetCurSel()));
+	indexReconocimiento = comboboxRecognizer.GetCurSel();
+	faceRecognizer.setFaceRecognizer(generateRecognizer(indexReconocimiento));
 }
 
 //Cambio de selección de upsampler
 void CVisionGUIDlg::OnCbnSelchangeComboUpsampler()
 {
+	//Comprobar si ha habido cambios
+	if (indexUpsampling == comboboxUpsampler.GetCurSel())
+		return;
+
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL && !infoHiloProc->pausa)
+	{
+		//Mostrar mensaje de error
+		AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+		comboboxUpsampler.SetCurSel(indexUpsampling);
+		return;
+	}
 	//Crear nuevo upsampler
-	faceRecognizer.setUpsampler(generateUpsampler(comboboxUpsampler.GetCurSel()));
+	indexUpsampling = comboboxUpsampler.GetCurSel();
+	faceRecognizer.setUpsampler(generateUpsampler(indexUpsampling));
 }
 
 //Cargado de modelo
 void CVisionGUIDlg::OnBnClickedButtonLoadmodel()
 {
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL && !infoHiloProc->pausa)
+	{
+		//Mostrar mensaje de error
+		AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+		return;
+	}
+
 	// TODO: Add your control notification handler code here
 	CFileDialog dlg(TRUE);
 	int result = dlg.DoModal();
@@ -741,9 +849,22 @@ void CVisionGUIDlg::OnEnChangeEditUmbral()
 	//Obtener el texto valor
 	CString umbral;
 	GetDlgItemText(IDC_EDIT_UMBRAL, umbral);
-
 	//Convertir a string convencional
 	std::string umbralStr = cStringToString(umbral);
+
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL && !infoHiloProc->pausa)
+	{
+		//Reestablecer el texto
+		if (umbralStr != std::to_string(umbralReconocimiento))
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+			umbralReconocimientoString.SetWindowText(std::to_string(umbralReconocimiento).c_str());
+		}
+		return;
+	}
+
 	//Intentar convertir a float
 	float nuevoUmbral;
 
@@ -764,8 +885,16 @@ void CVisionGUIDlg::OnEnChangeEditUmbral()
 }
 
 //Botón para mostrar caras no reconocidas
-void CVisionGUIDlg::OnBnClickedFacesNotRecognizedButton2()
+void CVisionGUIDlg::OnBnClickedFacesNotRecognizedButton()
 {
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL && !infoHiloProc->pausa)
+	{
+		//Mostrar mensaje de error
+		AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+		return;
+	}
+
 	//Ocultar las caras
 	closeFaceWindows();
 	//Variable para monitorizar si se ha mostrado alguna cara
@@ -810,9 +939,17 @@ void CVisionGUIDlg::OnBnClickedFacesNotRecognizedButton2()
 		AfxMessageBox(_T("No hay ninguna imagen para mostrar"), MB_OK | MB_ICONINFORMATION);
 }
 
-//Cargado de vídeo
-void CVisionGUIDlg::OnBnClickedButtonCargarVideo()
+//Cargado de imagen desde archivo
+void CVisionGUIDlg::OnBnClickedButtonCargarArchivoImagen()
 {
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL)
+	{
+		//Mostrar mensaje de error
+		AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+		return;
+	}
+
 	// TODO: Add your control notification handler code here
 	CFileDialog dlg(TRUE);
 	int result = dlg.DoModal();
@@ -837,7 +974,7 @@ void CVisionGUIDlg::OnBnClickedButtonCargarVideo()
 		}
 
 		//Modo de procesamiento de imagen
-		modo = VIDEO;
+		modo = ARCHIVO;
 		//Leer primer frame del vídeo
 		cv::Mat frame;
 		bool leido = videoCaptura.read(frame);
@@ -860,5 +997,37 @@ void CVisionGUIDlg::OnBnClickedButtonCargarVideo()
 		//Mostrar imagen
 		showImage(imgCargada, pictureControl);
 		UpdateData(FALSE);
+	}
+}
+
+//Botón de pausa de procesamiento
+void CVisionGUIDlg::OnBnClickedButtonPausar()
+{
+	//Comprobar si existe un hilo procesando
+	if (this->hiloProc != NULL)
+	{
+		//Invertir pausa
+		this->infoHiloProc->pausa = true;
+	}
+	else
+	{
+		//Mostrar mensaje de error
+		AfxMessageBox(_T("No hay ningún procesamiento en curso"), MB_OK | MB_ICONINFORMATION);
+	}
+}
+
+//Botón de finalización del reconocimiento
+void CVisionGUIDlg::OnBnClickedButtonTerminarProc()
+{
+	//Comprobar si existe un hilo procesando
+	if (this->hiloProc != NULL)
+	{
+		this->infoHiloProc->terminar = true;
+		this->infoHiloProc->pausa = false;
+	}
+	else
+	{
+		//Mostrar mensaje de error
+		AfxMessageBox(_T("No hay ningún procesamiento en curso"), MB_OK | MB_ICONINFORMATION);
 	}
 }
