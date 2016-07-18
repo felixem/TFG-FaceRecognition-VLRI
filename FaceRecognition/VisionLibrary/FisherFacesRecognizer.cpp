@@ -34,7 +34,11 @@ namespace tfg
 		//Predecir clase junto con su valor de confianza
 		model->predict(img, label, confidence);
 
-		return label;
+		//Comprobar el umbral
+		if (confidence <= valorUmbral)
+			return label;
+		else
+			return -1;
 	}
 
 	//Limpìar modelo
@@ -52,7 +56,7 @@ namespace tfg
 	//Poner umbral de detección (valores por encima del umbral se considerarán desconocidos)
 	void FisherFacesRecognizer::setUmbral(double umbral)
 	{
-		this->model->setThreshold(umbral);
+		this->valorUmbral = umbral;
 	}
 
 	//Almacenar fisherfaces en fichero

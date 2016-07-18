@@ -30,6 +30,10 @@ namespace tfg
 		virtual void load(const std::string& fichero) = 0;
 		//Guardar en fichero el modelo
 		virtual void save(const std::string& fichero) = 0;
+
+	protected:
+		//Valor de umbral del algoritmo de reconocimiento
+		double valorUmbral;
 	};
 }
 
