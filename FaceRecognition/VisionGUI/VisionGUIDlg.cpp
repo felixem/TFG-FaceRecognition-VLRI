@@ -96,6 +96,8 @@ void CVisionGUIDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_COMBO_RECOGNIZER, comboboxRecognizer);
 	DDX_Control(pDX, IDC_COMBO_UPSAMPLER, comboboxUpsampler);
 	DDX_Control(pDX, IDC_EDIT_UMBRAL, umbralReconocimientoString);
+	DDX_Control(pDX, IDC_EDIT_ANCHURA_RECO, anchuraReconocimientoStr);
+	DDX_Control(pDX, IDC_EDIT_ALTURA_RECO, AlturaReconocimientoStr);
 }
 
 BEGIN_MESSAGE_MAP(CVisionGUIDlg, CDialog)
@@ -119,6 +121,8 @@ BEGIN_MESSAGE_MAP(CVisionGUIDlg, CDialog)
 	ON_MESSAGE(WM_MY_MESSAGE, updateDataCall)
 	ON_BN_CLICKED(IDC_BUTTON_PAUSAR, &CVisionGUIDlg::OnBnClickedButtonPausar)
 	ON_BN_CLICKED(IDC_BUTTON_TERMINAR_PROC, &CVisionGUIDlg::OnBnClickedButtonTerminarProc)
+	ON_EN_CHANGE(IDC_EDIT_ANCHURA_RECO, &CVisionGUIDlg::OnEnChangeEditAnchuraRecog)
+	ON_EN_CHANGE(IDC_EDIT_ALTURA_RECO, &CVisionGUIDlg::OnEnChangeEditAlturaRecog)
 END_MESSAGE_MAP()
 
 
@@ -169,6 +173,8 @@ BOOL CVisionGUIDlg::OnInitDialog()
 	anchuraMaxString.SetWindowText(std::to_string(anchuraMaxFace).c_str());
 	AlturaMaxString.SetWindowText(std::to_string(alturaMaxFace).c_str());
 	umbralReconocimientoString.SetWindowText(std::to_string(umbralReconocimiento).c_str());
+	anchuraReconocimientoStr.SetWindowText(std::to_string(anchuraReconocimiento).c_str());
+	AlturaReconocimientoStr.SetWindowText(std::to_string(alturaReconocimiento).c_str());
 
 	return TRUE;  // Devuelve TRUE  a menos que establezca el foco en un control
 }
@@ -286,6 +292,8 @@ void CVisionGUIDlg::OnProcesarImagenClickedButton()
 	{
 		//Reanudar procesamiento
 		this->infoHiloProc->pausa = false;
+		//Destruir las ventanas de caras
+		this->closeFaceWindows();
 		return;
 	}
 
@@ -404,7 +412,7 @@ UINT CVisionGUIDlg::procesarArchivoMedia(LPVOID param)
 		//Comprobar si debe pausarse el hilo
 		while (ts->pausa)
 		{
-			std::this_thread::sleep_for(std::chrono::milliseconds(300));
+			std::this_thread::sleep_for(std::chrono::milliseconds(200));
 		}
 
 		//Comprobar si debe terminar el procesamiento
@@ -1029,5 +1037,85 @@ void CVisionGUIDlg::OnBnClickedButtonTerminarProc()
 	{
 		//Mostrar mensaje de error
 		AfxMessageBox(_T("No hay ningún procesamiento en curso"), MB_OK | MB_ICONINFORMATION);
+	}
+}
+
+//Cambio en la anchura del reconocimiento
+void CVisionGUIDlg::OnEnChangeEditAnchuraRecog()
+{
+	//Obtener el texto
+	CString valor;
+	GetDlgItemText(IDC_EDIT_ANCHURA_RECO, valor);
+	//Convertir a string convencional
+	std::string valorStr = cStringToString(valor);
+
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL && !infoHiloProc->pausa)
+	{
+		if (std::to_string(anchuraReconocimiento) != valorStr)
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+			//Reestablecer el texto
+			anchuraReconocimientoStr.SetWindowText(std::to_string(anchuraReconocimiento).c_str());
+		}
+		return;
+	}
+
+	//Intentar convertir a entero
+	int nuevoValor;
+
+	try
+	{
+		//Convertir nuevo valor
+		nuevoValor = std::stoi(valorStr);
+		//Pasarla a la variable original
+		anchuraReconocimiento = nuevoValor;
+
+	}
+	catch (...)
+	{
+		//Reestablecer el texto
+		anchuraReconocimientoStr.SetWindowText(std::to_string(anchuraReconocimiento).c_str());
+	}
+}
+
+//Cambio en la altura del reconocimiento
+void CVisionGUIDlg::OnEnChangeEditAlturaRecog()
+{
+	//Obtener el texto
+	CString valor;
+	GetDlgItemText(IDC_EDIT_ALTURA_RECO, valor);
+	//Convertir a string convencional
+	std::string valorStr = cStringToString(valor);
+
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL && !infoHiloProc->pausa)
+	{
+		if (std::to_string(alturaReconocimiento) != valorStr)
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+			//Reestablecer el texto
+			AlturaReconocimientoStr.SetWindowText(std::to_string(alturaReconocimiento).c_str());
+		}
+		return;
+	}
+
+	//Intentar convertir a entero
+	int nuevoValor;
+
+	try
+	{
+		//Convertir nuevo valor
+		nuevoValor = std::stoi(valorStr);
+		//Pasarla a la variable original
+		alturaReconocimiento = nuevoValor;
+
+	}
+	catch (...)
+	{
+		//Reestablecer el texto
+		AlturaReconocimientoStr.SetWindowText(std::to_string(alturaReconocimiento).c_str());
 	}
 }

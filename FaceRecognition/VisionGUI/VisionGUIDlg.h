@@ -129,4 +129,8 @@ public:
 	afx_msg void OnBnClickedButtonCargarArchivoImagen();
 	afx_msg void OnBnClickedButtonPausar();
 	afx_msg void OnBnClickedButtonTerminarProc();
+	CEdit anchuraReconocimientoStr;
+	CEdit AlturaReconocimientoStr;
+	afx_msg void OnEnChangeEditAnchuraRecog();
+	afx_msg void OnEnChangeEditAlturaRecog();
 };
