@@ -72,6 +72,8 @@ protected:
 	float escalaDeteccion = 1.05f;
 	//Anchura y altura mínima de detección cara
 	int anchuraMinFace = 16, anchuraMaxFace = 0, alturaMinFace = 16, alturaMaxFace = 0;
+	//Número de vecinos para detección de caras
+	int numVecinosCaras = 3;
 	//Anchura y altura para reconocimiento de cara
 	int anchuraReconocimiento = 64, alturaReconocimiento = 64;
 	//Umbral de reconocimiento
@@ -133,4 +135,6 @@ public:
 	CEdit AlturaReconocimientoStr;
 	afx_msg void OnEnChangeEditAnchuraRecog();
 	afx_msg void OnEnChangeEditAlturaRecog();
+	CEdit vecinosDetectStr;
+	afx_msg void OnEnChangeEditVecinosDetec();
 };

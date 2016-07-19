@@ -36,14 +36,14 @@ namespace tfg
 
 	//Reconocer caras en una imagen
 	bool CompleteFaceRecognizer::recognizeFaces(const cv::Mat& img, std::vector<Face> &faces, cv::Mat & output, int recognizeWidth, int recognizeHeight,
-		float scale, int minWidth, int minHeight, int maxWidth, int maxHeight)
+		float scale, int minWidth, int minHeight, int maxWidth, int maxHeight, int numVecinos)
 	{
 		//Rectángulos de las caras encontradas y la imagen en escala de grises
 		std::vector<cv::Rect> foundRectFaces;
 		cv::Mat grayImg;
 
 		//Encontrar caras
-		this->faceDetector->detectLocatedFaces(img, foundRectFaces, grayImg, scale, minWidth, minHeight, maxWidth, maxHeight);
+		this->faceDetector->detectLocatedFaces(img, foundRectFaces, grayImg, scale, minWidth, minHeight, maxWidth, maxHeight, numVecinos);
 
 		//Preparar imagen final
 		output = img.clone();

@@ -51,7 +51,7 @@ namespace tfg
 
 	//Detectar caras
 	bool HaarLikeFaceDetector::detectFaces(const cv::Mat & input, std::vector<cv::Mat>& foundFaces, cv::Mat & output,
-		float scale, int minWidth, int minHeight, int maxWidth, int maxHeight)
+		float scale, int minWidth, int minHeight, int maxWidth, int maxHeight, int numVecinos)
 	{
 		//Caras detectadas
 		std::vector<Rect> faces;
@@ -61,7 +61,7 @@ namespace tfg
 		//Detectar caras
 		try
 		{
-			this->detectLocatedFaces(input, faces, frame_gray, scale, minWidth, minHeight, maxWidth, maxHeight);
+			this->detectLocatedFaces(input, faces, frame_gray, scale, minWidth, minHeight, maxWidth, maxHeight, numVecinos);
 		}
 		catch (...)
 		{
@@ -96,7 +96,7 @@ namespace tfg
 
 	//Detectar caras en una imagen devolviendo las caras a color también
 	bool HaarLikeFaceDetector::detectFaces(const cv::Mat & input, std::vector<cv::Mat>& grayFoundFaces, std::vector<cv::Mat>& colourFoundFaces, cv::Mat & output,
-		float scale, int minWidth, int minHeight, int maxWidth, int maxHeight)
+		float scale, int minWidth, int minHeight, int maxWidth, int maxHeight, int numVecinos)
 	{
 		//Caras detectadas
 		std::vector<Rect> faces;
@@ -104,7 +104,7 @@ namespace tfg
 		Mat frame_gray;
 
 		//Detectar caras
-		this->detectLocatedFaces(input, faces, frame_gray, scale, minWidth, minHeight, maxWidth, maxHeight);
+		this->detectLocatedFaces(input, faces, frame_gray, scale, minWidth, minHeight, maxWidth, maxHeight, numVecinos);
 
 		//Iterar sobre las caras encontradas
 		for (size_t ic = 0; ic < faces.size(); ic++) // Iterate through all current elements (detected faces)
@@ -139,7 +139,7 @@ namespace tfg
 
 	//Detectar caras en una imagen devolviendo los rectángulos y la imagen en escala de grises
 	bool HaarLikeFaceDetector::detectLocatedFaces(const cv::Mat & input, std::vector<cv::Rect>& rectFaces, cv::Mat & grayInput,
-		float scale, int minWidth, int minHeight, int maxWidth, int maxHeight)
+		float scale, int minWidth, int minHeight, int maxWidth, int maxHeight, int numVecinos)
 	{
 		//Comprobar si es rgb
 		if (input.channels() == 3)
@@ -157,7 +157,7 @@ namespace tfg
 		equalizeHist(grayInput, grayInput);
 
 		//Detectar las caras
-		face_cascade.detectMultiScale(grayInput, rectFaces, scale, 3, 0 | CASCADE_SCALE_IMAGE, Size(minWidth, minHeight), Size(maxWidth, maxHeight));
+		face_cascade.detectMultiScale(grayInput, rectFaces, scale, numVecinos, 0 | CASCADE_SCALE_IMAGE, Size(minWidth, minHeight), Size(maxWidth, maxHeight));
 
 		//Devolver si se ha encontrado alguna cara
 		return rectFaces.size();

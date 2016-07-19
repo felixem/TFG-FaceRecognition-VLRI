@@ -19,7 +19,7 @@ namespace tfg
 
 		//Reconocer caras en una imagen
 		bool recognizeFaces(const cv::Mat& img, std::vector<Face> &faces, cv::Mat & output, int recognizeWidth = 64, int recognizeHeight = 64,
-			float scale = 1.01, int minWidth = 16, int minHeight = 16, int maxWidth = 0, int maxHeight = 0);
+			float scale = 1.01, int minWidth = 16, int minHeight = 16, int maxWidth = 0, int maxHeight = 0, int numVecinos = 3);
 
 		//Método de upsampling
 		void upSample(const cv::Mat& img, cv::Mat &output, int height, int width);

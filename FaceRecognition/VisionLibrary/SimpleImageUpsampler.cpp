@@ -38,7 +38,7 @@ namespace tfg {
 			case cv::InterpolationFlags::INTER_LINEAR:
 				return "Interpolacion Bilineal";
 			case cv::InterpolationFlags::INTER_NEAREST:
-				return "Interpolacion Nearest Neightbor";
+				return "Interpolacion Nearest Neighbor";
 		}
 
 		return "Desconocido";

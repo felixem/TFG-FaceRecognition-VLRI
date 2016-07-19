@@ -98,6 +98,7 @@ void CVisionGUIDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT_UMBRAL, umbralReconocimientoString);
 	DDX_Control(pDX, IDC_EDIT_ANCHURA_RECO, anchuraReconocimientoStr);
 	DDX_Control(pDX, IDC_EDIT_ALTURA_RECO, AlturaReconocimientoStr);
+	DDX_Control(pDX, IDC_EDIT_VECINOS_DETEC, vecinosDetectStr);
 }
 
 BEGIN_MESSAGE_MAP(CVisionGUIDlg, CDialog)
@@ -123,6 +124,7 @@ BEGIN_MESSAGE_MAP(CVisionGUIDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_TERMINAR_PROC, &CVisionGUIDlg::OnBnClickedButtonTerminarProc)
 	ON_EN_CHANGE(IDC_EDIT_ANCHURA_RECO, &CVisionGUIDlg::OnEnChangeEditAnchuraRecog)
 	ON_EN_CHANGE(IDC_EDIT_ALTURA_RECO, &CVisionGUIDlg::OnEnChangeEditAlturaRecog)
+	ON_EN_CHANGE(IDC_EDIT_VECINOS_DETEC, &CVisionGUIDlg::OnEnChangeEditVecinosDetec)
 END_MESSAGE_MAP()
 
 
@@ -168,6 +170,7 @@ BOOL CVisionGUIDlg::OnInitDialog()
 
 	//Inicializar texto de los textboxes
 	escalaString.SetWindowText(std::to_string(escalaDeteccion).c_str());
+	vecinosDetectStr.SetWindowText(std::to_string(numVecinosCaras).c_str());
 	anchuraMinString.SetWindowText(std::to_string(anchuraMinFace).c_str());
 	alturaMinString.SetWindowText(std::to_string(alturaMinFace).c_str());
 	anchuraMaxString.SetWindowText(std::to_string(anchuraMaxFace).c_str());
@@ -339,7 +342,7 @@ UINT CVisionGUIDlg::procesarImagen(LPVOID param)
 		interfaz->faceRecognizer.recognizeFaces(interfaz->imgCargada, interfaz->colourFoundFaces, imgFinal,
 			interfaz->anchuraReconocimiento, interfaz->alturaReconocimiento,
 			interfaz->escalaDeteccion, interfaz->anchuraMinFace, interfaz->alturaMinFace, 
-			interfaz->anchuraMaxFace, interfaz->alturaMaxFace);
+			interfaz->anchuraMaxFace, interfaz->alturaMaxFace, interfaz->numVecinosCaras);
 	}
 	catch (std::exception &ex)
 	{
@@ -1117,5 +1120,45 @@ void CVisionGUIDlg::OnEnChangeEditAlturaRecog()
 	{
 		//Reestablecer el texto
 		AlturaReconocimientoStr.SetWindowText(std::to_string(alturaReconocimiento).c_str());
+	}
+}
+
+//Cambios en el número de vecinos para la detección
+void CVisionGUIDlg::OnEnChangeEditVecinosDetec()
+{
+	//Obtener el texto
+	CString valor;
+	GetDlgItemText(IDC_EDIT_VECINOS_DETEC, valor);
+	//Convertir a string convencional
+	std::string valorStr = cStringToString(valor);
+
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL && !infoHiloProc->pausa)
+	{
+		if (std::to_string(numVecinosCaras) != valorStr)
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+			//Reestablecer el texto
+			vecinosDetectStr.SetWindowText(std::to_string(numVecinosCaras).c_str());
+		}
+		return;
+	}
+
+	//Intentar convertir a entero
+	int nuevoValor;
+
+	try
+	{
+		//Convertir nuevo valor
+		nuevoValor = std::stoi(valorStr);
+		//Pasarla a la variable original
+		numVecinosCaras = nuevoValor;
+
+	}
+	catch (...)
+	{
+		//Reestablecer el texto
+		vecinosDetectStr.SetWindowText(std::to_string(numVecinosCaras).c_str());
 	}
 }
