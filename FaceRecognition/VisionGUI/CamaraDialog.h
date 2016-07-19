@@ -11,6 +11,7 @@ class CamaraDialog : public CDialog
 
 public:
 	CamaraDialog(CWnd* pParent = NULL);   // Constructor estándar
+	BOOL OnInitDialog();
 	virtual ~CamaraDialog();
 
 // Datos del cuadro de diálogo

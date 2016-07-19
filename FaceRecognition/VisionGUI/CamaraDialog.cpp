@@ -14,7 +14,36 @@ IMPLEMENT_DYNAMIC(CamaraDialog, CDialog)
 CamaraDialog::CamaraDialog(CWnd* pParent /*=NULL*/)
 	: CDialog(IDD_CAMARADIALOG, pParent)
 {
+}
 
+BOOL CamaraDialog::OnInitDialog()
+{
+	CDialog::OnInitDialog();
+
+	//Inicialización
+	//Cargar cámaras locales
+	cv::VideoCapture video;
+	for (int i = 0; ; ++i)
+	{
+		//Abrir cámara local
+		video.open(i);
+		//Comprobar si se ha abierto
+		if (video.isOpened())
+		{
+			//Añadir entrada a la lista
+			comboboxCameraLocal.AddString(std::to_string(i).c_str());
+			//Liberar cámara
+			video.release();
+		}
+		else
+			break;
+	}
+
+	//Establecer primer índice como seleccionado
+	if (comboboxCameraLocal.GetCount() > 0)
+		comboboxCameraLocal.SetCurSel(0);
+
+	return TRUE;
 }
 
 CamaraDialog::~CamaraDialog()
@@ -51,6 +80,9 @@ void CamaraDialog::OnBnClickedButtonLoadIpcamera()
 	// construct a std::string using the LPCSTR input
 	std::string urlCamaraIp(pszConvertedAnsiString);
 
+	//Mostrar mensaje de selección
+	AfxMessageBox(_T("Se ha seleccionado conexión a cámara ip"), MB_OK | MB_ICONINFORMATION);
+
 	//Cargar cámara ip
 	capture.open(urlCamaraIp);
 
@@ -66,6 +98,9 @@ void CamaraDialog::OnBnClickedButtonLoadLocalCamera()
 
 	//Obtener índice de la cámara
 	int index = comboboxCameraLocal.GetCurSel();
+
+	//Mostrar mensaje de selección
+	AfxMessageBox(_T("Se ha seleccionado conexión a cámara local"), MB_OK | MB_ICONINFORMATION);
 
 	//Inicializar captura con el índice
 	capture.open(index);

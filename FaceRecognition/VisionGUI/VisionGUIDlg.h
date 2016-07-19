@@ -29,6 +29,10 @@ class CVisionGUIDlg : public CDialog
 		bool pausa;
 		//Mensaje de terminar
 		bool terminar;
+		//Número de intentos hasta timeout y espera entre intentos
+		int numIntentosUntilTimeout;
+		int esperaEntreIntentos;
+		
 	} THREADSTRUCT;
 
 // Construcción
@@ -56,7 +60,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 	//Función de procesamiento de vídeo
-	static UINT procesarArchivoMedia(LPVOID param);
+	static UINT procesarMedia(LPVOID param);
 	//Función de procesamiento de imagen
 	static UINT procesarImagen(LPVOID param);
 
@@ -88,6 +92,8 @@ protected:
 	THREADSTRUCT * infoHiloProc = NULL;
 	//Opciones de reconocimiento facial y de upsampling
 	int indexReconocimiento = 0, indexUpsampling = 0;
+	//Número de intentos hasta timeout y espera entre intentos
+	int numIntentosUntilTimeout = 100, esperaEntreIntentos = 20;
 
 public:
 
@@ -107,7 +113,7 @@ public:
 	//Generar algoritmo de upsampling según índice seleccionado
 	tfg::ImageUpsampler* generateUpsampler(int id);
 
-	afx_msg void OnProcesarImagenClickedButton();
+	afx_msg void OnProcesarClickedButton();
 	afx_msg void OnMostrarCarasReconocidasClickedFacesButton();
 	afx_msg void OnClickedButtonOcultarCaras();
 	afx_msg void OnEnChangeEditEscala();

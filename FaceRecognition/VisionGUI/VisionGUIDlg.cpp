@@ -8,6 +8,7 @@
 #include "afxdialogex.h"
 #include <chrono>
 #include <thread>
+#include "CamaraDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -105,7 +106,7 @@ BEGIN_MESSAGE_MAP(CVisionGUIDlg, CDialog)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_BN_CLICKED(PROCESSIMG_BUTTON, &CVisionGUIDlg::OnProcesarImagenClickedButton)
+	ON_BN_CLICKED(PROCESSIMG_BUTTON, &CVisionGUIDlg::OnProcesarClickedButton)
 	ON_BN_CLICKED(SHOW_FACES_RECOGNIZED_BUTTON, &CVisionGUIDlg::OnMostrarCarasReconocidasClickedFacesButton)
 	ON_BN_CLICKED(IDC_BUTTON_OCULTAR_CARAS, &CVisionGUIDlg::OnClickedButtonOcultarCaras)
 	ON_EN_CHANGE(IDC_EDIT_ESCALA, &CVisionGUIDlg::OnEnChangeEditEscala)
@@ -289,7 +290,7 @@ void CVisionGUIDlg::prepareImgToShow(const cv::Mat &img, CBitmap& output)
 }
 
 //Evento para procesar la imagen
-void CVisionGUIDlg::OnProcesarImagenClickedButton()
+void CVisionGUIDlg::OnProcesarClickedButton()
 {
 	//Comprobar procesamiento en curso
 	if (hiloProc != NULL)
@@ -311,7 +312,9 @@ void CVisionGUIDlg::OnProcesarImagenClickedButton()
 		infoHiloProc->_this = this;
 		infoHiloProc->terminar = false;
 		infoHiloProc->pausa = false;
-		hiloProc = AfxBeginThread(procesarArchivoMedia, infoHiloProc);
+		infoHiloProc->numIntentosUntilTimeout = 0;
+		infoHiloProc->esperaEntreIntentos = 0;
+		hiloProc = AfxBeginThread(procesarMedia, infoHiloProc);
 		break;
 	//Cámara
 	case CAMARA:
@@ -320,7 +323,9 @@ void CVisionGUIDlg::OnProcesarImagenClickedButton()
 		infoHiloProc->_this = this;
 		infoHiloProc->terminar = false;
 		infoHiloProc->pausa = false;
-		hiloProc = AfxBeginThread(procesarArchivoMedia, infoHiloProc);
+		infoHiloProc->numIntentosUntilTimeout = numIntentosUntilTimeout;
+		infoHiloProc->esperaEntreIntentos = esperaEntreIntentos;
+		hiloProc = AfxBeginThread(procesarMedia, infoHiloProc);
 		break;
 	}
 }
@@ -355,7 +360,7 @@ UINT CVisionGUIDlg::procesarImagen(LPVOID param)
 			interfaz->escalaDeteccion, interfaz->anchuraMinFace, interfaz->alturaMinFace,
 			interfaz->anchuraMaxFace, interfaz->alturaMaxFace, interfaz->numVecinosCaras);
 	}
-	catch (std::exception &ex)
+	catch (...)
 	{
 		//Renovar detector de caras
 		interfaz->faceRecognizer.setFaceDetector(new tfg::HaarLikeFaceDetector(interfaz->ficFaceDetector));
@@ -377,7 +382,7 @@ UINT CVisionGUIDlg::procesarImagen(LPVOID param)
 }
 
 //Función de procesamiento de imagen desde archivo
-UINT CVisionGUIDlg::procesarArchivoMedia(LPVOID param)
+UINT CVisionGUIDlg::procesarMedia(LPVOID param)
 {
 	//Cargar estructura
 	THREADSTRUCT*    ts = (THREADSTRUCT*)param;
@@ -406,6 +411,10 @@ UINT CVisionGUIDlg::procesarArchivoMedia(LPVOID param)
 
 	//Frame de lectura
 	cv::Mat frame;
+	//Intentos y timeout de lectura
+	int numIntentosLectura = ts->numIntentosUntilTimeout;
+	int esperaEntreIntentos = ts->esperaEntreIntentos;
+
 	//Recorrer el vídeo
 	while (true)
 	{
@@ -426,20 +435,36 @@ UINT CVisionGUIDlg::procesarArchivoMedia(LPVOID param)
 		//Comprobar si debe pausarse el hilo
 		while (ts->pausa)
 		{
-			std::this_thread::sleep_for(std::chrono::milliseconds(200));
+			std::this_thread::sleep_for(std::chrono::milliseconds(100));
 		}
 
 		//Comprobar si debe terminar el procesamiento
 		if (ts->terminar)
 			break;
 
-		//Leer frame
-		interfaz->videoCaptura >> frame;
-		//Comprobar si se ha leído un frame correctamente
-		if (frame.empty())
-			break;
-		//Asignar frame a la imagen cargada
-		interfaz->imgCargada = frame;
+		//Bucle de lectura de frame para permitir recuperar señal
+		bool frameLeido = false;
+		int intentos = numIntentosLectura;
+		do
+		{
+			//Lectura de frame
+			interfaz->videoCaptura >> frame;
+			//Comprobar si se ha leído un frame
+			if (frame.empty())
+			{
+				//Realizar espera
+				std::this_thread::sleep_for(std::chrono::milliseconds(esperaEntreIntentos));
+				//Decrementar intentos
+				intentos--;
+			}
+			else
+			{
+				//Frame leído
+				frameLeido = true;
+				//Asignar frame a la imagen cargada
+				interfaz->imgCargada = frame;
+			}
+		} while (!frameLeido && intentos > 0);
 	}
 
 	//Informar sobre fin del hilo
@@ -1185,9 +1210,23 @@ void CVisionGUIDlg::OnBnClickedButtonLoadCamera()
 		return;
 	}
 
-	//Cargar vídeo
+	//Liberar captura actual
 	videoCaptura.release();
-	videoCaptura = cv::VideoCapture(0);
+
+	//Cargar diálogo de captura
+	CamaraDialog dialogoCamara;
+	dialogoCamara.DoModal();
+
+	//Comprobar si se ha cargado alguna cámara
+	if (!dialogoCamara.isCameraSelected())
+	{
+		//Avisar de que no se ha seleccionado ninguna cámara
+		AfxMessageBox(_T("No se ha seleccionado ninguna cámara"), MB_OK | MB_ICONINFORMATION);
+		return;
+	}
+
+	//Cargar vídeo
+	videoCaptura = dialogoCamara.getVideoCapture();
 
 	//Comprobar cargado del vídeo
 	if (!videoCaptura.isOpened())
@@ -1205,8 +1244,7 @@ void CVisionGUIDlg::OnBnClickedButtonLoadCamera()
 	//Bucle de intento de lectura
 	bool leido = false;
 	//Número de intentos
-	int numIntentos = 100;
-
+	int numIntentos = this->numIntentosUntilTimeout;
 	do
 	{
 		//Intentar captar frame
@@ -1214,7 +1252,7 @@ void CVisionGUIDlg::OnBnClickedButtonLoadCamera()
 		//Disminuir número de intentos
 		numIntentos--;
 		//Pequeña espera
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		std::this_thread::sleep_for(std::chrono::milliseconds(this->esperaEntreIntentos));
 		
 	} while (!leido && numIntentos>0);
 
