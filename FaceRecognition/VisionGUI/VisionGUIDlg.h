@@ -32,6 +32,8 @@ class CVisionGUIDlg : public CDialog
 		//Número de intentos hasta timeout y espera entre intentos
 		int numIntentosUntilTimeout;
 		int esperaEntreIntentos;
+		//Modo de procesamiento
+		MODO_PROCESAMIENTO modoProc;
 		
 	} THREADSTRUCT;
 

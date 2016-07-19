@@ -324,6 +324,7 @@ void CVisionGUIDlg::OnProcesarClickedButton()
 		infoHiloProc->pausa = false;
 		infoHiloProc->numIntentosUntilTimeout = 0;
 		infoHiloProc->esperaEntreIntentos = 0;
+		infoHiloProc->modoProc = ARCHIVO;
 		hiloProc = AfxBeginThread(procesarMedia, infoHiloProc);
 		break;
 	//Cámara
@@ -335,6 +336,7 @@ void CVisionGUIDlg::OnProcesarClickedButton()
 		infoHiloProc->pausa = false;
 		infoHiloProc->numIntentosUntilTimeout = numIntentosUntilTimeout;
 		infoHiloProc->esperaEntreIntentos = esperaEntreIntentos;
+		infoHiloProc->modoProc = CAMARA;
 		hiloProc = AfxBeginThread(procesarMedia, infoHiloProc);
 		break;
 	}
@@ -403,7 +405,7 @@ UINT CVisionGUIDlg::procesarMedia(LPVOID param)
 	if (!interfaz->videoCaptura.isOpened())
 	{
 		//Mostrar mensaje de error
-		AfxMessageBox(_T("No hay cargado ningún archivo"), MB_OK | MB_ICONERROR);
+		AfxMessageBox(_T("No hay cargada ninguna fuente de vídeo"), MB_OK | MB_ICONERROR);
 		//Informar sobre fin del hilo
 		::SendMessage(*interfaz, WM_MY_MESSAGE, 0, 1);
 		return -1;
@@ -424,6 +426,8 @@ UINT CVisionGUIDlg::procesarMedia(LPVOID param)
 	//Intentos y timeout de lectura
 	int numIntentosLectura = ts->numIntentosUntilTimeout;
 	int esperaEntreIntentos = ts->esperaEntreIntentos;
+	//Forzar salida
+	bool salir = false;
 
 	//Recorrer el vídeo
 	while (true)
@@ -442,16 +446,6 @@ UINT CVisionGUIDlg::procesarMedia(LPVOID param)
 			return -1;
 		}
 
-		//Comprobar si debe pausarse el hilo
-		while (ts->pausa)
-		{
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
-		}
-
-		//Comprobar si debe terminar el procesamiento
-		if (ts->terminar)
-			break;
-
 		//Bucle de lectura de frame para permitir recuperar señal
 		bool frameLeido = false;
 		int intentos = numIntentosLectura;
@@ -459,6 +453,18 @@ UINT CVisionGUIDlg::procesarMedia(LPVOID param)
 		{
 			//Lectura de frame
 			interfaz->videoCaptura >> frame;
+
+			//Comprobar si debe pausarse el hilo
+			while (ts->pausa)
+			{
+				std::this_thread::sleep_for(std::chrono::milliseconds(100));
+				intentos = numIntentosLectura;
+			}
+
+			//Comprobar si debe terminar el procesamiento
+			if (ts->terminar)
+				salir = true;
+
 			//Comprobar si se ha leído un frame
 			if (frame.empty())
 			{
@@ -474,17 +480,30 @@ UINT CVisionGUIDlg::procesarMedia(LPVOID param)
 				//Asignar frame a la imagen cargada
 				interfaz->imgCargada = frame;
 			}
-		} while (!frameLeido && intentos > 0);
+		} while (!frameLeido && intentos > 0 && !salir);
+
+		//Comprobar si se eligió salir
+		if (salir)
+			break;
 	}
 
 	//Informar sobre fin del hilo
 	::SendMessage(*interfaz, WM_MY_MESSAGE, 0, 1);
 
 	//Mostrar mensaje para informar de la salida
-	AfxMessageBox(_T("Terminó el procesamiento exitosamente"), MB_OK | MB_ICONINFORMATION);
+	AfxMessageBox(_T("Terminó el procesamiento"), MB_OK | MB_ICONINFORMATION);
 
-	//Reiniciar captura al principio
-	interfaz->videoCaptura.set(CV_CAP_PROP_POS_FRAMES, 0);
+	//Reiniciar captura al principio si es desde archivo
+	if (ts->modoProc == ARCHIVO)
+	{
+		//Posicionarse en primer frame
+		interfaz->videoCaptura.set(CV_CAP_PROP_POS_FRAMES, 0);
+	}
+	else
+	{
+		//Liberar captura
+		interfaz->videoCaptura.release();
+	}
 
 	return 1;
 }
