@@ -61,16 +61,16 @@ LRESULT CVisionGUIDlg::updateDataCall(WPARAM wpD, LPARAM lpD)
 	//Opción de mensaje
 	switch (lpD)
 	{
-		case 0:
-			//Actualizar datos
-			UpdateData(FALSE);
-			break;
-		case 1:
-			//Borrar información sobre hilo de procesamiento
-			this->hiloProc = NULL;
-			delete this->infoHiloProc;
-			this->infoHiloProc = NULL;
-			break;
+	case 0:
+		//Actualizar datos
+		UpdateData(FALSE);
+		break;
+	case 1:
+		//Borrar información sobre hilo de procesamiento
+		this->hiloProc = NULL;
+		delete this->infoHiloProc;
+		this->infoHiloProc = NULL;
+		break;
 	}
 
 	//Actualizar datos
@@ -125,6 +125,7 @@ BEGIN_MESSAGE_MAP(CVisionGUIDlg, CDialog)
 	ON_EN_CHANGE(IDC_EDIT_ANCHURA_RECO, &CVisionGUIDlg::OnEnChangeEditAnchuraRecog)
 	ON_EN_CHANGE(IDC_EDIT_ALTURA_RECO, &CVisionGUIDlg::OnEnChangeEditAlturaRecog)
 	ON_EN_CHANGE(IDC_EDIT_VECINOS_DETEC, &CVisionGUIDlg::OnEnChangeEditVecinosDetec)
+	ON_BN_CLICKED(IDC_BUTTON_LOAD_CAMERA, &CVisionGUIDlg::OnBnClickedButtonLoadCamera)
 END_MESSAGE_MAP()
 
 
@@ -303,14 +304,24 @@ void CVisionGUIDlg::OnProcesarImagenClickedButton()
 	//Acción según tipo de procesamiento
 	switch (modo)
 	{
-		case ARCHIVO:
-			//Llamar a hilo de procesamiento de vídeo
-			infoHiloProc = new THREADSTRUCT;
-			infoHiloProc->_this = this;
-			infoHiloProc->terminar = false;
-			infoHiloProc->pausa = false;
-			hiloProc = AfxBeginThread(procesarArchivoMedia, infoHiloProc);
-			break;
+	//Archivo de vídeo/imagen
+	case ARCHIVO:
+		//Llamar a hilo de procesamiento de vídeo
+		infoHiloProc = new THREADSTRUCT;
+		infoHiloProc->_this = this;
+		infoHiloProc->terminar = false;
+		infoHiloProc->pausa = false;
+		hiloProc = AfxBeginThread(procesarArchivoMedia, infoHiloProc);
+		break;
+	//Cámara
+	case CAMARA:
+		//Llamar a hilo de procesamiento de vídeo
+		infoHiloProc = new THREADSTRUCT;
+		infoHiloProc->_this = this;
+		infoHiloProc->terminar = false;
+		infoHiloProc->pausa = false;
+		hiloProc = AfxBeginThread(procesarArchivoMedia, infoHiloProc);
+		break;
 	}
 }
 
@@ -341,7 +352,7 @@ UINT CVisionGUIDlg::procesarImagen(LPVOID param)
 		//Detectar caras
 		interfaz->faceRecognizer.recognizeFaces(interfaz->imgCargada, interfaz->colourFoundFaces, imgFinal,
 			interfaz->anchuraReconocimiento, interfaz->alturaReconocimiento,
-			interfaz->escalaDeteccion, interfaz->anchuraMinFace, interfaz->alturaMinFace, 
+			interfaz->escalaDeteccion, interfaz->anchuraMinFace, interfaz->alturaMinFace,
 			interfaz->anchuraMaxFace, interfaz->alturaMaxFace, interfaz->numVecinosCaras);
 	}
 	catch (std::exception &ex)
@@ -433,7 +444,7 @@ UINT CVisionGUIDlg::procesarArchivoMedia(LPVOID param)
 
 	//Informar sobre fin del hilo
 	::SendMessage(*interfaz, WM_MY_MESSAGE, 0, 1);
-	
+
 	//Mostrar mensaje para informar de la salida
 	AfxMessageBox(_T("Terminó el procesamiento exitosamente"), MB_OK | MB_ICONINFORMATION);
 
@@ -478,16 +489,16 @@ void CVisionGUIDlg::OnMostrarCarasReconocidasClickedFacesButton()
 		cv::Mat finalFace;
 		faceRecognizer.upSample(face.img, finalFace, FACE_HEIGHT, FACE_WIDTH);
 		//Mostrar texto sobre cara
-		cv::putText(finalFace, "Id="+std::to_string(face.clase), cvPoint(FACE_WIDTH/2 - 15, 10),
+		cv::putText(finalFace, "Id=" + std::to_string(face.clase), cvPoint(FACE_WIDTH / 2 - 15, 10),
 			cv::FONT_HERSHEY_COMPLEX_SMALL, 0.5, cvScalar(0, 255, 0), 1, CV_AA);
 		//Mostrar texto sobre cara
-		cv::putText(finalFace, "Conf=" + std::to_string(face.confidence), cvPoint(5, FACE_HEIGHT-5),
+		cv::putText(finalFace, "Conf=" + std::to_string(face.confidence), cvPoint(5, FACE_HEIGHT - 5),
 			cv::FONT_HERSHEY_COMPLEX_SMALL, 0.5, cvScalar(0, 255, 0), 1, CV_AA);
 		//Mostrar cara
 		std::string windowName = "Cara " + std::to_string(i) + " Id: " + std::to_string(face.clase);
 		cv::imshow(windowName, finalFace);
 		//Mover ventana
-		cv::moveWindow(windowName, numCaras%FACES_X_ROW*(FACE_WIDTH+85), numCaras / FACES_X_ROW * (FACE_HEIGHT+47));
+		cv::moveWindow(windowName, numCaras%FACES_X_ROW*(FACE_WIDTH + 85), numCaras / FACES_X_ROW * (FACE_HEIGHT + 47));
 		cv::waitKey(20);
 
 		//Aumentar número de caras
@@ -495,7 +506,7 @@ void CVisionGUIDlg::OnMostrarCarasReconocidasClickedFacesButton()
 	}
 
 	//Si no se ha mostrado ninguna cara, mostrar mensaje
-	if(!caraMostrada)
+	if (!caraMostrada)
 		AfxMessageBox(_T("No hay ninguna imagen para mostrar"), MB_OK | MB_ICONINFORMATION);
 }
 
@@ -744,14 +755,14 @@ tfg::IFaceRecognizer* CVisionGUIDlg::generateRecognizer(int id)
 	//Devolver reconocedor según id seleccionado
 	switch (id)
 	{
-		case 0: reconocedor = new tfg::EigenFacesRecognizer();
-				break;
-		case 1: reconocedor = new tfg::FisherFacesRecognizer();
-				break;
-		case 2: reconocedor = new tfg::LBPRecognizer();
-				break;
-		default:
-			return NULL;
+	case 0: reconocedor = new tfg::EigenFacesRecognizer();
+		break;
+	case 1: reconocedor = new tfg::FisherFacesRecognizer();
+		break;
+	case 2: reconocedor = new tfg::LBPRecognizer();
+		break;
+	default:
+		return NULL;
 	}
 
 	//Establecer umbral al reconocedor
@@ -765,13 +776,13 @@ tfg::ImageUpsampler* CVisionGUIDlg::generateUpsampler(int id)
 	//Devolver upsampler según id seleccionado
 	switch (id)
 	{
-		case 0: return new tfg::SimpleImageUpsampler(cv::InterpolationFlags::INTER_NEAREST);
-		case 1: return new tfg::SimpleImageUpsampler(cv::InterpolationFlags::INTER_AREA);
-		case 2: return new tfg::SimpleImageUpsampler(cv::InterpolationFlags::INTER_LINEAR);
-		case 3: return new tfg::SimpleImageUpsampler(cv::InterpolationFlags::INTER_CUBIC);
-		case 4: return new tfg::SimpleImageUpsampler(cv::InterpolationFlags::INTER_LANCZOS4);
-		default:
-			return NULL;
+	case 0: return new tfg::SimpleImageUpsampler(cv::InterpolationFlags::INTER_NEAREST);
+	case 1: return new tfg::SimpleImageUpsampler(cv::InterpolationFlags::INTER_AREA);
+	case 2: return new tfg::SimpleImageUpsampler(cv::InterpolationFlags::INTER_LINEAR);
+	case 3: return new tfg::SimpleImageUpsampler(cv::InterpolationFlags::INTER_CUBIC);
+	case 4: return new tfg::SimpleImageUpsampler(cv::InterpolationFlags::INTER_LANCZOS4);
+	default:
+		return NULL;
 	}
 }
 
@@ -1161,4 +1172,68 @@ void CVisionGUIDlg::OnEnChangeEditVecinosDetec()
 		//Reestablecer el texto
 		vecinosDetectStr.SetWindowText(std::to_string(numVecinosCaras).c_str());
 	}
+}
+
+//Cargar cámara
+void CVisionGUIDlg::OnBnClickedButtonLoadCamera()
+{
+	//Comprobar procesamiento en curso
+	if (hiloProc != NULL)
+	{
+		//Mostrar mensaje de error
+		AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+		return;
+	}
+
+	//Cargar vídeo
+	videoCaptura.release();
+	videoCaptura = cv::VideoCapture(0);
+
+	//Comprobar cargado del vídeo
+	if (!videoCaptura.isOpened())
+	{
+		//Mostrar mensaje de error
+		AfxMessageBox(_T("Error al cargar la cámara"), MB_OK | MB_ICONSTOP);
+		return;
+	}
+
+	//Modo de procesamiento de imagen
+	modo = CAMARA;
+	//Leer primer frame de la cámara
+	cv::Mat frame;
+
+	//Bucle de intento de lectura
+	bool leido = false;
+	//Número de intentos
+	int numIntentos = 100;
+
+	do
+	{
+		//Intentar captar frame
+		leido = videoCaptura.read(frame);
+		//Disminuir número de intentos
+		numIntentos--;
+		//Pequeña espera
+		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		
+	} while (!leido && numIntentos>0);
+
+	//Comprobar si se ha leido
+	if (!leido)
+	{
+		//Mostrar mensaje de error
+		AfxMessageBox(_T("Error al leer frame de la cámara"), MB_OK | MB_ICONSTOP);
+		return;
+	}
+
+	//Asignar primer frame a la imagen cargada
+	imgCargada = frame;
+	//Limpiar las caras detectadas
+	colourFoundFaces.clear();
+
+	//Mostrar imagen
+	CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_CONTROL);
+	//Mostrar imagen
+	showImage(imgCargada, pictureControl);
+	UpdateData(FALSE);
 }

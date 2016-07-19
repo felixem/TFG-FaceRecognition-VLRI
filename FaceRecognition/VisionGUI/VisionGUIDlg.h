@@ -137,4 +137,5 @@ public:
 	afx_msg void OnEnChangeEditAlturaRecog();
 	CEdit vecinosDetectStr;
 	afx_msg void OnEnChangeEditVecinosDetec();
+	afx_msg void OnBnClickedButtonLoadCamera();
 };
