@@ -295,11 +295,21 @@ void CVisionGUIDlg::OnProcesarClickedButton()
 	//Comprobar procesamiento en curso
 	if (hiloProc != NULL)
 	{
-		//Reanudar procesamiento
-		this->infoHiloProc->pausa = false;
-		//Destruir las ventanas de caras
-		this->closeFaceWindows();
-		return;
+		//Comprobar si estaba en pausa el hilo
+		if (this->infoHiloProc->pausa)
+		{
+			//Reanudar procesamiento
+			this->infoHiloProc->pausa = false;
+			//Destruir las ventanas de caras
+			this->closeFaceWindows();
+			return;
+		}
+		else
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+			return;
+		}
 	}
 
 	//Acción según tipo de procesamiento
