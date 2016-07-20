@@ -14,8 +14,8 @@
 #define new DEBUG_NEW
 #endif
 
-#define IMG_HEIGHT 400
-#define IMG_WIDTH 500
+#define IMG_HEIGHT 465
+#define IMG_WIDTH 560
 #define FACE_HEIGHT 128
 #define FACE_WIDTH 92
 #define FACES_X_ROW 10
@@ -468,8 +468,11 @@ UINT CVisionGUIDlg::procesarMedia(LPVOID param)
 			//Comprobar si se ha leído un frame
 			if (frame.empty())
 			{
-				//Realizar espera
-				std::this_thread::sleep_for(std::chrono::milliseconds(esperaEntreIntentos));
+				if (esperaEntreIntentos > 0)
+				{
+					//Realizar espera
+					std::this_thread::sleep_for(std::chrono::milliseconds(esperaEntreIntentos));
+				}
 				//Decrementar intentos
 				intentos--;
 			}
@@ -483,7 +486,7 @@ UINT CVisionGUIDlg::procesarMedia(LPVOID param)
 		} while (!frameLeido && intentos > 0 && !salir);
 
 		//Comprobar si se eligió salir
-		if (salir)
+		if (salir || !frameLeido)
 			break;
 	}
 
