@@ -95,7 +95,7 @@ protected:
 	//Opciones de reconocimiento facial y de upsampling
 	int indexReconocimiento = 0, indexUpsampling = 0;
 	//Número de intentos hasta timeout y espera entre intentos
-	int numIntentosUntilTimeout = 100, esperaEntreIntentos = 20;
+	int numIntentosUntilTimeout = 200, esperaEntreIntentos = 50;
 
 public:
 

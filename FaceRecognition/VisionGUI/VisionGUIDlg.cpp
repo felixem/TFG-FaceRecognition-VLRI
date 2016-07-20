@@ -64,7 +64,6 @@ LRESULT CVisionGUIDlg::updateDataCall(WPARAM wpD, LPARAM lpD)
 	{
 	case 0:
 		//Actualizar datos
-		UpdateData(FALSE);
 		break;
 	case 1:
 		//Borrar información sobre hilo de procesamiento
@@ -490,12 +489,6 @@ UINT CVisionGUIDlg::procesarMedia(LPVOID param)
 			break;
 	}
 
-	//Informar sobre fin del hilo
-	::SendMessage(*interfaz, WM_MY_MESSAGE, 0, 1);
-
-	//Mostrar mensaje para informar de la salida
-	AfxMessageBox(_T("Terminó el procesamiento"), MB_OK | MB_ICONINFORMATION);
-
 	//Reiniciar captura al principio si es desde archivo
 	if (ts->modoProc == ARCHIVO)
 	{
@@ -507,6 +500,12 @@ UINT CVisionGUIDlg::procesarMedia(LPVOID param)
 		//Liberar captura
 		interfaz->videoCaptura.release();
 	}
+
+	//Informar sobre fin del hilo
+	::SendMessage(*interfaz, WM_MY_MESSAGE, 0, 1);
+
+	//Mostrar mensaje para informar de la salida
+	AfxMessageBox(_T("Terminó el procesamiento"), MB_OK | MB_ICONINFORMATION);
 
 	return 1;
 }
