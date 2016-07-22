@@ -152,9 +152,8 @@ public:
 	CComboBox comboboxReconocimiento;
 	CComboBox comboboxUpsampling;
 	CComboBox comboboxIdsAprendidas;
-	CComboBox comboboxCarasAprendidas;
 	CComboBox comboboxCarasDetectadas;
+	CComboBox comboboxCarasId;
 	afx_msg void OnBnClickedButtonMostrarIdCara();
 	afx_msg void OnCbnSelchangeComboCaraId();
-	CComboBox comboboxCarasId;
 };

@@ -1134,7 +1134,7 @@ void TrainingDialog::OnBnClickedButtonEliminarId()
 void TrainingDialog::updateRecognizedFacesCombobox()
 {
 	//Mostrar lista de caras del índice seleccionado, si lo hubiera
-	comboboxCarasAprendidas.Clear();
+	comboboxCarasId.Clear();
 	if (comboboxIdsAprendidas.GetCurSel() != CB_ERR)
 	{
 		//Referencia al vector correspondiente
@@ -1253,11 +1253,11 @@ void TrainingDialog::OnBnClickedButtonAddCara()
 	
 	//Añadir string de la cara
 	//Obtener próxima id
-	int id = comboboxCarasAprendidas.GetCount();
+	int id = comboboxCarasId.GetCount();
 	//Añadir string de identidad
-	comboboxCarasAprendidas.AddString(_T(("Cara " + std::to_string(id)).c_str()));
+	comboboxCarasId.AddString(_T(("Cara " + std::to_string(id)).c_str()));
 	//Seleccionar última id
-	comboboxCarasAprendidas.SetCurSel(id);
+	comboboxCarasId.SetCurSel(id);
 }
 
 //Ocultar las caras
