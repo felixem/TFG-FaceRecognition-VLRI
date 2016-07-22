@@ -57,6 +57,8 @@ namespace tfg
 		std::vector<Rect> faces;
 		//Imágenes intermedias
 		Mat frame_gray;
+		//Copiar output al input
+		output = input.clone();
 
 		//Detectar caras
 		try
@@ -102,6 +104,8 @@ namespace tfg
 		std::vector<Rect> faces;
 		//Imágenes intermedias
 		Mat frame_gray;
+		//Copiar output al input
+		output = input.clone();
 
 		//Detectar caras
 		this->detectLocatedFaces(input, faces, frame_gray, scale, minWidth, minHeight, maxWidth, maxHeight, numVecinos);

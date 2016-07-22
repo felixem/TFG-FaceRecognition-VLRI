@@ -13,7 +13,7 @@
 
 
 //Modo de procesamiento
-enum MODO_PROCESAMIENTO_TRAIN { ARCHIVO, CAMARA };
+enum MODO_PROCESAMIENTO_TRAIN { ARCHIVO_TRAIN, CAMARA_TRAIN };
 
 // Cuadro de diálogo de TrainingDialog
 class TrainingDialog : public CDialog
@@ -56,6 +56,9 @@ protected:
 	//Función de procesamiento de imagen
 	static UINT procesarImagen(LPVOID param);
 
+	//Finalización del diálogo
+	void EndDialog(int nResult);
+
 	//Imagen cargada en memoria
 	cv::Mat imgCargada;
 	//Videocaptura en memoria
@@ -81,7 +84,7 @@ protected:
 	//Upsampler
 	tfg::ImageUpsampler* upsampler;
 	//Modo de procesamiento actual
-	MODO_PROCESAMIENTO_TRAIN modo = ARCHIVO;
+	MODO_PROCESAMIENTO_TRAIN modo = ARCHIVO_TRAIN;
 	//Hilo de procesamiento actual
 	CWinThread* hiloProc = NULL;
 	//Estructura de comunicación de hilo de procesamiento

@@ -4,7 +4,7 @@
 
 #include "stdafx.h"
 #include "VisionGUI.h"
-#include "VisionGUIDlg.h"
+#include "IntroMenu.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -14,7 +14,6 @@
 // CVisionGUIApp
 
 BEGIN_MESSAGE_MAP(CVisionGUIApp, CWinApp)
-	ON_COMMAND(ID_HELP, &CWinApp::OnHelp)
 END_MESSAGE_MAP()
 
 
@@ -64,7 +63,7 @@ BOOL CVisionGUIApp::InitInstance()
 	// como el nombre de su compañía u organización
 	SetRegistryKey(_T("Aplicaciones generadas con el Asistente para aplicaciones local"));
 
-	CVisionGUIDlg dlg;
+	IntroMenu dlg;
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();
 	if (nResponse == IDOK)

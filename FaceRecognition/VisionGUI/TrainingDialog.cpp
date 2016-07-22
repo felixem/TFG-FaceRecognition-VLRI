@@ -11,7 +11,6 @@
 
 #define IMG_HEIGHT 465
 #define IMG_WIDTH 560
-#define FACES_X_ROW 10
 
 //Definir mensaje propio
 #define WM_MY_MESSAGE (WM_USER+1000)
@@ -44,7 +43,6 @@ void TrainingDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_COMBO_RECOGNIZER_TRAIN, comboboxReconocimiento);
 	DDX_Control(pDX, IDC_COMBO_UPSAMPLER_TRAIN, comboboxUpsampling);
 	DDX_Control(pDX, IDC_COMBO_IDS_APRENDIDAS, comboboxIdsAprendidas);
-	DDX_Control(pDX, IDC_COMBO2, comboboxCarasAprendidas);
 	DDX_Control(pDX, IDC_COMBO_CARAS_DETECTADAS, comboboxCarasDetectadas);
 	DDX_Control(pDX, IDC_COMBO_CARA_ID, comboboxCarasId);
 }
@@ -201,14 +199,12 @@ UINT TrainingDialog::procesarImagen(LPVOID param)
 		return -1;
 
 	//Mostrar imagen original
-	CStatic* pictureControl = (CStatic *)interfaz->GetDlgItem(IMG_CONTROL);
+	CStatic* pictureControl = (CStatic *)interfaz->GetDlgItem(IMG_ENTRENAMIENTO_PREVIEW);
 
 	//Imagen resultado
 	cv::Mat imgFinal;
 	//Limpiar caras a color
 	interfaz->detectedFaces.clear();
-	//Caras grises detectadas
-	std::vector<cv::Mat> grayFoundFaces;
 
 	try
 	{
@@ -261,7 +257,7 @@ UINT TrainingDialog::procesarMedia(LPVOID param)
 	interfaz->closeFaceWindows();
 
 	//Mostrar imagen original
-	CStatic* pictureControl = (CStatic *)interfaz->GetDlgItem(IMG_CONTROL);
+	CStatic* pictureControl = (CStatic *)interfaz->GetDlgItem(IMG_ENTRENAMIENTO_PREVIEW);
 	//Mostrar imagen
 	interfaz->showImage(interfaz->imgCargada, pictureControl);
 	//Mandar mensaje a la interfaz
@@ -337,7 +333,7 @@ UINT TrainingDialog::procesarMedia(LPVOID param)
 	}
 
 	//Reiniciar captura al principio si es desde archivo
-	if (ts->modoProc == ARCHIVO)
+	if (ts->modoProc == ARCHIVO_TRAIN)
 	{
 		//Posicionarse en primer frame
 		interfaz->videoCaptura.set(CV_CAP_PROP_POS_FRAMES, 0);
@@ -462,7 +458,7 @@ void TrainingDialog::OnBnClickedButtonCargarArchivoImagenTrain()
 		}
 
 		//Modo de procesamiento de imagen
-		modo = ARCHIVO;
+		modo = ARCHIVO_TRAIN;
 		//Leer primer frame del vídeo
 		cv::Mat frame;
 		bool leido = videoCaptura.read(frame);
@@ -481,7 +477,7 @@ void TrainingDialog::OnBnClickedButtonCargarArchivoImagenTrain()
 		detectedFaces.clear();
 
 		//Mostrar imagen
-		CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_CONTROL);
+		CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_ENTRENAMIENTO_PREVIEW);
 		//Mostrar imagen
 		showImage(imgCargada, pictureControl);
 		UpdateData(FALSE);
@@ -526,7 +522,7 @@ void TrainingDialog::OnBnClickedButtonLoadCameraTrain()
 	}
 
 	//Modo de procesamiento de imagen
-	modo = CAMARA;
+	modo = CAMARA_TRAIN;
 	//Leer primer frame de la cámara
 	cv::Mat frame;
 
@@ -559,7 +555,7 @@ void TrainingDialog::OnBnClickedButtonLoadCameraTrain()
 	detectedFaces.clear();
 
 	//Mostrar imagen
-	CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_CONTROL);
+	CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_ENTRENAMIENTO_PREVIEW);
 	//Mostrar imagen
 	showImage(imgCargada, pictureControl);
 	UpdateData(FALSE);
@@ -592,7 +588,7 @@ void TrainingDialog::OnBnClickedButtonProcess()
 	switch (modo)
 	{
 		//Archivo de vídeo/imagen
-	case ARCHIVO:
+	case ARCHIVO_TRAIN:
 		//Llamar a hilo de procesamiento de vídeo
 		infoHiloProc = new THREADSTRUCT;
 		infoHiloProc->_this = this;
@@ -600,11 +596,11 @@ void TrainingDialog::OnBnClickedButtonProcess()
 		infoHiloProc->pausa = false;
 		infoHiloProc->numIntentosUntilTimeout = 0;
 		infoHiloProc->esperaEntreIntentos = 0;
-		infoHiloProc->modoProc = ARCHIVO;
+		infoHiloProc->modoProc = ARCHIVO_TRAIN;
 		hiloProc = AfxBeginThread(procesarMedia, infoHiloProc);
 		break;
 		//Cámara
-	case CAMARA:
+	case CAMARA_TRAIN:
 		//Llamar a hilo de procesamiento de vídeo
 		infoHiloProc = new THREADSTRUCT;
 		infoHiloProc->_this = this;
@@ -612,10 +608,40 @@ void TrainingDialog::OnBnClickedButtonProcess()
 		infoHiloProc->pausa = false;
 		infoHiloProc->numIntentosUntilTimeout = numIntentosUntilTimeout;
 		infoHiloProc->esperaEntreIntentos = esperaEntreIntentos;
-		infoHiloProc->modoProc = CAMARA;
+		infoHiloProc->modoProc = CAMARA_TRAIN;
 		hiloProc = AfxBeginThread(procesarMedia, infoHiloProc);
 		break;
 	}
+}
+
+//Finalización del diálogo
+void TrainingDialog::EndDialog(int nResult)
+{
+	//Finalizar diálogo
+	CDialog::EndDialog(nResult);
+	//Detener procesamiento
+	if (hiloProc != NULL)
+	{
+		this->infoHiloProc->pausa = false;
+		this->infoHiloProc->terminar = true;
+	}
+	//Esperar fin de procesamiento
+	while (hiloProc != NULL)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+	}
+
+	//Liberar memoria dinámica
+	if (faceDetector != NULL)
+		delete faceDetector;
+	if (faceRecognizer != NULL)
+		delete faceRecognizer;
+	if (upsampler != NULL)
+		delete upsampler;
+	//Convertir a null
+	faceDetector = NULL;
+	faceRecognizer = NULL;
+	upsampler = NULL;
 }
 
 //Pausar procesamiento
@@ -664,7 +690,7 @@ void TrainingDialog::OnEnChangeEditEscalaTrain()
 {
 	//Obtener el texto de escala
 	CString escala;
-	GetDlgItemText(IDC_EDIT_ESCALA, escala);
+	GetDlgItemText(IDC_EDIT_ESCALA_TRAIN, escala);
 	//Convertir a string convencional
 	std::string escalaStr = cStringToString(escala);
 
@@ -704,7 +730,7 @@ void TrainingDialog::OnEnChangeEditMinWidthFaceTrain()
 {
 	//Obtener el texto
 	CString valor;
-	GetDlgItemText(IDC_EDIT_MIN_WIDTH_FACE, valor);
+	GetDlgItemText(IDC_EDIT_MIN_WIDTH_FACE_TRAIN, valor);
 	//Convertir a string convencional
 	std::string valorStr = cStringToString(valor);
 
@@ -744,7 +770,7 @@ void TrainingDialog::OnEnChangeEditMinHeightFaceTrain()
 {
 	//Obtener el texto
 	CString valor;
-	GetDlgItemText(IDC_EDIT_MIN_HEIGHT_FACE, valor);
+	GetDlgItemText(IDC_EDIT_MIN_HEIGHT_FACE_TRAIN, valor);
 	//Convertir a string convencional
 	std::string valorStr = cStringToString(valor);
 
@@ -784,7 +810,7 @@ void TrainingDialog::OnEnChangeEditVecinosDetecTrain()
 {
 	//Obtener el texto
 	CString valor;
-	GetDlgItemText(IDC_EDIT_VECINOS_DETEC, valor);
+	GetDlgItemText(IDC_EDIT_VECINOS_DETEC_TRAIN, valor);
 	//Convertir a string convencional
 	std::string valorStr = cStringToString(valor);
 
@@ -824,7 +850,7 @@ void TrainingDialog::OnEnChangeEditMaxWidthFaceTrain()
 {
 	//Obtener el texto
 	CString valor;
-	GetDlgItemText(IDC_EDIT_MAX_WIDTH_FACE, valor);
+	GetDlgItemText(IDC_EDIT_MAX_WIDTH_FACE_TRAIN, valor);
 	//Convertir a string convencional
 	std::string valorStr = cStringToString(valor);
 
@@ -864,7 +890,7 @@ void TrainingDialog::OnEnChangeEditMaxHeightFaceTrain()
 {
 	//Obtener el texto
 	CString valor;
-	GetDlgItemText(IDC_EDIT_MAX_HEIGHT_FACE, valor);
+	GetDlgItemText(IDC_EDIT_MAX_HEIGHT_FACE_TRAIN, valor);
 	//Convertir a string convencional
 	std::string valorStr = cStringToString(valor);
 
@@ -948,7 +974,7 @@ void TrainingDialog::OnEnChangeEditAnchuraRecoTrain()
 {
 	//Obtener el texto
 	CString valor;
-	GetDlgItemText(IDC_EDIT_ANCHURA_RECO, valor);
+	GetDlgItemText(IDC_EDIT_ANCHURA_RECO_TRAIN, valor);
 	//Convertir a string convencional
 	std::string valorStr = cStringToString(valor);
 
@@ -988,7 +1014,7 @@ void TrainingDialog::OnEnChangeEditAlturaRecoTrain()
 {
 	//Obtener el texto
 	CString valor;
-	GetDlgItemText(IDC_EDIT_ALTURA_RECO, valor);
+	GetDlgItemText(IDC_EDIT_ALTURA_RECO_TRAIN, valor);
 	//Convertir a string convencional
 	std::string valorStr = cStringToString(valor);
 
@@ -1026,6 +1052,14 @@ void TrainingDialog::OnEnChangeEditAlturaRecoTrain()
 //Aprender el modelo
 void TrainingDialog::OnBnClickedButtonAprender()
 {
+	//Comprobar si hay un procesamiento en curso
+	if (hiloProc != NULL)
+	{
+		//Mostrar mensaje de error
+		AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+		return;
+	}
+
 	//Abrir diálogo de guardado de fichero
 	CFileDialog dlg(FALSE, CString(".yml"), NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, CString("Model Files (*.yml)|*.yml|"));
 	int result = dlg.DoModal();
@@ -1068,12 +1102,6 @@ void TrainingDialog::OnBnClickedButtonAprender()
 //Cambiar id aprendida
 void TrainingDialog::OnCbnSelchangeComboIdsAprendidas()
 {
-	//Comprobar si existe alguna id
-	if (recognizedFaces.size() == 0)
-	{
-		return;
-	}
-
 	//Cerrar ventanas
 	this->closeFaceWindows();
 	//Actualizar caras para la id
@@ -1170,6 +1198,14 @@ void TrainingDialog::OnCbnSelchangeComboCarasDetectadas()
 //Mostrar cara detectada seleccionada
 void TrainingDialog::OnBnClickedButtonMostrarDeteccion()
 {
+	//Comprobar si hay procesamiento en curso
+	if (hiloProc != NULL)
+	{
+		//Mostrar mensaje de error
+		AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+		return;
+	}
+
 	//Comprobar si hay alguna cara detectada
 	if (detectedFaces.size() == 0)
 	{

@@ -15,7 +15,7 @@
 #include "CompleteFaceRecognizer.h"
 
 //Modo de procesamiento
-enum MODO_PROCESAMIENTO_RECOG { ARCHIVO, CAMARA };
+enum MODO_PROCESAMIENTO_RECOG { ARCHIVO_RECOG, CAMARA_RECOG };
 
 // Cuadro de diálogo de CVisionGUIDlg
 class CVisionGUIDlg : public CDialog
@@ -56,6 +56,8 @@ protected:
 
 	// Funciones de asignación de mensajes generadas
 	virtual BOOL OnInitDialog();
+	//Finalización del diálogo
+	void EndDialog(int nResult);
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
@@ -87,7 +89,7 @@ protected:
 	//Integración del reconocedor de caras
 	tfg::CompleteFaceRecognizer faceRecognizer;
 	//Modo de procesamiento actual
-	MODO_PROCESAMIENTO_RECOG modo = ARCHIVO;
+	MODO_PROCESAMIENTO_RECOG modo = ARCHIVO_RECOG;
 	//Hilo de procesamiento actual
 	CWinThread* hiloProc = NULL;
 	//Estructura de comunicación de hilo de procesamiento

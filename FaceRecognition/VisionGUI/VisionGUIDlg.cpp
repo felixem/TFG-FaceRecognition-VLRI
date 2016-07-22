@@ -85,6 +85,24 @@ CVisionGUIDlg::CVisionGUIDlg(CWnd* pParent /*=NULL*/)
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
 
+//Finalización del diálogo
+void CVisionGUIDlg::EndDialog(int nResult)
+{
+	//Finalizar diálogo
+	CDialog::EndDialog(nResult);
+	//Detener procesamiento
+	if (hiloProc != NULL)
+	{
+		this->infoHiloProc->pausa = false;
+		this->infoHiloProc->terminar = true;
+	}
+	//Esperar fin de procesamiento
+	while (hiloProc != NULL)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+	}
+}
+
 void CVisionGUIDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
@@ -315,7 +333,7 @@ void CVisionGUIDlg::OnProcesarClickedButton()
 	switch (modo)
 	{
 	//Archivo de vídeo/imagen
-	case ARCHIVO:
+	case ARCHIVO_RECOG:
 		//Llamar a hilo de procesamiento de vídeo
 		infoHiloProc = new THREADSTRUCT;
 		infoHiloProc->_this = this;
@@ -323,11 +341,11 @@ void CVisionGUIDlg::OnProcesarClickedButton()
 		infoHiloProc->pausa = false;
 		infoHiloProc->numIntentosUntilTimeout = 0;
 		infoHiloProc->esperaEntreIntentos = 0;
-		infoHiloProc->modoProc = ARCHIVO;
+		infoHiloProc->modoProc = ARCHIVO_RECOG;
 		hiloProc = AfxBeginThread(procesarMedia, infoHiloProc);
 		break;
 	//Cámara
-	case CAMARA:
+	case CAMARA_RECOG:
 		//Llamar a hilo de procesamiento de vídeo
 		infoHiloProc = new THREADSTRUCT;
 		infoHiloProc->_this = this;
@@ -335,7 +353,7 @@ void CVisionGUIDlg::OnProcesarClickedButton()
 		infoHiloProc->pausa = false;
 		infoHiloProc->numIntentosUntilTimeout = numIntentosUntilTimeout;
 		infoHiloProc->esperaEntreIntentos = esperaEntreIntentos;
-		infoHiloProc->modoProc = CAMARA;
+		infoHiloProc->modoProc = CAMARA_RECOG;
 		hiloProc = AfxBeginThread(procesarMedia, infoHiloProc);
 		break;
 	}
@@ -490,7 +508,7 @@ UINT CVisionGUIDlg::procesarMedia(LPVOID param)
 	}
 
 	//Reiniciar captura al principio si es desde archivo
-	if (ts->modoProc == ARCHIVO)
+	if (ts->modoProc == ARCHIVO_RECOG)
 	{
 		//Posicionarse en primer frame
 		interfaz->videoCaptura.set(CV_CAP_PROP_POS_FRAMES, 0);
@@ -1052,7 +1070,7 @@ void CVisionGUIDlg::OnBnClickedButtonCargarArchivoImagen()
 		}
 
 		//Modo de procesamiento de imagen
-		modo = ARCHIVO;
+		modo = ARCHIVO_RECOG;
 		//Leer primer frame del vídeo
 		cv::Mat frame;
 		bool leido = videoCaptura.read(frame);
@@ -1277,7 +1295,7 @@ void CVisionGUIDlg::OnBnClickedButtonLoadCamera()
 	}
 
 	//Modo de procesamiento de imagen
-	modo = CAMARA;
+	modo = CAMARA_RECOG;
 	//Leer primer frame de la cámara
 	cv::Mat frame;
 
