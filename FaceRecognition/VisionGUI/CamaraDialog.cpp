@@ -16,6 +16,7 @@ CamaraDialog::CamaraDialog(CWnd* pParent /*=NULL*/)
 {
 }
 
+//Inicialización
 BOOL CamaraDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
@@ -53,7 +54,7 @@ CamaraDialog::~CamaraDialog()
 void CamaraDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_EDIT1, UrlCamaraIpStr);
+	DDX_Control(pDX, IDC_CAMARA_IP, UrlCamaraIpStr);
 	DDX_Control(pDX, IDC_CAMARA_LOCAL, comboboxCameraLocal);
 }
 

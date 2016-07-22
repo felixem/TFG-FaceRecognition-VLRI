@@ -1084,8 +1084,17 @@ void CVisionGUIDlg::OnBnClickedButtonPausar()
 	//Comprobar si existe un hilo procesando
 	if (this->hiloProc != NULL)
 	{
-		//Invertir pausa
-		this->infoHiloProc->pausa = true;
+		//Comprobar si ya estaba pausado
+		if (this->infoHiloProc->pausa)
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("El procesamiento ya está pausado"), MB_OK | MB_ICONINFORMATION);
+		}
+		else
+		{
+			//Pausar
+			this->infoHiloProc->pausa = true;
+		}
 	}
 	else
 	{

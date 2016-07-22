@@ -1,9 +1,4 @@
-
-// VisionGUIDlg.h: archivo de encabezado
-//
-
 #pragma once
-#include "afxwin.h"
 
 #include "ImageDownsampler.h"
 #include "HaarLikeFaceDetector.h"
@@ -12,19 +7,24 @@
 #include "FisherFacesRecognizer.h"
 #include "LBPRecognizer.h"
 #include "SimpleImageUpsampler.h"
-#include "CompleteFaceRecognizer.h"
+#include "HaarLikeFaceDetector.h"
+#include "Face.h"
+#include "afxwin.h"
+
 
 //Modo de procesamiento
-enum MODO_PROCESAMIENTO_RECOG { ARCHIVO, CAMARA };
+enum MODO_PROCESAMIENTO_TRAIN { ARCHIVO, CAMARA };
 
-// Cuadro de diálogo de CVisionGUIDlg
-class CVisionGUIDlg : public CDialog
+// Cuadro de diálogo de TrainingDialog
+class TrainingDialog : public CDialog
 {
+	DECLARE_DYNAMIC(TrainingDialog)
+
 	//Estructura para pasar a la función de control
 	typedef struct THREADSTRUCT
 	{
 		//Referencia a la interfaz
-		CVisionGUIDlg*    _this;
+		TrainingDialog*    _this;
 		//Mensaje de pausa
 		bool pausa;
 		//Mensaje de terminar
@@ -33,33 +33,23 @@ class CVisionGUIDlg : public CDialog
 		int numIntentosUntilTimeout;
 		int esperaEntreIntentos;
 		//Modo de procesamiento
-		MODO_PROCESAMIENTO_RECOG modoProc;
-		
+		MODO_PROCESAMIENTO_TRAIN modoProc;
+
 	} THREADSTRUCT;
 
-// Construcción
 public:
-	CVisionGUIDlg(CWnd* pParent = NULL);	// Constructor estándar
+	TrainingDialog(CWnd* pParent = NULL);   // Constructor estándar
+	virtual ~TrainingDialog();
+	//Iniciar diálogo
+	BOOL OnInitDialog();
 
 // Datos del cuadro de diálogo
 #ifdef AFX_DESIGN_TIME
-	enum { IDD = IDD_VISIONGUI_DIALOG };
+	enum { IDD = IDD_TRAININGDIALOG };
 #endif
 
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// Compatibilidad con DDX/DDV
-
-
-// Implementación
 protected:
-	HICON m_hIcon;
-
-	// Funciones de asignación de mensajes generadas
-	virtual BOOL OnInitDialog();
-	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
-	afx_msg void OnPaint();
-	afx_msg HCURSOR OnQueryDragIcon();
-	DECLARE_MESSAGE_MAP()
+	virtual void DoDataExchange(CDataExchange* pDX);    // Compatibilidad con DDX/DDV
 
 	//Función de procesamiento de vídeo
 	static UINT procesarMedia(LPVOID param);
@@ -73,7 +63,7 @@ protected:
 	//Nombre del fichero de detección de caras
 	const std::string ficFaceDetector = "sources/haarlike/haarcascade_frontalface_alt.xml";
 	//Caras encontradas
-	std::vector<tfg::Face> colourFoundFaces;
+	std::vector<cv::Mat> detectedFaces;
 	//Escala de detección
 	float escalaDeteccion = 1.05f;
 	//Anchura y altura mínima de detección cara
@@ -84,10 +74,14 @@ protected:
 	int anchuraReconocimiento = 64, alturaReconocimiento = 64;
 	//Umbral de reconocimiento
 	float umbralReconocimiento = 0;
-	//Integración del reconocedor de caras
-	tfg::CompleteFaceRecognizer faceRecognizer;
+	//Detector de caras
+	tfg::HaarLikeFaceDetector* faceDetector;
+	//Reconocedor de caras
+	tfg::IFaceRecognizer* faceRecognizer;
+	//Upsampler
+	tfg::ImageUpsampler* upsampler;
 	//Modo de procesamiento actual
-	MODO_PROCESAMIENTO_RECOG modo = ARCHIVO;
+	MODO_PROCESAMIENTO_TRAIN modo = ARCHIVO;
 	//Hilo de procesamiento actual
 	CWinThread* hiloProc = NULL;
 	//Estructura de comunicación de hilo de procesamiento
@@ -96,12 +90,16 @@ protected:
 	int indexReconocimiento = 0, indexUpsampling = 0;
 	//Número de intentos hasta timeout y espera entre intentos
 	int numIntentosUntilTimeout = 200, esperaEntreIntentos = 50;
+	//Colección de caras asociadas a una id
+	std::vector<std::vector<cv::Mat>> recognizedFaces;
 
+	//Actualizar caras reconocidas para una id
+	void updateRecognizedFacesCombobox();
+
+	DECLARE_MESSAGE_MAP()
 public:
-
 	//Respuesta a mensaje de pintado
 	LRESULT updateDataCall(WPARAM wpD, LPARAM lpD);
-
 	//Método para convertir una imagen de opencv en una imagen para mostrar
 	void prepareImgToShow(const cv::Mat &img, CBitmap& output);
 	//Destruir caras encontradas
@@ -115,35 +113,45 @@ public:
 	//Generar algoritmo de upsampling según índice seleccionado
 	tfg::ImageUpsampler* generateUpsampler(int id);
 
-	afx_msg void OnProcesarClickedButton();
-	afx_msg void OnMostrarCarasReconocidasClickedFacesButton();
-	afx_msg void OnClickedButtonOcultarCaras();
-	afx_msg void OnEnChangeEditEscala();
-	CEdit escalaString;
-	CEdit anchuraMinString;
-	CEdit alturaMinString;
-	afx_msg void OnEnChangeEditMinWidthFace();
-	afx_msg void OnEnChangeEditMinHeightFace();
-	CEdit anchuraMaxString;
-	CEdit AlturaMaxString;
-	afx_msg void OnEnChangeEditMaxWidthFace();
-	afx_msg void OnEnChangeEditMaxHeightFace();
-	CComboBox comboboxRecognizer;
-	CComboBox comboboxUpsampler;
-	afx_msg void OnCbnSelchangeComboRecognizer();
-	afx_msg void OnCbnSelchangeComboUpsampler();
-	afx_msg void OnBnClickedButtonLoadmodel();
-	CEdit umbralReconocimientoString;
-	afx_msg void OnEnChangeEditUmbral();
-	afx_msg void OnBnClickedFacesNotRecognizedButton();
-	afx_msg void OnBnClickedButtonCargarArchivoImagen();
+	//Respuestas a eventos
+	afx_msg void OnBnClickedButtonCargarArchivoImagenTrain();
+	afx_msg void OnBnClickedButtonLoadCameraTrain();
+	afx_msg void OnBnClickedButtonProcess();
 	afx_msg void OnBnClickedButtonPausar();
 	afx_msg void OnBnClickedButtonTerminarProc();
-	CEdit anchuraReconocimientoStr;
-	CEdit AlturaReconocimientoStr;
-	afx_msg void OnEnChangeEditAnchuraRecog();
-	afx_msg void OnEnChangeEditAlturaRecog();
-	CEdit vecinosDetectStr;
-	afx_msg void OnEnChangeEditVecinosDetec();
-	afx_msg void OnBnClickedButtonLoadCamera();
+	CEdit EscalaStr;
+	CEdit AnchuraMinDetectStr;
+	CEdit AlturaMinDetectStr;
+	CEdit VecinosMinStr;
+	CEdit AnchuraMaxDetectStr;
+	CEdit AlturaMaxDetectStr;
+	CEdit AnchuraCaraRecogStr;
+	CEdit AlturaCaraRecogStr;
+	afx_msg void OnEnChangeEditEscalaTrain();
+	afx_msg void OnEnChangeEditMinWidthFaceTrain();
+	afx_msg void OnEnChangeEditMinHeightFaceTrain();
+	afx_msg void OnEnChangeEditVecinosDetecTrain();
+	afx_msg void OnEnChangeEditMaxWidthFaceTrain();
+	afx_msg void OnEnChangeEditMaxHeightFaceTrain();
+	afx_msg void OnCbnSelchangeComboRecognizerTrain();
+	afx_msg void OnCbnSelchangeComboUpsamplerTrain();
+	afx_msg void OnEnChangeEditAnchuraRecoTrain();
+	afx_msg void OnEnChangeEditAlturaRecoTrain();
+	afx_msg void OnBnClickedButtonAprender();
+	afx_msg void OnCbnSelchangeComboIdsAprendidas();
+	afx_msg void OnBnClickedButtonEliminarId();
+	afx_msg void OnBnClickedButtonEliminarCara();
+	afx_msg void OnBnClickedButtonCrearId();
+	afx_msg void OnCbnSelchangeComboCarasDetectadas();
+	afx_msg void OnBnClickedButtonMostrarDeteccion();
+	afx_msg void OnBnClickedButtonAddCara();
+	afx_msg void OnBnClickedButtonOcultarCaras();
+	CComboBox comboboxReconocimiento;
+	CComboBox comboboxUpsampling;
+	CComboBox comboboxIdsAprendidas;
+	CComboBox comboboxCarasAprendidas;
+	CComboBox comboboxCarasDetectadas;
+	afx_msg void OnBnClickedButtonMostrarIdCara();
+	afx_msg void OnCbnSelchangeComboCaraId();
+	CComboBox comboboxCarasId;
 };
