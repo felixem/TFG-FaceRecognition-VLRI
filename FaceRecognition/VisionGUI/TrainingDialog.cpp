@@ -1412,12 +1412,9 @@ void TrainingDialog::OnBnClickedButtonGuardarCaras()
 				const std::vector<cv::Mat>& vectorFace = recognizedFaces[i];
 				for (unsigned int j = 0; j < vectorFace.size(); ++j)
 				{
-					//Crear cara upsampleada
-					cv::Mat upsampledFace;
-					upsampler->upSample(vectorFace[j], upsampledFace, alturaReconocimiento, anchuraReconocimiento);
 					//Crear imagen
 					std::string imgPath = dirDerivado + "/" + std::to_string(j) + formatoImg;
-					if (!cv::imwrite(imgPath,upsampledFace))
+					if (!cv::imwrite(imgPath, vectorFace[j]))
 					{
 						//Mensaje de error
 						AfxMessageBox(_T(("No se pudo crear la imagen " + imgPath).c_str()), MB_OK | MB_ICONERROR);
