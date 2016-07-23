@@ -1067,7 +1067,7 @@ void CVisionGUIDlg::OnBnClickedButtonCargarArchivoImagen()
 		if (!videoCaptura.isOpened())
 		{
 			//Mostrar mensaje de error
-			AfxMessageBox(_T("Error al cargar el vídeo"), MB_OK | MB_ICONSTOP);
+			AfxMessageBox(_T("Error al cargar el archivo"), MB_OK | MB_ICONSTOP);
 			return;
 		}
 
@@ -1081,7 +1081,7 @@ void CVisionGUIDlg::OnBnClickedButtonCargarArchivoImagen()
 		if (!leido)
 		{
 			//Mostrar mensaje de error
-			AfxMessageBox(_T("Error leer frame del vídeo"), MB_OK | MB_ICONSTOP);
+			AfxMessageBox(_T("Error leer frame del archivo"), MB_OK | MB_ICONSTOP);
 			return;
 		}
 

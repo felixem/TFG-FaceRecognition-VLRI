@@ -444,7 +444,7 @@ void TrainingDialog::OnBnClickedButtonCargarArchivoImagenTrain()
 	// TODO: Add your control notification handler code here
 	CFileDialog dlg(TRUE);
 	int result = dlg.DoModal();
-	//Comprobar que se ha cargado el vídeo
+	//Comprobar que se ha cargado el archivo
 	if (result == IDOK)
 	{
 		//Destruir las ventanas de caras
@@ -460,7 +460,7 @@ void TrainingDialog::OnBnClickedButtonCargarArchivoImagenTrain()
 		if (!videoCaptura.isOpened())
 		{
 			//Mostrar mensaje de error
-			AfxMessageBox(_T("Error al cargar el vídeo"), MB_OK | MB_ICONSTOP);
+			AfxMessageBox(_T("Error al cargar el archivo"), MB_OK | MB_ICONSTOP);
 			return;
 		}
 
@@ -474,7 +474,7 @@ void TrainingDialog::OnBnClickedButtonCargarArchivoImagenTrain()
 		if (!leido)
 		{
 			//Mostrar mensaje de error
-			AfxMessageBox(_T("Error leer frame del vídeo"), MB_OK | MB_ICONSTOP);
+			AfxMessageBox(_T("Error leer frame del archivo"), MB_OK | MB_ICONSTOP);
 			return;
 		}
 
