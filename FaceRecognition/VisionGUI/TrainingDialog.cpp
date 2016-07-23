@@ -625,6 +625,9 @@ void TrainingDialog::EndDialog(int nResult)
 {
 	//Finalizar diálogo
 	CDialog::EndDialog(nResult);
+	//Ocultar caras
+	this->closeFaceWindows();
+
 	//Detener procesamiento
 	if (hiloProc != NULL)
 	{
@@ -1074,8 +1077,10 @@ void TrainingDialog::OnBnClickedButtonAprender()
 			const std::vector<cv::Mat>& vectorFace = recognizedFaces[i];
 			for (unsigned int j = 0; j < vectorFace.size(); ++j)
 			{
-				//Añadir cara y label asociado
-				faces.push_back(vectorFace[j]);
+				//Añadir cara upsampleada y label asociado
+				cv::Mat upsampledFace;
+				upsampler->upSample(vectorFace[j], upsampledFace, alturaReconocimiento, anchuraReconocimiento);
+				faces.push_back(upsampledFace);
 				labels.push_back(i);
 			}
 		}

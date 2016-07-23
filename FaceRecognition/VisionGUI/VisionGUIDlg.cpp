@@ -90,6 +90,8 @@ void CVisionGUIDlg::EndDialog(int nResult)
 {
 	//Finalizar diálogo
 	CDialog::EndDialog(nResult);
+	//Ocultar caras
+	this->closeFaceWindows();
 	//Detener procesamiento
 	if (hiloProc != NULL)
 	{
