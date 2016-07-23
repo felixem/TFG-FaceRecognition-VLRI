@@ -42,7 +42,9 @@ void IntroMenu::OnBnClickedButtonModoEntrenamiento()
 {
 	//Mostrar diálogo de reconocimiento
 	TrainingDialog dlg;
+	this->ShowWindow(SW_HIDE);
 	dlg.DoModal();
+	this->ShowWindow(SW_SHOW);
 }
 
 //Modo de reconocimiento
@@ -50,5 +52,7 @@ void IntroMenu::OnBnClickedButtonModoReconocimiento()
 {
 	//Mostrar diálogo de reconocimiento
 	CVisionGUIDlg dlg;
+	this->ShowWindow(SW_HIDE);
 	dlg.DoModal();
+	this->ShowWindow(SW_SHOW);
 }
