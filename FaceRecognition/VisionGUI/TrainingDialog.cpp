@@ -74,6 +74,7 @@ BEGIN_MESSAGE_MAP(TrainingDialog, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_ADD_CARA, &TrainingDialog::OnBnClickedButtonAddCara)
 	ON_BN_CLICKED(IDC_BUTTON_OCULTAR_CARAS, &TrainingDialog::OnBnClickedButtonOcultarCaras)
 	ON_MESSAGE(WM_MY_MESSAGE, updateDataCall)
+	ON_MESSAGE(WM_SYSCOMMAND, OnSysCommand)
 	ON_BN_CLICKED(IDC_BUTTON_MOSTRAR_ID_CARA, &TrainingDialog::OnBnClickedButtonMostrarIdCara)
 	ON_CBN_SELCHANGE(IDC_COMBO_CARA_ID, &TrainingDialog::OnCbnSelchangeComboCaraId)
 	ON_BN_CLICKED(IDC_BUTTON_GUARDAR_CARAS, &TrainingDialog::OnBnClickedButtonGuardarCaras)
@@ -107,6 +108,32 @@ BOOL TrainingDialog::OnInitDialog()
 	AlturaCaraRecogStr.SetWindowText(std::to_string(alturaReconocimiento).c_str());
 
 	return TRUE;
+}
+
+//Salir de la ventana
+LRESULT TrainingDialog::OnSysCommand(UINT wParam, LPARAM lParam)
+{
+	UINT nID = wParam;
+	//Comprobar tipo de mensaje
+	if (nID == SC_CLOSE)
+	{
+		//Comprobar si hay algún hilo procesando
+		if (hiloProc != NULL)
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("Detenga el procesamiento en curso antes de finalizar"), MB_OK | MB_ICONSTOP);
+			return -1;
+		}
+
+		//Gestiones de cierre
+		this->EndDialog(0);
+	}
+	else
+	{
+		CDialog::OnSysCommand(nID, lParam);
+	}
+
+	return LRESULT();
 }
 
 //Método para convertir una imagen de opencv en una imagen para mostrar
@@ -624,22 +651,8 @@ void TrainingDialog::OnBnClickedButtonProcess()
 //Finalización del diálogo
 void TrainingDialog::EndDialog(int nResult)
 {
-	//Finalizar diálogo
-	CDialog::EndDialog(nResult);
 	//Ocultar caras
 	this->closeFaceWindows();
-
-	//Detener procesamiento
-	if (hiloProc != NULL)
-	{
-		this->infoHiloProc->pausa = false;
-		this->infoHiloProc->terminar = true;
-	}
-	//Esperar fin de procesamiento
-	while (hiloProc != NULL)
-	{
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
-	}
 
 	//Liberar memoria dinámica
 	if (faceDetector != NULL)
@@ -652,6 +665,9 @@ void TrainingDialog::EndDialog(int nResult)
 	faceDetector = NULL;
 	faceRecognizer = NULL;
 	upsampler = NULL;
+
+	//Finalizar diálogo
+	CDialog::EndDialog(nResult);
 }
 
 //Pausar procesamiento
@@ -1412,9 +1428,12 @@ void TrainingDialog::OnBnClickedButtonGuardarCaras()
 				const std::vector<cv::Mat>& vectorFace = recognizedFaces[i];
 				for (unsigned int j = 0; j < vectorFace.size(); ++j)
 				{
+					//Realizar upsampling de la cara
+					cv::Mat upsampled;
+					upsampler->upSample(vectorFace[j], upsampled, alturaReconocimiento, anchuraReconocimiento);
 					//Crear imagen
 					std::string imgPath = dirDerivado + "/" + std::to_string(j) + formatoImg;
-					if (!cv::imwrite(imgPath, vectorFace[j]))
+					if (!cv::imwrite(imgPath, upsampled))
 					{
 						//Mensaje de error
 						AfxMessageBox(_T(("No se pudo crear la imagen " + imgPath).c_str()), MB_OK | MB_ICONERROR);

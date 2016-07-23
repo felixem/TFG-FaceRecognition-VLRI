@@ -58,6 +58,8 @@ protected:
 
 	//Finalización del diálogo
 	void EndDialog(int nResult);
+	//Salir de la ventana
+	LRESULT OnSysCommand(UINT wParam, LPARAM lParam);
 
 	//Imagen cargada en memoria
 	cv::Mat imgCargada;

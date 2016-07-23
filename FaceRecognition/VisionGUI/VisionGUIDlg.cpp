@@ -88,21 +88,11 @@ CVisionGUIDlg::CVisionGUIDlg(CWnd* pParent /*=NULL*/)
 //Finalización del diálogo
 void CVisionGUIDlg::EndDialog(int nResult)
 {
-	//Finalizar diálogo
-	CDialog::EndDialog(nResult);
 	//Ocultar caras
 	this->closeFaceWindows();
-	//Detener procesamiento
-	if (hiloProc != NULL)
-	{
-		this->infoHiloProc->pausa = false;
-		this->infoHiloProc->terminar = true;
-	}
-	//Esperar fin de procesamiento
-	while (hiloProc != NULL)
-	{
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
-	}
+
+	//Finalizar diálogo
+	CDialog::EndDialog(nResult);
 }
 
 void CVisionGUIDlg::DoDataExchange(CDataExchange* pDX)
@@ -203,12 +193,21 @@ BOOL CVisionGUIDlg::OnInitDialog()
 	return TRUE;  // Devuelve TRUE  a menos que establezca el foco en un control
 }
 
+//Gestión de comandos de sistema
 void CVisionGUIDlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
-	if ((nID & 0xFFF0) == IDM_ABOUTBOX)
+	//Comprobar cierre
+	if (nID == SC_CLOSE)
 	{
-		CAboutDlg dlgAbout;
-		dlgAbout.DoModal();
+		//Comprobar si hay algún hilo procesando
+		if (hiloProc != NULL)
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T("Detenga el procesamiento en curso antes de finalizar"), MB_OK | MB_ICONSTOP);
+			return;
+		}
+		//Ejecutar salida
+		this->EndDialog(0);
 	}
 	else
 	{
