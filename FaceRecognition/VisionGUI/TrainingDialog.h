@@ -98,6 +98,10 @@ protected:
 
 	//Actualizar caras reconocidas para una id
 	void updateRecognizedFacesCombobox();
+	//Actualizar ids reconocidas
+	void updateIdsCombobox();
+	//Actualizar caras detectadas
+	void updateDetectedFacesCombobox();
 
 	DECLARE_MESSAGE_MAP()
 public:

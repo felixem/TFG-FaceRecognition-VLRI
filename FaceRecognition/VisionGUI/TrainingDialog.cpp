@@ -171,8 +171,14 @@ LRESULT TrainingDialog::updateDataCall(WPARAM wpD, LPARAM lpD)
 	switch (lpD)
 	{
 	case 0:
-		//Actualizar datos
+	{
+		//Actualizar datos sobre caras detectadas
+		updateDetectedFacesCombobox();
+		//Apuntar a la primera cara, si es posible
+		if (this->detectedFaces.size() > 0)
+			this->comboboxCarasDetectadas.SetCurSel(0);
 		break;
+	}
 	case 1:
 		//Borrar información sobre hilo de procesamiento
 		this->hiloProc = NULL;
@@ -539,7 +545,7 @@ void TrainingDialog::OnBnClickedButtonLoadCameraTrain()
 		//Pequeña espera
 		std::this_thread::sleep_for(std::chrono::milliseconds(this->esperaEntreIntentos));
 
-	} while (!leido && numIntentos>0);
+	} while (!leido && numIntentos > 0);
 
 	//Comprobar si se ha leido
 	if (!leido)
@@ -1052,14 +1058,6 @@ void TrainingDialog::OnEnChangeEditAlturaRecoTrain()
 //Aprender el modelo
 void TrainingDialog::OnBnClickedButtonAprender()
 {
-	//Comprobar si hay un procesamiento en curso
-	if (hiloProc != NULL)
-	{
-		//Mostrar mensaje de error
-		AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
-		return;
-	}
-
 	//Abrir diálogo de guardado de fichero
 	CFileDialog dlg(FALSE, CString(".yml"), NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, CString("Model Files (*.yml)|*.yml|"));
 	int result = dlg.DoModal();
@@ -1106,6 +1104,9 @@ void TrainingDialog::OnCbnSelchangeComboIdsAprendidas()
 	this->closeFaceWindows();
 	//Actualizar caras para la id
 	this->updateRecognizedFacesCombobox();
+	//Apuntar a la primera cara si la hubiera
+	if (comboboxCarasId.GetCount() > 0)
+		comboboxCarasId.SetCurSel(0);
 }
 
 //Eliminar id del conjunto de entrenamiento
@@ -1122,28 +1123,64 @@ void TrainingDialog::OnBnClickedButtonEliminarId()
 	//Cerrar ventanas
 	this->closeFaceWindows();
 
+	//Obtener índice
+	int index = comboboxIdsAprendidas.GetCurSel();
 	//Eliminar id
-	this->recognizedFaces.erase(this->recognizedFaces.begin() + comboboxIdsAprendidas.GetCurSel());
-	//Eliminar índice de la lista de ids
-	comboboxIdsAprendidas.DeleteString(comboboxIdsAprendidas.GetCurSel());
+	this->recognizedFaces.erase(this->recognizedFaces.begin() + index);
+
+	//Actualizar ids reconocidas
+	this->updateIdsCombobox();
+	//Apuntar al índice anterior
+	if (index > 0)
+		this->comboboxIdsAprendidas.SetCurSel(index - 1);
+	else if(recognizedFaces.size() > 0)
+		this->comboboxIdsAprendidas.SetCurSel(0);
+
 	//Actualizar caras reconocidas para la id seleccionada
 	this->updateRecognizedFacesCombobox();
+	//Apuntar a la primera cara si la hubiera
+	if (comboboxCarasId.GetCount() > 0)
+		comboboxCarasId.SetCurSel(0);
+}
+
+//Actualizar ids reconocidas
+void TrainingDialog::updateIdsCombobox()
+{
+	//Mostrar lista de caras del índice seleccionado, si lo hubiera
+	comboboxIdsAprendidas.ResetContent();
+	//Añadir lista de caras
+	for (unsigned int i = 0; i < recognizedFaces.size(); ++i)
+	{
+		comboboxIdsAprendidas.AddString(_T(("Id " + std::to_string(i)).c_str()));
+	}
 }
 
 //Actualizar caras reconocidas para una id
 void TrainingDialog::updateRecognizedFacesCombobox()
 {
 	//Mostrar lista de caras del índice seleccionado, si lo hubiera
-	comboboxCarasId.Clear();
-	if (comboboxIdsAprendidas.GetCurSel() != CB_ERR)
+	comboboxCarasId.ResetContent();
+	if (recognizedFaces.size() > 0)
 	{
 		//Referencia al vector correspondiente
 		const std::vector<cv::Mat>& vectorFaces = recognizedFaces[comboboxIdsAprendidas.GetCurSel()];
 		//Añadir lista de caras
 		for (unsigned int i = 0; i < vectorFaces.size(); ++i)
 		{
-			comboboxIdsAprendidas.AddString(_T(("Cara " + std::to_string(i)).c_str()));
+			comboboxCarasId.AddString(_T(("Cara " + std::to_string(i)).c_str()));
 		}
+	}
+}
+
+//Actualizar caras detectadas
+void TrainingDialog::updateDetectedFacesCombobox()
+{
+	//Mostrar lista de caras detectadas
+	comboboxCarasDetectadas.ResetContent();
+	//Añadir lista de caras
+	for (unsigned int i = 0; i < detectedFaces.size(); ++i)
+	{
+		comboboxCarasDetectadas.AddString(_T(("Cara " + std::to_string(i)).c_str()));
 	}
 }
 
@@ -1159,8 +1196,8 @@ void TrainingDialog::OnBnClickedButtonEliminarCara()
 	}
 
 	//Comprobar si existe alguna cara para la id seleccionada
-	int idCaras = comboboxIdsAprendidas.GetCurSel();
-	std::vector<cv::Mat> &vectorFaces = recognizedFaces[idCaras];
+	int idPers = comboboxIdsAprendidas.GetCurSel();
+	std::vector<cv::Mat> &vectorFaces = recognizedFaces[idPers];
 	if (vectorFaces.size() == 0)
 	{
 		//Mostrar mensaje de error
@@ -1170,10 +1207,19 @@ void TrainingDialog::OnBnClickedButtonEliminarCara()
 
 	//Cerrar ventanas
 	this->closeFaceWindows();
+
+	//Obtener id de la cara a eliminar
+	int idCaras = comboboxCarasId.GetCurSel();
 	//Eliminar cara y actualizar la lista de caras
 	vectorFaces.erase(vectorFaces.begin() + idCaras);
+
 	//Actualizar lista de caras
 	updateRecognizedFacesCombobox();
+	//Apuntar a la cara anterior
+	if (idCaras > 0)
+		comboboxCarasId.SetCurSel(idCaras - 1);
+	else if (comboboxCarasId.GetCount() > 0)
+		this->comboboxCarasId.SetCurSel(0);
 }
 
 //Crear nueva id
@@ -1187,6 +1233,8 @@ void TrainingDialog::OnBnClickedButtonCrearId()
 	comboboxIdsAprendidas.AddString(_T(("Id " + std::to_string(id)).c_str()));
 	//Seleccionar última id
 	comboboxIdsAprendidas.SetCurSel(id);
+	//Actualizar caras
+	this->updateRecognizedFacesCombobox();
 }
 
 //Cambio en la selección de cara detectada
@@ -1199,7 +1247,7 @@ void TrainingDialog::OnCbnSelchangeComboCarasDetectadas()
 void TrainingDialog::OnBnClickedButtonMostrarDeteccion()
 {
 	//Comprobar si hay procesamiento en curso
-	if (hiloProc != NULL)
+	if (hiloProc != NULL && !infoHiloProc->pausa)
 	{
 		//Mostrar mensaje de error
 		AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
@@ -1231,6 +1279,14 @@ void TrainingDialog::OnBnClickedButtonMostrarDeteccion()
 //Añadir cara seleccionada a la identidad seleccionada
 void TrainingDialog::OnBnClickedButtonAddCara()
 {
+	//Comprobar si hay procesamiento en curso
+	if (hiloProc != NULL && !infoHiloProc->pausa)
+	{
+		//Mostrar mensaje de error
+		AfxMessageBox(_T("Procesamiento en curso"), MB_OK | MB_ICONSTOP);
+		return;
+	}
+
 	//Comprobar si hay alguna cara detectada
 	if (detectedFaces.size() == 0)
 	{
@@ -1250,7 +1306,7 @@ void TrainingDialog::OnBnClickedButtonAddCara()
 	int identidad = comboboxIdsAprendidas.GetCurSel();
 	//Añadir cara para la identidad
 	recognizedFaces[identidad].push_back(detectedFaces[comboboxCarasDetectadas.GetCurSel()]);
-	
+
 	//Añadir string de la cara
 	//Obtener próxima id
 	int id = comboboxCarasId.GetCount();
@@ -1279,8 +1335,8 @@ void TrainingDialog::OnBnClickedButtonMostrarIdCara()
 	}
 
 	//Comprobar si existe alguna cara para la id seleccionada
-	int idCaras = comboboxIdsAprendidas.GetCurSel();
-	std::vector<cv::Mat> &vectorFaces = recognizedFaces[idCaras];
+	int idPers = comboboxIdsAprendidas.GetCurSel();
+	std::vector<cv::Mat> &vectorFaces = recognizedFaces[idPers];
 	if (vectorFaces.size() == 0)
 	{
 		//Mostrar mensaje de error
@@ -1290,11 +1346,14 @@ void TrainingDialog::OnBnClickedButtonMostrarIdCara()
 
 	//Cerrar ventanas
 	this->closeFaceWindows();
+	//Obtener id de la cara elegida
+	int idCara = comboboxCarasId.GetCurSel();
+
 	//Ajustar resolución de la cara al tamaño del reconocimiento
 	cv::Mat finalFace;
-	upsampler->upSample(detectedFaces[idCaras], finalFace, alturaReconocimiento, anchuraReconocimiento);
+	upsampler->upSample(vectorFaces[idCara], finalFace, alturaReconocimiento, anchuraReconocimiento);
 	//Mostrar cara
-	std::string windowName = "Cara " + std::to_string(idCaras);
+	std::string windowName = "Cara " + std::to_string(idCara);
 	cv::imshow(windowName, finalFace);
 	//Mover ventana
 	cv::moveWindow(windowName, anchuraReconocimiento + 85, 0);
