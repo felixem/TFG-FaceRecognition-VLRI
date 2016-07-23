@@ -102,6 +102,8 @@ protected:
 	void updateIdsCombobox();
 	//Actualizar caras detectadas
 	void updateDetectedFacesCombobox();
+	//Crear directorio
+	bool createDir(const std::string& dirName_in);
 
 	DECLARE_MESSAGE_MAP()
 public:
@@ -160,4 +162,5 @@ public:
 	CComboBox comboboxCarasId;
 	afx_msg void OnBnClickedButtonMostrarIdCara();
 	afx_msg void OnCbnSelchangeComboCaraId();
+	afx_msg void OnBnClickedButtonGuardarCaras();
 };

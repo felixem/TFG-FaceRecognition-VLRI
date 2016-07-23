@@ -914,8 +914,8 @@ void CVisionGUIDlg::OnBnClickedButtonLoadmodel()
 		return;
 	}
 
-	// TODO: Add your control notification handler code here
-	CFileDialog dlg(TRUE);
+	//Abrir diálogo de cargado de fichero
+	CFileDialog dlg(TRUE, CString(".yml"), NULL, 0, CString("Model Files (*.yml)|*.yml|"));
 	int result = dlg.DoModal();
 	//Comprobar que se ha cargado la imagen
 	if (result == IDOK)

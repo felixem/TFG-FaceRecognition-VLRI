@@ -76,6 +76,7 @@ BEGIN_MESSAGE_MAP(TrainingDialog, CDialog)
 	ON_MESSAGE(WM_MY_MESSAGE, updateDataCall)
 	ON_BN_CLICKED(IDC_BUTTON_MOSTRAR_ID_CARA, &TrainingDialog::OnBnClickedButtonMostrarIdCara)
 	ON_CBN_SELCHANGE(IDC_COMBO_CARA_ID, &TrainingDialog::OnCbnSelchangeComboCaraId)
+	ON_BN_CLICKED(IDC_BUTTON_GUARDAR_CARAS, &TrainingDialog::OnBnClickedButtonGuardarCaras)
 END_MESSAGE_MAP()
 
 
@@ -1369,4 +1370,76 @@ void TrainingDialog::OnBnClickedButtonMostrarIdCara()
 void TrainingDialog::OnCbnSelchangeComboCaraId()
 {
 	this->closeFaceWindows();
+}
+
+//Guardar caras en un directorio
+void TrainingDialog::OnBnClickedButtonGuardarCaras()
+{
+	//Abrir diálogo de selección de directorio
+	CFolderPickerDialog dlg;
+	int result = dlg.DoModal();
+	//Comprobar que se ha seleccionado una ruta donde almacenar las caras
+	if (result == IDOK)
+	{
+		//Nombre del directorio base
+		std::string directorioBase = cStringToString(dlg.GetPathName());
+		//Si no existe el directorio base, crearlo
+		if (!createDir(directorioBase))
+		{
+			//Mensaje de error
+			AfxMessageBox(_T(("No se pudo crear el directorio "+directorioBase).c_str()), MB_OK | MB_ICONERROR);
+			return;
+		}
+
+		//Formato de imágenes
+		std::string formatoImg = ".jpg";
+		try
+		{
+			//Crear directorios e imágenes
+			for (unsigned int i = 0; i < recognizedFaces.size(); ++i)
+			{
+				//Nombre del directorio derivado
+				std::string dirDerivado = directorioBase + "/" + std::to_string(i);
+				//Si no existe el directorio base, crearlo
+				if (!createDir(dirDerivado))
+				{
+					//Mensaje de error
+					AfxMessageBox(_T(("No se pudo crear el directorio " + dirDerivado).c_str()), MB_OK | MB_ICONERROR);
+					return;
+				}
+
+				//Referencia de id actual
+				const std::vector<cv::Mat>& vectorFace = recognizedFaces[i];
+				for (unsigned int j = 0; j < vectorFace.size(); ++j)
+				{
+					//Crear cara upsampleada
+					cv::Mat upsampledFace;
+					upsampler->upSample(vectorFace[j], upsampledFace, alturaReconocimiento, anchuraReconocimiento);
+					//Crear imagen
+					std::string imgPath = dirDerivado + "/" + std::to_string(j) + formatoImg;
+					if (!cv::imwrite(imgPath,upsampledFace))
+					{
+						//Mensaje de error
+						AfxMessageBox(_T(("No se pudo crear la imagen " + imgPath).c_str()), MB_OK | MB_ICONERROR);
+						return;
+					}
+				}
+			}
+
+			//Mensaje de aceptación
+			AfxMessageBox(_T("Se han volcado las imágenes correctamente"), MB_OK | MB_ICONINFORMATION);
+		}
+		catch (std::exception &ex)
+		{
+			//Mostrar mensaje de error
+			AfxMessageBox(_T(ex.what()), MB_OK | MB_ICONSTOP);
+		}
+	}
+}
+
+//Crear directorio
+bool TrainingDialog::createDir(const std::string& dirName_in)
+{
+	return (CreateDirectory(dirName_in.c_str(), NULL) ||
+		ERROR_ALREADY_EXISTS == GetLastError());
 }
