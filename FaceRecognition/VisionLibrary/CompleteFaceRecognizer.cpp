@@ -53,6 +53,9 @@ namespace tfg
 			const cv::Rect& rectFace = foundRectFaces[i];
 			//Recortar cara
 			cv::Mat grayFace = grayImg(rectFace);
+			//Realizar ecualización
+			cv::equalizeHist(grayFace, grayFace);
+
 			//Aplicar upsampling
 			cv::Mat upsampledFace;
 			this->upsampler->upSample(grayFace, upsampledFace, recognizeHeight, recognizeWidth);

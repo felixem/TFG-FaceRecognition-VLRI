@@ -78,7 +78,8 @@ namespace tfg
 			//Obtener cara en escala de grises
 			Mat gray = frame_gray(roi_c);
 
-			//Añadir cara en gris a la lista de caras
+			//Añadir cara en gris ecualizada a la lista de caras
+			equalizeHist(gray, gray);
 			foundFaces.push_back(gray);
 		}
 
@@ -123,6 +124,7 @@ namespace tfg
 
 			//Convertir imagen a escala de grises
 			Mat gray = frame_gray(roi_c);
+			equalizeHist(gray, gray);
 			//Añadir cara en gris a la lista de caras
 			grayFoundFaces.push_back(gray);
 		}
@@ -157,11 +159,13 @@ namespace tfg
 			grayInput = input;
 		}
 
+		//Frame ecualizado
+		cv::Mat eqGrey;
 		//Ecualizar el histograma
-		equalizeHist(grayInput, grayInput);
+		equalizeHist(grayInput, eqGrey);
 
 		//Detectar las caras
-		face_cascade.detectMultiScale(grayInput, rectFaces, scale, numVecinos, 0 | CASCADE_SCALE_IMAGE, Size(minWidth, minHeight), Size(maxWidth, maxHeight));
+		face_cascade.detectMultiScale(eqGrey, rectFaces, scale, numVecinos, 0 | CASCADE_SCALE_IMAGE, Size(minWidth, minHeight), Size(maxWidth, maxHeight));
 
 		//Devolver si se ha encontrado alguna cara
 		return rectFaces.size();

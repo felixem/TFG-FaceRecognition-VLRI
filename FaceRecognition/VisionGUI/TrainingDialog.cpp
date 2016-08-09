@@ -510,6 +510,9 @@ void TrainingDialog::OnBnClickedButtonCargarArchivoImagenTrain()
 		//Limpiar las caras detectadas
 		detectedFaces.clear();
 
+		//Actualizar datos sobre caras detectadas
+		updateDetectedFacesCombobox();
+
 		//Mostrar imagen
 		CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_ENTRENAMIENTO_PREVIEW);
 		//Mostrar imagen
@@ -587,6 +590,9 @@ void TrainingDialog::OnBnClickedButtonLoadCameraTrain()
 	imgCargada = frame;
 	//Limpiar las caras detectadas
 	detectedFaces.clear();
+
+	//Actualizar datos sobre caras detectadas
+	updateDetectedFacesCombobox();
 
 	//Mostrar imagen
 	CStatic* pictureControl = (CStatic *)GetDlgItem(IMG_ENTRENAMIENTO_PREVIEW);
